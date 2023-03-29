@@ -5,17 +5,13 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [ 
-      ../../hardware-configuration.nix
       "${inputs.self}/anthony.nix"
+      "${inputs.self}/hardware-configuration.nix"
     ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
-
-  age.identityPaths = [
-    "/home/anthony/.ssh/id_rsa"
-  ];
 
   networking.hostName = "kayak";
   

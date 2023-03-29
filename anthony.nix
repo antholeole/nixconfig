@@ -1,7 +1,5 @@
 { config, lib, pkgs, inputs, ... }:
 {
-  age.secrets.antspass.file = "${inputs.self}/secrets/antspass.page";
-
   nix.settings.trusted-users = [ "anthony" ];
   users.users.anthony = {
      hashedPassword = "$6$uaFo6AHeGdLRvmQj$HKH9T/SMrDL7779uDT50x6Ypfip0doG7lKcXNvBr03tAcTUHDvKTQ8kNSWP7Dj9E6TlNsln/uW0MC4WxGr3B10";
@@ -11,7 +9,6 @@
        pkgs.firefox
        pkgs.vscodium
        pkgs.thunderbird
-       inputs.agenix.packages."${pkgs.system}".default
      ];
   };
 
