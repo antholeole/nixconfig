@@ -12,36 +12,17 @@
      ];
   };
 
-  home-manager.users = {
-    anthony = {
-      home = {
-        username = "anthony";
-        homeDirectory = "/home/anthony";
-
-        packages = with pkgs; [
-          ripgrep
-        ];
-      };
-
-      programs = {
-        starship = {
-          enable = true;
-          enableBashIntegration = true;
-          settings = {
-            username = {
-              format = "user: [$user]($style) ";
-              show_always = true;
-            };
-            shlvl = {
-              disabled = false;
-              format = "$shlvl ▼ ";
-              threshold = 4;
-            };
-          };
-        };
-      };
-
-      home.stateVersion = "20.03";
-    }; 
-  };
+  #home-manager.users = {
+  #  anthony = {
+  #    home = {
+  #      username = "anthony";
+  #      homeDirectory = "/home/anthony";
+  #
+  #      packages = with pkgs; [];
+  #    };
+#
+#
+ #     home.stateVersion = "20.03";
+  #  }; 
+  #};
 }

@@ -9,7 +9,6 @@
       "${inputs.self}/hardware-configuration.nix"
     ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
@@ -17,7 +16,6 @@
   
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "America/Chicago";
 
   i18n.defaultLocale = "en_US.UTF-8";

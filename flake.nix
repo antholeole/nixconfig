@@ -4,6 +4,7 @@
   inputs = {
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:nix-community/home-manager";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs =
