@@ -1,1 +1,0 @@
-- [] configure a starship shell
