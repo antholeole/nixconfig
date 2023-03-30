@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 {
   imports = [
-    "${inputs.self}/kde.nix"
+    "${inputs.self}/modules/gnome.nix"
   ];
 
   nix.settings.trusted-users = [ "anthony" ];
@@ -24,6 +24,29 @@
         ];
       };
 
+      programs = {
+        git = {
+          enable = true;
+          userName  = "antholeole";
+          userEmail = "antholeinik@gmail.com";
+        };  
+
+        starship = {
+          enable = true;
+          enableBashIntegration = true;
+          settings = {
+            username = {
+              format = "user: [$user]($style) ";
+              show_always = true;
+            };
+            shlvl = {
+              disabled = false;
+              format = "$shlvl ▼ ";
+              threshold = 4;
+            };
+          };
+        };
+      };
 
       home.stateVersion = "20.03";
     }; 
