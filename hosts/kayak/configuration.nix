@@ -9,6 +9,9 @@
       "${inputs.self}/hardware-configuration.nix"
     ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
 
+  # vsc, chrome
+  nixpkgs.config.allowUnfree = true;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
 
@@ -19,11 +22,6 @@
   time.timeZone = "America/Chicago";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-     font = "Lat2-Terminus16";
-     useXkbConfig = true; # use xkbOptions in tty.
-  };
-
   users.mutableUsers = false;
 
   home-manager = {
@@ -38,7 +36,7 @@
     wget
     git
   ];
-
+  
   system.stateVersion = "23.05";
 }
 

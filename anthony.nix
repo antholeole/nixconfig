@@ -1,8 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs,  ... }:
 {
   imports = [
-    "${inputs.self}/kde.nix"
+    "${inputs.self}/modules/xfce/enable.nix"
+    "${inputs.self}/modules/code/code.nix"
   ];
+
+    fonts.fonts = with pkgs; [
+      fira-code
+      fira-code-symbols
+    ];  
 
   nix.settings.trusted-users = [ "anthony" ];
   users.users.anthony = {
@@ -13,17 +19,17 @@
 
   home-manager.users = {
     anthony = {
+      fonts.fontconfig.enable = true;
+
       home = {
         username = "anthony";
         homeDirectory = "/home/anthony";
   
         packages = with pkgs; [
           firefox
-          vscodium
-          thunderbird
+          albert
         ];
       };
-
 
       home.stateVersion = "20.03";
     }; 
