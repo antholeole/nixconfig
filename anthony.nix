@@ -31,6 +31,14 @@
         ];
       };
 
+      programs = {
+        direnv = {
+          enableBashIntegration = true;
+
+          enable = true; 
+        };
+      };
+      
       home.stateVersion = "20.03";
     }; 
   };
