@@ -2,7 +2,6 @@
 {
   imports = [
     "${inputs.self}/modules/xfce/enable.nix"
-    "${inputs.self}/modules/code/code.nix"
     "${inputs.self}/modules/starship.nix"
   ];
 
@@ -40,6 +39,8 @@
             eval "$(starship init bash)"
           '';
         };
+
+        vscode = import "${inputs.self}/modules/code/code.nix" pkgs; 
 
         direnv = {
           enableBashIntegration = true;
