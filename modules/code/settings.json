@@ -7,6 +7,5 @@
      // currently must be manually downloaded since not on nixpkgs
     "workbench.iconTheme": "catppuccin-latte",
     "workbench.colorTheme": "Catppuccin Frappé",
-    "catppuccin.italicComments": false,
-    "catppuccin.italicKeywords": false 
+    "catppuccin.italicComments": false, 
 }

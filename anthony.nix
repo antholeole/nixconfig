@@ -3,6 +3,7 @@
   imports = [
     "${inputs.self}/modules/xfce/enable.nix"
     "${inputs.self}/modules/code/code.nix"
+    "${inputs.self}/modules/starship.nix"
   ];
 
     fonts.fonts = with pkgs; [
@@ -27,14 +28,21 @@
   
         packages = with pkgs; [
           firefox
-          albert
+          python3
         ];
       };
 
       programs = {
+        bash = {
+          enable = true;
+          
+          bashrcExtra = ''
+            eval "$(starship init bash)"
+          '';
+        };
+
         direnv = {
           enableBashIntegration = true;
-
           enable = true; 
         };
       };
