@@ -9,8 +9,16 @@
       "${inputs.self}/hardware-configuration.nix"
     ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
 
-  # vsc, chrome
-  nixpkgs.config.allowUnfree = true;
+  nix.settings.trusted-users = [ "anthony" ];
+  users.users.anthony = {
+     hashedPassword = "$6$xuFopCWKzelX4Vss$ZHWmWZBQBZzZcXOFdQ7ADulpI2rhfDhKXNl6oYI9sj3Y8suKF.VG1Q/1lPb.NL/54inHR8pSbeIItzDQsz.bN/";
+     isNormalUser = true;
+     extraGroups = [ 
+      "wheel" 
+      "audio" # puseaudio
+      "video" # add to group that can control brightness
+     ];
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
@@ -31,6 +39,10 @@
       inherit inputs;
     };
   };
+
+  hardware.pulseaudio.enable = true;
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget

@@ -2,20 +2,19 @@
 {
   imports = [
     "${inputs.self}/modules/xfce/enable.nix"
-    "${inputs.self}/modules/starship.nix"
   ];
 
     fonts.fonts = with pkgs; [
-      fira-code
+      (nerdfonts.override { 
+        fonts = [ 
+          "FiraCode"
+          "JetBrainsMono" 
+        ]; 
+      })
       fira-code-symbols
+      jetbrains-mono      
     ];  
 
-  nix.settings.trusted-users = [ "anthony" ];
-  users.users.anthony = {
-     hashedPassword = "$6$xuFopCWKzelX4Vss$ZHWmWZBQBZzZcXOFdQ7ADulpI2rhfDhKXNl6oYI9sj3Y8suKF.VG1Q/1lPb.NL/54inHR8pSbeIItzDQsz.bN/";
-     isNormalUser = true;
-     extraGroups = [ "wheel" ];
-  };
 
   home-manager.users = {
     anthony = {
@@ -27,6 +26,7 @@
   
         packages = with pkgs; [
           firefox
+          polypomo
           python3
         ];
       };
@@ -40,7 +40,13 @@
           '';
         };
 
-        vscode = import "${inputs.self}/modules/code/code.nix" pkgs; 
+        
+        # git
+        # rofi?
+        # polybar
+        # wlsunset
+        # https://discourse.nixos.org/t/setting-caps-lock-as-ctrl-not-working/11952/3 
+        # xshkd?
 
         direnv = {
           enableBashIntegration = true;

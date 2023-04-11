@@ -27,10 +27,7 @@ in {
             };
 
             shlvl = {
-              disabled = false;
-              symbol = ">";
-              repeat = true;
-              threshold = 2;
+              disabled = true;
             };
 
             git_branch = {

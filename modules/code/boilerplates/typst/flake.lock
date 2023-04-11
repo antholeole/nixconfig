@@ -8,7 +8,7 @@
         "repo": "flake-utils",
         "rev": "93a2b84fc4b70d9e089d029deacc3583435c2ed6",
         "type": "github"
-      },
+},
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
