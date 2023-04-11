@@ -76,18 +76,20 @@ in {
             label-padding = "1";
         };
 
-        "module/polypomo" = {
+        "module/polypomo" = let 
+            polypomoPath = "${pkgs.polypomo.outPath}/bin/polypomo";
+        in {
             type = "custom/script";
 
-            exec = "polypomo";
+            exec = "${polypomoPath}";
             tail = "true";
             
             label = "%output%";
-            click-left = "polypomo toggle";
-            click-right = "polypomo end";
-            click-middle = "polypomo lock";
-            scroll-up = "polypomo time +60";
-            scroll-down = "polypomo time -60";
+            click-left = "${polypomoPath} toggle";
+            click-right = "${polypomoPath} end";
+            click-middle = "${polypomoPath} lock";
+            scroll-up = "${polypomoPath} time +60";
+            scroll-down = "${polypomoPath} time -60";
         };
 
         "module/battery" = {

@@ -6,7 +6,7 @@ echo "Enabling High-DPI settings ..."
 xfconf-query -c xfwm4 -p /general/theme -s Default-hdpi
 
 # Scale mouse cursor: 24 -> 48 pixels (> Mouse > Theme).
-xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 48
+xfconf-query -c xsettings -p /Gtk/CursorThemeSize -s 36
 
 # Scale window titles.
 xfconf-query -c xfwm4 -p /general/title_font -s "Sans Bold 8"

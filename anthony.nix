@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs,  ... }:
+{ config, pkgs, inputs,  ... }:
 {
   imports = [
     "${inputs.self}/modules/xfce/enable.nix"
@@ -12,15 +12,29 @@
         ]; 
       })
       fira-code-symbols
-      jetbrains-mono      
-    ];  
+    ];    
 
-
-  home-manager.users = {
-    anthony = {
+  home-manager.users.anthony = { lib, ... }: {
       fonts.fontconfig.enable = true;
 
+      gtk = {
+          enable = true;
+          theme = {
+            name = "Catppuccin-Latte-Standard-Flamingo-Dark";
+            package = pkgs.catppuccin-gtk.override {
+              accents = [ "flamingo" ];
+              size = "standard";
+              tweaks = [ "rimless" ];
+              variant = "frappe";
+            };
+          };
+      };
+
       home = {
+        activation = {
+          polybar = lib.hm.dag.entryAnywhere "systemctl --user restart polybar";
+        };
+
         username = "anthony";
         homeDirectory = "/home/anthony";
   
@@ -56,5 +70,4 @@
       
       home.stateVersion = "20.03";
     }; 
-  };
 }

@@ -15,7 +15,7 @@
      isNormalUser = true;
      extraGroups = [ 
       "wheel" 
-      "audio" # puseaudio
+      "audio" # pulseaudio
       "video" # add to group that can control brightness
      ];
   };
