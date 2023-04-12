@@ -46,7 +46,6 @@
 
   environment.systemPackages = with pkgs; [
     wget
-    git
   ];
   
   system.stateVersion = "23.05";

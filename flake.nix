@@ -32,6 +32,7 @@
             pkgsOverride
             apple-silicon.nixosModules.default
             home-manager.nixosModules.home-manager
+            ./modules/git.nix
             ./modules/code/code.nix
             ./modules/starship.nix
             ./modules/polybar.nix
