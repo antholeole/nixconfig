@@ -44,9 +44,21 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-  ];
+  hardware.opengl.enable = true;
+  services.xserver = {
+    enable = true;
+
+    layout = "us";
+    xkbOptions = "ctl:swap_lwin_lctl";
+
+    desktopManager.lxqt.enable = true;
+    windowManager.fluxbox.enable = true;
+
+    displayManager = {
+      defaultSession = "lxqt+fluxbox"; 
+      lightdm.enable = true;
+    };
+  };
   
   system.stateVersion = "23.05";
 }

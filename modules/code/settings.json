@@ -2,12 +2,11 @@
     "terminal.integrated.allowChords": false,
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,   
-    "terminal.integrated.fontFamily": "Fira Code Symbol",
-
-     // currently must be manually downloaed since not on nixpkgs
-    "workbench.iconTheme": "catppuccin-frappe",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "workbench.colorTheme": "Catppuccin Frappé",
     "catppuccin.italicComments": false,
     "catppuccin.italicKeywords": false,
-    "catppuccin.accentColor": "flamingo"
+    "catppuccin.accentColor": "flamingo",
+    "explorer.confirmDragAndDrop": false,
+    "editor.inlineSuggest.enabled": true
 }

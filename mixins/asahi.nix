@@ -10,7 +10,4 @@
       GDK_DPI_SCALE = "0.5";
       _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
     };
-
-  # Since we are on a macbook, swap the ctrl and super key
-  services.xserver.xkbOptions = "ctrl:swap_lwin_lctrl";
 }

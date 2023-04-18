@@ -1,6 +1,13 @@
 { pkgs, ...}: 
 let
-  bracket_langs = [ "python" "nodejs" "golang" "rust" ];
+  bracket_langs = [ 
+    "python"
+    "java"
+    "package" 
+    "nodejs" 
+    "golang" 
+    "rust" 
+  ];
   lang_to_attr = root: {
     name = root;
     value = {
@@ -43,6 +50,11 @@ in {
             };
 
             right_format = "$time";
+
+            nix_shell = {
+              symbol = "󱄅 ";
+              format = "[\\[$symbol($name)\\]]($style)";
+            };
 
             time = {
               disabled = false;

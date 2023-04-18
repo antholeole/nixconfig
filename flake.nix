@@ -4,7 +4,7 @@
   inputs = {
     polypomo.url = "github:antholeole/polypomo";
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:antholeole/home-manager";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
@@ -35,7 +35,10 @@
             ./modules/git.nix
             ./modules/code/code.nix
             ./modules/starship.nix
+            ./modules/alacritty.nix
+            ./modules/rofi.nix
             ./modules/polybar.nix
+            ./modules/fluxbox.nix
             ./hosts/kayak/configuration.nix
           ];
           specialArgs = { 

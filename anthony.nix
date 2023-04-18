@@ -1,7 +1,8 @@
 { config, pkgs, inputs,  ... }:
 {
   imports = [
-    "${inputs.self}/modules/xfce/enable.nix"
+    "${inputs.self}/modules/xsession.nix"
+
   ];
 
     fonts.fonts = with pkgs; [
@@ -20,7 +21,7 @@
       gtk = {
           enable = true;
           theme = {
-            name = "Catppuccin-Latte-Standard-Flamingo-Dark";
+            name = "Catppuccin-Frappe-Standard-Flamingo-Dark";
             package = pkgs.catppuccin-gtk.override {
               accents = [ "flamingo" ];
               size = "standard";
@@ -42,20 +43,28 @@
           firefox
           polypomo
           python3
+          openbox
+          gtk-engine-murrine
+          dconf
         ];
       };
 
       programs = {
+        keychain = {
+          enable = true;
+          enableXsessionIntegration = true;
+        };
+
         bash = {
           enable = true;
-          
+
           bashrcExtra = ''
-            eval "$(starship init bash)"
+            eval "$(starship init bash)";
+            function cdc { mkdir -p $1 && cd $1; };
           '';
         };
 
         
-        # git
         # rofi?
         # polybar
         # wlsunset
