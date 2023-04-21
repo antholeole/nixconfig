@@ -49,6 +49,9 @@
     enable = true;
 
     layout = "us";
+
+    # this shit is not working. For now, on boot, run:
+    # setxkbmap -option ctrl:swap_lwin_lctl
     xkbOptions = "ctl:swap_lwin_lctl";
 
     desktopManager.lxqt.enable = true;

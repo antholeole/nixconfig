@@ -56,6 +56,8 @@ in {
               format = "[\\[$symbol($name)\\]]($style)";
             };
 
+            battery.disabled = true;
+
             time = {
               disabled = false;
               style = "bold bright-black";

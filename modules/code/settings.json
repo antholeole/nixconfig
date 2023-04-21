@@ -3,10 +3,11 @@
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,   
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-    "workbench.colorTheme": "Catppuccin Frappé",
+    "workbench.colorTheme": "Catppuccin Macchiato",
     "catppuccin.italicComments": false,
     "catppuccin.italicKeywords": false,
     "catppuccin.accentColor": "flamingo",
     "explorer.confirmDragAndDrop": false,
-    "editor.inlineSuggest.enabled": true
+    "editor.inlineSuggest.enabled": true,
+    "workbench.iconTheme": "catppuccin-macchiato"
 }

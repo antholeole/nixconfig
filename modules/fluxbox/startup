@@ -1,0 +1,5 @@
+setxkbmap -option ctrl:swap_lwin_lctl
+
+feh --bg-scale ~/wall.png
+
+exec fluxbox -log "~/.fluxbox/log"

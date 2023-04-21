@@ -38,7 +38,7 @@
             ./modules/alacritty.nix
             ./modules/rofi.nix
             ./modules/polybar.nix
-            ./modules/fluxbox.nix
+            ./modules/fluxbox
             ./hosts/kayak/configuration.nix
           ];
           specialArgs = { 

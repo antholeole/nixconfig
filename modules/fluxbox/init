@@ -1,0 +1,22 @@
+session.menuFile:	~/.fluxbox/menu
+session.appsFile:	~/.fluxbox/apps
+session.keyFile:	~/.fluxbox/keys
+
+session.screen0.rootCommand:	~/.fehbg
+
+session.screen0.defaultDeco: NONE
+
+session.styleFile:	~/.fluxbox/styles/Catpuccin
+session.styleOverlay: ~/.fluxbox/overlay
+
+session.screen0.workspaces:	3
+session.screen0.workspaceNames:	,  ,  ,  , 
+
+session.screen0.toolbar.visible: true
+session.screen0.toolbar.tools:	prevworkspace, workspacename, nextworkspace, iconbar,  systemtray
+
+session.screen0.iconbar.usePixmap:	false
+session.screen0.iconbar.iconWidth:	10
+session.screen0.iconbar.iconTextPadding:	1
+session.screen0.iconbar.mode:	{static groups} (workspace)
+session.screen0.iconbar.alignment:	Relative

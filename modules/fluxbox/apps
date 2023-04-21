@@ -1,0 +1,8 @@
+[app] (name=code)
+  [Workspace] {1}
+[end]
+
+[app] (name=firefox)
+  [Workspace] {2}
+[end]
+

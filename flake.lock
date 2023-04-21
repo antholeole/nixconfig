@@ -24,11 +24,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1681761537,
-        "narHash": "sha256-ibfRgiCQeShqvv4JAfafwyBTGWz6OIKolsELTvQYAsQ=",
+        "lastModified": 1681932669,
+        "narHash": "sha256-rViYDXA8Byq3vtkfZsIZZhF3ZzTPnx/ufQuVQRePJz4=",
         "owner": "antholeole",
         "repo": "home-manager",
-        "rev": "749142f9818f1a9302aa9a7d2174efe876d0de03",
+        "rev": "4d95961b8b49d73a4395572e22fbae4e2e58c82e",
         "type": "github"
       },
       "original": {

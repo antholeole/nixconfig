@@ -1,0 +1,25 @@
+# Rofi! we replace the regular menu bar with rofi, so if we forget how to do anything,
+# we can right-click on the desktop to get rofi up.
+Mod1 r :Exec rofi -show run
+OnDesktop Mouse2 :Exec rofi -show run
+
+# tab through the windows in the current space (for instance, many VSC windows)
+Mod1 Tab :NextWindow (Workspace=[current]) 
+Mod1 Shift Tab :PrevWindow (Workspace=[current])
+
+Mod1 o :PrevWorkspacep
+Mod1 Shift o :TakeToPrevWorkspace
+
+Mod1 p :NextWorkspace
+Mod1 Shift p :TakeToNextWorkspace
+
+Mod1 m :MaximizeWindow
+
+# alt + right click to resize. alt + left click to move.
+OnWindow Mod1 Mouse1 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartMoving}}
+OnWindow Mod1 Mouse3 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartResizing NearestCorner}}
+
+# screenshot!
+Control Shift 4 :Exec shutter -s -o ~/Downloads/screenshot_%NN.png -n -e
+
+Mod1 w :Close

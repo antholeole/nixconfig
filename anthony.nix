@@ -1,10 +1,5 @@
 { config, pkgs, inputs,  ... }:
 {
-  imports = [
-    "${inputs.self}/modules/xsession.nix"
-
-  ];
-
     fonts.fonts = with pkgs; [
       (nerdfonts.override { 
         fonts = [ 
@@ -17,6 +12,8 @@
 
   home-manager.users.anthony = { lib, ... }: {
       fonts.fontconfig.enable = true;
+
+      xsession.enable = true;
 
       gtk = {
           enable = true;
@@ -32,20 +29,18 @@
       };
 
       home = {
-        activation = {
-          polybar = lib.hm.dag.entryAnywhere "systemctl --user restart polybar";
-        };
-
         username = "anthony";
         homeDirectory = "/home/anthony";
   
         packages = with pkgs; [
-          firefox
+          chromium
           polypomo
+          shutter
           python3
-          openbox
+          unzip
           gtk-engine-murrine
           dconf
+          feh # for background
         ];
       };
 
@@ -64,12 +59,9 @@
           '';
         };
 
-        
         # rofi?
-        # polybar
         # wlsunset
         # https://discourse.nixos.org/t/setting-caps-lock-as-ctrl-not-working/11952/3 
-        # xshkd?
 
         direnv = {
           enableBashIntegration = true;

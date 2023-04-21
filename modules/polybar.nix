@@ -1,26 +1,6 @@
 { pkgs, ... }: 
 let 
-    # based on Catpuccin
-    colors = {
-        base = "#303446";
-        mantle = "#292c3c";
-        crust = "#232634";
-
-        text = "#c6d0f5";
-        subtext0 = "#a5adce";
-        subtext1 = "#b5bfe2";
-
-        surface0 = "#414559";
-        surface1 = "#51576d";
-        surface2 = "#626880";
-
-        overlay0 = "#737994";
-        overlay1 = "#838ba7";
-        overlay2 = "#949cbb";
-
-        flamingo = "#eebebe";
-    };
-
+    colors = import ../theme.nix;
     seperator = {
         type = "custom/text";
         content = "|"; 
