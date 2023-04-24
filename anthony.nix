@@ -15,7 +15,11 @@
 
       xsession.enable = true;
 
-      services.blueman-applet.enable = true;
+      services = {
+        blueman-applet.enable = true;
+gnome-keyring.enable = true;
+      };
+
 
       gtk = {
           enable = true;

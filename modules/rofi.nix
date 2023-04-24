@@ -36,7 +36,7 @@ in
           };
 
           "prompt" = {
-            "text-color" = mkLiteral "${colors.subtext0}";
+            "text-color" = mkLiteral "${colors.flamingo}";
           };
 
           "prompt, entry, element-text, element-icon" = {

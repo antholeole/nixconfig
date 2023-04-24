@@ -9,5 +9,6 @@
     "catppuccin.accentColor": "flamingo",
     "explorer.confirmDragAndDrop": false,
     "editor.inlineSuggest.enabled": true,
-    "workbench.iconTheme": "catppuccin-macchiato"
+    "workbench.iconTheme": "catppuccin-macchiato",
+    "julia.symbolCacheDownload": true
 }
