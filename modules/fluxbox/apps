@@ -1,8 +1,12 @@
-[app] (name=code)
-  [Workspace] {1}
+[app] (class=code)
+  [Workspace] {0} 
+  [Jump] {yes}
+  [Maximized] {yes}
 [end]
 
-[app] (name=firefox)
-  [Workspace] {2}
+[app] (role=browser)
+  [Workspace] {1} 
+  [Jump] {yes}
+  [Maximized] {yes}
 [end]
 

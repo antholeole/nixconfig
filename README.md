@@ -5,3 +5,4 @@ TODO:
 - rofi
 - music / audo!
 - polypomo
+- fluxbox apps

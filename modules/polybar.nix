@@ -67,7 +67,7 @@ in {
             label = "%output%";
             click-left = "${polypomoPath} toggle";
             click-right = "${polypomoPath} end";
-            click-middle = "${polypomoPath} lock";
+
             scroll-up = "${polypomoPath} time +60";
             scroll-down = "${polypomoPath} time -60";
         };

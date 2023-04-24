@@ -1,0 +1,21 @@
+{
+    "saveEditorLayout.list": [
+        {
+            "name": "test",
+            "documents": [
+                {
+                    "fsPath": "/etc/nixos/anthony.nix",
+                    "column": 1
+                }
+            ],
+            "layout": {
+                "orientation": 0,
+                "groups": [
+                    {
+                        "size": 1062
+                    }
+                ]
+            }
+        }
+    ]
+}

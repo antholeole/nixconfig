@@ -15,7 +15,7 @@
 
       activation = {
           symLinkStyles = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            $DRY_RUN_CMD ln -sf $VERBOSE_ARG \
+            $DRY_RUN_CMD ln -snf $VERBOSE_ARG \
               ${builtins.toPath ./styles} $HOME/.fluxbox/styles
           '';
       };

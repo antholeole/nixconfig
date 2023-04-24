@@ -15,6 +15,8 @@
 
       xsession.enable = true;
 
+      services.blueman-applet.enable = true;
+
       gtk = {
           enable = true;
           theme = {
@@ -33,12 +35,15 @@
         homeDirectory = "/home/anthony";
   
         packages = with pkgs; [
-          chromium
-          polypomo
-          shutter
-          python3
+          chromium #browser
+          polypomo #(added thru overlay) polybar pomodoro timer
+          shutter # screenshotter (activated thru fluxbox keys)
+          postman # REST client (swap with insomnia when we finally can!)
+          slock # screen locker
+          xorg.xbacklight # brightness
+          python3 
+          nixpkgs-fmt # we're gonna be writing a lot of nix :)
           unzip
-          gtk-engine-murrine
           dconf
           feh # for background
         ];

@@ -2,4 +2,7 @@ setxkbmap -option ctrl:swap_lwin_lctl
 
 feh --bg-scale ~/wall.png
 
+code &
+chromium &
+
 exec fluxbox -log "~/.fluxbox/log"

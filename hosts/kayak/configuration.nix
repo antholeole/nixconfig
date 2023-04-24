@@ -62,6 +62,15 @@
       lightdm.enable = true;
     };
   };
+
+  # we should install slock through home-manager.
+  security.wrappers.slock = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+
+    source = "${pkgs.slock.out}/bin/slock";
+  };
   
   system.stateVersion = "23.05";
 }

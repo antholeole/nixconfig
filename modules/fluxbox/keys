@@ -7,7 +7,7 @@ OnDesktop Mouse2 :Exec rofi -show run
 Mod1 Tab :NextWindow (Workspace=[current]) 
 Mod1 Shift Tab :PrevWindow (Workspace=[current])
 
-Mod1 o :PrevWorkspacep
+Mod1 o :PrevWorkspace
 Mod1 Shift o :TakeToPrevWorkspace
 
 Mod1 p :NextWorkspace
@@ -20,6 +20,8 @@ OnWindow Mod1 Mouse1 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {Sta
 OnWindow Mod1 Mouse3 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartResizing NearestCorner}}
 
 # screenshot!
-Control Shift 4 :Exec shutter -s -o ~/Downloads/screenshot_%NN.png -n -e
+Control Shift 4 :Exec shutter -s -o '~/Downloads/screenshot_%NN.png' -n -e
+
+Mod1 l :Exec slock
 
 Mod1 w :Close
