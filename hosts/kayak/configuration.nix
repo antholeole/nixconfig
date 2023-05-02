@@ -17,6 +17,7 @@
       "wheel" 
       "audio" # pulseaudio
       "video" # add to group that can control brightness
+      "networkmanager" # self explanatory
      ];
   };
 
@@ -40,18 +41,21 @@
     };
   };
 
+  nix.settings.auto-optimise-store = true;
   hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
-
   hardware.opengl.enable = true;
+
+  programs.nix-ld.enable = true;
+
   services.xserver = {
     enable = true;
 
     layout = "us";
 
-    # this shit is not working. For now, on boot, run:
-    # setxkbmap -option ctrl:swap_lwin_lctl
+    # this shit is not working. For now, on boot (managed by fluxbox), run:
+    # setxkbmap -option ctrl:swap_lwin_lctl.
     xkbOptions = "ctl:swap_lwin_lctl";
 
     desktopManager.lxqt.enable = true;

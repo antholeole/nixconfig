@@ -17,7 +17,8 @@
 
       services = {
         blueman-applet.enable = true;
-gnome-keyring.enable = true;
+        gnome-keyring.enable = true;
+        unclutter.enable = true;
       };
 
 
@@ -61,6 +62,8 @@ gnome-keyring.enable = true;
 
         bash = {
           enable = true;
+
+          shellAliases = import "${inputs.self}/modules/terminal_aliases.nix" pkgs;
 
           bashrcExtra = ''
             eval "$(starship init bash)";

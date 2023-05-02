@@ -2,7 +2,7 @@ sudo nixos-rebuild switch --flake .#kayak-asaki
 
 
 TODO:
-- rofi
-- music / audo!
-- polypomo
-- fluxbox apps
+- make rofi launch aliases & have autocomplete
+- README
+- fluxbox app to disable mouse
+- music 

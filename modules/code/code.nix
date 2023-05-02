@@ -5,6 +5,7 @@
       catppuccin.catppuccin-vsc
       # catppuccin.catppuccin-vsc-icons
       yzhang.markdown-all-in-one
+      mkhl.direnv 
     ];
   };
 }

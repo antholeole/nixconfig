@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   colors = import ../theme.nix;
 in
@@ -7,7 +7,7 @@ in
     programs.rofi = {
       enable = true;
 
-      terminal = "${pkgs.alacritty}/bin/gnome-terminal";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
 
       theme =
         let

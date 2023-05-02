@@ -6,7 +6,8 @@ let
     "package" 
     "nodejs" 
     "golang" 
-    "rust" 
+    "rust"
+    "julia" 
   ];
   lang_to_attr = root: {
     name = root;
