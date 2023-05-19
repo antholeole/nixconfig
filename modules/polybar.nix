@@ -1,5 +1,5 @@
-{ pkgs, ... }: 
-let 
+{ pkgs, inputs, ... }: 
+let
     colors = import ../theme.nix;
     seperator = {
         type = "custom/text";
@@ -24,7 +24,7 @@ in {
             padding-left = "1";
             padding-right = "0";
 
-            modules-left = [ "brightness" "polypomo" ];
+            modules-left = [ "brightness" "polydoro" ];
             modules-right = [ "battery" "sep1" "date" ];
 
             font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
@@ -56,20 +56,17 @@ in {
             label-padding = "1";
         };
 
-        "module/polypomo" = let 
-            polypomoPath = "${pkgs.polypomo.outPath}/bin/polypomo";
+        "module/polydoro" = let 
+            polydoroPath = "${pkgs.polydoro.outPath}/bin/polydoro";
         in {
             type = "custom/script";
 
-            exec = "${polypomoPath}";
+            exec = "${polydoroPath} run";
             tail = "true";
             
             label = "%output%";
-            click-left = "${polypomoPath} toggle";
-            click-right = "${polypomoPath} end";
-
-            scroll-up = "${polypomoPath} time +60";
-            scroll-down = "${polypomoPath} time -60";
+            click-left = "${polydoroPath} toggle";
+            click-right = "${polydoroPath} skip";
         };
 
         "module/battery" = {

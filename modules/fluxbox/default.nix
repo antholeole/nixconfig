@@ -11,7 +11,6 @@
 
     home = {
       file."wall.png".source = ./bg.png; 
-      file.".fluxbox/overlay".source = ./overlay;
 
       activation = {
           symLinkStyles = lib.hm.dag.entryAfter ["writeBoundary"] ''

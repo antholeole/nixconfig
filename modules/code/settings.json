@@ -10,8 +10,11 @@
     "explorer.confirmDragAndDrop": false,
     "editor.inlineSuggest.enabled": true,
     "julia.symbolCacheDownload": true,
-    "workbench.iconTheme": "catppuccin-macchiato",
     "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt"
-    ]
+    ],
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "workbench.iconTheme": "catppuccin-macchiato"
 }

@@ -1,6 +1,6 @@
 setxkbmap -option ctrl:swap_lwin_lctl
 
-feh --bg-scale ~/wall.png
+feh --bg-center ~/wall.png -B \#1e2030
 
 code &
 chromium &

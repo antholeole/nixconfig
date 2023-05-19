@@ -3,6 +3,9 @@
 Mod1 r :Exec rofi -show run
 OnDesktop Mouse2 :Exec rofi -show run
 
+# Pause polydoro timer
+Mod1 space :Exec polydoro toggle 
+
 # tab through the windows in the current space (for instance, many VSC windows)
 Mod1 Tab :NextWindow (Workspace=[current]) 
 Mod1 Shift Tab :PrevWindow (Workspace=[current])
