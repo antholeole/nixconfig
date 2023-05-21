@@ -3,8 +3,8 @@
 Mod1 r :Exec rofi -show run
 OnDesktop Mouse2 :Exec rofi -show run
 
-# Pause polydoro timer
-Mod1 space :Exec polydoro toggle 
+Mod1 b :Exec polydoro toggle 
+Mod1 space :Exec mpc toggle
 
 # tab through the windows in the current space (for instance, many VSC windows)
 Mod1 Tab :NextWindow (Workspace=[current]) 
@@ -17,6 +17,7 @@ Mod1 p :NextWorkspace
 Mod1 Shift p :TakeToNextWorkspace
 
 Mod1 m :MaximizeWindow
+Mod1 n :MinimizeWindow
 
 # alt + right click to resize. alt + left click to move.
 OnWindow Mod1 Mouse1 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartMoving}}
