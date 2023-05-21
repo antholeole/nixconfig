@@ -11,6 +11,10 @@ in {
     enable = true;
     script = "polybar bar &";
 
+    package = pkgs.polybar.override {
+        mpdSupport = true;
+    };
+
     config = {
         "bar/bar" = {
             width = "100%";
@@ -25,6 +29,7 @@ in {
             padding-right = "0";
 
             modules-left = [ "brightness" "polydoro" ];
+            modules-center = [ "mpd" ];
             modules-right = [ "battery" "sep1" "date" ];
 
             font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
@@ -39,7 +44,7 @@ in {
 
             enable-scroll = "true";
 
-            format = "󰃠 <bar><label>";
+            format = "󰃠 <bar>";
 
             bar-width = "10";
             bar-indicator = "|";
@@ -54,6 +59,34 @@ in {
 
             label = "%time%%date%";
             label-padding = "1";
+        };
+
+        "module/pulseaudio" = {
+            type = "internal/pulseaudio";
+
+            format-volume = "<ramp-volume>";
+        };
+
+
+        "module/mpd" = {
+            type = "internal/mpd";
+
+            host = "127.0.0.1";
+            port = "6600";
+
+            interval = "2";
+
+            format-online = "<icon-prev> <toggle> <icon-next> <label-time>";
+            label-offline = "mpd is offline";
+
+            icon-play = "";
+            icon-pause = "";
+            icon-prev = "";
+            icon-next = "";
+            icon-seekb = "";
+            icon-seekf = "";
+            icon-random = "";
+            icon-repeat = "";
         };
 
         "module/polydoro" = let 

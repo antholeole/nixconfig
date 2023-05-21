@@ -13,7 +13,16 @@
   home-manager.users.anthony = { lib, ... }: {
     fonts.fontconfig.enable = true;
 
-    xsession.enable = true;
+    xsession = import "${inputs.self}/modules/xsession.nix";
+
+    xdg = {
+      enable = true;
+
+      userDirs = {
+        enable = true;
+        createDirectories = true;
+      };
+    };
 
     services = {
       playerctld.enable = true;
@@ -21,8 +30,8 @@
       gnome-keyring.enable = true;
       unclutter.enable = true;
 
-
       dunst = import "${inputs.self}/modules/dunst.nix";
+      mpd = import "${inputs.self}/modules/mpd.nix";
 
       mopidy = {
         enable = true;
@@ -61,9 +70,8 @@
       file."Scripts/alias.sh".text = "alias | awk -F'[ =]' '{print $2}'";
 
       packages = with pkgs; [
+        pavucontrol mpc-cli # music 
         chromium #browser
-        mopidy # audio
-        playerctl # audio
         polydoro # polybar pomodoro timer
         shutter # screenshotter (activated thru fluxbox keys)
         postman # REST client (swap with insomnia when we finally can!)
@@ -87,6 +95,8 @@
         enableXsessionIntegration = true;
       };
 
+      ncmpcpp.enable = true;
+
       bash = {
         enable = true;
 
@@ -98,16 +108,12 @@
         '';
       };
 
-      # rofi?
-      # wlsunset
-      # https://discourse.nixos.org/t/setting-caps-lock-as-ctrl-not-working/11952/3 
-
       direnv = {
         enableBashIntegration = true;
         enable = true;
       };
     };
 
-    home.stateVersion = "20.03";
+    home.stateVersion = "23.05";
   };
 }

@@ -41,7 +41,8 @@
       inherit inputs;
     };
   };
-
+  
+  sound.enable = true;
   nix.settings.auto-optimise-store = true;
   hardware.pulseaudio.enable = true;
   hardware.bluetooth.enable = true;
@@ -55,8 +56,6 @@
 
     layout = "us";
 
-    # this shit is not working. For now, on boot (managed by fluxbox), run:
-    # setxkbmap -option ctrl:swap_lwin_lctl.
     xkbOptions = "ctl:swap_lwin_lctl";
 
     desktopManager.lxqt.enable = true;

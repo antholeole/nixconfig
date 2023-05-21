@@ -4,9 +4,9 @@
       enable = true;
       
       keys = builtins.readFile ./keys;
-      startup = builtins.readFile ./startup;
       apps = builtins.readFile ./apps;
       init = builtins.readFile ./init;
+      startup = builtins.readFile ./startup;
     };
 
     home = {

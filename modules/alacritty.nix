@@ -11,7 +11,7 @@ in {
           family = "FiraCode Nerd Font";
         };
 
-        size = 16.0;
+        size = 18.0;
       };
 
       colors = {

@@ -1,8 +1,10 @@
-setxkbmap -option ctrl:swap_lwin_lctl
+#!/bin/sh
+setxkbmap -option ctrl:swap_lwin_lctlc
+exec fluxbox &
+fbpid=$!
 
-feh --bg-center ~/wall.png -B \#1e2030
-
-code &
-chromium &
-
-exec fluxbox -log "~/.fluxbox/log"
+sleep 1
+{   
+    echo "WORKS" > /tmp/test.txt
+    feh --bg-center ~/wall.png -B \#1e2030
+} & wait $fbpid

@@ -42,11 +42,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1681932669,
-        "narHash": "sha256-rViYDXA8Byq3vtkfZsIZZhF3ZzTPnx/ufQuVQRePJz4=",
+        "lastModified": 1684535228,
+        "narHash": "sha256-jC7L7KAYVleAvgZPn7LxTIYylXTRoLx4CiuQpcot5yc=",
         "owner": "antholeole",
         "repo": "home-manager",
-        "rev": "4d95961b8b49d73a4395572e22fbae4e2e58c82e",
+        "rev": "b767c251691cbe01b38d487c29a78e52a55fdd71",
         "type": "github"
       },
       "original": {
@@ -158,11 +158,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1684453120,
-        "narHash": "sha256-eVQr9QGG0IUkWh2dwLzb0xzksqY0r3REKs/T79QN2dc=",
+        "lastModified": 1684455756,
+        "narHash": "sha256-qY750oIlX374zp0vAQcUamcgGMG2fvfeiLn1BGLVhfc=",
         "owner": "antholeole",
         "repo": "polypomo",
-        "rev": "23c903e52c7205f5fadac448f83a9c27139a2c6f",
+        "rev": "08b2bc757def0f2be2ca29648f2b511ecca76323",
         "type": "github"
       },
       "original": {
