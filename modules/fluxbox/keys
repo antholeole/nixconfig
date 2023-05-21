@@ -24,7 +24,7 @@ OnWindow Mod1 Mouse1 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {Sta
 OnWindow Mod1 Mouse3 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartResizing NearestCorner}}
 
 # screenshot!
-Control Shift 4 :Exec shutter -s -o '~/Downloads/screenshot_%NN.png' -n -e
+Control Shift 4 :Exec shutter-save 
 
 Mod1 l :Exec slock
 

@@ -29,8 +29,8 @@ in {
             padding-left = "1";
             padding-right = "0";
 
-            modules-left = [ "brightness" "polydoro" ];
-            modules-center = [ "alsa" "mpd" ];
+            modules-left = [ "brightness" "alsa" "polydoro" ];
+            modules-center = [ "mpd" ];
             modules-right = [ "battery" "sep1" "date" ];
 
             font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
@@ -81,7 +81,7 @@ in {
 
             interval = "2";
 
-            format-online = "<icon-prev> <toggle> <icon-next> <label-time>";
+            format-online = "<icon-prev>   <toggle>   <icon-next> <label-time>";
             label-offline = "mpd is offline";
 
             icon-play = "";

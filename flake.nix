@@ -21,6 +21,7 @@
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [
+            (import ./scripts/shutter-save.nix).overlay
             polydoro.overlays.default
           ];
         };

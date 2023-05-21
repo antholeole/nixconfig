@@ -73,7 +73,7 @@
         pavucontrol mpc-cli # music 
         chromium #browser
         polydoro # polybar pomodoro timer
-        shutter # screenshotter (activated thru fluxbox keys)
+        shutter-save # screenshotter (activated thru fluxbox keys)
         postman # REST client (swap with insomnia when we finally can!)
         slock # screen locker
         xorg.xbacklight # brightness
