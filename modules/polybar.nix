@@ -13,6 +13,7 @@ in {
 
     package = pkgs.polybar.override {
         mpdSupport = true;
+        alsaSupport = true;
     };
 
     config = {
@@ -29,7 +30,7 @@ in {
             padding-right = "0";
 
             modules-left = [ "brightness" "polydoro" ];
-            modules-center = [ "mpd" ];
+            modules-center = [ "alsa" "mpd" ];
             modules-right = [ "battery" "sep1" "date" ];
 
             font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
@@ -61,10 +62,14 @@ in {
             label-padding = "1";
         };
 
-        "module/pulseaudio" = {
-            type = "internal/pulseaudio";
+        "module/alsa" = {
+            type = "internal/alsa";
+            format-volume = "󱄠 <bar-volume> ";
 
-            format-volume = "<ramp-volume>";
+            bar-volume-width = "10";
+            bar-volume-indicator = "|";
+            bar-volume-fill = "─";
+            bar-volume-empty = "─";
         };
 
 
