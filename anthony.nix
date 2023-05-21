@@ -77,6 +77,7 @@
         postman # REST client (swap with insomnia when we finally can!)
         slock # screen locker
         xorg.xbacklight # brightness
+        gapp
         python3
         unzip
         dconf

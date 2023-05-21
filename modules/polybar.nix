@@ -81,7 +81,7 @@ in {
 
             interval = "2";
 
-            format-online = "<icon-prev>   <toggle>   <icon-next> <label-time>";
+            format-online = "<icon-prev>  <toggle>  <icon-next> <label-time>";
             label-offline = "mpd is offline";
 
             icon-play = "";
@@ -99,7 +99,7 @@ in {
         in {
             type = "custom/script";
 
-            exec = "${polydoroPath} run";
+            exec = "${polydoroPath} run --paused-icon \" %{F${colors.red}}%{F-} \"";
             tail = "true";
             
             label = "%output%";

@@ -22,6 +22,7 @@
           config.allowUnfree = true;
           overlays = [
             (import ./scripts/shutter-save.nix).overlay
+            (import ./scripts/gapp.nix).overlay
             polydoro.overlays.default
           ];
         };
