@@ -1,8 +1,6 @@
-sudo nixos-rebuild switch --flake .#kayak-asaki
+# Quick start (nixos)
+- `nix flake show`to see all outputs
+- `sudo nixos-rebuild switch --flake .#` (for example, kayak-asaki, for kayak on asahi linux)
 
-
-TODO:
-- make rofi launch aliases & have autocomplete
-- README
-- fluxbox app to disable mouse
-- music 
+# HomeManager only: 
+TODO write this section

@@ -1,20 +1,36 @@
 {
-    "terminal.integrated.allowChords": false,
-    "editor.fontFamily": "FiraCode Nerd Font",
-    "editor.fontLigatures": true,   
-    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-    "workbench.colorTheme": "Catppuccin Macchiato",
-    "catppuccin.italicComments": false,
-    "catppuccin.italicKeywords": false,
-    "catppuccin.accentColor": "flamingo",
-    "explorer.confirmDragAndDrop": false,
-    "editor.inlineSuggest.enabled": true,
-    "julia.symbolCacheDownload": true,
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
     "[python]": {
         "editor.formatOnType": true
     },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "variable.parameter",
+                "settings": {
+                    "fontStyle": ""
+                }
+            },
+            {
+                "scope": "constant",
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+    "catppuccin.accentColor": "flamingo",
+    "catppuccin.italicComments": false,
+    "catppuccin.italicKeywords": false,
+    "editor.fontFamily": "FiraCode Nerd Font",
+    "editor.fontLigatures": true,
+    "editor.inlineSuggest.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "julia.symbolCacheDownload": true,
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
+    "workbench.colorTheme": "Catppuccin Macchiato",
     "workbench.iconTheme": "catppuccin-macchiato"
 }
