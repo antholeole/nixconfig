@@ -1,12 +1,13 @@
-{ pkgs, ...}: {
-  home-manager.users.anthony.programs.git = {
-    enable = true;
+pkgs: {
+  enable = true;
 
-    extraConfig = {
-      push.autoSetupRemote = true;
-      init.defaultBranch = "main";
+  extraConfig = {
+    push.autoSetupRemote = true;
+    init.defaultBranch = "main";
 
-      user.name = "Anthony Oleinik";
-    };
+    # i am not so sure about dis
+    pull.rebase = true; 
+
+    user.name = "Anthony Oleinik";
   };
 }

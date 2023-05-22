@@ -5,7 +5,6 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [ 
-      "${inputs.self}/anthony.nix"
       "${inputs.self}/hardware-configuration.nix"
     ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
 

@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   fonts.fonts = with pkgs; [
     (nerdfonts.override {
@@ -10,10 +10,10 @@
     fira-code-symbols
   ];
 
-  home-manager.users.anthony = { lib, ... }: {
+  home-manager.users.anthony = { config, lib, ... }: {
     fonts.fontconfig.enable = true;
 
-    xsession = import "${inputs.self}/modules/xsession.nix";
+    xsession = import "${inputs.self}/modules/xsession.nix" pkgs;
 
     xdg = {
       enable = true;
@@ -30,23 +30,9 @@
       gnome-keyring.enable = true;
       unclutter.enable = true;
 
+      polybar = import "${inputs.self}/modules/polybar.nix" pkgs;
       dunst = import "${inputs.self}/modules/dunst.nix";
       mpd = import "${inputs.self}/modules/mpd.nix";
-
-      mopidy = {
-        enable = true;
-
-        extensionPackages = with pkgs; [ mopidy-mpris ];
-
-        settings = {
-          files = {
-            media_dirs = [
-              "$XDG_MUSIC_DIR|Music"
-              "~/Music"
-            ];
-          };
-        };
-      };
     };
 
 
@@ -67,10 +53,11 @@
       username = "anthony";
       homeDirectory = "/home/anthony";
 
-      file."Scripts/alias.sh".text = "alias | awk -F'[ =]' '{print $2}'";
+      file."wall.png".source = "${inputs.self}/images/bg.png";
 
       packages = with pkgs; [
-        pavucontrol mpc-cli # music 
+        pavucontrol
+        mpc-cli # music 
         chromium #browser
         polydoro # polybar pomodoro timer
         shutter-save # screenshotter (activated thru fluxbox keys)
@@ -81,12 +68,15 @@
         python3
         unzip
         dconf
-        dunst libnotify glib # for notifications
+        dunst
+        libnotify
+        glib # for notifications
         feh # for background
 
         # language specific
         nixpkgs-fmt # we're gonna be writing a lot of nix :)
-        rustup gcc # sad but this should be global so vscode can find it
+        rustup
+        gcc # sad but this should be global so vscode can find it
       ];
     };
 
@@ -96,23 +86,22 @@
         enableXsessionIntegration = true;
       };
 
-      ncmpcpp.enable = true;
-
-      bash = {
-        enable = true;
-
-        shellAliases = import "${inputs.self}/modules/terminal_aliases.nix" pkgs;
-
-        bashrcExtra = ''
-          eval "$(starship init bash)";
-          function cdc { mkdir -p $1 && cd $1; };
-        '';
-      };
-
       direnv = {
         enableBashIntegration = true;
         enable = true;
       };
+
+      home-manager.enable = true;
+      ncmpcpp.enable = true;
+
+      vscode = import "${inputs.self}/modules/code" pkgs.vscode-extensions;
+      git = import "${inputs.self}/modules/git.nix" pkgs;
+
+      rofi = import "${inputs.self}/modules/rofi.nix" { inherit config pkgs; };
+      bash = import "${inputs.self}/modules/bash.nix" { inherit inputs pkgs; };
+
+      starship = import "${inputs.self}/modules/starship.nix";
+      alacritty = import "${inputs.self}/modules/alacritty.nix";
     };
 
     home.stateVersion = "23.05";

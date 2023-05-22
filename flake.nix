@@ -41,20 +41,14 @@
               pkgsOverride
               apple-silicon.nixosModules.default
               home-manager.nixosModules.home-manager
-              ./modules/git.nix
-              ./modules/code/code.nix
-              ./modules/starship.nix
-              ./modules/alacritty.nix
-              ./modules/rofi.nix
-              ./modules/polybar.nix
-              ./modules/fluxbox
               ./hosts/kayak/configuration.nix
+              ./anthony.nix
             ];
+            
             specialArgs = {
               inherit inputs;
               asahi = true;
             };
-
           };
       };
     };

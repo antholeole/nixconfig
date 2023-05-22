@@ -1,100 +1,97 @@
-{ config, ... }: 
-let 
-    colors = import ../theme.nix; 
-in {
-  home-manager.users.anthony.programs.alacritty = {
-    enable = true;
+let
+  colors = import ../theme.nix;
+in
+{
+  enable = true;
 
-    settings = {
-      font = {
-        normal = {
-          family = "FiraCode Nerd Font";
-        };
-
-        size = 18.0;
+  settings = {
+    font = {
+      normal = {
+        family = "FiraCode Nerd Font";
       };
 
-      colors = {
-        primary = {
-          background = colors.base;
-          foreground = colors.text;
+      size = 18.0;
+    };
 
-          dim_foreground = colors.text;
-          bright_foreground = colors.text;
+    colors = {
+      primary = {
+        background = colors.base;
+        foreground = colors.text;
+
+        dim_foreground = colors.text;
+        bright_foreground = colors.text;
+      };
+
+      cursor = {
+        text = colors.base;
+        cursor = colors.flamingo;
+      };
+
+      search = {
+        matches = {
+          foreground = colors.base;
+          background = colors.subtext0;
         };
 
-        cursor = {
-          text = colors.base;
-          cursor = colors.flamingo;
+        focused_match = {
+          foreground = colors.base;
+          background = colors.green;
         };
 
-        search = {
-          matches = {
-            foreground = colors.base;
-            background = colors.subtext0;            
-          };
+        footer_bar = {
+          foreground = colors.base;
+          background = colors.subtext0;
+        };
+      };
 
-          focused_match = {
-            foreground = colors.base;
-            background = colors.green;
-          };
-
-          footer_bar = {
-            foreground = colors.base;
-            background = colors.subtext0;
-          };
+      hints = {
+        start = {
+          foreground = colors.base;
+          background = colors.yellow;
         };
 
-        hints = {
-          start = {
-            foreground = colors.base;
-            background = colors.yellow;
-          };
-
-          end = {
-            foreground = colors.base;
-            background = colors.subtext0;
-          };
+        end = {
+          foreground = colors.base;
+          background = colors.subtext0;
         };
+      };
 
-        selection = {
-          text = colors.base;
-          background = colors.flamingo;
-        };
+      selection = {
+        text = colors.base;
+        background = colors.flamingo;
+      };
 
-        normal = {
-          black = colors.surface1;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext1;
-        };
+      normal = {
+        black = colors.surface1;
+        red = colors.red;
+        green = colors.green;
+        yellow = colors.yellow;
+        blue = colors.blue;
+        magenta = colors.pink;
+        cyan = colors.teal;
+        white = colors.subtext1;
+      };
 
-        bright = {
-          black = colors.surface2;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext0;
-        };
+      bright = {
+        black = colors.surface2;
+        red = colors.red;
+        green = colors.green;
+        yellow = colors.yellow;
+        blue = colors.blue;
+        magenta = colors.pink;
+        cyan = colors.teal;
+        white = colors.subtext0;
+      };
 
-        dim = {
-          black = colors.surface1;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext1;
-        };
-        
+      dim = {
+        black = colors.surface1;
+        red = colors.red;
+        green = colors.green;
+        yellow = colors.yellow;
+        blue = colors.blue;
+        magenta = colors.pink;
+        cyan = colors.teal;
+        white = colors.subtext1;
       };
     };
   };
