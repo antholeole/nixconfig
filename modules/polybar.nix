@@ -19,7 +19,7 @@ in
   config = {
     "bar/bar" = {
       width = "100%";
-      height = "40pt";
+      height = if hidpi then "40pt" else "20pt";
       offset-x = "0";
       offset-y = "0";
 
