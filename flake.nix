@@ -48,7 +48,6 @@
             
             specialArgs = {
               inherit inputs;
-              asahi = true;
             };
           };
       };
@@ -62,6 +61,10 @@
           modules = [
             ./anthony.nix
           ];
+
+          extraSpecialArgs = {
+            inherit inputs;
+          };
         }; 
       };    
     };
