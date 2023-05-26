@@ -61,7 +61,7 @@
           modules = [
             ./anthony.nix
           ];
-        }
+        }; 
       };    
     };
 }
