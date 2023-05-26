@@ -51,5 +51,17 @@
             };
           };
       };
+
+
+      # HM only configs
+      homeConfigurations = {
+        anthony = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+
+          modules = [
+            ./anthony.nix
+          ];
+        }
+      };    
     };
 }

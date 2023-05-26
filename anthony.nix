@@ -61,7 +61,6 @@
         chromium #browser
         polydoro # polybar pomodoro timer
         shutter-save # screenshotter (activated thru fluxbox keys)
-        postman # REST client (swap with insomnia when we finally can!)
         slock # screen locker
         xorg.xbacklight # brightness
         gapp
@@ -77,7 +76,7 @@
         nixpkgs-fmt # we're gonna be writing a lot of nix :)
         rustup
         gcc # sad but this should be global so vscode can find it
-      ];
+      ] ++ (if pkgs.system == "x86_64-linux" then [ insomnia ] else [ postman ]);
     };
 
     programs = {
