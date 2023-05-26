@@ -1,12 +1,12 @@
-# don't set  default for asahi because it is potentially dangerous. 
+# don't set  default for because it is potentially dangerous. 
 # if we accidently boot without basic firmware support that is bad news
-{ config, pkgs, lib, inputs, asahi, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   imports = [ 
       "${inputs.self}/hardware-configuration.nix"
-    ] ++ lib.optional (asahi) "${inputs.self}/mixins/asahi.nix";
+    ];
 
   nix.settings.trusted-users = [ "anthony" ];
   users.users.anthony = {

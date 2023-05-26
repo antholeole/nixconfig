@@ -42,7 +42,8 @@
               apple-silicon.nixosModules.default
               home-manager.nixosModules.home-manager
               ./hosts/kayak/configuration.nix
-              ./anthony.nix
+              ./mixins/asahi.nix
+              ./mixins/hm.nix
             ];
             
             specialArgs = {
