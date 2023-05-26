@@ -1,7 +1,7 @@
-{ inputs, laptop, ... }: {
+{ inputs, laptop, hidpi, ... }: {
   home-manager = {
     extraSpecialArgs = {
-      inherit laptop;
+      inherit laptop hidpi;
     };
 
     users.anthony = import "${inputs.self}/anthony.nix"; 

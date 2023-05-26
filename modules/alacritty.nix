@@ -1,4 +1,4 @@
-let
+hidpi: let
   colors = import ../theme.nix;
 in
 {
@@ -10,7 +10,7 @@ in
         family = "FiraCode Nerd Font";
       };
 
-      size = 18.0;
+      size = if hidpi then 18.0 else 12.0;
     };
 
     colors = {

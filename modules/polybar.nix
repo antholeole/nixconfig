@@ -1,4 +1,4 @@
-{ pkgs, laptop }:
+{ pkgs, laptop, hidpi }:
 let
   colors = import ../theme.nix;
   seperator = {
@@ -33,7 +33,9 @@ in
       modules-center = [ "mpd" ];
       modules-right = (if laptop then [ "battery" "sep1" ] else []) ++ [ "date" ];
 
-      font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
+      font-0 = let 
+        fontSize = if hidpi then "18" else "12";
+      in "FiraCode Nerd Font:weight=200:pixelsize=${fontSize}";
     };
 
     "module/sep1" = seperator;

@@ -50,6 +50,7 @@
               inherit inputs;
 
               laptop = true;
+              hidpi = true;
             };
           };
       };
@@ -74,6 +75,7 @@
             inherit inputs;
 
             laptop = false;
+            hidpi = false;
           };
         };
       };

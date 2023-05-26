@@ -1,4 +1,4 @@
-{ config, pkgs }:
+{ config, pkgs, hidpi }:
 let
   colors = import ../theme.nix;
 in
@@ -12,7 +12,9 @@ in
     in
     {
       "*" = {
-        "font" = "FiraCode Nerd Font 16";
+        "font" = let 
+          fontSize = if hidpi then "16" else "12";
+        in "FiraCode Nerd Font ${fontSize}";
         "background-color" = mkLiteral "transparent";
         "text-color" = mkLiteral "${colors.text}";
       };

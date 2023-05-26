@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, laptop, ... }:
+{ pkgs, inputs, config, laptop, hidpi, ... }:
 {
   fonts.fontconfig.enable = true;
 
@@ -19,7 +19,7 @@
     gnome-keyring.enable = true;
     unclutter.enable = true;
 
-    polybar = import "${inputs.self}/modules/polybar.nix" { inherit pkgs laptop; };
+    polybar = import "${inputs.self}/modules/polybar.nix" { inherit pkgs laptop hidpi; };
     dunst = import "${inputs.self}/modules/dunst.nix";
     mpd = import "${inputs.self}/modules/mpd.nix";
   };
@@ -98,11 +98,11 @@
     vscode = import "${inputs.self}/modules/code" pkgs.vscode-extensions;
     git = import "${inputs.self}/modules/git.nix" pkgs;
 
-    rofi = import "${inputs.self}/modules/rofi.nix" { inherit config pkgs; };
+    rofi = import "${inputs.self}/modules/rofi.nix" { inherit config pkgs hidpi; };
     bash = import "${inputs.self}/modules/bash.nix" { inherit inputs pkgs; };
 
     starship = import "${inputs.self}/modules/starship.nix";
-    alacritty = import "${inputs.self}/modules/alacritty.nix";
+    alacritty = import "${inputs.self}/modules/alacritty.nix" hidpi;
   };
 
   home.stateVersion = "23.05";
