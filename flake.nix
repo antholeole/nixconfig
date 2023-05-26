@@ -55,9 +55,15 @@
 
       # HM only configs
       homeConfigurations = {
-        anthony = home-manager.lib.homeManagerConfiguration {
-          pkgs = (pkgsOverride inputs).nixpkgs.legacyPackages."x86_64-linux";
-
+        anthony = let 
+          system = "x86_64-linux";
+        in home-manager.lib.homeManagerConfiguration {
+          # allows us to define pkgsOverride as a module for easy consumption 
+          # on nixos, but as a override for pkgs here.
+          pkgs = (import nixpkgs ((pkgsOverride inputs).nixpkgs // {
+            inherit system;
+          }));
+          
           modules = [
             ./anthony.nix
           ];
