@@ -60,6 +60,7 @@
       libnotify
       glib # for notifications
       feh # for background
+      fluxbox
 
       # language specific
       nixpkgs-fmt # we're gonna be writing a lot of nix :)
