@@ -1,15 +1,5 @@
 { pkgs, inputs, ... }:
 {
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "JetBrainsMono"
-      ];
-    })
-    fira-code-symbols
-  ];
-
   home-manager.users.anthony = { config, lib, ... }: {
     fonts.fontconfig.enable = true;
 
@@ -76,6 +66,16 @@
         nixpkgs-fmt # we're gonna be writing a lot of nix :)
         rustup
         gcc # sad but this should be global so vscode can find it
+
+
+        # fonts
+        (nerdfonts.override {
+          fonts = [
+            "FiraCode"
+            "JetBrainsMono"
+          ];
+        })
+        fira-code-symbols
       ] ++ (if pkgs.system == "x86_64-linux" then [ insomnia ] else [ postman ]);
     };
 
