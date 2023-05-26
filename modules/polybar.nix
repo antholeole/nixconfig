@@ -1,4 +1,4 @@
-pkgs:
+{ pkgs, laptop }:
 let
   colors = import ../theme.nix;
   seperator = {
@@ -31,7 +31,7 @@ in
 
       modules-left = [ "brightness" "alsa" "polydoro" ];
       modules-center = [ "mpd" ];
-      modules-right = [ "battery" "sep1" "date" ];
+      modules-right = (if laptop then [ "battery" "sep1" ] else []) ++ [ "date" ];
 
       font-0 = "FiraCode Nerd Font:weight=200:pixelsize=18";
     };

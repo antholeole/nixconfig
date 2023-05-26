@@ -48,6 +48,8 @@
 
             specialArgs = {
               inherit inputs;
+
+              laptop = true;
             };
           };
       };
@@ -70,6 +72,8 @@
 
           extraSpecialArgs = {
             inherit inputs;
+
+            laptop = false;
           };
         };
       };

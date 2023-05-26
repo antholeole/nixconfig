@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, ... }:
+{ pkgs, inputs, config, laptop, ... }:
 {
   fonts.fontconfig.enable = true;
 
@@ -19,7 +19,7 @@
     gnome-keyring.enable = true;
     unclutter.enable = true;
 
-    polybar = import "${inputs.self}/modules/polybar.nix" pkgs;
+    polybar = import "${inputs.self}/modules/polybar.nix" { inherit pkgs laptop; };
     dunst = import "${inputs.self}/modules/dunst.nix";
     mpd = import "${inputs.self}/modules/mpd.nix";
   };
@@ -42,7 +42,9 @@
     username = "anthony";
     homeDirectory = "/home/anthony";
 
-    file."wall.png".source = "${inputs.self}/images/bg.png";
+    file."wall.png".source = let 
+      bgName = (if laptop then "bg" else "bg_tall");
+    in "${inputs.self}/images/${bgName}.png";
 
     packages = with pkgs; [
       pavucontrol
