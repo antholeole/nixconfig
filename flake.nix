@@ -45,7 +45,7 @@
               ./mixins/asahi.nix
               ./mixins/hm.nix
             ];
-            
+
             specialArgs = {
               inherit inputs;
             };
@@ -56,17 +56,16 @@
       # HM only configs
       homeConfigurations = {
         anthony = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgs = (pkgsOverride inputs).nixpkgs.legacyPackages."x86_64-linux";
 
           modules = [
-            pkgsOverride
             ./anthony.nix
           ];
 
           extraSpecialArgs = {
             inherit inputs;
           };
-        }; 
-      };    
+        };
+      };
     };
 }
