@@ -78,6 +78,7 @@
         ];
       })
       fira-code-symbols
+      dejavu_fonts
     ] ++ (if pkgs.system == "x86_64-linux" then [ insomnia ] else [ postman ]);
   };
 
