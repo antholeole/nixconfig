@@ -17,7 +17,8 @@ let
   };
 in
 {
-  enable = true;
+  programs.starship = {
+    enable = true;
   enableBashIntegration = true;
 
   settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
@@ -69,4 +70,5 @@ in
       format = " ";
     };
   };
+};
 }

@@ -1,0 +1,3 @@
+{
+    "nixfmt.path": "nixpkgs-fmt"
+}

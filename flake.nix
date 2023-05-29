@@ -6,12 +6,14 @@
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:antholeole/home-manager";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs =
     { self
     , nixpkgs
     , polydoro
+    , flake-utils
     , home-manager
     , apple-silicon
     , ...
@@ -27,6 +29,7 @@
           ];
         };
       });
+      sysConfig = import ./conf.nix;
     in
     {
       nixosConfigurations = {
@@ -47,10 +50,7 @@
             ];
 
             specialArgs = {
-              inherit inputs;
-
-              laptop = true;
-              hidpi = true;
+              inherit inputs sysConfig;
             };
           };
       };
@@ -58,26 +58,38 @@
 
       # HM only configs
       homeConfigurations = {
-        anthony = let 
-          system = "x86_64-linux";
-        in home-manager.lib.homeManagerConfiguration {
-          # allows us to define pkgsOverride as a module for easy consumption 
-          # on nixos, but as a override for pkgs here.
-          pkgs = (import nixpkgs ((pkgsOverride inputs).nixpkgs // {
-            inherit system;
-          }));
-          
-          modules = [
-            ./anthony.nix
-          ];
+        anthony =
+          let
+            system = "x86_64-linux";
+          in
+          home-manager.lib.homeManagerConfiguration {
+            # allows us to define pkgsOverride as a module for easy consumption 
+            # on nixos, but as a override for pkgs here.
+            pkgs = (import nixpkgs ((pkgsOverride inputs).nixpkgs // {
+              inherit system;
+            }));
 
-          extraSpecialArgs = {
-            inherit inputs;
+            modules = import ./hmModules inputs;
 
-            laptop = false;
-            hidpi = false;
+            extraSpecialArgs = {
+              inherit inputs sysConfig;
+            };
           };
-        };
       };
-    };
+    } // flake-utils.lib.eachDefaultSystem (system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.default = pkgs.mkShell {
+        name = "nixconfig";
+        packages = with pkgs; [
+          nixfmt
+        ];
+
+        shellHook = ''
+          export NIXFMT_PATH=$(which nixfmt)
+        '';
+      };
+    });
 }
