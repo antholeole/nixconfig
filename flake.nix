@@ -29,7 +29,12 @@
           ];
         };
       });
-      sysConfig = import ./conf.nix;
+
+      specialArgs = {
+        inherit inputs;
+
+        sysConfig = import ./conf.nix;
+      };
     in
     {
       nixosConfigurations = {
@@ -38,7 +43,7 @@
             system = "aarch64-linux";
           in
           nixpkgs.lib.nixosSystem {
-            inherit system;
+            inherit system specialArgs;
 
             modules = [
               pkgsOverride
@@ -46,12 +51,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/kayak/configuration.nix
               ./mixins/asahi.nix
-              ./mixins/hm.nix
-            ];
-
-            specialArgs = {
-              inherit inputs sysConfig;
-            };
+            ] ++ (import ./mixins/hmShim.nix inputs specialArgs);
           };
       };
 
@@ -71,9 +71,7 @@
 
             modules = import ./hmModules inputs;
 
-            extraSpecialArgs = {
-              inherit inputs sysConfig;
-            };
+            extraSpecialArgs = specialArgs;
           };
       };
     } // flake-utils.lib.eachDefaultSystem (system:
