@@ -32,14 +32,6 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
   users.mutableUsers = false;
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs;
-    };
-  };
   
   sound.enable = true;
   nix.settings.auto-optimise-store = true;

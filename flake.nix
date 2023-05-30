@@ -30,10 +30,10 @@
         };
       });
 
-      specialArgs = {
+      specialArgs = confName: {
         inherit inputs;
 
-        sysConfig = import ./conf.nix;
+        sysConfig = (import ./conf.nix).confName;
       };
     in
     {
@@ -51,7 +51,7 @@
               home-manager.nixosModules.home-manager
               ./hosts/kayak/configuration.nix
               ./mixins/asahi.nix
-            ] ++ (import ./mixins/hmShim.nix inputs specialArgs);
+            ] ++ (import ./mixins/hmShim.nix inputs (specialArgs "kayak-asahi"));
           };
       };
 
@@ -71,7 +71,7 @@
 
             modules = import ./hmModules inputs;
 
-            extraSpecialArgs = specialArgs;
+            extraSpecialArgs = specialArgs "hm-pc";
           };
       };
     } // flake-utils.lib.eachDefaultSystem (system:
