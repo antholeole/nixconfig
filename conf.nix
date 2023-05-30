@@ -2,14 +2,14 @@
   kayak-asahi = {
     laptop = true;
     bluetooth = true;
-    libgl = false;
+    nixgl = null;
     hidpi = true;
   };
 
   hm-pc = {
     laptop = false;
     bluetooth = false;
-    libgl = true;
+    nixgl = "Nvidia";
     hidpi = false;
   };
 }

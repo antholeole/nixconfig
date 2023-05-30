@@ -3,4 +3,5 @@
 - `sudo nixos-rebuild switch --flake .#` (for example, kayak-asaki, for kayak on asahi linux)
 
 # HomeManager only: 
-you just need to get home-manager running on that machine. Then, run `home-manger switch --flake github:antholeole/nixconfig#anthony`.
+you just need to get home-manager running on that machine. Then, run `home-manger switch --flake github:antholeole/nixconfig#anthony --impure`.
+(you only need impure if nixGL is enabled)

@@ -36,7 +36,7 @@ with sysConfig; {
 
         font-0 =
           let
-            fontSize = if hidpi then "18" else "12";
+            fontSize = if hidpi then "18" else "10";
           in
           "FiraCode Nerd Font:weight=200:pixelsize=${fontSize}";
       };

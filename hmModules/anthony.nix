@@ -53,13 +53,13 @@
         feh # for background
         fluxbox
         neofetch
-
         # fonts
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
         dejavu_fonts
       ]
-      ++ (if pkgs.system == "x86_64-linux" then [ insomnia ] else [ postman ]);
+      ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
+      ++ (if pkgs.system == "x86_64-linux"then [ insomnia ] else [ postman ]);
   };
 
   programs = {

@@ -1,6 +1,10 @@
-{ pkgs, inputs, config, sysConfig, ... }:
+{ pkgs, inputs, config, sysConfig, lib, ... }:
   let colors = import ../theme.nix;
 in {
+  home.shellAliases = lib.mkIf (sysConfig.nixgl != null) {
+    alacritty = "nixGL ${pkgs.alacritty.outPath}/bin/alacritty"; 
+  };  
+  
   programs.alacritty = {
     enable = true;
 
@@ -8,7 +12,7 @@ in {
       font = {
         normal = { family = "FiraCode Nerd Font"; };
 
-        size = if sysConfig.hidpi then 18.0 else 12.0;
+        size = if sysConfig.hidpi then 18.0 else 10.0;
       };
 
       colors = {

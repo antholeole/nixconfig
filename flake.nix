@@ -7,6 +7,7 @@
     home-manager.url = "github:antholeole/home-manager";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    nixgl.url = "github:guibou/nixGL";
   };
 
   outputs =
@@ -16,6 +17,7 @@
     , flake-utils
     , home-manager
     , apple-silicon
+    , nixgl
     , ...
     } @ inputs:
     let
@@ -26,6 +28,7 @@
             (import ./scripts/shutter-save.nix).overlay
             (import ./scripts/gapp.nix).overlay
             polydoro.overlays.default
+            nixgl.overlay
           ];
         };
       });
@@ -33,7 +36,7 @@
       specialArgs = confName: {
         inherit inputs;
 
-        sysConfig = (import ./conf.nix).confName;
+        sysConfig = (import ./conf.nix)."${confName}";
       };
     in
     {
@@ -84,10 +87,6 @@
         packages = with pkgs; [
           nixfmt
         ];
-
-        shellHook = ''
-          export NIXFMT_PATH=$(which nixfmt)
-        '';
       };
     });
 }
