@@ -1,7 +1,14 @@
-inputs: specialArgs: map (hmModulePath: {
+{ pkgs, inputs, specialArgs, ... }:
+let
+  mkNixosModuleFromHmModule = hmModulePath: {
     home-manager = {
       extraSpecialArgs = specialArgs;
+      useGlobalPkgs = true;
 
       users.anthony = hmModulePath;
     };
-  }) (import "${inputs.self}/hmModules" inputs)
+  };
+in
+{
+  imports = map mkNixosModuleFromHmModule (import "${inputs.self}/hmModules" inputs);
+}

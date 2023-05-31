@@ -21,7 +21,7 @@
     , ...
     } @ inputs:
     let
-      pkgsOverride = (inputs: {
+      pkgsOverride = {
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [
@@ -31,7 +31,7 @@
             nixgl.overlay
           ];
         };
-      });
+      };
 
       specialArgs = confName: {
         inherit inputs;
@@ -46,15 +46,19 @@
             system = "aarch64-linux";
           in
           nixpkgs.lib.nixosSystem {
-            inherit system specialArgs;
+            inherit system;
+
+            specialArgs = (specialArgs "kayak-asahi");
 
             modules = [
               pkgsOverride
+
               apple-silicon.nixosModules.default
               home-manager.nixosModules.home-manager
               ./hosts/kayak/configuration.nix
               ./mixins/asahi.nix
-            ] ++ (import ./mixins/hmShim.nix inputs (specialArgs "kayak-asahi"));
+              ./mixins/hmShim.nix
+            ];
           };
       };
 
@@ -68,7 +72,7 @@
           home-manager.lib.homeManagerConfiguration {
             # allows us to define pkgsOverride as a module for easy consumption 
             # on nixos, but as a override for pkgs here.
-            pkgs = (import nixpkgs ((pkgsOverride inputs).nixpkgs // {
+            pkgs = (import nixpkgs (pkgsOverride.nixpkgs // {
               inherit system;
             }));
 
