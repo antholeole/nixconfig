@@ -7,12 +7,16 @@
 
     config = {
       theme = "Coldark-Dark";
+
+      pager = "less -FR";
     };
+
   };
 
   home.shellAliases = {
     cat = "${pkgs.bat.outPath}/bin/bat --paging=never";
     man = "${pkgs.bat-extras.batman}/bin/batman";
+    less = "${pkgs.bat.outPath}/bin/bat";
   };
 
   programs.bash.bashrcExtra = ''
