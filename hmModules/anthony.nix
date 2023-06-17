@@ -43,6 +43,7 @@
         shutter-save # screenshotter (activated thru fluxbox keys)
         slock # screen locker
         xorg.xbacklight # brightness
+        xclip # clipboard
         gapp
         python3
         unzip

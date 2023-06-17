@@ -1,4 +1,11 @@
 { inputs, pkgs, ... }: {
+  home.shellAliases = let 
+    xclipPath = "${pkgs.xclip.outPath}/bin/xclip";
+  in {
+    c ="${xclipPath} -selection clipboard";
+    v = "${xclipPath} -o -selection clipboard";
+  };
+
   programs.bash = {
     enable = true;
 

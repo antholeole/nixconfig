@@ -69,7 +69,9 @@ with sysConfig; {
 
       "module/alsa" = {
         type = "internal/alsa";
+
         format-volume = "󱄠 <bar-volume> ";
+        format-muted = "󰝟 <bar-volume> ";
 
         bar-volume-width = "10";
         bar-volume-indicator = "|";
