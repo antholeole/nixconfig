@@ -44,6 +44,7 @@
         slock # screen locker
         xorg.xbacklight # brightness
         xclip # clipboard
+        fd # find!
         gapp
         python3
         unzip

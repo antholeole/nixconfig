@@ -5,8 +5,10 @@
 
     extraPackages = with pkgs.bat-extras; [ batman ];
 
+    themes.catpuccin-machiatto = builtins.readFile "${inputs.self}/confs/catpuccin-machiatto.bat.tmTheme";
+
     config = {
-      theme = "Coldark-Dark";
+      theme = "catpuccin-machiatto";
 
       pager = "less -FR";
     };
