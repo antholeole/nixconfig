@@ -5,9 +5,10 @@
         (fbConfName: {
           name = fbConfName;
           value = (
-            if fbConfName == "styles" 
-            then a: a 
-            else readFile) "${inputs.self}/confs/fluxbox/${fbConfName}";
+            if fbConfName == "styles"
+            then a: a
+            else readFile
+          ) "${inputs.self}/confs/fluxbox/${fbConfName}";
         })
         [ "enable" "keys" "init" "startup" "styles" ]
     ) // {

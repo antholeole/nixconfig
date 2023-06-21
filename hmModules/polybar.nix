@@ -108,7 +108,7 @@ with sysConfig; {
         {
           type = "custom/script";
 
-          exec = "${polydoroPath} run --paused-icon \" %{F${colors.red}}%{F-} \"";
+          exec = "${polydoroPath} run --paused-icon \" %{F${colors.red}}%{F-} \" -f";
           tail = "true";
 
           label = "%output%";
