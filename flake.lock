@@ -225,11 +225,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1687205924,
-        "narHash": "sha256-VtAIfZNjHBs9AseRK7vHWOEvK+JSpw1pP/Wz7b5Z+ws=",
+        "lastModified": 1687482332,
+        "narHash": "sha256-wCjugNKX4YCvY93VEXN/VTIHGq3Y5MbEDuMpY9ttw4Q=",
         "owner": "antholeole",
         "repo": "polypomo",
-        "rev": "c1a3c7511294b3b1561af65a3390a7be10812df2",
+        "rev": "54791f76863725f3d1ed900047aff3188a1cc436",
         "type": "github"
       },
       "original": {

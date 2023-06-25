@@ -8,24 +8,6 @@
         "command": "explorer.newFile"
     },
     {
-        "key": "ctrl+]",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-    },
-    {
-        "key": "ctrl+[",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
-    },
-    {
-        "key": "ctrl+l ctrl+e",
-        "command": "cursorLineEnd"
-    },
-    {
-        "key": "ctrl+l ctrl+b",
-        "command": "cursorLineStart"
-    },
-    {
         "key": "ctrl+n ctrl+d",
         "command": "explorer.newFolder"
     },
@@ -42,48 +24,6 @@
     {
         "key": "ctrl+shift+w",
         "command": "-workbench.action.closeWindow"
-    },
-    {
-        "key": "ctrl+shift+w",
-        "command": "workbench.action.closeOtherEditors"
-    },
-    {
-        "key": "delete",
-        "command": "-workbench.action.terminal.killInstance",
-        "when": "terminalHasBeenCreated && terminalTabsFocus || terminalIsOpen && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
-    },
-    {
-        "key": "ctrl+m",
-        "command": "settings.action.showContextMenu",
-        "when": "inSettingsEditor"
-    },
-    {
-        "key": "shift+f9",
-        "command": "-settings.action.showContextMenu",
-        "when": "inSettingsEditor"
-    },
-    {
-        "key": "ctrl+m",
-        "command": "-editor.action.toggleTabFocusMode"
-    },
-    {
-        "key": "ctrl+m",
-        "command": "-markdown.extension.editing.toggleMath",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^markdown$|^rmd$|^quarto$/"
-    },
-    {
-        "key": "ctrl+m",
-        "command": "editor.action.showContextMenu",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "shift+f10",
-        "command": "-editor.action.showContextMenu",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+shift+m",
-        "command": "workbench.actions.view.problems"
     },
     {
         "key": "ctrl+shift+m",

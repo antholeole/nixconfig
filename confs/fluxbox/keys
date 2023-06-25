@@ -16,8 +16,7 @@ Mod1 Shift o :TakeToPrevWorkspace
 Mod1 p :NextWorkspace
 Mod1 Shift p :TakeToNextWorkspace
 
-Mod1 m :MaximizeWindow
-Mod1 n :MinimizeWindow
+Mod1 Shift m :MaximizeWindow
 
 # alt + right click to resize. alt + left click to move.
 OnWindow Mod1 Mouse1 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {StartMoving}}
@@ -26,6 +25,6 @@ OnWindow Mod1 Mouse3 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {Sta
 # screenshot!
 Control Shift 4 :Exec shutter-save 
 
-Mod1 l :Exec slock
+Mod1 i :Exec slock
 
 Mod1 w :Close

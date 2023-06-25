@@ -17,13 +17,18 @@
   overlay1 = "#8087a2";
   overlay2 = "#939ab7";
 
-
+  rosewater = "#f4dbd6";
+  flamingo = "#f0c6c6";
   pink = "#f5bde6";
+  mauve = "#c6a0f6";
   red = "#ed8796";
+  maroon = "#ee99a0";
+  peach = "#f5a97f";
   yellow = "#eed49f";
   green = "#a6da95";
-  blue = "#8aadf4";
   teal = "#8bd5ca";
-
-  flamingo = "#eebebe";
+  sky = "#91d7e3";
+  sapphire = "#7dc4e4";
+  blue = "#8aadf4";
+  lavender = "#b7bdf8";
 }

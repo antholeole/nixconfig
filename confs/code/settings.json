@@ -2,6 +2,12 @@
     "[python]": {
         "editor.formatOnType": true
     },
+    "catppuccin.accentColor": "flamingo",
+    "catppuccin.italicComments": false,
+    "catppuccin.italicKeywords": false,
+    "editor.fontFamily": "FiraCode Nerd Font",
+    "editor.fontLigatures": true,
+    "editor.inlineSuggest.enabled": true,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -18,12 +24,6 @@
             }
         ]
     },
-    "catppuccin.accentColor": "flamingo",
-    "catppuccin.italicComments": false,
-    "catppuccin.italicKeywords": false,
-    "editor.fontFamily": "FiraCode Nerd Font",
-    "editor.fontLigatures": true,
-    "editor.inlineSuggest.enabled": true,
     "explorer.confirmDragAndDrop": false,
     "julia.symbolCacheDownload": true,
     "terminal.integrated.allowChords": false,
@@ -32,5 +32,54 @@
     ],
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "workbench.colorTheme": "Catppuccin Macchiato",
-    "workbench.iconTheme": "catppuccin-macchiato"
+    "workbench.iconTheme": "catppuccin-macchiato",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
+    },
+        {
+            "before": [
+                "<C-n>"
+            ],
+            "commands": [
+                ":nohl"
+            ]
+        },
+        {
+            "before": [
+                "K"
+            ],
+            "commands": [
+                "lineBreakInsert"
+            ],
+            "silent": true
+        }
+    ],
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false
+    }
 }

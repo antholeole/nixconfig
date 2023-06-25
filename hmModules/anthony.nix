@@ -45,6 +45,7 @@
         xorg.xbacklight # brightness
         xclip # clipboard
         fd # find!
+        tree
         gapp
         python3
         unzip
