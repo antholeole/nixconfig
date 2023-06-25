@@ -27,7 +27,7 @@ in
     };
 
     includes = [{
-      condition = "gitdir:~/work/";
+      condition = "gitdir:~/Work/";
 
       contents.core = {
         excludesFile = "~/.nonix.gitignore";

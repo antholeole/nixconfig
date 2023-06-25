@@ -41,6 +41,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   hardware.opengl.enable = true;
+  users.defaultUserShell = pkgs.fish;
 
   programs = {
     nix-ld.enable = true;

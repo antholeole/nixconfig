@@ -11,7 +11,6 @@
 
       pane_frames = false;
       mouse_mode = false;
-
       default_layout = "compact";
       
       ui = {

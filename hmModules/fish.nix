@@ -37,7 +37,9 @@ in
   programs.bash = {
     enable = true;
     bashrcExtra = ''
-      fish; 
+     if [[ -z "''${IN_NIX_SHELL}" ]]; then
+      fish 
+    fi
     '';
   };
 }
