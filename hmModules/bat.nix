@@ -22,6 +22,6 @@
   };
 
   programs.fish.functions.help = ''
-    "$@" --help 2>&1 | ${pkgs.bat.outPath}/bin/bat --plain --language=help
+    "$argv" --help 2>&1 | ${pkgs.bat.outPath}/bin/bat --plain --language=help
   '';
 }
