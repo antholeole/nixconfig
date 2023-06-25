@@ -4,7 +4,7 @@
   inputs = {
     polydoro.url = "github:antholeole/polypomo/main";
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:antholeole/home-manager";
+    home-manager.url = "github:antholeole/home-manager/master";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";

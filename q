@@ -1,0 +1,808 @@
+    [93m  | [0m[1mWarning[0m 
+    [93m  | [0mThis program is [1mexperimental[0m and its interface is subject to change.
+
+[1;91m[0m[1;91mName[0m
+
+    [1;94mnix flake lock[0m - create missing lock file entries
+
+[1;91m[0m[1;91mSynopsis[0m
+
+    [1;94mnix flake lock[0m [[3moption[0m...] [3mflake-url[0m
+
+[1;91m[0m[1;91mExamples[0m
+
+    [93m  · [0mUpdate the [1;94mnixpkgs[0m and [1;94mnix[0m inputs of the flake in the current directory:
+        
+        [1;94m  | [0m[1m# nix flake lock --update-input nixpkgs --update-input nix[0m
+        [1;94m  | [0m[1m* Updated 'nix': 'github:NixOS/nix/9fab14adbc3810d5cc1f88672fde1eee4358405c' -> 'github:NixOS/nix/8927cba62f5afb33b01016d5c4f7f8b7d0adde3c'[0m
+        [1;94m  | [0m[1m* Updated 'nixpkgs': 'github:NixOS/nixpkgs/3d2d8f281a27d466fa54b469b5993f7dde198375' -> 'github:NixOS/nixpkgs/a3a3dda3bacf61e8a39258a0ed9c924eeca8e293'[0m
+
+[1;91m[0m[1;91mDescription[0m
+
+    This command updates the lock file of a flake ([1;94mflake.lock[0m) so that it contains a lock for every flake input specified in [1;94mflake.nix[0m. Existing
+    lock file entries are not updated unless required by a flag such as [1;94m--update-input[0m.
+
+    Note that every command that operates on a flake will also update the lock file if needed, and supports the same flags. Therefore,
+
+    [1;94m  | [0m[1m# nix flake lock --update-input nixpkgs[0m
+    [1;94m  | [0m[1m# nix build[0m
+
+    is equivalent to:
+
+    [1;94m  | [0m[1m# nix build --update-input nixpkgs[0m
+
+    Thus, this command is only useful if you want to update the lock file separately from any other action such as building.
+
+[1;91m[0m[1;91mOptions[0m
+
+    [1mCommon evaluation options:[0m
+
+    [93m  · [0m[1;94m--arg[0m [3mname[0m [3mexpr[0m
+        
+        Pass the value [3mexpr[0m as the argument [3mname[0m to Nix functions.
+    
+    [93m  · [0m[1;94m--argstr[0m [3mname[0m [3mstring[0m
+        
+        Pass the string [3mstring[0m as the argument [3mname[0m to Nix functions.
+    
+    [93m  · [0m[1;94m--debugger[0m
+        
+        Start an interactive environment if evaluation fails.
+    
+    [93m  · [0m[1;94m--eval-store[0m [3mstore-url[0m
+        
+        The Nix store to use for evaluations.
+    
+    [93m  · [0m[1;94m--impure[0m
+        
+        Allow access to mutable paths and repositories.
+    
+    [93m  · [0m[1;94m--include[0m / [1;94m-I[0m [3mpath[0m
+        
+        Add [3mpath[0m to the Nix search path. The Nix search path is initialized from the colon-separated [1;93mNIX_PATH[0m environment variable, and is used to
+        look up the location of Nix expressions using [1;93mpaths[0m enclosed in angle brackets (i.e., [1;94m<nixpkgs>[0m).
+        
+        For instance, passing
+        
+        [1;94m  | [0m[1m-I /home/eelco/Dev[0m
+        [1;94m  | [0m[1m-I /etc/nixos[0m
+        
+        will cause Nix to look for paths relative to [1;94m/home/eelco/Dev[0m and [1;94m/etc/nixos[0m, in that order. This is equivalent to setting the [1;94mNIX_PATH[0m
+        environment variable to
+        
+        [1;94m  | [0m[1m/home/eelco/Dev:/etc/nixos[0m
+        
+        It is also possible to match paths against a prefix. For example, passing
+        
+        [1;94m  | [0m[1m-I nixpkgs=/home/eelco/Dev/nixpkgs-branch[0m
+        [1;94m  | [0m[1m-I /etc/nixos[0m
+        
+        will cause Nix to search for [1;94m<nixpkgs/path>[0m in [1;94m/home/eelco/Dev/nixpkgs-branch/path[0m and [1;94m/etc/nixos/nixpkgs/path[0m.
+        
+        If a path in the Nix search path starts with [1;94mhttp://[0m or [1;94mhttps://[0m, it is interpreted as the URL of a tarball that will be downloaded and
+        unpacked to a temporary location. The tarball must consist of a single top-level directory. For example, passing
+        
+        [1;94m  | [0m[1m-I nixpkgs=https://github.com/NixOS/nixpkgs/archive/master.tar.gz[0m
+        
+        tells Nix to download and use the current contents of the [1;94mmaster[0m branch in the [1;94mnixpkgs[0m repository.
+        
+        The URLs of the tarballs from the official [1;94mnixos.org[0m channels (see [1;93mthe manual page for [0m[1;93mnix-channel[0m) can be abbreviated as [0m
+        [1;94mchannel:<channel-name>[0m. For instance, the following two flags are equivalent:
+        
+        [1;94m  | [0m[1m-I nixpkgs=channel:nixos-21.05[0m
+        [1;94m  | [0m[1m-I nixpkgs=https://nixos.org/channels/nixos-21.05/nixexprs.tar.xz[0m
+        
+        You can also fetch source trees using [1;93mflake URLs[0m and add them to the search path. For instance,
+        
+        [1;94m  | [0m[1m-I nixpkgs=flake:nixpkgs[0m
+        
+        specifies that the prefix [1;94mnixpkgs[0m shall refer to the source tree downloaded from the [1;94mnixpkgs[0m entry in the flake registry. Similarly,
+        
+        [1;94m  | [0m[1m-I nixpkgs=flake:github:NixOS/nixpkgs/nixos-22.05[0m
+        
+        makes [1;94m<nixpkgs>[0m refer to a particular branch of the [1;94mNixOS/nixpkgs[0m repository on GitHub.
+    
+    [93m  · [0m[1;94m--override-flake[0m [3moriginal-ref[0m [3mresolved-ref[0m
+        
+        Override the flake registries, redirecting [3moriginal-ref[0m to [3mresolved-ref[0m.
+
+    [1mCommon flake-related options:[0m
+
+    [93m  · [0m[1;94m--commit-lock-file[0m
+        
+        Commit changes to the flake's lock file.
+    
+    [93m  · [0m[1;94m--inputs-from[0m [3mflake-url[0m
+        
+        Use the inputs of the specified flake as registry entries.
+    
+    [93m  · [0m[1;94m--no-registries[0m
+        
+        Don't allow lookups in the flake registries. This option is deprecated; use [1;94m--no-use-registries[0m.
+    
+    [93m  · [0m[1;94m--no-update-lock-file[0m
+        
+        Do not allow any updates to the flake's lock file.
+    
+    [93m  · [0m[1;94m--override-input[0m [3minput-path[0m [3mflake-url[0m
+        
+        Override a specific flake input (e.g. [1;94mdwarffs/nixpkgs[0m). This implies [1;94m--no-write-lock-file[0m.
+    
+    [93m  · [0m[1;94m--recreate-lock-file[0m
+        
+        Recreate the flake's lock file from scratch.
+    
+    [93m  · [0m[1;94m--update-input[0m [3minput-path[0m
+        
+        Update a specific flake input (ignoring its previous entry in the lock file).
+
+    [1mLogging-related options:[0m
+
+    [93m  · [0m[1;94m--debug[0m
+        
+        Set the logging verbosity level to 'debug'.
+    
+    [93m  · [0m[1;94m--log-format[0m [3mformat[0m
+        
+        Set the format of log output; one of [1;94mraw[0m, [1;94minternal-json[0m, [1;94mbar[0m or [1;94mbar-with-logs[0m.
+    
+    [93m  · [0m[1;94m--print-build-logs[0m / [1;94m-L[0m
+        
+        Print full build logs on standard error.
+    
+    [93m  · [0m[1;94m--quiet[0m
+        
+        Decrease the logging verbosity level.
+    
+    [93m  · [0m[1;94m--verbose[0m / [1;94m-v[0m
+        
+        Increase the logging verbosity level.
+
+    [1mMiscellaneous global options:[0m
+
+    [93m  · [0m[1;94m--help[0m
+        
+        Show usage information.
+    
+    [93m  · [0m[1;94m--offline[0m
+        
+        Disable substituters and consider all previously downloaded files up-to-date.
+    
+    [93m  · [0m[1;94m--option[0m [3mname[0m [3mvalue[0m
+        
+        Set the Nix configuration setting [3mname[0m to [3mvalue[0m (overriding [1;94mnix.conf[0m).
+    
+    [93m  · [0m[1;94m--refresh[0m
+        
+        Consider all previously downloaded files out-of-date.
+    
+    [93m  · [0m[1;94m--version[0m
+        
+        Show version information.
+
+    [1mOptions to override configuration settings:[0m
+
+    [93m  · [0m[1;94m--accept-flake-config[0m
+        
+        Enable the [1;94maccept-flake-config[0m setting.
+    
+    [93m  · [0m[1;94m--access-tokens[0m [3mvalue[0m
+        
+        Set the [1;94maccess-tokens[0m setting.
+    
+    [93m  · [0m[1;94m--allow-dirty[0m
+        
+        Enable the [1;94mallow-dirty[0m setting.
+    
+    [93m  · [0m[1;94m--allow-import-from-derivation[0m
+        
+        Enable the [1;94mallow-import-from-derivation[0m setting.
+    
+    [93m  · [0m[1;94m--allow-new-privileges[0m
+        
+        Enable the [1;94mallow-new-privileges[0m setting.
+    
+    [93m  · [0m[1;94m--allow-symlinked-store[0m
+        
+        Enable the [1;94mallow-symlinked-store[0m setting.
+    
+    [93m  · [0m[1;94m--allow-unsafe-native-code-during-evaluation[0m
+        
+        Enable the [1;94mallow-unsafe-native-code-during-evaluation[0m setting.
+    
+    [93m  · [0m[1;94m--allowed-impure-host-deps[0m [3mvalue[0m
+        
+        Set the [1;94mallowed-impure-host-deps[0m setting.
+    
+    [93m  · [0m[1;94m--allowed-uris[0m [3mvalue[0m
+        
+        Set the [1;94mallowed-uris[0m setting.
+    
+    [93m  · [0m[1;94m--allowed-users[0m [3mvalue[0m
+        
+        Set the [1;94mallowed-users[0m setting.
+    
+    [93m  · [0m[1;94m--auto-allocate-uids[0m
+        
+        Enable the [1;94mauto-allocate-uids[0m setting.
+    
+    [93m  · [0m[1;94m--auto-optimise-store[0m
+        
+        Enable the [1;94mauto-optimise-store[0m setting.
+    
+    [93m  · [0m[1;94m--bash-prompt[0m [3mvalue[0m
+        
+        Set the [1;94mbash-prompt[0m setting.
+    
+    [93m  · [0m[1;94m--bash-prompt-prefix[0m [3mvalue[0m
+        
+        Set the [1;94mbash-prompt-prefix[0m setting.
+    
+    [93m  · [0m[1;94m--bash-prompt-suffix[0m [3mvalue[0m
+        
+        Set the [1;94mbash-prompt-suffix[0m setting.
+    
+    [93m  · [0m[1;94m--build-hook[0m [3mvalue[0m
+        
+        Set the [1;94mbuild-hook[0m setting.
+    
+    [93m  · [0m[1;94m--build-poll-interval[0m [3mvalue[0m
+        
+        Set the [1;94mbuild-poll-interval[0m setting.
+    
+    [93m  · [0m[1;94m--build-users-group[0m [3mvalue[0m
+        
+        Set the [1;94mbuild-users-group[0m setting.
+    
+    [93m  · [0m[1;94m--builders[0m [3mvalue[0m
+        
+        Set the [1;94mbuilders[0m setting.
+    
+    [93m  · [0m[1;94m--builders-use-substitutes[0m
+        
+        Enable the [1;94mbuilders-use-substitutes[0m setting.
+    
+    [93m  · [0m[1;94m--commit-lockfile-summary[0m [3mvalue[0m
+        
+        Set the [1;94mcommit-lockfile-summary[0m setting.
+    
+    [93m  · [0m[1;94m--compress-build-log[0m
+        
+        Enable the [1;94mcompress-build-log[0m setting.
+    
+    [93m  · [0m[1;94m--connect-timeout[0m [3mvalue[0m
+        
+        Set the [1;94mconnect-timeout[0m setting.
+    
+    [93m  · [0m[1;94m--cores[0m [3mvalue[0m
+        
+        Set the [1;94mcores[0m setting.
+    
+    [93m  · [0m[1;94m--diff-hook[0m [3mvalue[0m
+        
+        Set the [1;94mdiff-hook[0m setting.
+    
+    [93m  · [0m[1;94m--download-attempts[0m [3mvalue[0m
+        
+        Set the [1;94mdownload-attempts[0m setting.
+    
+    [93m  · [0m[1;94m--download-speed[0m [3mvalue[0m
+        
+        Set the [1;94mdownload-speed[0m setting.
+    
+    [93m  · [0m[1;94m--eval-cache[0m
+        
+        Enable the [1;94meval-cache[0m setting.
+    
+    [93m  · [0m[1;94m--experimental-features[0m [3mvalue[0m
+        
+        Set the [1;94mexperimental-features[0m setting.
+    
+    [93m  · [0m[1;94m--extra-access-tokens[0m [3mvalue[0m
+        
+        Append to the [1;94maccess-tokens[0m setting.
+    
+    [93m  · [0m[1;94m--extra-allowed-impure-host-deps[0m [3mvalue[0m
+        
+        Append to the [1;94mallowed-impure-host-deps[0m setting.
+    
+    [93m  · [0m[1;94m--extra-allowed-uris[0m [3mvalue[0m
+        
+        Append to the [1;94mallowed-uris[0m setting.
+    
+    [93m  · [0m[1;94m--extra-allowed-users[0m [3mvalue[0m
+        
+        Append to the [1;94mallowed-users[0m setting.
+    
+    [93m  · [0m[1;94m--extra-experimental-features[0m [3mvalue[0m
+        
+        Append to the [1;94mexperimental-features[0m setting.
+    
+    [93m  · [0m[1;94m--extra-extra-platforms[0m [3mvalue[0m
+        
+        Append to the [1;94mextra-platforms[0m setting.
+    
+    [93m  · [0m[1;94m--extra-hashed-mirrors[0m [3mvalue[0m
+        
+        Append to the [1;94mhashed-mirrors[0m setting.
+    
+    [93m  · [0m[1;94m--extra-ignored-acls[0m [3mvalue[0m
+        
+        Append to the [1;94mignored-acls[0m setting.
+    
+    [93m  · [0m[1;94m--extra-nix-path[0m [3mvalue[0m
+        
+        Append to the [1;94mnix-path[0m setting.
+    
+    [93m  · [0m[1;94m--extra-platforms[0m [3mvalue[0m
+        
+        Set the [1;94mextra-platforms[0m setting.
+    
+    [93m  · [0m[1;94m--extra-plugin-files[0m [3mvalue[0m
+        
+        Append to the [1;94mplugin-files[0m setting.
+    
+    [93m  · [0m[1;94m--extra-sandbox-paths[0m [3mvalue[0m
+        
+        Append to the [1;94msandbox-paths[0m setting.
+    
+    [93m  · [0m[1;94m--extra-secret-key-files[0m [3mvalue[0m
+        
+        Append to the [1;94msecret-key-files[0m setting.
+    
+    [93m  · [0m[1;94m--extra-substituters[0m [3mvalue[0m
+        
+        Append to the [1;94msubstituters[0m setting.
+    
+    [93m  · [0m[1;94m--extra-system-features[0m [3mvalue[0m
+        
+        Append to the [1;94msystem-features[0m setting.
+    
+    [93m  · [0m[1;94m--extra-trusted-public-keys[0m [3mvalue[0m
+        
+        Append to the [1;94mtrusted-public-keys[0m setting.
+    
+    [93m  · [0m[1;94m--extra-trusted-substituters[0m [3mvalue[0m
+        
+        Append to the [1;94mtrusted-substituters[0m setting.
+    
+    [93m  · [0m[1;94m--extra-trusted-users[0m [3mvalue[0m
+        
+        Append to the [1;94mtrusted-users[0m setting.
+    
+    [93m  · [0m[1;94m--fallback[0m
+        
+        Enable the [1;94mfallback[0m setting.
+    
+    [93m  · [0m[1;94m--filter-syscalls[0m
+        
+        Enable the [1;94mfilter-syscalls[0m setting.
+    
+    [93m  · [0m[1;94m--flake-registry[0m [3mvalue[0m
+        
+        Set the [1;94mflake-registry[0m setting.
+    
+    [93m  · [0m[1;94m--fsync-metadata[0m
+        
+        Enable the [1;94mfsync-metadata[0m setting.
+    
+    [93m  · [0m[1;94m--gc-reserved-space[0m [3mvalue[0m
+        
+        Set the [1;94mgc-reserved-space[0m setting.
+    
+    [93m  · [0m[1;94m--hashed-mirrors[0m [3mvalue[0m
+        
+        Set the [1;94mhashed-mirrors[0m setting.
+    
+    [93m  · [0m[1;94m--http-connections[0m [3mvalue[0m
+        
+        Set the [1;94mhttp-connections[0m setting.
+    
+    [93m  · [0m[1;94m--http2[0m
+        
+        Enable the [1;94mhttp2[0m setting.
+    
+    [93m  · [0m[1;94m--id-count[0m [3mvalue[0m
+        
+        Set the [1;94mid-count[0m setting.
+    
+    [93m  · [0m[1;94m--ignore-try[0m
+        
+        Enable the [1;94mignore-try[0m setting.
+    
+    [93m  · [0m[1;94m--ignored-acls[0m [3mvalue[0m
+        
+        Set the [1;94mignored-acls[0m setting.
+    
+    [93m  · [0m[1;94m--impersonate-linux-26[0m
+        
+        Enable the [1;94mimpersonate-linux-26[0m setting.
+    
+    [93m  · [0m[1;94m--keep-build-log[0m
+        
+        Enable the [1;94mkeep-build-log[0m setting.
+    
+    [93m  · [0m[1;94m--keep-derivations[0m
+        
+        Enable the [1;94mkeep-derivations[0m setting.
+    
+    [93m  · [0m[1;94m--keep-env-derivations[0m
+        
+        Enable the [1;94mkeep-env-derivations[0m setting.
+    
+    [93m  · [0m[1;94m--keep-failed[0m
+        
+        Enable the [1;94mkeep-failed[0m setting.
+    
+    [93m  · [0m[1;94m--keep-going[0m
+        
+        Enable the [1;94mkeep-going[0m setting.
+    
+    [93m  · [0m[1;94m--keep-outputs[0m
+        
+        Enable the [1;94mkeep-outputs[0m setting.
+    
+    [93m  · [0m[1;94m--log-lines[0m [3mvalue[0m
+        
+        Set the [1;94mlog-lines[0m setting.
+    
+    [93m  · [0m[1;94m--max-build-log-size[0m [3mvalue[0m
+        
+        Set the [1;94mmax-build-log-size[0m setting.
+    
+    [93m  · [0m[1;94m--max-free[0m [3mvalue[0m
+        
+        Set the [1;94mmax-free[0m setting.
+    
+    [93m  · [0m[1;94m--max-jobs[0m [3mvalue[0m
+        
+        Set the [1;94mmax-jobs[0m setting.
+    
+    [93m  · [0m[1;94m--max-silent-time[0m [3mvalue[0m
+        
+        Set the [1;94mmax-silent-time[0m setting.
+    
+    [93m  · [0m[1;94m--min-free[0m [3mvalue[0m
+        
+        Set the [1;94mmin-free[0m setting.
+    
+    [93m  · [0m[1;94m--min-free-check-interval[0m [3mvalue[0m
+        
+        Set the [1;94mmin-free-check-interval[0m setting.
+    
+    [93m  · [0m[1;94m--nar-buffer-size[0m [3mvalue[0m
+        
+        Set the [1;94mnar-buffer-size[0m setting.
+    
+    [93m  · [0m[1;94m--narinfo-cache-negative-ttl[0m [3mvalue[0m
+        
+        Set the [1;94mnarinfo-cache-negative-ttl[0m setting.
+    
+    [93m  · [0m[1;94m--narinfo-cache-positive-ttl[0m [3mvalue[0m
+        
+        Set the [1;94mnarinfo-cache-positive-ttl[0m setting.
+    
+    [93m  · [0m[1;94m--netrc-file[0m [3mvalue[0m
+        
+        Set the [1;94mnetrc-file[0m setting.
+    
+    [93m  · [0m[1;94m--nix-path[0m [3mvalue[0m
+        
+        Set the [1;94mnix-path[0m setting.
+    
+    [93m  · [0m[1;94m--no-accept-flake-config[0m
+        
+        Disable the [1;94maccept-flake-config[0m setting.
+    
+    [93m  · [0m[1;94m--no-allow-dirty[0m
+        
+        Disable the [1;94mallow-dirty[0m setting.
+    
+    [93m  · [0m[1;94m--no-allow-import-from-derivation[0m
+        
+        Disable the [1;94mallow-import-from-derivation[0m setting.
+    
+    [93m  · [0m[1;94m--no-allow-new-privileges[0m
+        
+        Disable the [1;94mallow-new-privileges[0m setting.
+    
+    [93m  · [0m[1;94m--no-allow-symlinked-store[0m
+        
+        Disable the [1;94mallow-symlinked-store[0m setting.
+    
+    [93m  · [0m[1;94m--no-allow-unsafe-native-code-during-evaluation[0m
+        
+        Disable the [1;94mallow-unsafe-native-code-during-evaluation[0m setting.
+    
+    [93m  · [0m[1;94m--no-auto-allocate-uids[0m
+        
+        Disable the [1;94mauto-allocate-uids[0m setting.
+    
+    [93m  · [0m[1;94m--no-auto-optimise-store[0m
+        
+        Disable the [1;94mauto-optimise-store[0m setting.
+    
+    [93m  · [0m[1;94m--no-builders-use-substitutes[0m
+        
+        Disable the [1;94mbuilders-use-substitutes[0m setting.
+    
+    [93m  · [0m[1;94m--no-compress-build-log[0m
+        
+        Disable the [1;94mcompress-build-log[0m setting.
+    
+    [93m  · [0m[1;94m--no-eval-cache[0m
+        
+        Disable the [1;94meval-cache[0m setting.
+    
+    [93m  · [0m[1;94m--no-fallback[0m
+        
+        Disable the [1;94mfallback[0m setting.
+    
+    [93m  · [0m[1;94m--no-filter-syscalls[0m
+        
+        Disable the [1;94mfilter-syscalls[0m setting.
+    
+    [93m  · [0m[1;94m--no-fsync-metadata[0m
+        
+        Disable the [1;94mfsync-metadata[0m setting.
+    
+    [93m  · [0m[1;94m--no-http2[0m
+        
+        Disable the [1;94mhttp2[0m setting.
+    
+    [93m  · [0m[1;94m--no-ignore-try[0m
+        
+        Disable the [1;94mignore-try[0m setting.
+    
+    [93m  · [0m[1;94m--no-impersonate-linux-26[0m
+        
+        Disable the [1;94mimpersonate-linux-26[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-build-log[0m
+        
+        Disable the [1;94mkeep-build-log[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-derivations[0m
+        
+        Disable the [1;94mkeep-derivations[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-env-derivations[0m
+        
+        Disable the [1;94mkeep-env-derivations[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-failed[0m
+        
+        Disable the [1;94mkeep-failed[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-going[0m
+        
+        Disable the [1;94mkeep-going[0m setting.
+    
+    [93m  · [0m[1;94m--no-keep-outputs[0m
+        
+        Disable the [1;94mkeep-outputs[0m setting.
+    
+    [93m  · [0m[1;94m--no-preallocate-contents[0m
+        
+        Disable the [1;94mpreallocate-contents[0m setting.
+    
+    [93m  · [0m[1;94m--no-print-missing[0m
+        
+        Disable the [1;94mprint-missing[0m setting.
+    
+    [93m  · [0m[1;94m--no-pure-eval[0m
+        
+        Disable the [1;94mpure-eval[0m setting.
+    
+    [93m  · [0m[1;94m--no-require-sigs[0m
+        
+        Disable the [1;94mrequire-sigs[0m setting.
+    
+    [93m  · [0m[1;94m--no-restrict-eval[0m
+        
+        Disable the [1;94mrestrict-eval[0m setting.
+    
+    [93m  · [0m[1;94m--no-run-diff-hook[0m
+        
+        Disable the [1;94mrun-diff-hook[0m setting.
+    
+    [93m  · [0m[1;94m--no-sandbox[0m
+        
+        Disable sandboxing.
+    
+    [93m  · [0m[1;94m--no-sandbox-fallback[0m
+        
+        Disable the [1;94msandbox-fallback[0m setting.
+    
+    [93m  · [0m[1;94m--no-show-trace[0m
+        
+        Disable the [1;94mshow-trace[0m setting.
+    
+    [93m  · [0m[1;94m--no-substitute[0m
+        
+        Disable the [1;94msubstitute[0m setting.
+    
+    [93m  · [0m[1;94m--no-sync-before-registering[0m
+        
+        Disable the [1;94msync-before-registering[0m setting.
+    
+    [93m  · [0m[1;94m--no-trace-function-calls[0m
+        
+        Disable the [1;94mtrace-function-calls[0m setting.
+    
+    [93m  · [0m[1;94m--no-trace-verbose[0m
+        
+        Disable the [1;94mtrace-verbose[0m setting.
+    
+    [93m  · [0m[1;94m--no-use-case-hack[0m
+        
+        Disable the [1;94muse-case-hack[0m setting.
+    
+    [93m  · [0m[1;94m--no-use-cgroups[0m
+        
+        Disable the [1;94muse-cgroups[0m setting.
+    
+    [93m  · [0m[1;94m--no-use-registries[0m
+        
+        Disable the [1;94muse-registries[0m setting.
+    
+    [93m  · [0m[1;94m--no-use-sqlite-wal[0m
+        
+        Disable the [1;94muse-sqlite-wal[0m setting.
+    
+    [93m  · [0m[1;94m--no-warn-dirty[0m
+        
+        Disable the [1;94mwarn-dirty[0m setting.
+    
+    [93m  · [0m[1;94m--plugin-files[0m [3mvalue[0m
+        
+        Set the [1;94mplugin-files[0m setting.
+    
+    [93m  · [0m[1;94m--post-build-hook[0m [3mvalue[0m
+        
+        Set the [1;94mpost-build-hook[0m setting.
+    
+    [93m  · [0m[1;94m--pre-build-hook[0m [3mvalue[0m
+        
+        Set the [1;94mpre-build-hook[0m setting.
+    
+    [93m  · [0m[1;94m--preallocate-contents[0m
+        
+        Enable the [1;94mpreallocate-contents[0m setting.
+    
+    [93m  · [0m[1;94m--print-missing[0m
+        
+        Enable the [1;94mprint-missing[0m setting.
+    
+    [93m  · [0m[1;94m--pure-eval[0m
+        
+        Enable the [1;94mpure-eval[0m setting.
+    
+    [93m  · [0m[1;94m--relaxed-sandbox[0m
+        
+        Enable sandboxing, but allow builds to disable it.
+    
+    [93m  · [0m[1;94m--require-sigs[0m
+        
+        Enable the [1;94mrequire-sigs[0m setting.
+    
+    [93m  · [0m[1;94m--restrict-eval[0m
+        
+        Enable the [1;94mrestrict-eval[0m setting.
+    
+    [93m  · [0m[1;94m--run-diff-hook[0m
+        
+        Enable the [1;94mrun-diff-hook[0m setting.
+    
+    [93m  · [0m[1;94m--sandbox[0m
+        
+        Enable sandboxing.
+    
+    [93m  · [0m[1;94m--sandbox-build-dir[0m [3mvalue[0m
+        
+        Set the [1;94msandbox-build-dir[0m setting.
+    
+    [93m  · [0m[1;94m--sandbox-dev-shm-size[0m [3mvalue[0m
+        
+        Set the [1;94msandbox-dev-shm-size[0m setting.
+    
+    [93m  · [0m[1;94m--sandbox-fallback[0m
+        
+        Enable the [1;94msandbox-fallback[0m setting.
+    
+    [93m  · [0m[1;94m--sandbox-paths[0m [3mvalue[0m
+        
+        Set the [1;94msandbox-paths[0m setting.
+    
+    [93m  · [0m[1;94m--secret-key-files[0m [3mvalue[0m
+        
+        Set the [1;94msecret-key-files[0m setting.
+    
+    [93m  · [0m[1;94m--show-trace[0m
+        
+        Enable the [1;94mshow-trace[0m setting.
+    
+    [93m  · [0m[1;94m--stalled-download-timeout[0m [3mvalue[0m
+        
+        Set the [1;94mstalled-download-timeout[0m setting.
+    
+    [93m  · [0m[1;94m--start-id[0m [3mvalue[0m
+        
+        Set the [1;94mstart-id[0m setting.
+    
+    [93m  · [0m[1;94m--store[0m [3mvalue[0m
+        
+        Set the [1;94mstore[0m setting.
+    
+    [93m  · [0m[1;94m--substitute[0m
+        
+        Enable the [1;94msubstitute[0m setting.
+    
+    [93m  · [0m[1;94m--substituters[0m [3mvalue[0m
+        
+        Set the [1;94msubstituters[0m setting.
+    
+    [93m  · [0m[1;94m--sync-before-registering[0m
+        
+        Enable the [1;94msync-before-registering[0m setting.
+    
+    [93m  · [0m[1;94m--system[0m [3mvalue[0m
+        
+        Set the [1;94msystem[0m setting.
+    
+    [93m  · [0m[1;94m--system-features[0m [3mvalue[0m
+        
+        Set the [1;94msystem-features[0m setting.
+    
+    [93m  · [0m[1;94m--tarball-ttl[0m [3mvalue[0m
+        
+        Set the [1;94mtarball-ttl[0m setting.
+    
+    [93m  · [0m[1;94m--timeout[0m [3mvalue[0m
+        
+        Set the [1;94mtimeout[0m setting.
+    
+    [93m  · [0m[1;94m--trace-function-calls[0m
+        
+        Enable the [1;94mtrace-function-calls[0m setting.
+    
+    [93m  · [0m[1;94m--trace-verbose[0m
+        
+        Enable the [1;94mtrace-verbose[0m setting.
+    
+    [93m  · [0m[1;94m--trusted-public-keys[0m [3mvalue[0m
+        
+        Set the [1;94mtrusted-public-keys[0m setting.
+    
+    [93m  · [0m[1;94m--trusted-substituters[0m [3mvalue[0m
+        
+        Set the [1;94mtrusted-substituters[0m setting.
+    
+    [93m  · [0m[1;94m--trusted-users[0m [3mvalue[0m
+        
+        Set the [1;94mtrusted-users[0m setting.
+    
+    [93m  · [0m[1;94m--use-case-hack[0m
+        
+        Enable the [1;94muse-case-hack[0m setting.
+    
+    [93m  · [0m[1;94m--use-cgroups[0m
+        
+        Enable the [1;94muse-cgroups[0m setting.
+    
+    [93m  · [0m[1;94m--use-registries[0m
+        
+        Enable the [1;94muse-registries[0m setting.
+    
+    [93m  · [0m[1;94m--use-sqlite-wal[0m
+        
+        Enable the [1;94muse-sqlite-wal[0m setting.
+    
+    [93m  · [0m[1;94m--user-agent-suffix[0m [3mvalue[0m
+        
+        Set the [1;94muser-agent-suffix[0m setting.
+    
+    [93m  · [0m[1;94m--warn-dirty[0m
+        
+        Enable the [1;94mwarn-dirty[0m setting.
+

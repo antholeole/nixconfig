@@ -10,12 +10,13 @@ Mod1 space :Exec mpc toggle
 Mod1 Tab :NextWindow (Workspace=[current]) 
 Mod1 Shift Tab :PrevWindow (Workspace=[current])
 
-Mod1 o :PrevWorkspace
-Mod1 Shift o :TakeToPrevWorkspace
+Mod1 h :PrevWorkspace
+Mod1 Shift h :TakeToPrevWorkspace
 
-Mod1 p :NextWorkspace
-Mod1 Shift p :TakeToNextWorkspace
+Mod1 l :NextWorkspace
+Mod1 Shift l :TakeToNextWorkspace
 
+Mod1 m: MinimizeWindow
 Mod1 Shift m :MaximizeWindow
 
 # alt + right click to resize. alt + left click to move.

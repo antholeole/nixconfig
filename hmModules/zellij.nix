@@ -5,7 +5,6 @@
   programs.zellij = {
     enable = true;
     enableBashIntegration = true;
-    
 
     settings = {
       theme = "catpuccin";
@@ -13,7 +12,7 @@
       pane_frames = false;
       mouse_mode = false;
 
-      default_layout = "~/${layoutDir}/custom_2_tab.kdl";
+      default_layout = "compact";
       
       ui = {
         pane_frames = {
@@ -21,7 +20,24 @@
         };
       };
       
-      
+      keybinds = {
+        unbind = {
+          _repeatedKey = ["Alt h" "Alt l"];
+        };
+
+        normal = {
+          bind = {
+           _repeatedKey = [{
+              _args = ["Ctrl h"];
+              MoveOrFocusTab = "Left";
+           } {
+              _args = ["Ctrl l"];
+              MoveOrFocusTab = "Left";
+           }];
+          };
+        };
+     };
+
       themes = {
         catpuccin = with colors; {
           inherit red green blue yellow;
