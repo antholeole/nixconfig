@@ -22,17 +22,23 @@
       
       keybinds = {
         unbind = {
-          _repeatedKey = ["Alt h" "Alt l"];
+          _repeatedKey = ["Alt h" "Alt l" "Ctrl b"];
         };
 
         normal = {
           bind = {
            _repeatedKey = [{
               _args = ["Ctrl h"];
-              MoveOrFocusTab = "Left";
+              MoveFocusOrTab = "Left";
            } {
               _args = ["Ctrl l"];
-              MoveOrFocusTab = "Left";
+              MoveFocusOrTab = "Right";
+           } {
+              _args = ["Ctrl j"];
+              MoveFocusOrTab = "Down";
+           } {
+              _args = ["Ctrl k"];
+              MoveFocusOrTab = "Up";
            }];
           };
         };
