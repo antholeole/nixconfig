@@ -19,6 +19,8 @@
       "video" # add to group that can control brightness
       "networkmanager" # self explanatory
      ];
+
+     shell = pkgs.fish;
   };
 
   boot.loader.systemd-boot.enable = true;
@@ -40,7 +42,10 @@
   services.blueman.enable = true;
   hardware.opengl.enable = true;
 
-  programs.nix-ld.enable = true;
+  programs = {
+    nix-ld.enable = true;
+    fish.enable = true;
+  };
 
   services.xserver = {
     enable = true;

@@ -71,11 +71,6 @@
       enableXsessionIntegration = true;
     };
 
-    direnv = {
-      enableBashIntegration = true;
-      enable = true;
-    };
-
     home-manager.enable = true;
     ncmpcpp.enable = true;
   };

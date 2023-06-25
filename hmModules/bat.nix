@@ -15,15 +15,13 @@
 
   };
 
-  home.shellAliases = {
+  programs.fish.shellAliases = {
     cat = "${pkgs.bat.outPath}/bin/bat --paging=never";
     man = "${pkgs.bat-extras.batman}/bin/batman";
     less = "${pkgs.bat.outPath}/bin/bat";
   };
 
-  programs.bash.bashrcExtra = ''
-  help() {
+  programs.fish.functions.help = ''
     "$@" --help 2>&1 | ${pkgs.bat.outPath}/bin/bat --plain --language=help
-  }
   '';
 }

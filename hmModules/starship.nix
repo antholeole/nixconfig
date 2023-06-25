@@ -19,56 +19,56 @@ in
 {
   programs.starship = {
     enable = true;
-  enableBashIntegration = true;
+    enableFishIntegration = true;
 
-  settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
-    directory = {
-      format = "[\\[$path$read_only\\]]($style)";
-    };
+    settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
+      directory = {
+        format = "[\\[$path$read_only\\]]($style)";
+      };
 
-    username = {
-      format = "[\\[$user\\]]($style)";
-    };
+      username = {
+        format = "[\\[$user\\]]($style)";
+      };
 
-    cmd_duration = {
-      format = "[\\[$duration\\]]($style)";
-    };
+      cmd_duration = {
+        format = "[\\[$duration\\]]($style)";
+      };
 
-    shlvl = {
-      disabled = true;
-    };
+      shlvl = {
+        disabled = true;
+      };
 
-    git_branch = {
-      format = "[\\[$symbol$branch\\]]($style)";
-    };
+      git_branch = {
+        format = "[\\[$symbol$branch\\]]($style)";
+      };
 
-    git_status = {
-      disabled = true;
-    };
+      git_status = {
+        disabled = true;
+      };
 
-    line_break = {
-      disabled = true;
-    };
+      line_break = {
+        disabled = true;
+      };
 
-    right_format = "$time";
+      right_format = "$time";
 
-    nix_shell = {
-      symbol = "󱄅 ";
-      format = "[\\[$symbol($name)\\]]($style)";
-    };
+      nix_shell = {
+        symbol = "󱄅 ";
+        format = "[\\[$symbol($name)\\]]($style)";
+      };
 
-    battery.disabled = true;
+      battery.disabled = true;
 
-    time = {
-      disabled = false;
-      style = "bold bright-black";
-      format = "[$time]($style)";
-    };
+      time = {
+        disabled = false;
+        style = "bold bright-black";
+        format = "[$time]($style)";
+      };
 
-    # this is because VSCode already notifies success || failure.
-    character = {
-      format = " ";
+      # this is because VSCode already notifies success || failure.
+      character = {
+        format = " ";
+      };
     };
   };
-};
 }
