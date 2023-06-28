@@ -4,14 +4,6 @@
         "command": "-workbench.action.files.newUntitledFile"
     },
     {
-        "key": "ctrl+n ctrl+f",
-        "command": "explorer.newFile"
-    },
-    {
-        "key": "ctrl+n ctrl+d",
-        "command": "explorer.newFolder"
-    },
-    {
         "key": "backspace",
         "command": "moveFileToTrash",
         "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
@@ -22,61 +14,50 @@
         "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
     },
     {
-        "key": "ctrl+shift+w",
-        "command": "-workbench.action.closeWindow"
+        "key": "ctrl+n ctrl+f",
+        "command": "explorer.newFile"
     },
     {
-        "key": "ctrl+shift+m",
-        "command": "-workbench.actions.view.problems",
-        "when": "workbench.panel.markers.view.active"
+        "key": "ctrl+n ctrl+d",
+        "command": "explorer.newFolder"
     },
     {
-        "key": "ctrl+shift+m",
-        "command": "-rust-analyzer.matchingBrace",
-        "when": "editorTextFocus && editorLangId == 'rust'"
+        "key": "ctrl+b",
+        "command": "-workbench.action.toggleSidebarVisibility"
     },
     {
-        "key": "ctrl+-",
-        "command": "-workbench.action.zoomOut"
+        "key": "ctrl+shift+e",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.explorer'"
     },
     {
-        "key": "ctrl+=",
-        "command": "-workbench.action.zoomIn"
+        "key": "ctrl+shift+g",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.git'"
     },
     {
-        "key": "ctrl+-",
-        "command": "workbench.action.navigateToLastEditLocation"
+        "key": "ctrl+shift+f",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.search'"
     },
     {
-        "key": "ctrl+k ctrl+q",
-        "command": "-workbench.action.navigateToLastEditLocation"
+        "key": "ctrl+shift+a",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.git'"
     },
     {
-        "key": "ctrl+-",
-        "command": "workbench.action.navigateBack",
-        "when": "canNavigateBack"
+        "key": "ctrl+shift+d",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.debug'"
     },
     {
-        "key": "ctrl+alt+-",
-        "command": "-workbench.action.navigateBack",
-        "when": "canNavigateBack"
+        "key": "ctrl+shift+x",
+        "command": "workbench.action.closeSidebar",
+        "when": "activeViewlet == 'workbench.view.extensions'"
     },
     {
-        "key": "ctrl+=",
-        "command": "workbench.action.navigateForward",
-        "when": "canNavigateForward"
-    },
-    {
-        "key": "ctrl+shift+-",
-        "command": "-workbench.action.navigateForward",
-        "when": "canNavigateForward"
-    },
-    {
-        "key": "ctrl+'",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "ctrl+p",
-        "command": "-workbench.action.quickOpen"
+        "key": "space",
+        "command": "workbench.action.quickOpen",
+        "when": "editorTextFocus && dance.mode == 'normal'"
     }
 ]

@@ -65,9 +65,10 @@ in
         format = "[$time]($style)";
       };
 
-      # this is because VSCode already notifies success || failure.
       character = {
-        format = " ";
+      success_symbol = "";
+      error_symbol = "[\\[!\\]](bold red)";
+        format = "$symbol($style) ";
       };
     };
   };

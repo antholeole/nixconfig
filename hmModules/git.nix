@@ -6,7 +6,6 @@ in
   home.file."${nonixGitignoreFilename}".text = ''
     .direnv
     .envrc
-    .direnv/
     flake.nix
     flake.lock
   '';
@@ -17,6 +16,7 @@ in
     ignores = [
       "node_modules/"
       ".vscode"
+      ".direnv/"
     ];
 
     extraConfig = {

@@ -6,7 +6,7 @@
       [
         # This is much better than the complex setup
         rust-lang.rust-analyzer
-        vscodevim.vim # neovim?
+        # gregoire.dance :(
         catppuccin.catppuccin-vsc
         # catppuccin.catppuccin-vsc-icons
         yzhang.markdown-all-in-one

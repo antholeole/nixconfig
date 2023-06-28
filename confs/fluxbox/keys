@@ -26,6 +26,6 @@ OnWindow Mod1 Mouse3 :If {Matches (Layer=Normal)} {MacroCmd {Raise} {Focus} {Sta
 # screenshot!
 Control Shift 4 :Exec shutter-save 
 
-Mod1 i :Exec slock
+Mod1 q :Exec slock
 
 Mod1 w :Close

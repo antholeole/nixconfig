@@ -8,6 +8,9 @@
         APP=""
 
         case $1 in
+            tasks)
+                APP="tasksboard"
+            ;;
             mail)
                 APP="gmail"
             ;;
