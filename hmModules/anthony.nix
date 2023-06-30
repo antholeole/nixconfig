@@ -60,6 +60,7 @@
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
         dejavu_fonts
+        nt # quick shot note taking system
       ]
       ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
       ++ (if pkgs.system == "x86_64-linux"then [ insomnia ] else [ postman ]);

@@ -14,6 +14,10 @@
         "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
     },
     {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
         "key": "ctrl+n ctrl+f",
         "command": "explorer.newFile"
     },
@@ -56,8 +60,7 @@
         "when": "activeViewlet == 'workbench.view.extensions'"
     },
     {
-        "key": "space",
-        "command": "workbench.action.quickOpen",
-        "when": "editorTextFocus && dance.mode == 'normal'"
+        "key": "ctrl+'",
+        "command": "workbench.action.quickOpen"
     }
 ]
