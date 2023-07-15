@@ -62,5 +62,144 @@
     {
         "key": "ctrl+'",
         "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+1",
+        "command": "-workbench.action.openEditorAtIndex1"
+    },
+    {
+        "key": "alt+2",
+        "command": "-workbench.action.openEditorAtIndex2"
+    },
+    {
+        "key": "alt+3",
+        "command": "-workbench.action.openEditorAtIndex3"
+    },
+    {
+        "key": "alt+4",
+        "command": "-workbench.action.openEditorAtIndex4"
+    },
+    {
+        "key": "alt+5",
+        "command": "-workbench.action.openEditorAtIndex5"
+    },
+    {
+        "key": "alt+6",
+        "command": "-workbench.action.openEditorAtIndex6"
+    },
+    {
+        "key": "alt+7",
+        "command": "-workbench.action.openEditorAtIndex7"
+    },
+    {
+        "key": "alt+9",
+        "command": "-workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "alt+8",
+        "command": "-workbench.action.openEditorAtIndex8"
+    },
+    {
+        "key": "shift+alt+1",
+        "command": "-dance.selections.pipe.prepend",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "shift+alt+1",
+        "command": "-workbench.action.moveEditorToFirstGroup"
+    },
+    {
+        "key": "shift+alt+9",
+        "command": "-workbench.action.moveEditorToLastGroup"
+    },
+    {
+        "key": "shift+alt+1",
+        "command": "vscode-harpoon.addEditor1"
+    },
+    {
+        "key": "shift+alt+2",
+        "command": "vscode-harpoon.addEditor2"
+    },
+    {
+        "key": "shift+alt+3",
+        "command": "vscode-harpoon.addEditor3"
+    },
+    {
+        "key": "shift+alt+4",
+        "command": "vscode-harpoon.addEditor4"
+    },
+    {
+        "key": "shift+alt+5",
+        "command": "vscode-harpoon.addEditor5"
+    },
+    {
+        "key": "shift+alt+6",
+        "command": "vscode-harpoon.addEditor6"
+    },
+    {
+        "key": "shift+alt+7",
+        "command": "vscode-harpoon.addEditor7"
+    },
+    {
+        "key": "shift+alt+8",
+        "command": "vscode-harpoon.addEditor8"
+    },
+    {
+        "key": "shift+alt+9",
+        "command": "vscode-harpoon.addEditor9"
+    },
+    {
+        "key": "alt+1",
+        "command": "vscode-harpoon.gotoEditor1"
+    },
+    {
+        "key": "alt+2",
+        "command": "vscode-harpoon.gotoEditor2"
+    },
+    {
+        "key": "alt+3",
+        "command": "vscode-harpoon.gotoEditor3"
+    },
+    {
+        "key": "alt+4",
+        "command": "vscode-harpoon.gotoEditor4"
+    },
+    {
+        "key": "alt+6",
+        "command": "vscode-harpoon.gotoEditor6"
+    },
+    {
+        "key": "alt+5",
+        "command": "vscode-harpoon.gotoEditor5"
+    },
+    {
+        "key": "alt+7",
+        "command": "vscode-harpoon.gotoEditor7"
+    },
+    {
+        "key": "alt+8",
+        "command": "vscode-harpoon.gotoEditor8"
+    },
+    {
+        "key": "alt+9",
+        "command": "vscode-harpoon.gotoEditor9"
+    },
+    {
+        "key": "shift+alt+\\",
+        "command": "-dance.selections.pipe",
+        "when": "editorTextFocus && dance.mode == 'normal'"
+    },
+    {
+        "key": "shift+alt+enter",
+        "command": "-language-julia.executeCellAndMove",
+        "when": "editorTextFocus && activeEditor != 'workbench.editor.notebook' && editorLangId in 'julia.supportedLanguageIds'"
+    },
+    {
+        "key": "shift+enter",
+        "command": "vscode-harpoon.editorQuickPick"
+    },
+    {
+        "key": "shift+alt+enter",
+        "command": "vscode-harpoon.editEditors"
     }
 ]

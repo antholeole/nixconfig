@@ -33,53 +33,5 @@
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "workbench.colorTheme": "Catppuccin Macchiato",
     "workbench.iconTheme": "catppuccin-macchiato",
-    "vim.easymotion": true,
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.hlsearch": true,
-    "vim.insertModeKeyBindings": [
-        {
-            "before": [
-                "j",
-                "j"
-            ],
-            "after": [
-                "<Esc>"
-            ]
-        }
-    ],
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "d"
-            ],
-            "after": [
-                "d",
-                "d"
-            ]
-    },
-        {
-            "before": [
-                "<C-n>"
-            ],
-            "commands": [
-                ":nohl"
-            ]
-        },
-        {
-            "before": [
-                "K"
-            ],
-            "commands": [
-                "lineBreakInsert"
-            ],
-            "silent": true
-        }
-    ],
-    "vim.leader": "<space>",
-    "vim.handleKeys": {
-        "<C-a>": false,
-        "<C-f>": false
-    }
+    "workbench.editor.showTabs": false
 }
