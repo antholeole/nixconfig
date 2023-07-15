@@ -13,7 +13,7 @@
         yzhang.markdown-all-in-one
       ];
 
-    # keybindings = with builtins; fromJSON (readFile "${inputs.self}/confs/code/keybindings.json");
-    # userSettings = with builtins; fromJSON (readFile "${inputs.self}/confs/code/settings.json");
+    keybindings = with builtins; fromJSON (readFile "${inputs.self}/confs/code/keybindings.json");
+    userSettings = with builtins; fromJSON (readFile "${inputs.self}/confs/code/settings.json");
   };
 }

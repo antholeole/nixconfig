@@ -195,7 +195,7 @@
         "when": "editorTextFocus && activeEditor != 'workbench.editor.notebook' && editorLangId in 'julia.supportedLanguageIds'"
     },
     {
-        "key": "shift+enter",
+        "key": "alt+enter",
         "command": "vscode-harpoon.editorQuickPick"
     },
     {
