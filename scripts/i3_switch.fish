@@ -19,4 +19,9 @@ switch $desired_index
         set desired_index 1
 end
 
+
+if test $argv[2]
+    i3-msg move container to workspace $workspaces[$desired_index]
+end
+
 i3-msg workspace $workspaces[$desired_index]

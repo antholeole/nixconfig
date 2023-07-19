@@ -12,7 +12,7 @@ in {
       font = {
         normal = { family = "FiraCode Nerd Font"; };
 
-        size = if sysConfig.hidpi then 18.0 else 10.0;
+        size = sysConfig.fontSize;
       };
 
       colors = {

@@ -1,25 +1,32 @@
-{
-  kayak-asahi = {
-    laptop = true;
-    bluetooth = true;
-    nixgl = null;
-    hidpi = true;
-    name = "anthony";
-  };
+let default_conf = {
+  name = "anthony";
+  nixgl = null;
+  bluetooth = true;
+  fontSize = 18;
 
-  hm-pc = {
-    laptop = false;
+  laptop = {
+    brightnessDir = "gpio-bl";
+    battery = "macsmc-battery";
+    adapter = "macsmc-ac";
+  };
+}; in { 
+  kayak-asahi = default_conf;
+
+  hm-pc = default_conf // {
+    laptop = null;
     bluetooth = false;
     nixgl = "Nvidia";
-    hidpi = false;
-    name = "anthony";
+    fontSize = 10;
   };
 
-  hm-work = {
-    laptop = true;
-    bluetooth = true;
-    nixgl = null;
-    hidpi = true;
+  hm-work = default_conf // {
     name = "oleina";
+    fontSize = 20;
+
+    laptop = {
+      brightnessDir = "intel_backlight";
+      battery = "BAT0";
+      adapter = "AC";
+    };
   };
 }

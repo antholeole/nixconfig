@@ -14,10 +14,7 @@ in
       {
         "*" = {
           "font" =
-            let
-              fontSize = if sysConfig.hidpi then "16" else "12";
-            in
-            "FiraCode Nerd Font ${fontSize}";
+            "FiraCode Nerd Font ${toString sysConfig.fontSize}";
           "background-color" = mkLiteral "transparent";
           "text-color" = mkLiteral "${colors.text}";
         };

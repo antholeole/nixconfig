@@ -1,4 +1,4 @@
-{ pkgs, sysConfig, ... }:
+{ pkgs, sysConfig, lib, ... }:
 let
   colors = import ../theme.nix;
   seperator = {
@@ -20,7 +20,7 @@ with sysConfig; {
     config = {
       "bar/bar" = {
         width = "100%";
-        height = if hidpi then "40pt" else "20pt";
+        height = "${toString (fontSize * 2)}pt";
         offset-x = "0";
         offset-y = "0";
 
@@ -32,21 +32,17 @@ with sysConfig; {
 
         modules-left = [ "brightness" "alsa" "polydoro" ];
         modules-center = [ "mpd" ];
-        modules-right = (if laptop then [ "battery" "sep1" ] else [ ]) ++ [ "date" ];
+        modules-right = (if laptop != null then [ "battery" "sep1" ] else [ ]) ++ [ "date" ];
 
-        font-0 =
-          let
-            fontSize = if hidpi then "18" else "10";
-          in
-          "FiraCode Nerd Font:weight=200:pixelsize=${fontSize}";
+        font-0 = "FiraCode Nerd Font:weight=200:pixelsize=${toString fontSize}";
       };
 
       "module/sep1" = seperator;
       "module/sep2" = seperator;
 
-      "module/brightness" = {
+      "module/brightness" = lib.mkIf (sysConfig.laptop != null) {
         type = "internal/backlight";
-        card = "gpio-bl";
+        card = sysConfig.laptop.brightnessDir;
 
         enable-scroll = "true";
 
@@ -116,13 +112,13 @@ with sysConfig; {
           click-right = "${polydoroPath} skip";
         };
 
-      "module/battery" = {
+      "module/battery" = lib.mkIf (laptop != null) {
         type = "internal/battery";
         full-at = "99";
         low-at = "10";
 
-        battery = "macsmc-battery";
-        adapter = "macsmc-ac";
+        battery = laptop.battery;
+        adapter = laptop.adapter;
         poll-interval = "5";
 
         format-charging = "󰂄 <label-charging>";
