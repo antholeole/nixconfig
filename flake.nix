@@ -42,6 +42,21 @@
 
         sysConfig = (import ./conf.nix)."${confName}";
       };
+
+      mkHmOnlyConfig = conf: let
+            system = "x86_64-linux";
+        in
+          home-manager.lib.homeManagerConfiguration {
+          # allows us to define pkgsOverride as a module for easy consumption 
+          # on nixos, but as a override for pkgs here.
+          pkgs = (import nixpkgs (pkgsOverride.nixpkgs // {
+            inherit system;
+          }));
+
+          modules = import ./hmModules inputs;
+
+          extraSpecialArgs = specialArgs conf;
+      };
     in
     {
       nixosConfigurations = {
@@ -69,22 +84,11 @@
 
       # HM only configs
       homeConfigurations = {
-        anthony =
-          let
-            system = "x86_64-linux";
-          in
-          home-manager.lib.homeManagerConfiguration {
-            # allows us to define pkgsOverride as a module for easy consumption 
-            # on nixos, but as a override for pkgs here.
-            pkgs = (import nixpkgs (pkgsOverride.nixpkgs // {
-              inherit system;
-            }));
-
-            modules = import ./hmModules inputs;
-
-            extraSpecialArgs = specialArgs "hm-pc";
-          };
+        pc = mkHmOnlyConfig "hm-pc";
+        work = mkHmOnlyConfig "hm-work";
       };
+
+
     } // flake-utils.lib.eachDefaultSystem (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};

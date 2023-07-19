@@ -31,8 +31,8 @@
   };
 
   home = {
-    username = "anthony";
-    homeDirectory = "/home/anthony";
+    username = sysConfig.name;
+    homeDirectory = "/home/${sysConfig.name}";
 
     packages = with pkgs;
       [
@@ -54,7 +54,7 @@
         libnotify
         glib # for notifications
         feh # for background
-        fluxbox
+        jq
         neofetch
         # fonts
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
