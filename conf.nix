@@ -41,5 +41,6 @@ let default_conf = {
     name = "oleina";
     headless = true;
     bluetooth = false;
+    homeDirPath = "/usr/local/google/home/";
   };
 }

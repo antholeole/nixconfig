@@ -32,10 +32,28 @@
 
   home = {
     username = sysConfig.name;
-    homeDirectory = "/home/${sysConfig.name}";
+    homeDirectory = "${if sysConfig.homeDirPath == null then "/home/" else sysConfig.homeDirPath}${sysConfig.name}";
 
     packages = with pkgs;
       [
+        fd # find!
+        tree
+        python3
+        unzip
+        dconf
+        jq
+        neofetch
+        # fonts
+        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+        fira-code-symbols
+        dejavu_fonts
+      ] ++ (if !sysConfig.headless then [
+        dunst
+        gapp
+        libnotify
+        nt # quick shot note taking system
+        glib # for notifications
+        feh # for background
         pavucontrol
         mpc-cli # music
         chromium # browser
@@ -44,26 +62,9 @@
         slock # screen locker
         xorg.xbacklight # brightness
         xclip # clipboard
-        fd # find!
-        tree
-        gapp
-        python3
-        unzip
-        dconf
-        dunst
-        libnotify
-        glib # for notifications
-        feh # for background
-        jq
-        neofetch
-        # fonts
-        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-        fira-code-symbols
-        dejavu_fonts
-        nt # quick shot note taking system
-      ]
+      ] else [])
       ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
-      ++ (if pkgs.system == "x86_64-linux"then [ insomnia ] else [ postman ]);
+      ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
   };
 
   programs = {
