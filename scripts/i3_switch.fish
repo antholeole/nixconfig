@@ -1,6 +1,6 @@
 set direction $argv[1]
 set current_workspace (i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2)
-set workspaces     
+set workspaces ""  " " ""
 
 set current_workspace_index (contains -i "$current_workspace" $workspaces)
 

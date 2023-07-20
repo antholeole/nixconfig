@@ -1,10 +1,9 @@
 { pkgs, inputs, sysConfig, lib, ... }: let 
   modifier = "Mod1";
   codeWorkspace = "";
-  browserWorkspace = " ";
-  miscWorkspace = "";
   launcherCommand = "${pkgs.rofi}/bin/rofi -show run -run-command \"${pkgs.fish}/bin/fish -c '{cmd}'\"";
   i3Switch = builtins.toFile "i3Switch" (builtins.readFile "${inputs.self}/scripts/i3_switch.fish");
+  colors = import ../theme.nix;
 in  {
   xsession.windowManager.i3 = lib.mkIf (!sysConfig.headless) {
     enable = true;
@@ -31,6 +30,9 @@ in  {
         "${modifier}+Tab" = "focus next";
 
         "${modifier}+q" = "exec i3lock";
+        "${modifier}+b" = "exec ${pkgs.polydoro}/bin/polydoro toggle";
+        "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
+        "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
       };
 
       workspaceLayout = "stacking";
@@ -42,9 +44,28 @@ in  {
 
       startup = [
         { command = "i3-msg workspace ${codeWorkspace}"; }
-        { command = "setxkbmap -option altwin:ctrl_alt_win"; } # TODO: this is not system independents
         { command = "systemctl --user restart polybar"; always = true; notification = false; }      
-      ];
+      ] ++ (if sysConfig.keymap != null then [
+        { command = "setxkbmap -option ${sysConfig.keymap}"; }
+      ] else []);
+
+      bars = [{
+        fonts = {
+          names = [ "FiraCode Nerd Font" ];
+          size = sysConfig.fontSize / 1.75; # hack to get int to float
+        };
+
+        colors = with colors; {
+          background = crust;
+          focusedWorkspace = {
+            background = flamingo;
+            border = flamingo;
+            text = crust;
+          };
+        };
+
+        position = "bottom";
+      }];
     };
   };
 }

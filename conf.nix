@@ -4,6 +4,8 @@ let default_conf = {
   bluetooth = true;
   fontSize = 18;
   headless = false;
+  keymap = "ctrl:swap_lwin_lctl";
+  alsaSupport = true;
 
   laptop = {
     brightnessDir = "gpio-bl";
@@ -15,7 +17,9 @@ let default_conf = {
 
   hm-pc = default_conf // {
     laptop = null;
+    alsaSupport = false;
     bluetooth = false;
+    keymap = null;
     nixgl = "Nvidia";
     fontSize = 10;
   };
@@ -23,6 +27,8 @@ let default_conf = {
   hm-work = default_conf // {
     name = "oleina";
     fontSize = 20;
+    alsaSupport = false;
+    keymap = "altwin:ctrl_alt_win";
 
     laptop = {
       brightnessDir = "intel_backlight";

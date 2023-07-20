@@ -57,13 +57,13 @@ with sysConfig; {
       "module/date" = {
         type = "internal/date";
 
-        time = "%A, %d %B %Y %I:%M %p";
+        time = "%A, %B %d %I:%M:%kS %p";
 
         label = "%time%%date%";
         label-padding = "1";
       };
 
-      "module/alsa" = {
+      "module/alsa" = lib.mkIf sysConfig.alsaSupport {
         type = "internal/alsa";
 
         format-volume = "󱄠 <bar-volume> ";
