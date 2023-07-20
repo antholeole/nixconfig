@@ -1,9 +1,9 @@
-{ config, pkgs, sysConfig, ... }:
+{ config, pkgs, lib, sysConfig, ... }:
 let
   colors = import ../theme.nix;
 in
 {
-  programs.rofi = {
+  programs.rofi = lib.mkIf (!sysConfig.headless) {
     enable = true;
     terminal = "${pkgs.alacritty.outPath}/bin/alacritty";
 

@@ -1,5 +1,5 @@
-{ ... }: {
-  services.mpd = {
+{ lib, sysConfig, ... }: {
+  services.mpd = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     extraConfig = ''

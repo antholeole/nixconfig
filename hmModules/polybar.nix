@@ -8,7 +8,7 @@ let
   };
 in
 with sysConfig; {
-  services.polybar = {
+  services.polybar = lib.mkIf (!sysConfig.headless) {
     enable = true;
     script = "polybar bar &";
 
@@ -86,6 +86,7 @@ with sysConfig; {
 
         format-online = "<icon-prev>  <toggle>  <icon-next> <label-time>";
         label-offline = "mpd is offline";
+        format-offline = "<label-offline>";
 
         icon-play = "";
         icon-pause = "";

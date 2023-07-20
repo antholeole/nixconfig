@@ -5,7 +5,7 @@ in {
     alacritty = "nixGL ${pkgs.alacritty.outPath}/bin/alacritty"; 
   };  
   
-  programs.alacritty = {
+  programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     settings = {

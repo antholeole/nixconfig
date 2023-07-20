@@ -3,6 +3,7 @@ let default_conf = {
   nixgl = null;
   bluetooth = true;
   fontSize = 18;
+  headless = false;
 
   laptop = {
     brightnessDir = "gpio-bl";
@@ -28,5 +29,11 @@ let default_conf = {
       battery = "BAT0";
       adapter = "AC";
     };
+  };
+
+  hm-headless = default_conf // {
+    name = "oleina";
+    headless = true;
+    bluetooth = false;
   };
 }

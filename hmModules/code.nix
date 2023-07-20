@@ -1,6 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, sysConfig, ... }:
 {
-  programs.vscode = {
+  programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     extensions = with pkgs.vscode-extensions;
       [

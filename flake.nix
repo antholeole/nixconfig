@@ -86,6 +86,7 @@
       homeConfigurations = {
         pc = mkHmOnlyConfig "hm-pc";
         work = mkHmOnlyConfig "hm-work";
+        headless = mkHmOnlyConfig "hm-headless";
       };
 
 

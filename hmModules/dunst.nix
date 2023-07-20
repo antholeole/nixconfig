@@ -1,9 +1,9 @@
-{ inputs, ... }:
+{ inputs, sysConfig, lib, ... }:
 let
   colors = import "${inputs.self}/theme.nix";
 in
 {
-  services.dunst = {
+  services.dunst = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
 

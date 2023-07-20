@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: let 
+{ pkgs, inputs, sysConfig, lib, ... }: let 
   modifier = "Mod1";
   codeWorkspace = "";
   browserWorkspace = " ";
@@ -6,7 +6,7 @@
   launcherCommand = "${pkgs.rofi}/bin/rofi -show run -run-command \"${pkgs.fish}/bin/fish -c '{cmd}'\"";
   i3Switch = builtins.toFile "i3Switch" (builtins.readFile "${inputs.self}/scripts/i3_switch.fish");
 in  {
-  xsession.windowManager.i3 = {
+  xsession.windowManager.i3 = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     config = {
