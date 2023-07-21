@@ -61,6 +61,7 @@ in
 
       hostname = {
         ssh_symbol = "󱘖 ";
+        style = "green";
         format = "[\\[$ssh_symbol($hostname)\\]]($style)";
       };
 

@@ -39,7 +39,7 @@ in
    in {
     enable = true;
     bashrcExtra = ''
-    if [[ "$-" =~ i && -x "${fish}" && ! "\$\{SHELL}" -ef "${fish}" ]]; then
+    if [[ "$-" =~ i && -x "${fish}" && ! "\$\{SHELL}" -ef "${fish}" && -z "''${IN_NIX_SHELL}" ]]; then
       # Safeguard to only activate fish for interactive shells and only if fish
       # shell is present and executable. Verify that this is a new session by
       # checking if $SHELL is set to the path to fish. If it is not, we set
