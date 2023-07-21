@@ -44,6 +44,7 @@ in  {
 
       startup = [
         { command = "i3-msg workspace ${codeWorkspace}"; }
+        { command = "${pkgs.feh}/bin/feh --bg-center ~/wall.png -B \\#1e2030"; }
         { command = "systemctl --user restart polybar"; always = true; notification = false; }      
       ] ++ (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }

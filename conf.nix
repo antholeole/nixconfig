@@ -6,6 +6,7 @@ let default_conf = {
   headless = false;
   keymap = "ctrl:swap_lwin_lctl";
   alsaSupport = true;
+  homeDirPath = "/home/";
 
   laptop = {
     brightnessDir = "gpio-bl";

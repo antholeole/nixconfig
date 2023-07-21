@@ -2,6 +2,8 @@
     "[python]": {
         "editor.formatOnType": true
     },
+    "remote.SSH.connectTimeout": 60,
+    "remote.SSH.useLocalServer": false,
     "catppuccin.accentColor": "flamingo",
     "catppuccin.italicComments": false,
     "catppuccin.italicKeywords": false,

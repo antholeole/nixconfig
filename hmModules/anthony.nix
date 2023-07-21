@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, sysConfig, ... }: {   
+{ pkgs, inputs, config, sysConfig, lib, ... }: {   
   fonts.fontconfig.enable = true;
 
   xdg = {
@@ -10,14 +10,14 @@
     };
   };
 
-  services = {
+  services = lib.mkIf (!sysConfig.headless) {
     playerctld.enable = true;
     blueman-applet.enable = sysConfig.bluetooth;
     gnome-keyring.enable = true;
     unclutter.enable = true;
   };
 
-  gtk = {
+  gtk = lib.mkIf (!sysConfig.headless) {
     enable = true;
     theme = {
       name = "Catppuccin-Frappe-Standard-Flamingo-Dark";
@@ -32,12 +32,18 @@
 
   home = {
     username = sysConfig.name;
-    homeDirectory = "${if sysConfig.homeDirPath == null then "/home/" else sysConfig.homeDirPath}${sysConfig.name}";
+    homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
+    
+    # file."wall.png" = { TODO figure out why this isnt working
+    #   enable = !sysConfig.headless;
+    #   source = "${inputs.self}/images/${if sysConfig.laptop then "bg" else "bg_tall"}.png";
+    # };
 
     packages = with pkgs;
       [
         fd # find!
         tree
+        httpie
         python3
         unzip
         dconf
@@ -67,7 +73,7 @@
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
   };
 
-  programs = {
+  programs = lib.mkIf (!sysConfig.headless) {
     keychain = {
       enable = true;
       enableXsessionIntegration = true;

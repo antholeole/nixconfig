@@ -57,7 +57,7 @@ with sysConfig; {
       "module/date" = {
         type = "internal/date";
 
-        time = "%A, %B %d %I:%M:%kS %p";
+        time = "%A, %B %d %I:%M:%S %p";
 
         label = "%time%%date%";
         label-padding = "1";
