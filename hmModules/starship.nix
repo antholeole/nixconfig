@@ -59,6 +59,11 @@ in
 
       battery.disabled = true;
 
+      hostname = {
+        ssh_symbol = "󱘖 ";
+        format = "[\\[$ssh_symbol($hostname)\\]]($style)";
+      };
+
       time = {
         disabled = false;
         style = "bold bright-black";

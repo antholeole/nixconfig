@@ -4,6 +4,7 @@
     },
     "remote.SSH.connectTimeout": 60,
     "remote.SSH.useLocalServer": false,
+    "remote.SSH.remotePlatform": "Linux",
     "catppuccin.accentColor": "flamingo",
     "catppuccin.italicComments": false,
     "catppuccin.italicKeywords": false,
