@@ -53,7 +53,7 @@ in  {
       bars = [{
         fonts = {
           names = [ "FiraCode Nerd Font" ];
-          size = sysConfig.fontSize / 1.75; # hack to get int to float
+          size = sysConfig.fontSizes.glFontSize + 0.0; # hack to get int to float
         };
 
         colors = with colors; {

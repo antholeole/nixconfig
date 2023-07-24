@@ -14,7 +14,7 @@ in
       {
         "*" = {
           "font" =
-            "FiraCode Nerd Font ${toString sysConfig.fontSize}";
+            "FiraCode Nerd Font ${toString sysConfig.fontSizes.defaultFontSize}";
           "background-color" = mkLiteral "transparent";
           "text-color" = mkLiteral "${colors.text}";
         };

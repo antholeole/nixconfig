@@ -1,19 +1,27 @@
-let default_conf = {
-  name = "anthony";
-  nixgl = null;
-  bluetooth = true;
-  fontSize = 18;
-  headless = false;
-  keymap = "ctrl:swap_lwin_lctl";
-  alsaSupport = true;
-  homeDirPath = "/home/";
+let 
+  mkFontSizes = fontSizes @ {
+    defaultFontSize ? 18,
+    glFontSize ? 10,
+  }: fontSizes;
 
-  laptop = {
-    brightnessDir = "gpio-bl";
-    battery = "macsmc-battery";
-    adapter = "macsmc-ac";
-  };
-}; in { 
+  default_conf = {
+    name = "anthony";
+    nixgl = null;
+    bluetooth = true;
+    headless = false;
+    keymap = "ctrl:swap_lwin_lctl";
+    alsaSupport = true;
+    homeDirPath = "/home/";
+
+    fontSizes = mkFontSizes {};
+
+    laptop = {
+      brightnessDir = "gpio-bl";
+      battery = "macsmc-battery";
+      adapter = "macsmc-ac";
+    };
+  }; 
+in { 
   kayak-asahi = default_conf;
 
   hm-pc = default_conf // {
@@ -27,9 +35,14 @@ let default_conf = {
 
   hm-work = default_conf // {
     name = "oleina";
-    fontSize = 20;
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
+    nixgl = "Default";
+
+    fontSizes = mkFontSizes {
+      defaultFontSize = 20;
+      glFontSize = 10;
+    };
 
     laptop = {
       brightnessDir = "intel_backlight";

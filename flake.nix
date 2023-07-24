@@ -98,6 +98,7 @@
       devShells.default = pkgs.mkShell {
         name = "nixconfig";
         packages = with pkgs; [
+          home-manager
           nixfmt
         ];
       };

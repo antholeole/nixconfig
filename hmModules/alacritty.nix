@@ -2,7 +2,7 @@
   let colors = import ../theme.nix;
 in {
   home.shellAliases = lib.mkIf (sysConfig.nixgl != null) {
-    alacritty = "nixGL ${pkgs.alacritty.outPath}/bin/alacritty"; 
+    term = "nixGL ${pkgs.alacritty.outPath}/bin/alacritty"; 
   };  
   
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
@@ -12,7 +12,7 @@ in {
       font = {
         normal = { family = "FiraCode Nerd Font"; };
 
-        size = sysConfig.fontSize;
+        size = sysConfig.fontSizes.glFontSize;
       };
 
       colors = {

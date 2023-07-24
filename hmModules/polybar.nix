@@ -20,7 +20,7 @@ with sysConfig; {
     config = {
       "bar/bar" = {
         width = "100%";
-        height = "${toString (fontSize * 2)}pt";
+        height = "${toString (fontSizes.defaultFontSize * 2)}pt";
         offset-x = "0";
         offset-y = "0";
 
@@ -34,7 +34,7 @@ with sysConfig; {
         modules-center = [ "mpd" ];
         modules-right = (if laptop != null then [ "battery" "sep1" ] else [ ]) ++ [ "date" ];
 
-        font-0 = "FiraCode Nerd Font:weight=200:pixelsize=${toString fontSize}";
+        font-0 = "FiraCode Nerd Font:weight=200:pixelsize=${toString (fontSizes.defaultFontSize * 2)}";
       };
 
       "module/sep1" = seperator;
