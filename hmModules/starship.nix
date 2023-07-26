@@ -7,6 +7,7 @@ let
     "golang"
     "rust"
     "julia"
+    "scala"
   ];
   lang_to_attr = root: {
     name = root;

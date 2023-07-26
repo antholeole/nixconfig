@@ -7,6 +7,7 @@
     "remote.SSH.remotePlatform": {
     "oleina.c.googlers.com": "linux"
     },
+    "terminal.integrated.defaultProfile.linux": "fish",
     "catppuccin.accentColor": "flamingo",
     "catppuccin.italicComments": false,
     "catppuccin.italicKeywords": false,

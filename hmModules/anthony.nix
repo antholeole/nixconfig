@@ -68,6 +68,9 @@
         slock # screen locker
         xorg.xbacklight # brightness
         xclip # clipboard
+        dbeaver
+        docker-compose
+        docker
       ] else [])
       ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
