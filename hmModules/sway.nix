@@ -2,10 +2,10 @@
   modifier = "Mod1";
   codeWorkspace = "";
   launcherCommand = "${pkgs.rofi}/bin/rofi -show run -run-command \"${pkgs.fish}/bin/fish -c '{cmd}'\"";
-  i3Switch = builtins.toFile "i3Switch" (builtins.readFile "${inputs.self}/scripts/i3_switch.fish");
+  swaySwitch = builtins.toFile "i3Switch" (builtins.readFile "${inputs.self}/scripts/sway_switch.py");
   colors = import ../theme.nix;
 in  {
-  xsession.windowManager.i3 = lib.mkIf (!sysConfig.headless) {
+  wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     config = {
@@ -15,12 +15,17 @@ in  {
         names = [ "FiraCode Nerd Font" ];
       };
       
-      keybindings = {
-        "${modifier}+l" = "exec ${pkgs.fish}/bin/fish ${i3Switch} right";
-        "${modifier}+h" = "exec ${pkgs.fish}/bin/fish ${i3Switch} left";
+      keybindings = let 
+        execSwaySwitch = "exec ${pkgs.python3}/bin/python3 ${swaySwitch}";
+      in {
+        "${modifier}+l" = "${execSwaySwitch} -d r";
+        "${modifier}+h" = "${execSwaySwitch} -d l";
 
-        "${modifier}+Shift+l" = "exec ${pkgs.fish}/bin/fish ${i3Switch} right take";
-        "${modifier}+Shift+h" = "exec ${pkgs.fish}/bin/fish ${i3Switch} left take";
+        "${modifier}+Shift+l" = "${execSwaySwitch} -d r --take";
+        "${modifier}+Shift+h" = "${execSwaySwitch} -d l --take";
+
+        "${modifier}+m" = "${execSwaySwitch} -s";
+        "${modifier}+Shift+m" = "${execSwaySwitch} -s --take";
 
         "${modifier}+r" = "exec ${launcherCommand}";
 
@@ -43,10 +48,8 @@ in  {
       };
 
       startup = [
-        { command = "i3-msg workspace ${codeWorkspace}"; }
         { command = "${pkgs.feh}/bin/feh --bg-center ~/wall.png -B \\#1e2030"; }
-        { command = "systemctl --user restart polybar"; always = true; notification = false; }      
-      ] ++ (if sysConfig.keymap != null then [
+     ] ++ (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
       ] else []);
 
