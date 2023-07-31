@@ -21,6 +21,7 @@ in
   programs.starship = let
     vc = {
         format = "[\\[$symbol$branch\\]]($style)";
+        disabled = false;
       };
   in {
     enable = true;
