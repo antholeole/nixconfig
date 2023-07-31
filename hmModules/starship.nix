@@ -18,7 +18,11 @@ let
   };
 in
 {
-  programs.starship = {
+  programs.starship = let
+    vc = {
+        format = "[\\[$symbol$branch\\]]($style)";
+      };
+  in {
     enable = true;
     enableFishIntegration = true;
 
@@ -39,9 +43,8 @@ in
         disabled = true;
       };
 
-      git_branch = {
-        format = "[\\[$symbol$branch\\]]($style)";
-      };
+      git_branch = vc;
+      hg_branch = vc;
 
       git_status = {
         disabled = true;
