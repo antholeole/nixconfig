@@ -1,0 +1,2 @@
+default zellij
+backgrouns
