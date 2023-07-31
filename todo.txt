@@ -1,2 +1,3 @@
 default zellij
-backgrouns
+backgrounds
+swaybar

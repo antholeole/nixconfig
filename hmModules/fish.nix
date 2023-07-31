@@ -30,6 +30,7 @@ in
     interactiveShellInit = ''
       set fish_greeting
       ${pkgs.neofetch.outPath}/bin/neofetch
+      set EDITOR ${pkgs.kakoune}/bin/kak
     '';
   };
   # on systems where we cannot configure the default shell, it helps to write

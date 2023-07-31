@@ -40,7 +40,7 @@ in  {
         "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
       };
 
-      workspaceLayout = "stacking";
+      # workspaceLayout = "stacking"; hmmm
 
       window = {
         hideEdgeBorders = "both";

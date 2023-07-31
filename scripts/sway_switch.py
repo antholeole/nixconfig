@@ -41,7 +41,14 @@ elif args.direction:
         lambda workspace: workspace['focused'], json.loads(subprocess.check_output(["swaymsg", "-t", "get_workspaces"]))
     ))['name'].split(' ')[0]
 
-    desired_index = WORKSPACES.index(current_workspace) + (-1 if args.direction == 'l' else 1)
+
+    desired_index = 0
+    try:
+        desired_index = WORKSPACES.index(current_workspace)
+    except ValueError:
+        pass
+
+    desired_index += (-1 if args.direction == 'l' else 1)
     
     if desired_index == len(WORKSPACES):
         desired_index = 0
