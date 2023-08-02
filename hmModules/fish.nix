@@ -9,6 +9,7 @@ in
     shellAliases = {
       c = "${xclipPath} -selection clipboard";
       v = "${xclipPath} -o -selection clipboard";
+      rd = "rm -rf";
     };
 
     functions = {

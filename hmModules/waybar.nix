@@ -27,6 +27,32 @@ with sysConfig; {
 
           "custom/sep" = seperator;
 
+          "clock" = {
+            type = "internal/date";
+            format = "{:%A, %B %d %I:%M:%S %p}";
+            timezone = "US/Pacific";
+            interval = 1;
+          };
+
+          "battery" = lib.mkIf (laptop != null) {
+              full-at = "98";
+              low-at = "10";
+
+              format = "{icon}   {capacity}%";
+              format-icons = ["" "" "" "" ""];
+              format-charging = "󰂄 {icon}   {capacity}%";
+              format-full = "   (charged)";
+              interval = 30;
+
+              states = {
+                "warning" = 25;
+                "critical" = 10;
+              };
+
+              tooltip = false;
+          }; 
+          
+
           "custom/polydoro" =
             let
               polydoroPath = "${pkgs.polydoro}/bin/polydoro";
@@ -76,15 +102,6 @@ with sysConfig; {
     #    bar-empty = "─";
     #  };
 
-    #  "module/date" = {
-    #    type = "internal/date";
-
-    #    time = "%A, %B %d %I:%M:%S %p";
-
-    #    label = "%time%%date%";
-    #    label-padding = "1";
-    #  };
-
     #  "module/alsa" = lib.mkIf sysConfig.alsaSupport {
     #    type = "internal/alsa";
 
@@ -96,62 +113,8 @@ with sysConfig; {
     #    bar-volume-fill = "─";
     #    bar-volume-empty = "─";
     #  };
-
-
-    #  "module/mpd" = {
-    #    type = "internal/mpd";
-
-    #    host = "127.0.0.1";
-    #    port = "6600";
-
-    #    interval = "2";
-
-    #    format-online = "<icon-prev>  <toggle>  <icon-next> <label-time>";
-    #    label-offline = "mpd is offline";
-    #    format-offline = "<label-offline>";
-
-    #    icon-play = "";
-    #    icon-pause = "";
-    #    icon-prev = "";
-    #    icon-next = "";
-    #    icon-seekb = "";
-    #    icon-seekf = "";
-    #    icon-random = "";
-    #    icon-repeat = "";
-    #  };
-
     #  
 
-    #  "module/battery" = lib.mkIf (laptop != null) {
-    #    type = "internal/battery";
-    #    full-at = "99";
-    #    low-at = "10";
-
-    #    battery = laptop.battery;
-    #    adapter = laptop.adapter;
-    #    poll-interval = "5";
-
-    #    format-charging = "󰂄 <label-charging>";
-    #    format-charging-padding = "1";
-
-    #    format-discharging = "<ramp-capacity>  <label-discharging>";
-    #    format-discharging-padding = "1";
-
-    #    format-full = "<ramp-capacity>  <label-full>";
-    #    format-full-padding = "1";
-
-    #    format-low-padding = "1";
-
-    #    label-discharging = "%percentage%%";
-    #    label-charging = "%percentage%%";
-    #    label-full = "%percentage%%";
-
-    #    ramp-capacity-0 = "";
-    #    ramp-capacity-1 = "";
-    #    ramp-capacity-2 = "";
-    #    ramp-capacity-3 = "";
-    #    ramp-capacity-4 = "";
-    #  };
-    #};
+   #};
   #};
 }
