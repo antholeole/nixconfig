@@ -4,10 +4,11 @@ let
 in
 {
   home.file."${nonixGitignoreFilename}".text = ''
-    .direnv
+    .direnv/
     .envrc
     flake.nix
     flake.lock
+    .devenv/
   '';
 
   programs.git = {
