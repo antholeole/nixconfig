@@ -30,6 +30,7 @@
           overlays = [
             (import ./scripts/shutter-save.nix).overlay
             (import ./scripts/gapp.nix).overlay
+            (import ./scripts/sway_screenshare.nix).overlay
             polydoro.overlays.default
             nt.overlays.default
             nixgl.overlay

@@ -40,8 +40,8 @@ with sysConfig; {
 
               format = "{icon}   {capacity}%";
               format-icons = ["" "" "" "" ""];
-              format-charging = "󰂄 {icon}   {capacity}%";
-              format-full = "   (charged)";
+              format-charging = "󰂄 {capacity}%";
+              format-full = " ";
               interval = 30;
 
               states = {

@@ -57,6 +57,7 @@
         dunst
         gapp
         libnotify
+        sss
         nt # quick shot note taking system
         glib # for notifications
         feh # for background

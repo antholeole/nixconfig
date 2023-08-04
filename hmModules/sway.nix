@@ -8,6 +8,20 @@ in  {
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
+    # todo: this is not working. command "sss" will enable this for now.
+    extraSessionCommands = ''      
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+      export XDG_CURRENT_DESKTOP=sway # xdg-desktop-portal
+      export XDG_SESSION_DESKTOP=sway # systemd
+      export XDG_SESSION_TYPE=wayland # xdg/systemd
+
+      systemctl --user stop pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire wireplumber xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+
+    systemd.enable = true;
+
     config = {
       menu = launcherCommand;
 
@@ -34,7 +48,7 @@ in  {
         "${modifier}+Shift+Tab" = "focus prev";
         "${modifier}+Tab" = "focus next";
 
-        "${modifier}+q" = "exec i3lock";
+        "${modifier}+q" = "exec swaylock"; # not nixpkgs swaylock so that we can run on non-nixos systems
         "${modifier}+b" = "exec ${pkgs.polydoro}/bin/polydoro toggle";
         "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
         "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
@@ -52,7 +66,7 @@ in  {
      ] ++ (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
       ] else []);
-
+      
       bars = [{
         fonts = {
           names = [ "FiraCode Nerd Font" ];
