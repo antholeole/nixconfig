@@ -1,4 +1,4 @@
-{ inputs, ... }: let
+{ inputs, pkgs, ... }: let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
  in  {
@@ -8,6 +8,8 @@
 
     settings = {
       theme = "catpuccin";
+
+      scrollback_editor = "${pkgs.kakoune}/bin/kak";
 
       pane_frames = false;
       mouse_mode = false;
