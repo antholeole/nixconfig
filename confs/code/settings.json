@@ -4,6 +4,7 @@
     },
     "remote.SSH.connectTimeout": 60,
     "remote.SSH.useLocalServer": false,
+    "remote.autoForwardPorts": false,
     "remote.SSH.remotePlatform": {
     "oleina.c.googlers.com": "linux"
     },
