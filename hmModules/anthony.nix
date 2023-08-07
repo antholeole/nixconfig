@@ -68,7 +68,7 @@
         shutter-save # screenshotter (activated thru fluxbox keys)
         slock # screen locker
         xorg.xbacklight # brightness
-        xclip # clipboard
+        wl-clipboard # clipboard
         dbeaver
       ] else [])
       ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
