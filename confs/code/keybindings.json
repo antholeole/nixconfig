@@ -1,205 +1,214 @@
 [
-    {
-        "key": "ctrl+n",
-        "command": "-workbench.action.files.newUntitledFile"
-    },
-    {
-        "key": "backspace",
-        "command": "moveFileToTrash",
-        "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
-    },
-    {
-        "key": "delete",
-        "command": "-moveFileToTrash",
-        "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
-    },
-    {
-        "key": "ctrl+p",
-        "command": "-workbench.action.quickOpen"
-    },
-    {
-        "key": "ctrl+n ctrl+f",
-        "command": "explorer.newFile"
-    },
-    {
-        "key": "ctrl+n ctrl+d",
-        "command": "explorer.newFolder"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "-workbench.action.toggleSidebarVisibility"
-    },
-    {
-        "key": "ctrl+shift+e",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.explorer'"
-    },
-    {
-        "key": "ctrl+shift+g",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.git'"
-    },
-    {
-        "key": "ctrl+shift+f",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.search'"
-    },
-    {
-        "key": "ctrl+shift+a",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.git'"
-    },
-    {
-        "key": "ctrl+shift+d",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.debug'"
-    },
-    {
-        "key": "ctrl+shift+x",
-        "command": "workbench.action.closeSidebar",
-        "when": "activeViewlet == 'workbench.view.extensions'"
-    },
-    {
-        "key": "ctrl+'",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "alt+1",
-        "command": "-workbench.action.openEditorAtIndex1"
-    },
-    {
-        "key": "alt+2",
-        "command": "-workbench.action.openEditorAtIndex2"
-    },
-    {
-        "key": "alt+3",
-        "command": "-workbench.action.openEditorAtIndex3"
-    },
-    {
-        "key": "alt+4",
-        "command": "-workbench.action.openEditorAtIndex4"
-    },
-    {
-        "key": "alt+5",
-        "command": "-workbench.action.openEditorAtIndex5"
-    },
-    {
-        "key": "alt+6",
-        "command": "-workbench.action.openEditorAtIndex6"
-    },
-    {
-        "key": "alt+7",
-        "command": "-workbench.action.openEditorAtIndex7"
-    },
-    {
-        "key": "alt+9",
-        "command": "-workbench.action.openEditorAtIndex9"
-    },
-    {
-        "key": "alt+8",
-        "command": "-workbench.action.openEditorAtIndex8"
-    },
-    {
-        "key": "shift+alt+1",
-        "command": "-dance.selections.pipe.prepend",
-        "when": "editorTextFocus && dance.mode == 'normal'"
-    },
-    {
-        "key": "shift+alt+1",
-        "command": "-workbench.action.moveEditorToFirstGroup"
-    },
-    {
-        "key": "shift+alt+9",
-        "command": "-workbench.action.moveEditorToLastGroup"
-    },
-    {
-        "key": "shift+alt+1",
-        "command": "vscode-harpoon.addEditor1"
-    },
-    {
-        "key": "shift+alt+2",
-        "command": "vscode-harpoon.addEditor2"
-    },
-    {
-        "key": "shift+alt+3",
-        "command": "vscode-harpoon.addEditor3"
-    },
-    {
-        "key": "shift+alt+4",
-        "command": "vscode-harpoon.addEditor4"
-    },
-    {
-        "key": "shift+alt+5",
-        "command": "vscode-harpoon.addEditor5"
-    },
-    {
-        "key": "shift+alt+6",
-        "command": "vscode-harpoon.addEditor6"
-    },
-    {
-        "key": "shift+alt+7",
-        "command": "vscode-harpoon.addEditor7"
-    },
-    {
-        "key": "shift+alt+8",
-        "command": "vscode-harpoon.addEditor8"
-    },
-    {
-        "key": "shift+alt+9",
-        "command": "vscode-harpoon.addEditor9"
-    },
-    {
-        "key": "alt+1",
-        "command": "vscode-harpoon.gotoEditor1"
-    },
-    {
-        "key": "alt+2",
-        "command": "vscode-harpoon.gotoEditor2"
-    },
-    {
-        "key": "alt+3",
-        "command": "vscode-harpoon.gotoEditor3"
-    },
-    {
-        "key": "alt+4",
-        "command": "vscode-harpoon.gotoEditor4"
-    },
-    {
-        "key": "alt+6",
-        "command": "vscode-harpoon.gotoEditor6"
-    },
-    {
-        "key": "alt+5",
-        "command": "vscode-harpoon.gotoEditor5"
-    },
-    {
-        "key": "alt+7",
-        "command": "vscode-harpoon.gotoEditor7"
-    },
-    {
-        "key": "alt+8",
-        "command": "vscode-harpoon.gotoEditor8"
-    },
-    {
-        "key": "alt+9",
-        "command": "vscode-harpoon.gotoEditor9"
-    },
-    {
-        "key": "shift+alt+\\",
-        "command": "-dance.selections.pipe",
-        "when": "editorTextFocus && dance.mode == 'normal'"
-    },
-    {
-        "key": "shift+alt+enter",
-        "command": "-language-julia.executeCellAndMove",
-        "when": "editorTextFocus && activeEditor != 'workbench.editor.notebook' && editorLangId in 'julia.supportedLanguageIds'"
-    },
-    {
-        "key": "alt+enter",
-        "command": "vscode-harpoon.editorQuickPick"
-    },
-    {
-        "key": "shift+alt+enter",
-        "command": "vscode-harpoon.editEditors"
-    }
+  {
+    "command": "-workbench.action.files.newUntitledFile",
+    "key": "ctrl+n"
+  },
+  {
+    "command": "moveFileToTrash",
+    "key": "backspace",
+    "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "command": "-moveFileToTrash",
+    "key": "delete",
+    "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "command": "-workbench.action.quickOpen",
+    "key": "ctrl+p"
+  },
+  {
+    "command": "explorer.newFile",
+    "key": "ctrl+n ctrl+f"
+  },
+  {
+    "command": "explorer.newFolder",
+    "key": "ctrl+n ctrl+d"
+  },
+  {
+    "command": "-workbench.action.toggleSidebarVisibility",
+    "key": "ctrl+b"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+e",
+    "when": "activeViewlet == 'workbench.view.explorer'"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+g",
+    "when": "activeViewlet == 'workbench.view.git'"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+f",
+    "when": "activeViewlet == 'workbench.view.search'"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+a",
+    "when": "activeViewlet == 'workbench.view.git'"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+d",
+    "when": "activeViewlet == 'workbench.view.debug'"
+  },
+  {
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+x",
+    "when": "activeViewlet == 'workbench.view.extensions'"
+  },
+  {
+    "command": "workbench.action.quickOpen",
+    "key": "ctrl+'"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex1",
+    "key": "alt+1"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex2",
+    "key": "alt+2"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex3",
+    "key": "alt+3"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex4",
+    "key": "alt+4"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex5",
+    "key": "alt+5"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex6",
+    "key": "alt+6"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex7",
+    "key": "alt+7"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex9",
+    "key": "alt+9"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex8",
+    "key": "alt+8"
+  },
+  {
+    "command": "-dance.selections.pipe.prepend",
+    "key": "shift+alt+1",
+    "when": "editorTextFocus && dance.mode == 'normal'"
+  },
+  {
+    "command": "-workbench.action.moveEditorToFirstGroup",
+    "key": "shift+alt+1"
+  },
+  {
+    "command": "-workbench.action.moveEditorToLastGroup",
+    "key": "shift+alt+9"
+  },
+  {
+    "command": "vscode-harpoon.addEditor1",
+    "key": "shift+alt+1"
+  },
+  {
+    "command": "vscode-harpoon.addEditor2",
+    "key": "shift+alt+2"
+  },
+  {
+    "command": "vscode-harpoon.addEditor3",
+    "key": "shift+alt+3"
+  },
+  {
+    "command": "vscode-harpoon.addEditor4",
+    "key": "shift+alt+4"
+  },
+  {
+    "command": "vscode-harpoon.addEditor5",
+    "key": "shift+alt+5"
+  },
+  {
+    "command": "vscode-harpoon.addEditor6",
+    "key": "shift+alt+6"
+  },
+  {
+    "command": "vscode-harpoon.addEditor7",
+    "key": "shift+alt+7"
+  },
+  {
+    "command": "vscode-harpoon.addEditor8",
+    "key": "shift+alt+8"
+  },
+  {
+    "command": "vscode-harpoon.addEditor9",
+    "key": "shift+alt+9"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor1",
+    "key": "alt+1"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor2",
+    "key": "alt+2"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor3",
+    "key": "alt+3"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor4",
+    "key": "alt+4"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor6",
+    "key": "alt+6"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor5",
+    "key": "alt+5"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor7",
+    "key": "alt+7"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor8",
+    "key": "alt+8"
+  },
+  {
+    "command": "vscode-harpoon.gotoEditor9",
+    "key": "alt+9"
+  },
+  {
+    "command": "-dance.selections.pipe",
+    "key": "shift+alt+\\",
+    "when": "editorTextFocus && dance.mode == 'normal'"
+  },
+  {
+    "command": "-language-julia.executeCellAndMove",
+    "key": "shift+alt+enter",
+    "when": "editorTextFocus && activeEditor != 'workbench.editor.notebook' && editorLangId in 'julia.supportedLanguageIds'"
+  },
+  {
+    "command": "vscode-harpoon.editorQuickPick",
+    "key": "alt+enter"
+  },
+  {
+    "command": "vscode-harpoon.editEditors",
+    "key": "shift+alt+enter"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeGroup",
+    "when": "multipleEditorGroups"
+  }
 ]
