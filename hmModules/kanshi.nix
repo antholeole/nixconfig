@@ -3,16 +3,24 @@
     enable = true;
 
     profiles = {
-        dellUltrawide = {
+        dellUltrawide = let 
+          monitor = "DP-2";
+          laptop = "eDP-1";
+        in {
           outputs = [
             {
-              criteria = "eDP-1"; # laptop
+              criteria = laptop; # laptop
             }
             {
-              criteria = "DP-2";
+              criteria = monitor;
               mode = "2560x1440@59.951Hz";
               scale = 1.0;
             }
+          ];
+
+          exec = [
+            "${pkgs.swaybg}/bin/swaybg -i ~/wall.png -c \"#1e2030\" -m center -o ${laptop}"
+            "${pkgs.swaybg}/bin/swaybg -i ~/wall_tall.png -c \"#1e2030\" -m center -o ${monitor}"
           ];
         };
     };

@@ -34,10 +34,15 @@
     username = sysConfig.name;
     homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
     
-    # file."wall.png" = { TODO figure out why this isnt working
-    #   enable = !sysConfig.headless;
-    #   source = "${inputs.self}/images/${if sysConfig.laptop then "bg" else "bg_tall"}.png";
-    # };
+    file."wall.png" = {
+      enable = !sysConfig.headless;
+      source = "${inputs.self}/images/bg.png";
+    };
+
+    file."wall_tall.png" = {
+      enable = !sysConfig.headless;
+      source = "${inputs.self}/images/bg_tall.png";
+    };
 
     packages = with pkgs;
       [
@@ -60,8 +65,8 @@
         sss
         nt # quick shot note taking system
         glib # for notifications
-        feh # for background
         pavucontrol
+        swaybg
         mpc-cli # music
         chromium # browser
         polydoro # polybar pomodoro timer

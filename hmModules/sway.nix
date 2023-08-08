@@ -61,9 +61,7 @@ in  {
         titlebar = false;
       };
 
-      startup = [
-        { command = "${pkgs.feh}/bin/feh --bg-center ~/wall.png -B \\#1e2030"; }
-     ] ++ (if sysConfig.keymap != null then [
+      startup = (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
       ] else []);
       
