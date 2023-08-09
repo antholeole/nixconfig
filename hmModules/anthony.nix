@@ -54,11 +54,12 @@
         dconf
         jq
         neofetch
+        trashy
         # fonts
+      ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
         dejavu_fonts
-      ] ++ (if !sysConfig.headless then [
         dunst
         gapp
         libnotify
