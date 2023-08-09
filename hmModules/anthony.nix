@@ -55,7 +55,6 @@
         jq
         neofetch
         trashy
-        # fonts
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols

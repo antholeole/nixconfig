@@ -14,7 +14,7 @@ in
 
     functions = {
       cdc = "mkdir -p $argv && cd $argv";
-      rmt = "${pkgs}/bin/trash put $argv";
+      rmt = "${pkgs.trashy}/bin/trash put $argv";
     };
 
     plugins = [
