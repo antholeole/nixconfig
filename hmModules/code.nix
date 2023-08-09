@@ -6,6 +6,8 @@
       [
         # This is much better than the complex setup
         rust-lang.rust-analyzer
+        scalameta.metals
+        golang.go
         # gregoire.dance :(
         # tobias-z.vscode-harpoon :(
         catppuccin.catppuccin-vsc

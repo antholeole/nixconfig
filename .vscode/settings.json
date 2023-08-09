@@ -1,3 +1,6 @@
 {
-    "nixfmt.path": "nixpkgs-fmt"
+    "nixfmt.path": "nixpkgs-fmt",
+    "files.watcherExclude": {
+        "**/target": true
+    }
 }

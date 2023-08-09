@@ -203,12 +203,17 @@
     "key": "shift+alt+enter"
   },
   {
-    "key": "ctrl+w",
-    "command": "-workbench.action.closeActiveEditor"
+    "command": "workbench.action.closeGroup",
+    "key": "ctrl+shift+w",
+    "when": "multipleEditorGroups"
   },
   {
-    "key": "ctrl+w",
-    "command": "workbench.action.closeGroup",
-    "when": "multipleEditorGroups"
+    "key": "ctrl+shift+w",
+    "command": "-workbench.action.closeWindow"
+  },
+  {
+    "key": "=",
+    "command": "editor.action.formatDocument",
+    "when": "dance.mode == 'normal'"
   }
 ]
