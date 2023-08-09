@@ -8,6 +8,7 @@ let
     "rust"
     "julia"
     "scala"
+    "dart"
   ];
   lang_to_attr = root: {
     name = root;

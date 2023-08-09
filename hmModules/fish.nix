@@ -15,6 +15,7 @@ in
     functions = {
       cdc = "mkdir -p $argv && cd $argv";
       rmt = "${pkgs.trashy}/bin/trash put $argv";
+      killp = "kill (lsof -t -i:$argv)";
     };
 
     plugins = [
