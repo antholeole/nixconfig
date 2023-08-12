@@ -1,12 +1,12 @@
-{ pkgs, inputs, config, sysConfig, lib, ... }:
-  let colors = import ../theme.nix;
+{ pkgs, inputs, config, sysConfig, mkNixGLPkg, lib, ... }:
+  let 
+    colors = import ../theme.nix;
+
 in {
-  home.shellAliases = lib.mkIf (sysConfig.nixgl != null) {
-    term = "nixGL ${pkgs.alacritty.outPath}/bin/alacritty"; 
-  };  
-  
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
+
+    package = mkNixGLPkg pkgs.alacritty;
 
     settings = {
       font = {

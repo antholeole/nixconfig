@@ -18,7 +18,7 @@ with sysConfig; {
           height = 30;
           
           modules-left = [ "brightness" "alsa" "custom/polydoro" ];
-          modules-center = [ "mpd" ];
+          modules-center = [ "custom/mpd-prev" "mpd" "custom/mpd-next" ];
           modules-right = (if laptop != null then [ "battery" "custom/sep" ] else [ ]) ++ [ "clock" ];
             output = [
               "eDP-1"
@@ -63,6 +63,16 @@ with sysConfig; {
 
               on-click = "${polydoroPath} toggle";
               on-click-right = "${polydoroPath} skip";
+          };
+
+          "custom/mpd-prev" = {
+            format = "󰒮";
+            on-click = "${pkgs.mpc-cli}/bin/mpc prev";
+          };
+
+          "custom/mpd-next" = {
+            format = "󰒭";
+            on-click = "${pkgs.mpc-cli}/bin/mpc next";
           };
         };
       };
