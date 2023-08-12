@@ -3,7 +3,8 @@
         "editor.formatOnType": true
     },
     "remote.SSH.connectTimeout": 60,
-    "remote.SSH.useLocalServer": false,
+    "remote.SSH.useLocalServer": true,
+    "remote.SSH.showLoginTerminal": true,
     "remote.autoForwardPorts": false,
     "remote.SSH.remotePlatform": {
     "oleina.c.googlers.com": "linux"
