@@ -42,13 +42,16 @@
         inherit inputs;
 
         sysConfig = (import ./conf.nix)."${confName}";
+
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
+        mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
       };
 
-      mkHmOnlyConfig = conf: let
-            system = "x86_64-linux";
+      mkHmOnlyConfig = conf:
+        let
+          system = "x86_64-linux";
         in
-          home-manager.lib.homeManagerConfiguration rec {
+        home-manager.lib.homeManagerConfiguration rec {
           # allows us to define pkgsOverride as a module for easy consumption 
           # on nixos, but as a override for pkgs here.
           pkgs = (import nixpkgs (pkgsOverride.nixpkgs // {
@@ -58,7 +61,7 @@
           modules = import ./hmModules inputs;
 
           extraSpecialArgs = specialArgs conf pkgs;
-      };
+        };
     in
     {
       nixosConfigurations = {

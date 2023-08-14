@@ -1,7 +1,14 @@
-{ pkgs, inputs, lib, sysConfig, ... }:
+{ pkgs, mkWaylandElectronPkg, inputs, lib, sysConfig, ... }:
 {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
+    package = with pkgs.vscode; {
+      inherit pname version;
+    } // mkWaylandElectronPkg {
+      pkg = pkgs.vscode;
+      exeName = "code";
+    };
+    
     extensions = with pkgs.vscode-extensions;
       [
         # This is much better than the complex setup
