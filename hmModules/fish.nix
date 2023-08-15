@@ -16,7 +16,8 @@ in
       cdc = "mkdir -p $argv && cd $argv";
       rmt = "${pkgs.trashy}/bin/trash put $argv";
       killp = "kill (lsof -t -i:$argv)";
-      zp = "${pkgs.zoxide}/bin/zoxide query $argv";
+      zd = "${pkgs.zoxide}/bin/zoxide query $argv";      
+      hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
     };
 
     plugins = [

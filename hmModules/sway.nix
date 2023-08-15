@@ -1,13 +1,16 @@
-{ pkgs, inputs, sysConfig, lib, ... }:
+{ pkgs, mkNixGLPkg, inputs, sysConfig, lib, ... }:
 let
   modifier = "Mod1";
   codeWorkspace = "";
   launcherCommand = "${pkgs.wofi}/bin/wofi --show run";
   colors = import ../theme.nix;
+
+  nixGlSway = mkNixGLPkg pkgs.sway;
 in
 {
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
     enable = true;
+    package = nixGlSway;
 
     extraSessionCommands = ''      
       export XDG_CURRENT_DESKTOP=sway # xdg-desktop-portal
@@ -21,6 +24,7 @@ in
 
     config = {
       menu = launcherCommand;
+      terminal = "exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty)}";
 
       fonts = {
         names = [ "FiraCode Nerd Font" ];
@@ -38,6 +42,9 @@ in
         "${modifier}+j" = "focus down";
         "${modifier}+k" = "focus up";
         "${modifier}+l" = "focus right";
+
+        "${modifier}+d" = null;
+        "${modifier}+r" = "exec ${launcherCommand}";
       };
 
       window = {
@@ -46,6 +53,7 @@ in
 
       startup = (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
+        { command = "swaybar --bar_id bar-0"; }
       ] else [ ]);
 
       bars = [{
@@ -74,7 +82,7 @@ in
         [Desktop Entry]
         Name=Sway
         Comment=An i3-compatible Wayland compositor
-        Exec=${pkgs.sway}/bin/sway
+        Exec=${pkgs.lib.getExe nixGlSway}
         Type=Application
     '';
   };

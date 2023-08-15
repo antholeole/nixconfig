@@ -4,7 +4,8 @@ then
   pkg
 else
   writeShellApplication {
-    name = pkg.pname;
+    name = (
+      builtins.parseDrvName pkg.name).name;
 
     runtimeInputs = [ ];
 
