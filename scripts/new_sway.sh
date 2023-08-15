@@ -1,0 +1,1 @@
+sudo mv ~/sway.desktop /usr/share/wayland-sessions/sway.desktopH

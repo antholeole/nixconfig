@@ -1,13 +1,14 @@
-{ pkgs, inputs, sysConfig, lib, ... }: let 
+{ pkgs, inputs, sysConfig, lib, ... }:
+let
   modifier = "Mod1";
   codeWorkspace = "";
-  launcherCommand = "${pkgs.rofi}/bin/rofi -show run -run-command \"${pkgs.fish}/bin/fish -c '{cmd}'\"";
+  launcherCommand = "${pkgs.wofi}/bin/wofi --show run";
   colors = import ../theme.nix;
-in  {
+in
+{
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    # todo: this is not working. command "sss" will enable this for now.
     extraSessionCommands = ''      
       export XDG_CURRENT_DESKTOP=sway # xdg-desktop-portal
       export XDG_SESSION_DESKTOP=sway # systemd
@@ -24,7 +25,7 @@ in  {
       fonts = {
         names = [ "FiraCode Nerd Font" ];
       };
-      
+
       keybindings = lib.mkOptionDefault {
         "${modifier}+w" = "kill";
 
@@ -33,7 +34,6 @@ in  {
         "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
         "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
 
-        
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";
         "${modifier}+k" = "focus up";
@@ -46,8 +46,8 @@ in  {
 
       startup = (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
-      ] else []);
-      
+      ] else [ ]);
+
       bars = [{
         fonts = {
           names = [ "FiraCode Nerd Font" ];
@@ -66,5 +66,16 @@ in  {
         position = "bottom";
       }];
     };
+  };
+
+  home.file."sway.desktop" = {
+    enable = true;
+    text = ''
+        [Desktop Entry]
+        Name=Sway
+        Comment=An i3-compatible Wayland compositor
+        Exec=${pkgs.sway}/bin/sway
+        Type=Application
+    '';
   };
 }
