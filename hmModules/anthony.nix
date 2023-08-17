@@ -75,6 +75,7 @@
         xorg.xbacklight # brightness
         wl-clipboard # clipboard
         dbeaver
+        mosh # technically not headless only, but mostly we will use mosh to ssh
       ] else [])
       ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);

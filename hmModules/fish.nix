@@ -18,6 +18,7 @@ in
       killp = "kill (lsof -t -i:$argv)";
       zd = "${pkgs.zoxide}/bin/zoxide query $argv";      
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
+      sshdc = "ps -ef | grep sshd | grep -v -e grep -e root -e 12345 | awk '{print ''\"sudo kill -9''\", $2}' | sh ";
     };
 
     plugins = [
