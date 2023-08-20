@@ -2,7 +2,7 @@
 let
   modifier = "Mod1";
   codeWorkspace = "";
-  launcherCommand = "${pkgs.wofi}/bin/wofi --show run";
+  launcherCommand = "${lib.getExe pkgs.fish} -c history | ${lib.getExe pkgs.wofi} --show dmenu | ${lib.getExe pkgs.fish}";
   colors = import ../theme.nix;
 
   nixGlSway = mkNixGLPkg pkgs.sway;

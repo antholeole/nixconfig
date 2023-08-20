@@ -227,11 +227,11 @@
     "when": "editorFocus || editorIsOpen"
   },
   {
-    "key": "ctrl+h",
+    "key": "ctrl+shift+h",
     "command": "workbench.action.focusFirstEditorGroup"
   },
   {
-    "key": "ctrl+l",
+    "key": "ctrl+shift+l",
     "command": "workbench.action.focusSecondEditorGroup"
   },
   {

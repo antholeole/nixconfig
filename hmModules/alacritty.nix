@@ -15,85 +15,85 @@ in {
         size = sysConfig.fontSizes.glFontSize;
       };
 
-      colors = {
+      colors = with colors; {
         primary = {
-          background = colors.base;
-          foreground = colors.text;
+          background = base;
+          foreground = text;
 
-          dim_foreground = colors.text;
-          bright_foreground = colors.text;
+          dim_foreground = text;
+          bright_foreground = text;
         };
 
         cursor = {
-          text = colors.base;
-          cursor = colors.flamingo;
+          text = base;
+          cursor = flamingo;
         };
 
         search = {
           matches = {
-            foreground = colors.base;
-            background = colors.subtext0;
+            foreground = base;
+            background = subtext0;
           };
 
           focused_match = {
-            foreground = colors.base;
-            background = colors.green;
+            foreground = base;
+            background = green;
           };
 
           footer_bar = {
-            foreground = colors.base;
-            background = colors.subtext0;
+            foreground = base;
+            background = subtext0;
           };
         };
 
         hints = {
           start = {
-            foreground = colors.base;
-            background = colors.yellow;
+            foreground = base;
+            background = yellow;
           };
 
           end = {
-            foreground = colors.base;
-            background = colors.subtext0;
+            foreground = base;
+            background = subtext0;
           };
         };
 
         selection = {
-          text = colors.base;
-          background = colors.flamingo;
+          text = base;
+          background = flamingo;
         };
 
         normal = {
-          black = colors.surface1;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext1;
+          black = surface1;
+          red = red;
+          green = green;
+          yellow = yellow;
+          blue = blue;
+          magenta = pink;
+          cyan = teal;
+          white = subtext1;
         };
 
         bright = {
-          black = colors.surface2;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext0;
+          black = surface2;
+          red = red;
+          green = green;
+          yellow = yellow;
+          blue = blue;
+          magenta = pink;
+          cyan = teal;
+          white = subtext0;
         };
 
         dim = {
-          black = colors.surface1;
-          red = colors.red;
-          green = colors.green;
-          yellow = colors.yellow;
-          blue = colors.blue;
-          magenta = colors.pink;
-          cyan = colors.teal;
-          white = colors.subtext1;
+          black = surface1;
+          red = red;
+          green = green;
+          yellow = yellow;
+          blue = blue;
+          magenta = pink;
+          cyan = teal;
+          white = subtext1;
         };
       };
     };

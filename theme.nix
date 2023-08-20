@@ -1,5 +1,6 @@
 {
   # Catpuccin Machiatto
+  font = "FiraCode Nerd Font";
 
   base = "#24273a";
   mantle = "#1e2030";

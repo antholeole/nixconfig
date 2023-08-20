@@ -14,7 +14,6 @@
     playerctld.enable = true;
     blueman-applet.enable = sysConfig.bluetooth;
     gnome-keyring.enable = true;
-    unclutter.enable = true;
   };
 
   gtk = lib.mkIf (!sysConfig.headless) {
