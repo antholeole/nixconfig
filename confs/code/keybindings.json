@@ -64,42 +64,6 @@
     "key": "ctrl+'"
   },
   {
-    "command": "-workbench.action.openEditorAtIndex1",
-    "key": "alt+1"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex2",
-    "key": "alt+2"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex3",
-    "key": "alt+3"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex4",
-    "key": "alt+4"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex5",
-    "key": "alt+5"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex6",
-    "key": "alt+6"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex7",
-    "key": "alt+7"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex9",
-    "key": "alt+9"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex8",
-    "key": "alt+8"
-  },
-  {
     "command": "-dance.selections.pipe.prepend",
     "key": "shift+alt+1",
     "when": "editorTextFocus && dance.mode == 'normal'"
@@ -273,5 +237,41 @@
   {
     "key": "ctrl+3",
     "command": "-workbench.action.focusThirdEditorGroup"
+  },
+  {
+    "key": "ctrl+enter",
+    "command": "vscode-harpoon.editEditors"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex2",
+    "key": "alt+2"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex3",
+    "key": "alt+3"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex4",
+    "key": "alt+4"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex5",
+    "key": "alt+5"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex6",
+    "key": "alt+6"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex7",
+    "key": "alt+7"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex9",
+    "key": "alt+9"
+  },
+  {
+    "command": "-workbench.action.openEditorAtIndex8",
+    "key": "alt+8"
   }
 ]
