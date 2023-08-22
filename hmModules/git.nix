@@ -23,7 +23,6 @@ in
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      pull.rebase = true;
       user.name = "Anthony Oleinik";
     };
 
