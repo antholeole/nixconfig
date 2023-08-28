@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, sysConfig, lib, ... }: {   
+{ pkgs, inputs, config, sysConfig, lib, ... }: {
   fonts.fontconfig.enable = true;
 
   xdg = {
@@ -24,7 +24,7 @@
         accents = [ "flamingo" ];
         size = "standard";
         tweaks = [ "rimless" ];
-        variant = "frappe";
+        variant = "macchiato";
       };
     };
   };
@@ -32,7 +32,7 @@
   home = {
     username = sysConfig.name;
     homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
-    
+
     file."wall.png" = {
       enable = !sysConfig.headless;
       source = "${inputs.self}/images/bg.png";
@@ -54,6 +54,8 @@
         jq
         neofetch
         trashy
+        mosh
+        entr
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
@@ -71,12 +73,11 @@
         polydoro # polybar pomodoro timer
         shutter-save # screenshotter (activated thru fluxbox keys)
         slock # screen locker
-        xorg.xbacklight # brightness
+        brightnessctl
         wl-clipboard # clipboard
         dbeaver
-        mosh # technically not headless only, but mostly we will use mosh to ssh
-      ] else [])
-      ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else []) 
+      ] else [ ])
+      ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else [ ])
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
   };
 

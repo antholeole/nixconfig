@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, sysConfig, mkNixGLPkg, lib, ... }:
+{ pkgs, inputs, config, sysConfig, mkNixGLPkg, mkDotDesktop, lib, ... }:
 let
   colors = import ../theme.nix;
 in
@@ -98,4 +98,4 @@ in
       };
     };
   };
-}
+} // mkDotDesktop pkgs.alacritty

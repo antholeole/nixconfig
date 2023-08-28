@@ -20,6 +20,7 @@
           tall = false;
           kanshi = {
             criteria = "eDP-1";
+            scale = 2.4;
           };
         };
         monitor = {
@@ -34,6 +35,10 @@
         };
       in
       {
+        latopOnly = mkKanshiConfig [
+          laptop
+        ];
+
         dellUltrawide = mkKanshiConfig [
           ultraWide
           laptop

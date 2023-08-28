@@ -40,6 +40,14 @@
             key = "ctrl+${n}";
             command = "vscode-harpoon.gotoEditor${n}";
           }
+          {
+            command = "-workbench.action.openEditorAtIndex${n}";
+            key = "alt+${n}";
+          }
+          {
+            key = "ctrl+${n}";
+            command = "-workbench.action.focusThirdEditorGroup";
+          }
         ])
       (lib.lists.range 1 9));
     userSettings = with builtins; fromJSON (readFile "${inputs.self}/confs/code/settings.json");

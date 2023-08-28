@@ -45,6 +45,7 @@
 
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
+        mkDotDesktop = (import ./mixins/mkDotDesktop.nix) sysConfig pkgs;
       };
 
       mkHmOnlyConfig = conf:

@@ -2,7 +2,7 @@
 let
   modifier = "Mod1";
   codeWorkspace = "";
-  launcherCommand = "${lib.getExe pkgs.fish} -c history | ${lib.getExe pkgs.wofi} --show dmenu | ${lib.getExe pkgs.fish}";
+  launcherCommand = "${lib.getExe pkgs.fish} -c \"${lib.getExe pkgs.wofi} --show drun\"";
   colors = import ../theme.nix;
 
   nixGlSway = mkNixGLPkg pkgs.sway;
@@ -45,6 +45,9 @@ in
 
         "${modifier}+d" = null;
         "${modifier}+r" = "exec ${launcherCommand}";
+
+        "${modifier}+shift+m" = "move workspace to output right";
+        "${modifier}+m" = "focus output right";
       };
 
       window = {
@@ -54,36 +57,21 @@ in
       startup = (if sysConfig.keymap != null then [
         { command = "setxkbmap -option ${sysConfig.keymap}"; }
         { command = "swaybar --bar_id bar-0"; }
+        { command = "ssh-agent -a $SSH_AUTH_SOCK"; }
       ] else [ ]);
 
-      bars = [{
-        fonts = {
-          names = [ "FiraCode Nerd Font" ];
-          size = sysConfig.fontSizes.glFontSize + 0.0; # hack to get int to float
-        };
-
-        colors = with colors; {
-          background = crust;
-          focusedWorkspace = {
-            background = flamingo;
-            border = flamingo;
-            text = crust;
-          };
-        };
-
-        position = "bottom";
-      }];
+      bars = [ ];
     };
   };
 
   home.file."sway.desktop" = {
     enable = true;
     text = ''
-        [Desktop Entry]
-        Name=Sway
-        Comment=An i3-compatible Wayland compositor
-        Exec=${pkgs.lib.getExe nixGlSway}
-        Type=Application
+      [Desktop Entry]
+      Name=Sway
+      Comment=An i3-compatible Wayland compositor
+      Exec=${pkgs.lib.getExe nixGlSway}
+      Type=Application
     '';
   };
 }

@@ -77,78 +77,6 @@
     "key": "shift+alt+9"
   },
   {
-    "command": "vscode-harpoon.addEditor1",
-    "key": "shift+alt+1"
-  },
-  {
-    "command": "vscode-harpoon.addEditor2",
-    "key": "shift+alt+2"
-  },
-  {
-    "command": "vscode-harpoon.addEditor3",
-    "key": "shift+alt+3"
-  },
-  {
-    "command": "vscode-harpoon.addEditor4",
-    "key": "shift+alt+4"
-  },
-  {
-    "command": "vscode-harpoon.addEditor5",
-    "key": "shift+alt+5"
-  },
-  {
-    "command": "vscode-harpoon.addEditor6",
-    "key": "shift+alt+6"
-  },
-  {
-    "command": "vscode-harpoon.addEditor7",
-    "key": "shift+alt+7"
-  },
-  {
-    "command": "vscode-harpoon.addEditor8",
-    "key": "shift+alt+8"
-  },
-  {
-    "command": "vscode-harpoon.addEditor9",
-    "key": "shift+alt+9"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor1",
-    "key": "alt+1"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor2",
-    "key": "alt+2"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor3",
-    "key": "alt+3"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor4",
-    "key": "alt+4"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor6",
-    "key": "alt+6"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor5",
-    "key": "alt+5"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor7",
-    "key": "alt+7"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor8",
-    "key": "alt+8"
-  },
-  {
-    "command": "vscode-harpoon.gotoEditor9",
-    "key": "alt+9"
-  },
-  {
     "command": "-dance.selections.pipe",
     "key": "shift+alt+\\",
     "when": "editorTextFocus && dance.mode == 'normal'"
@@ -211,67 +139,11 @@
     "command": "-workbench.action.focusRightGroup"
   },
   {
-    "key": "ctrl+8",
-    "command": "-workbench.action.focusEighthEditorGroup"
-  },
-  {
-    "key": "ctrl+5",
-    "command": "-workbench.action.focusFifthEditorGroup"
-  },
-  {
-    "key": "ctrl+4",
-    "command": "-workbench.action.focusFourthEditorGroup"
-  },
-  {
-    "key": "ctrl+2",
-    "command": "-workbench.action.focusSecondEditorGroup"
-  },
-  {
-    "key": "ctrl+7",
-    "command": "-workbench.action.focusSeventhEditorGroup"
-  },
-  {
-    "key": "ctrl+6",
-    "command": "-workbench.action.focusSixthEditorGroup"
-  },
-  {
-    "key": "ctrl+3",
-    "command": "-workbench.action.focusThirdEditorGroup"
-  },
-  {
-    "key": "ctrl+enter",
+    "key": "ctrl+shift+enter",
     "command": "vscode-harpoon.editEditors"
   },
   {
-    "command": "-workbench.action.openEditorAtIndex2",
-    "key": "alt+2"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex3",
-    "key": "alt+3"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex4",
-    "key": "alt+4"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex5",
-    "key": "alt+5"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex6",
-    "key": "alt+6"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex7",
-    "key": "alt+7"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex9",
-    "key": "alt+9"
-  },
-  {
-    "command": "-workbench.action.openEditorAtIndex8",
-    "key": "alt+8"
+    "key": "ctrl+enter",
+    "command": "vscode-harpoon.editorQuickPick"
   }
 ]
