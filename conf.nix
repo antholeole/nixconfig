@@ -6,6 +6,7 @@ let
 
   default_conf = {
     name = "anthony";
+    email = "antholeinik@gmail.com";
     nixgl = null;
     bluetooth = true;
     headless = false;
@@ -35,6 +36,7 @@ in {
 
   hm-work = default_conf // {
     name = "oleina";
+    email = "oleina@google.com";
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
     nixgl = "Default";

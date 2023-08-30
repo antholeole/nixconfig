@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, sysConfig, lib, ... }: {
+{ pkgs, inputs, config, sysConfig, lib, mkDotDesktop, ... }: {
   fonts.fontconfig.enable = true;
 
   xdg = {

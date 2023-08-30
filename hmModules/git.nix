@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, sysConfig, ... }:
 let
   nonixGitignoreFilename = ".nonix.gitignore";
 in
@@ -23,7 +23,11 @@ in
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      user.name = "Anthony Oleinik";
+      core.editor = "${pkgs.kakoune}";
+
+      user = with sysConfig; {
+        inherit email name;
+      };
     };
 
     includes = [{
