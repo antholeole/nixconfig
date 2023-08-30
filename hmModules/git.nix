@@ -23,7 +23,7 @@ in
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      core.editor = "${pkgs.kakoune}";
+      core.editor = with pkgs; "${lib.getExe kakoune}";
 
       user = with sysConfig; {
         inherit email name;
