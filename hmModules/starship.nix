@@ -9,7 +9,6 @@ let
     "julia"
     "scala"
     "dart"
-    "terraform"
   ];
   lang_to_attr = root: {
     name = root;
@@ -32,6 +31,10 @@ in
       enableFishIntegration = true;
 
       settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
+        terraform = (lang_to_attr "terraform") // {
+          symbol = "";
+        };
+
         directory = {
           format = "[\\[$path$read_only\\]]($style)";
         };
