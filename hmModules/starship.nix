@@ -31,7 +31,10 @@ in
       enableFishIntegration = true;
 
       settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
-        terraform = (lang_to_attr "terraform") // {
+        
+        terraform = {
+          disabled = false;
+          format = "[\\[$symbol($version)\\]]($style)";
           symbol = "";
         };
 
