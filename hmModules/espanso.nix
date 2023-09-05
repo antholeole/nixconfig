@@ -19,51 +19,58 @@ in
       '';
     };
 
-  configs.default = {
-    toggle_key = "ALT";
-    search_shortcut = "ALT+O";
-    pre_paste_delay = 100;
-    evdev_modifier_delay = 5;
-  };
+    configs.default = {
+      toggle_key = "ALT";
+      search_shortcut = "ALT+O";
+      pre_paste_delay = 100;
+      evdev_modifier_delay = 5;
+    };
 
-  matches.base = {
-    matches = let 
-      mkMagicReplace = trigger: replace: {
-        inherit replace;
-        trigger = "${trigger}${magic_key}";
-      };
-    in [
-      # TODO this could be { "trigger": "replace", "trigger": ["replace1" "replace2"]}
-      (mkMagicReplace "st" "something")
-      (mkMagicReplace "oj" "object")
-      (mkMagicReplace "sh" "should")
-      (mkMagicReplace "bt" "between")
-      (mkMagicReplace "so" "someone")
-      (mkMagicReplace "b4" "before")
-      (mkMagicReplace "sr" "server")
-      (mkMagicReplace "rv" "review")
-      (mkMagicReplace "tf" "traffic")
-      (mkMagicReplace "rz" "reason")
-      (mkMagicReplace "xp" "expire")
-      (mkMagicReplace "ud" "update")
-      (mkMagicReplace "rm" "remove")
-      (mkMagicReplace "mn" "manage")
-      (mkMagicReplace "th" "thought")
-      (mkMagicReplace "me" "Anthony")
-      (mkMagicReplace "who" "whoever")
-      (mkMagicReplace "svc" "service")
-      (mkMagicReplace "po" "possible")
-      (mkMagicReplace "svr" "server")
-      (mkMagicReplace "cfg" "configuration")
-      (mkMagicReplace "plz" "please")
-      (mkMagicReplace "qu" "question")
-      (mkMagicReplace "cl" "calendar")
-      (mkMagicReplace "tg" "together")
-      (mkMagicReplace "sp" "specific")
-      (mkMagicReplace "sg" "sounds good")
+    matches.base = {
+      matches =
+        let
+          mkMagicReplace = trigger: replace: {
+            inherit replace;
+            trigger = "${trigger}${magic_key}";
+          };
 
-      (mkMagicReplace "call" "Can we hop on a call real quick")
-    ];
+          replacements = {
+            "st" = "something";
+            "oj" = "object";
+            "sh" = "should";
+            "bt" = "between";
+            "so" = "someone";
+            "b4" = "before";
+            "sr" = "server";
+            "rv" = "review";
+            "tf" = "traffic";
+            "rz" = "reason";
+            "xp" = "expire";
+            "ud" = "update";
+            "rm" = "remove";
+            "mn" = "manage";
+            "th" = "thought";
+            "me" = "Anthony";
+            "who" = "whoever";
+            "svc" = "service";
+            "po" = "possible";
+            "svr" = "server";
+            "cfg" = "configuration";
+            "plz" = "please";
+            "qu" = "question";
+            "cl" = "calendar";
+            "tg" = "together";
+            "sp" = "specific";
+            "sg" = "sounds good";
+            "rs" = "rubber stamp";
+            "dp" = "deploy";
+            "hn" = "hostname";
+            "call" = "Can we hop on a call real quick";
+          };
+        in
+        with lib; attrsets.mapAttrsToList (
+          replacment: value: (mkMagicReplace replacment value)
+        ) replacements;
+    };
   };
-};
 }

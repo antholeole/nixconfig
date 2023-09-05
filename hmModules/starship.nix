@@ -35,7 +35,7 @@ in
         terraform = {
           disabled = false;
           format = "[\\[$symbol($version)\\]]($style)";
-          symbol = "";
+          symbol = " ";
         };
 
         directory = {
