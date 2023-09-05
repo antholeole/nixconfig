@@ -10,3 +10,10 @@
 
 # Getting Music added
 enter the program `ncmpcpp` then click 2 to enter the browse menu. Then, click "a" on the folder to add the entire folder. 
+
+# Post install
+If you're using a nixos, you're good!
+
+If you're using home-manager, you'll need to:
+- run `sudo setcap "cap_dac_override+p" $(hmWhich espanso)/bin/.espanso-wrapped`
+- run `sudo cp ~/sway.desktop /usr/share/wayland-sessions/sway.desktop`

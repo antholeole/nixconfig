@@ -1,7 +1,8 @@
 pkgs: {
-  pkg, exeName ? null
+  pkg, 
+  exeName ? null
 }: with pkgs; let 
-  pname = pkg.pname;
+  pname = if pkg ? pname then pkg.pname else pkg.name;
 in pkgs.symlinkJoin {
   name = pname;
   paths = [ pkg ];

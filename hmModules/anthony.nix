@@ -1,4 +1,6 @@
-{ pkgs, inputs, config, sysConfig, lib, mkDotDesktop, ... }: {
+{ pkgs, inputs, config, sysConfig, lib, mkDotDesktop, mkWaylandElectronPkg, ... }: let 
+  waylandObsidian = mkWaylandElectronPkg { pkg = pkgs.obsidian; };
+in {
   fonts.fontconfig.enable = true;
 
   xdg = {
@@ -63,8 +65,8 @@
         dejavu_fonts
         dunst
         gapp
+        waylandObsidian # oh boy
         libnotify
-        sss
         nt # quick shot note taking system
         glib # for notifications
         pavucontrol
@@ -75,6 +77,7 @@
         shutter-save # screenshotter (activated thru fluxbox keys)
         slock # screen locker
         brightnessctl
+        pipes-rs # for funziesi
         wl-clipboard # clipboard
         dbeaver
       ] else [ ])
@@ -93,4 +96,4 @@
   };
 
   home.stateVersion = "23.05";
-}
+} // (mkDotDesktop waylandObsidian) 

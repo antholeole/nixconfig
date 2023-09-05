@@ -1,5 +1,5 @@
 sysConfig: pkgs: pkg: let 
-     name = pkg.pname;
+     name = if pkg ? pname then pkg.pname else pkg.name;
 in {
   xdg.dataFile."applications/${name}.desktop" = {
   enable = !sysConfig.headless;
