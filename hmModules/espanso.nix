@@ -65,6 +65,7 @@ in
             "rs" = "rubber stamp";
             "dp" = "deploy";
             "hn" = "hostname";
+            "pr" = "provision";
             "call" = "Can we hop on a call real quick";
           };
         in

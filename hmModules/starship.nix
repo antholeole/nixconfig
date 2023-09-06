@@ -38,6 +38,8 @@ in
           symbol = " ";
         };
 
+        gcloud.disabled = true;
+
         directory = {
           format = "[\\[$path$read_only\\]]($style)";
         };
