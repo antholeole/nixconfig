@@ -1,42 +1,35 @@
-let
-  bracket_langs = [
-    "python"
-    "java"
-    "package"
-    "nodejs"
-    "golang"
-    "rust"
-    "julia"
-    "scala"
-    "dart"
-  ];
-  lang_to_attr = root: {
-    name = root;
-    value = {
-      disabled = false;
-      format = "[\\[$symbol($version)\\]]($style)";
-    };
-  };
-in
-{
+{ ... }: {
   programs.starship =
     let
       vc = {
         format = "[\\[$symbol$branch\\]]($style)";
         disabled = false;
       };
+
+      mkLangFmt = lang: {
+        disabled = false;
+        format = "[\\[$symbol($version)\\]]($style)";
+      };
+
+      mkSymbol = symbol: {
+        inherit symbol;
+      };
     in
     {
       enable = true;
       enableFishIntegration = true;
 
-      settings = builtins.listToAttrs (map lang_to_attr bracket_langs) // {
-        
-        terraform = {
-          disabled = false;
-          format = "[\\[$symbol($version)\\]]($style)";
-          symbol = " ";
-        };
+      settings = {
+        python = mkLangFmt "python";
+        java = mkLangFmt "java";
+        package = mkLangFmt "package";
+        nodejs = mkLangFmt "nodejs";
+        golang = mkLangFmt "golang";
+        rust = mkLangFmt "rust";
+        julia = mkLangFmt "julia";
+        dart = mkLangFmt "dart";
+        scala = mkLangFmt "scala" // mkSymbol "";
+        terraform = mkLangFmt "terraform" // mkSymbol " ";
 
         gcloud.disabled = true;
 
