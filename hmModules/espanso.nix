@@ -41,7 +41,8 @@ in
             "bt" = "between";
             "so" = "someone";
             "b4" = "before";
-            "sr" = "server";
+            "sv" = "server";
+            "tal" = "take a look";
             "rv" = "review";
             "tf" = "traffic";
             "rz" = "reason";
@@ -52,10 +53,11 @@ in
             "th" = "thought";
             "me" = "Anthony";
             "who" = "whoever";
-            "svc" = "service";
+            "sc" = "service";
             "po" = "possible";
-            "svr" = "server";
             "cfg" = "configuration";
+            "nw" = "no worries";
+            "tyt" = "take your time";
             "plz" = "please";
             "qu" = "question";
             "cl" = "calendar";
@@ -66,6 +68,10 @@ in
             "dp" = "deploy";
             "hn" = "hostname";
             "pr" = "provision";
+            "dyt" = "do you think";
+            "ps" = "persist";
+            "imo" = "in my opinion";
+            "sw" = "somewhere";
             "call" = "Can we hop on a call real quick";
           };
         in

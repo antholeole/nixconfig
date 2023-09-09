@@ -50,7 +50,6 @@ in {
         fd # find!
         tree
         httpie
-        python3
         unzip
         dconf
         jq
@@ -58,6 +57,7 @@ in {
         trashy
         mosh
         entr
+        reptyr
         bottom
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })

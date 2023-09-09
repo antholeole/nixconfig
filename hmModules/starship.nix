@@ -28,6 +28,7 @@
         rust = mkLangFmt "rust";
         julia = mkLangFmt "julia";
         dart = mkLangFmt "dart";
+        cmake = mkLangFmt "cmake";
         scala = mkLangFmt "scala" // mkSymbol "";
         terraform = mkLangFmt "terraform" // mkSymbol " ";
 
