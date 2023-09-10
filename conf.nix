@@ -16,6 +16,8 @@ let
 
     fontSizes = mkFontSizes {};
 
+    dailysh = {};
+
     laptop = {
       brightnessDir = "gpio-bl";
       battery = "macsmc-battery";
@@ -40,6 +42,9 @@ in {
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
     nixgl = "Default";
+    dailysh = {
+      gcert = "gcert";
+    };
 
     fontSizes = mkFontSizes {
       defaultFontSize = 20;
