@@ -67,14 +67,16 @@ in
     };
   };
 
-  home.file."${layoutDir}/custom-default.kdl" = {
+  home.file."${layoutDir}/default.kdl" = {
     enable = true;
     text = ''
       layout {
-        pane size = 1 borderless=true {
-          plugin location="zellij:tab-bar"
-        }
-        pane
+        default_tab_template {
+          children
+          pane size=1 borderless=true {
+              plugin location="zellij:tab-bar"
+            }
+          }
       }
     '';
   };
@@ -87,16 +89,20 @@ in
       enable = true;
       text = ''
         layout {
-          tab name="btm" {
-            pane command="btm"
+        default_tab_template {
+          children
+          pane size=1 borderless=true {
+              plugin location="zellij:tab-bar"
+            }
           }
-          tab name="daily" {
+          tab name="btm" {
+            pane command="${pkgs.lib.getExe pkgs.bottom}"
+          }
+          tab name="daily" split_direction="vertical" {
             pane command="${pkgs.lib.getExe daily}"
+            pane command="${pkgs.lib.getExe pkgs.pipes-rs}"
           }
           tab name="misc"
-          pane size = 1 borderless=true {
-            plugin location="zellij:tab-bar"
-          }
         }
       '';
     };

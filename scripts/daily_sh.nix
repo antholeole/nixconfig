@@ -15,6 +15,14 @@ pkgs.writeShellApplication {
 
     TYPE=$(${getExe gum} choose${concatStrings (mapAttrsToList (key: _: " \"${key}\"") commands)})
 
-    echo "$TYPE"
+    case $TYPE in
+    ${concatStrings (mapAttrsToList (key: cmd: ''
+      "${key}")
+      ${cmd}
+        ;;
+    '') commands)}
+    esac
+
+    echo '{{ Foreground "#00ff00" "Press any key to restart." }}' | gum format -t template
   '';
 }
