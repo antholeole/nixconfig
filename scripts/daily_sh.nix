@@ -3,6 +3,7 @@ let
   commands = {
     "nix collect garbage" = "nix-collect-garbage";
     "say hello" = "echo hello world!";
+    "sshdc" = "sshdc";
   } // sysConf.dailysh;
 
   gum = pkgs.gum;

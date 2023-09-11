@@ -11,9 +11,11 @@ in
       paths = [ espanso-wayland wl-clipboard ];
       buildInputs = [ makeWrapper ];
       version = espanso-wayland.version;
+      #TODO this doesn't work and it spams journalctl with "cannot find gsettings"
       postBuild = ''
         wrapProgram $out/bin/espanso --set PATH ${lib.makeBinPath [
           "/usr/bin/"
+          "${glib.out}/"
           wl-clipboard
         ]}
       '';
@@ -22,6 +24,7 @@ in
     configs.default = {
       toggle_key = "ALT";
       search_shortcut = "ALT+O";
+      keyboard_layout = { layout = "us"; };
       pre_paste_delay = 100;
       evdev_modifier_delay = 5;
     };
@@ -41,6 +44,7 @@ in
             "bt" = "between";
             "so" = "someone";
             "b4" = "before";
+            "%" = "percent";
             "sv" = "server";
             "tal" = "take a look";
             "rv" = "review";

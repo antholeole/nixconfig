@@ -1,30 +1,31 @@
-let 
-  mkFontSizes = fontSizes @ {
-    defaultFontSize ? 18,
-    glFontSize ? 10,
-  }: fontSizes;
+let
+  mkFontSizes =
+    { defaultFontSize ? 18
+    , glFontSize ? 10
+    ,
+    } @ fontSizes: fontSizes;
 
   default_conf = {
     name = "anthony";
     email = "antholeinik@gmail.com";
-    nixgl = null;
     bluetooth = true;
     headless = false;
     keymap = "ctrl:swap_lwin_lctl";
     alsaSupport = true;
     homeDirPath = "/home/";
 
-    fontSizes = mkFontSizes {};
+    fontSizes = mkFontSizes { };
 
-    dailysh = {};
+    dailysh = { };
 
     laptop = {
       brightnessDir = "gpio-bl";
       battery = "macsmc-battery";
       adapter = "macsmc-ac";
     };
-  }; 
-in { 
+  };
+in
+{
   kayak-asahi = default_conf;
 
   hm-pc = default_conf // {
@@ -32,8 +33,11 @@ in {
     alsaSupport = false;
     bluetooth = false;
     keymap = null;
-    nixgl = "Nvidia";
-    fontSize = 10;
+
+    fontSizes = mkFontSizes {
+      defaultFontSize = 20;
+      glFontSize = 10;
+    };
   };
 
   hm-work = default_conf // {
@@ -41,7 +45,6 @@ in {
     email = "oleina@google.com";
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
-    nixgl = "Default";
     dailysh = {
       gcert = "gcert";
     };

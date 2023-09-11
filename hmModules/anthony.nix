@@ -81,7 +81,6 @@ in {
         wl-clipboard # clipboard
         dbeaver
       ] else [ ])
-      ++ (if sysConfig.nixgl != null then [ nixgl.auto."nixGL${sysConfig.nixgl}" ] else [ ])
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
   };
 
@@ -96,4 +95,4 @@ in {
   };
 
   home.stateVersion = "23.05";
-} // (mkDotDesktop waylandObsidian) 
+} // (mkDotDesktop waylandObsidian) // (mkDotDesktop pkgs.pavucontrol) 

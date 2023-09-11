@@ -1,9 +1,4 @@
-sysConfig: pkgs: pkg: with pkgs;
-if sysConfig.nixgl == null
-then
-  pkg
-else
-  writeShellApplication {
+sysConfig: pkgs: pkg: with pkgs; writeShellApplication {
     name = (
       builtins.parseDrvName pkg.name).name;
 
@@ -11,7 +6,7 @@ else
 
     text =
       let
-        sysNixGL = lib.getExe nixgl.auto."nixGL${sysConfig.nixgl}";
+        sysNixGL = lib.getExe nixgl.auto.nixGLDefault;
       in
       ''
         exec ${sysNixGL} ${lib.getExe pkg} "$@"

@@ -1,4 +1,4 @@
-{ lib, sysConfig, ... }: {
+{ lib, sysConfig, config, ... }: {
   services.mpd = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
@@ -7,6 +7,6 @@
       follow_inside_symlinks      "yes"
     '';
 
-    musicDirectory = "$XDG_MUSIC_DIR";
+    musicDirectory = config.xdg.userDirs.music;
   };
 }
