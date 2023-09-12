@@ -54,14 +54,15 @@ in
         titlebar = false;
       };
 
-      startup = (if sysConfig.keymap != null then [
-        { command = "setxkbmap -option ${sysConfig.keymap}"; }
-        { command = "swaybar --bar_id bar-0"; }
-        { command = "ssh-agent -a $SSH_AUTH_SOCK"; }
-      ] else [ ]);
-
       bars = [ ];
     };
+
+    extraConfig = ''
+      input "1:1:AT_Translated_Set_2_keyboard" {
+        xkb_layout us
+        xkb_options caps:swapescape
+      }
+      '';
   };
 
   home.file."sway.desktop" = {
