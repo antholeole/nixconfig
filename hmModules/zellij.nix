@@ -84,6 +84,7 @@ in
   home.file."${layoutDir}/standard.kdl" =
     let
       daily = import "${inputs.self}/scripts/daily_sh.nix" pkgs sysConfig;
+      notes = import "${inputs.self}/scripts/notes.nix" pkgs;
     in
     {
       enable = true;
@@ -99,8 +100,11 @@ in
             pane command="${pkgs.lib.getExe pkgs.bottom}"
           }
           tab name="daily" split_direction="vertical" {
-            pane command="${pkgs.lib.getExe daily}"
-            pane command="${pkgs.lib.getExe pkgs.pipes-rs}"
+            pane split_direction="horizontal" {
+              pane command="${pkgs.lib.getExe daily}"
+              pane command="${pkgs.lib.getExe pkgs.pipes-rs}"
+            }
+            pane command="${pkgs.lib.getExe notes}"
           }
           tab name="misc"
         }
