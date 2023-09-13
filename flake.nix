@@ -3,7 +3,6 @@
 
   inputs = {
     polydoro.url = "github:antholeole/polypomo/main";
-    nt.url = "github:antholeole/nt/main";
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:antholeole/home-manager/master";
@@ -16,7 +15,6 @@
     { self
     , nixpkgs
     , polydoro
-    , nt
     , flake-utils
     , home-manager
     , apple-silicon
@@ -31,7 +29,6 @@
             (import ./scripts/shutter-save.nix).overlay
             (import ./scripts/gapp.nix).overlay
             polydoro.overlays.default
-            nt.overlays.default
             nixgl.overlay
           ];
         };
@@ -44,7 +41,6 @@
 
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
-        mkDotDesktop = (import ./mixins/mkDotDesktop.nix) sysConfig pkgs;
       };
 
       mkHmOnlyConfig = conf:

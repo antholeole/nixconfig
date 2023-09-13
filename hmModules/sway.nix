@@ -2,7 +2,7 @@
 let
   modifier = "Mod1";
   codeWorkspace = "";
-  launcherCommand = "${lib.getExe pkgs.fish} -c \"${lib.getExe pkgs.wofi} --show drun\"";
+  launcherCommand = pkgs.lib.getExe (import "${inputs.self}/scripts/wofi_launch.nix" pkgs sysConfig);
   colors = import ../theme.nix;
 
   nixGlSway = mkNixGLPkg pkgs.sway;

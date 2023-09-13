@@ -1,9 +1,9 @@
 pkgs: sysConf:
 let
-  commands = {
+  commands = with pkgs; {
     "nix collect garbage" = "nix-collect-garbage";
     "say hello" = "echo hello world!";
-    "sshdc" = "sshdc";
+    "sshdc" = "${lib.getExe fish} -c sshdc";
   } // sysConf.dailysh;
 
   gum = pkgs.gum;

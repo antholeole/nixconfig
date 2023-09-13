@@ -1,6 +1,4 @@
-{ pkgs, inputs, config, sysConfig, lib, mkDotDesktop, mkWaylandElectronPkg, ... }: let 
-  waylandObsidian = mkWaylandElectronPkg { pkg = pkgs.obsidian; };
-in {
+{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, ... }: {
   fonts.fontconfig.enable = true;
 
   xdg = {
@@ -65,9 +63,7 @@ in {
         dejavu_fonts
         dunst
         gapp
-        waylandObsidian # oh boy
         libnotify
-        nt # quick shot note taking system
         glib # for notifications
         pavucontrol
         swaybg
@@ -95,4 +91,4 @@ in {
   };
 
   home.stateVersion = "23.05";
-} // (mkDotDesktop waylandObsidian) // (mkDotDesktop pkgs.pavucontrol) 
+}

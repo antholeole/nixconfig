@@ -15,6 +15,7 @@ let
     homeDirPath = "/home/";
 
     fontSizes = mkFontSizes { };
+    wofiCmds = { };
 
     dailysh = { };
 
@@ -45,6 +46,10 @@ in
     email = "oleina@google.com";
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
+    
+    wofiCmds = {
+      chrome = "/bin/chrome";
+    };
     dailysh = {
       gcert = "gcert";
     };
