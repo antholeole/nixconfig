@@ -3,6 +3,7 @@ let
   commands = with pkgs; {
     "chrome" = "${lib.getExe chromium}";
     "alacritty (default)" = "${lib.getExe alacritty}";
+    "code" = "code";
     # "alacritty (daily)" = ""
     "pavucontrol" = "${lib.getExe pavucontrol}";
   } // sysConf.wofiCmds;

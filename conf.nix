@@ -15,9 +15,10 @@ let
     homeDirPath = "/home/";
 
     fontSizes = mkFontSizes { };
-    wofiCmds = { };
 
+    wofiCmds = { };
     dailysh = { };
+    swayStartupCommands = [];
 
     laptop = {
       brightnessDir = "gpio-bl";
@@ -46,13 +47,16 @@ in
     email = "oleina@google.com";
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
-    
+
     wofiCmds = {
-      chrome = "/bin/chrome";
+      chrome = "/bin/google-chrome";
     };
     dailysh = {
       gcert = "gcert";
     };
+    swayStartupCommands = [
+      "ssh-agent -a $SSH_AUTH_SOCK"
+    ];
 
     fontSizes = mkFontSizes {
       defaultFontSize = 20;

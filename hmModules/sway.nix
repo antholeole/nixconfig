@@ -54,6 +54,8 @@ in
         titlebar = false;
       };
 
+      startup = builtins.map (command: { inherit command; }) sysConfig.swayStartupCommands;
+
       bars = [ ];
     };
 
@@ -62,7 +64,7 @@ in
         xkb_layout us
         xkb_options caps:swapescape
       }
-      '';
+    '';
   };
 
   home.file."sway.desktop" = {
