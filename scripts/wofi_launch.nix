@@ -1,13 +1,14 @@
-pkgs: sysConf:
+{ pkgs, sysConfig, config, ... }:
 let
   commands = with pkgs; {
     "chrome" = "${lib.getExe chromium}";
     "alacritty (default)" = "${lib.getExe alacritty}";
-    "code" = "code";
+    "code" = "${config.programs.vscode.package}/bin/.code-wrapped";
     # "alacritty (daily)" = ""
     "pavucontrol" = "${lib.getExe pavucontrol}";
-  } // sysConf.wofiCmds;
-in with pkgs; writeShellApplication {
+  } // sysConfig.wofiCmds;
+in
+with pkgs; writeShellApplication {
   runtimeInputs = [ gum wofi ];
   name = "wofi-launch";
   text = with pkgs.lib; ''
@@ -27,5 +28,5 @@ in with pkgs; writeShellApplication {
     esac
 
     echo "$PROGRAM"
-'';
+  '';
 }

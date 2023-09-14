@@ -54,6 +54,7 @@ in
     dailysh = {
       gcert = "gcert";
     };
+    
     swayStartupCommands = [
       "ssh-agent -a $SSH_AUTH_SOCK"
     ];

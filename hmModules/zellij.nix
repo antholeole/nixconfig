@@ -6,7 +6,7 @@ in
 {
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
 
     settings = {
       theme = "catpuccin";
@@ -102,7 +102,9 @@ in
           tab name="daily" split_direction="vertical" {
             pane split_direction="horizontal" {
               pane command="${pkgs.lib.getExe daily}"
-              pane command="${pkgs.lib.getExe pkgs.pipes-rs}"
+              pane command="${pkgs.lib.getExe pkgs.pipes-rs}" {
+                args "--rainbow" "5" "-c" "rgb" "-p" "1" "-r" "0.75"
+              } 
             }
             pane command="${pkgs.lib.getExe notes}"
           }
