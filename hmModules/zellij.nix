@@ -84,7 +84,7 @@ in
   home.file."${layoutDir}/standard.kdl" =
     let
       daily = import "${inputs.self}/scripts/daily_sh.nix" pkgs sysConfig;
-      notes = import "${inputs.self}/scripts/notes.nix" pkgs;
+      notes = import "${inputs.self}/scripts/notes.nix" { inherit pkgs inputs; };
     in
     {
       enable = true;
