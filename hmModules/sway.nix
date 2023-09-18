@@ -49,6 +49,13 @@ in
       # bro got no bars
       bars = [ ];
     };
+
+    extraConfig = ''
+      input "1:1:AT_Translated_Set_2_keyboard" {
+        xkb_layout us
+        xkb_options caps:swapescape
+      }
+    '';
   };
 
   home.file."sway.desktop" = {

@@ -3,7 +3,7 @@ let
   commands = with pkgs; {
     "chrome" = "${lib.getExe chromium}";
     "alacritty (default)" = "${lib.getExe alacritty}";
-    "code" = "${config.programs.vscode.package}/bin/.code-wrapped";
+    "code" = "${config.programs.vscode.package}/bin/code";
     # "alacritty (daily)" = ""
     "pavucontrol" = "${lib.getExe pavucontrol}";
   } // sysConfig.wofiCmds;
