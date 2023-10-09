@@ -1,0 +1,46 @@
+(defwidget action-button [text hotkey]
+  (box :class "action-button"
+    (box :orientation "v"
+      text
+      (box :class "keyhint" "(${hotkey})")
+    )
+  )
+)
+
+;; lightboxes
+(defwindow lightbox-a
+  :monitor 0
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "100%" :anchor "top left")
+  :stacking "fg"
+  (box :class "lightbox")
+)
+(defwindow lightbox-b
+  :monitor 1
+  :geometry (geometry :x "0px" :y "0px" :width "100%" :height "100%" :anchor "top left")
+  :stacking "fg"
+  (box :class "lightbox")
+)
+
+;; powerbars
+(defwidget powerbar-widget []
+  (box
+    :orientation "v"
+    :class "action-button-container"
+    (action-button :text "" :hotkey "q")
+    (action-button :text "󰍃" :hotkey "l")
+    (action-button :text "" :hotkey "r")
+    (action-button :text "󰤆" :hotkey "s")
+  )
+)
+(defwindow powerbar-a
+  :monitor 0
+  :geometry (geometry :x "30px" :anchor "center right")
+  :stacking "fg"
+  (powerbar-widget)
+)
+(defwindow powerbar-b
+  :monitor 1
+  :geometry (geometry :x "30px" :anchor "center right")
+  :stacking "fg"
+  (powerbar-widget)
+)

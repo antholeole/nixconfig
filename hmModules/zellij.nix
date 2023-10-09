@@ -23,31 +23,8 @@ in
         };
       };
 
+      # TODO ctrl hjkl should navigate pane / tab
       keybinds = {
-        unbind = {
-          _repeatedKey = [ "Alt h" "Alt l" "Ctrl b" ];
-        };
-
-        normal = {
-          bind = {
-            _repeatedKey = [{
-              _args = [ "Ctrl h" ];
-              MoveFocusOrTab = "Left";
-            }
-              {
-                _args = [ "Ctrl l" ];
-                MoveFocusOrTab = "Right";
-              }
-              {
-                _args = [ "Ctrl j" ];
-                MoveFocusOrTab = "Down";
-              }
-              {
-                _args = [ "Ctrl k" ];
-                MoveFocusOrTab = "Up";
-              }];
-          };
-        };
       };
 
       themes = {

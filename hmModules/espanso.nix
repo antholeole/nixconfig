@@ -55,6 +55,7 @@ in
             "rm" = "remove";
             "mn" = "manage";
             "th" = "thought";
+            "rq" = "request";
             "me" = "Anthony";
             "who" = "whoever";
             "sc" = "service";

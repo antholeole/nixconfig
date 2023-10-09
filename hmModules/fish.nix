@@ -45,6 +45,7 @@ in
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
+      set MICRO_TRUECOLOR 1
 
       if not set -q ZELLIJ                                                                                                                                                                                                                                                          
         if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                                                                                                                    

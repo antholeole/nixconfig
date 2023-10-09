@@ -14,6 +14,10 @@ in
   programs.git = {
     enable = true;
 
+    difftastic = {
+      enable = true;
+    };
+
     ignores = [
       "node_modules/"
       ".vscode"

@@ -1,0 +1,47 @@
+$base: #24273a;
+$mantle: #1e2030;
+$crust: #181926;
+$text: #cad3f5;
+$flamingo: #f0c6c6;
+
+$border-radius: 5px;
+$lightbox-color: rgba(0, 0, 0, 0.564);
+
+* {
+    all: unset;
+}
+
+.lightbox {
+    background-color: $lightbox-color;
+}
+
+.action-button-container {
+    border: 2px solid $crust;
+    border-radius: $border-radius * 2;
+    background-color: $base;
+    margin: 20px;
+    padding: 4px 12px;
+    
+    box-shadow: $crust 10px 10px;
+    color: $text;
+
+    transition: transform 150ms linear;
+}
+
+.action-button {
+    border-radius: 8px;
+    font-size: 2rem;
+    padding: 10px 20px;
+    margin: 4px 0;
+    font-size: 24px;
+
+    $transition-time: 150ms;
+
+    transition: background-color $transition-time linear;
+    transition: color $transition-time linear;
+
+    .keyhint {
+        font-size: 12px;
+        color: fade-out($color: $text, $amount: .6);
+    }
+}

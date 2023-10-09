@@ -2,6 +2,7 @@ pkgs: sysConf:
 let
   commands = with pkgs; {
     "nix collect garbage" = "nix-collect-garbage";
+    "restart sway" = "${pkgs.sway}/bin/swaymsg reload && systemctl --user restart kanshi.service";
     "say hello" = "echo hello world!";
     "sshdc" = "${lib.getExe fish} -c sshdc";
   } // sysConf.dailysh;

@@ -50,13 +50,14 @@
         httpie
         unzip
         dconf
-        jq
+        fx
         neofetch
         trashy
         mosh
         entr
         reptyr
         bottom
+        google-cloud-sdk
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
@@ -76,6 +77,10 @@
         pipes-rs # for funziesi
         wl-clipboard # clipboard
         dbeaver
+
+        # some useful formatters for one-off scripts
+        nixfmt
+        python311Packages.flake8
       ] else [ ])
       ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
   };

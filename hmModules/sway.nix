@@ -1,12 +1,16 @@
 { pkgs, mkNixGLPkg, inputs, config, sysConfig, lib, ... }:
 let
   modifier = "Mod1";
-  codeWorkspace = "";
   launcherCommand = pkgs.lib.getExe (import "${inputs.self}/scripts/wofi_launch.nix" {
     inherit pkgs sysConfig config;
   });
   colors = import ../theme.nix;
   nixGlSway = mkNixGLPkg pkgs.sway;
+  ewwExe = pkgs.lib.getExe config.programs.eww.package;
+  ewwOnFocusedPath = pkgs.lib.getExe (import "${inputs.self}/scripts/eww_on_focused.nix" { inherit pkgs inputs; });
+  ewwOnFocused = "${ewwOnFocusedPath} --eww ${ewwExe}";
+
+  logSuffix = ">>/tmp/sway 2>&1";
 in
 {
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
@@ -19,7 +23,9 @@ in
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
     '';
     systemd.enable = true;
-    config = {
+    config = let
+      powerbarMode = "powerbarMode";
+    in {
       menu = launcherCommand;
       terminal = "exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty)}";
       fonts = {
@@ -27,7 +33,6 @@ in
       };
       keybindings = lib.mkOptionDefault {
         "${modifier}+w" = "kill";
-        "${modifier}+q" = "exec swaylock"; # not nixpkgs swaylock so that we can run on non-nixos systems
         "${modifier}+b" = "exec ${pkgs.polydoro}/bin/polydoro toggle";
         "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
         "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
@@ -35,16 +40,36 @@ in
         "${modifier}+j" = "focus down";
         "${modifier}+k" = "focus up";
         "${modifier}+l" = "focus right";
-        "${modifier}+d" = null;
         "${modifier}+r" = "exec ${launcherCommand}";
         "${modifier}+shift+m" = "move workspace to output right";
         "${modifier}+m" = "focus output right";
+
+        "${modifier}+q" = "exec ${ewwOnFocused} open powerbar; exec ${ewwOnFocused} open lightbox --all; mode ${powerbarMode}";
+        
+        # disable the default dmenu launcher
+        "${modifier}+d" = null;
       };
+
+      modes = {
+        "${powerbarMode}" = let
+          returnCmd = "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all; mode default";
+
+        in {
+          "q" = "exec swaylock; ${returnCmd}"; # not nixpkgs swaylock so that we can run on non-nixos systems
+          "r" = "exec reboot; ${returnCmd}";
+          "l" = "exec swaymsg exit; ${returnCmd}";
+          "s" = "exec poweroff; ${returnCmd}";
+          "escape" = returnCmd;
+        };
+      };
+
       window = {
         titlebar = false;
       };
 
-      startup = (builtins.map (cmd: { command = cmd; }) sysConfig.swayStartupCommands);
+      startup = (builtins.map (cmd: { command = cmd; }) sysConfig.swayStartupCommands) ++ [
+        #"${ewwExe} daemon"
+      ];
 
       # bro got no bars
       bars = [ ];

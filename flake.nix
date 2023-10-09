@@ -5,7 +5,7 @@
     polydoro.url = "github:antholeole/polypomo/main";
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:antholeole/home-manager/master";
+    home-manager.url = "github:antholeole/home-manager/repeating-kdl-key";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
