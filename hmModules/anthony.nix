@@ -77,6 +77,7 @@
         pipes-rs # for funziesi
         wl-clipboard # clipboard
         dbeaver
+        pamixer
 
         # some useful formatters for one-off scripts
         nixfmt

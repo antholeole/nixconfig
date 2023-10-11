@@ -15,14 +15,14 @@ $lightbox-color: rgba(0, 0, 0, 0.564);
     background-color: $lightbox-color;
 }
 
-.action-button-container {
+.container {
     border: 2px solid $crust;
     border-radius: $border-radius * 2;
     background-color: $base;
     margin: 20px;
     padding: 4px 12px;
-    
-    box-shadow: $crust 10px 10px;
+
+    box-shadow: rgba($crust, 80%) 10px 10px;
     color: $text;
 
     transition: transform 150ms linear;
@@ -43,5 +43,32 @@ $lightbox-color: rgba(0, 0, 0, 0.564);
     .keyhint {
         font-size: 12px;
         color: fade-out($color: $text, $amount: .6);
+    }
+}
+
+.audio-slider {
+    $slider-width: 20px;
+    $slider-margin: 2px;
+
+    padding: 5px;
+    margin: 15px 5px;
+    
+    border-radius: $border-radius * 2;
+    background-color: $crust;
+
+    .label {
+        color: pink;
+    }
+
+    trough {
+        padding: $slider-width $slider-margin;
+        border-radius: $border-radius;
+    }
+
+    progress {
+        border-radius: $border-radius;
+
+        background-color: $flamingo;
+        padding: $slider-width - $slider-margin;
     }
 }

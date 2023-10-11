@@ -7,6 +7,14 @@
   )
 )
 
+
+(defwidget container [orientation] (
+    box
+    :orientation orientation
+    :class "container"
+    (children)
+  ))
+
 ;; lightboxes
 (defwindow lightbox-a
   :monitor 0
@@ -23,9 +31,8 @@
 
 ;; powerbars
 (defwidget powerbar-widget []
-  (box
+  (container
     :orientation "v"
-    :class "action-button-container"
     (action-button :text "" :hotkey "q")
     (action-button :text "󰍃" :hotkey "l")
     (action-button :text "" :hotkey "r")
@@ -40,7 +47,34 @@
 )
 (defwindow powerbar-b
   :monitor 1
-  :geometry (geometry :x "30px" :anchor "center right")
+  :geometry (geometry :x "30px" :anchorx "center right")
   :stacking "fg"
   (powerbar-widget)
+)
+
+(defwidget volume-ctrl []
+  (container
+    :orientation "v"
+    (audio-slider :name "chrome")
+    (audio-slider :name "music")
+  )
+)
+
+(defwidget audio-slider [name]
+  (box
+    :orientation "v"
+    (label :class "label" :text name :xalign 0)
+    (progress
+      :class "audio-slider"
+      :orientation "h"
+      :value 20.0
+      :flipped false
+    ))
+)
+
+(defwindow volume-ctrl-a
+  :monitor 0
+  :geometry (geometry :width 400 :x "30px" :anchor "center left")
+  :stacking "fg"
+  (volume-ctrl)
 )

@@ -17,6 +17,7 @@
 
 # TODO this isnt working?
 # TODO zellij exit is the same as micro exit which obvoisouly does not wokr
+
   home.file.".config/micro/colorschemes/catpuccin.micro" = {
     text = ''
 color-link comment "#5B6078"
