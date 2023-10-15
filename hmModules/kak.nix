@@ -1,5 +1,4 @@
-{ pkgs, inputs, ... }:
-{
+{ pkgs, inputs, ... }: {
   programs.kakoune = {
     enable = true;
 

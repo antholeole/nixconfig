@@ -4,7 +4,5 @@
     enableFishIntegration = true;
   };
 
-  programs.fish.shellAliases = {
-    cd = "z";
-  };
+  programs.fish.shellAliases = { cd = "z"; };
 }

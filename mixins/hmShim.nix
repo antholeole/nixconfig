@@ -8,7 +8,7 @@ let
       users.anthony = hmModulePath;
     };
   };
-in
-{
-  imports = map mkNixosModuleFromHmModule (import "${inputs.self}/hmModules" inputs);
+in {
+  imports =
+    map mkNixosModuleFromHmModule (import "${inputs.self}/hmModules" inputs);
 }

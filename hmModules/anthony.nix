@@ -83,8 +83,11 @@
         # some useful formatters for one-off scripts
         nixfmt
         python311Packages.flake8
-      ] else [ ])
-      ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then [ insomnia ] else [ postman ]);
+      ] else
+        [ ]) ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then
+          [ insomnia ]
+        else
+          [ postman ]);
   };
 
   programs = lib.mkIf (!sysConfig.headless) {

@@ -1,8 +1,6 @@
 { pkgs, inputs, config, sysConfig, mkNixGLPkg, lib, ... }:
-let
-  colors = import ../theme.nix;
-in
-{
+let colors = import ../theme.nix;
+in {
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 

@@ -1,9 +1,5 @@
 let
-  mkFontSizes =
-    { defaultFontSize ? 18
-    , glFontSize ? 10
-    ,
-    } @ fontSizes: fontSizes;
+  mkFontSizes = { defaultFontSize ? 18, glFontSize ? 10, }@fontSizes: fontSizes;
 
   default_conf = {
     name = "anthony";
@@ -18,7 +14,7 @@ let
 
     wofiCmds = { };
     dailysh = { };
-    swayStartupCommands = [];
+    swayStartupCommands = [ ];
 
     laptop = {
       brightnessDir = "gpio-bl";
@@ -26,8 +22,7 @@ let
       adapter = "macsmc-ac";
     };
   };
-in
-{
+in {
   kayak-asahi = default_conf;
 
   hm-pc = default_conf // {
@@ -48,16 +43,10 @@ in
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
 
-    wofiCmds = {
-      chrome = "/bin/google-chrome";
-    };
-    dailysh = {
-      gcert = "gcert";
-    };
-    
-    swayStartupCommands = [
-      "ssh-agent -a $SSH_AUTH_SOCK"
-    ];
+    wofiCmds = { chrome = "/bin/google-chrome"; };
+    dailysh = { gcert = "gcert"; };
+
+    swayStartupCommands = [ "ssh-agent -a $SSH_AUTH_SOCK" ];
 
     fontSizes = mkFontSizes {
       defaultFontSize = 20;

@@ -1,8 +1,6 @@
 { inputs, pkgs, ... }:
-let
-  wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
-in
-{
+let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
+in {
   programs.fish = {
     enable = true;
 

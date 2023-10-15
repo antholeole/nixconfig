@@ -1,8 +1,6 @@
 { config, pkgs, lib, sysConfig, ... }:
-let
-  colors = import ../theme.nix;
-in
-{
+let colors = import ../theme.nix;
+in {
   programs.wofi = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
@@ -67,5 +65,5 @@ in
        #entry:selected #text {
           color: @bg;
        }'';
-      };
-  }
+  };
+}

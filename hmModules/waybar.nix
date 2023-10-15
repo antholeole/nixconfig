@@ -1,8 +1,6 @@
 { pkgs, sysConfig, lib, ... }:
-let
-  colors = import ../theme.nix;
-in
-with sysConfig; {
+let colors = import ../theme.nix;
+in with sysConfig; {
   programs.waybar = lib.mkIf (!sysConfig.headless) {
     enable = true;
     systemd.enable = true;
@@ -13,9 +11,11 @@ with sysConfig; {
         position = "top";
         height = 30;
 
-        modules-left = [ "sway/workspaces" "brightness" "alsa" "custom/polydoro" ];
+        modules-left =
+          [ "sway/workspaces" "brightness" "alsa" "custom/polydoro" ];
         modules-center = [ "custom/mpd-prev" "mpd" "custom/mpd-next" ];
-        modules-right = (if laptop != null then [ "battery" ] else [ ]) ++ [ "clock" ];
+        modules-right = (if laptop != null then [ "battery" ] else [ ])
+          ++ [ "clock" ];
 
         "clock" = {
           type = "internal/date";
@@ -42,18 +42,14 @@ with sysConfig; {
           tooltip = false;
         };
 
+        "custom/polydoro" = let polydoroPath = "${pkgs.polydoro}/bin/polydoro";
+        in {
+          exec = "${polydoroPath} run -f";
+          exec-on-event = false;
 
-        "custom/polydoro" =
-          let
-            polydoroPath = "${pkgs.polydoro}/bin/polydoro";
-          in
-          {
-            exec = "${polydoroPath} run -f";
-            exec-on-event = false;
-
-            on-click = "${polydoroPath} toggle";
-            on-click-right = "${polydoroPath} skip";
-          };
+          on-click = "${polydoroPath} toggle";
+          on-click-right = "${polydoroPath} skip";
+        };
 
         "custom/mpd-prev" = {
           format = "󰒮";
@@ -66,7 +62,6 @@ with sysConfig; {
         };
       };
     };
-
 
     style = with colors; ''
       * {

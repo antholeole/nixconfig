@@ -11,16 +11,8 @@
     nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , polydoro
-    , flake-utils
-    , home-manager
-    , apple-silicon
-    , nixgl
-    , ...
-    } @ inputs:
+  outputs = { self, nixpkgs, polydoro, flake-utils, home-manager, apple-silicon
+    , nixgl, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
@@ -44,44 +36,35 @@
       };
 
       mkHmOnlyConfig = conf:
-        let
-          system = "x86_64-linux";
-        in
-        home-manager.lib.homeManagerConfiguration rec {
+        let system = "x86_64-linux";
+        in home-manager.lib.homeManagerConfiguration rec {
           # allows us to define pkgsOverride as a module for easy consumption 
           # on nixos, but as a override for pkgs here.
-          pkgs = (import nixpkgs (pkgsOverride.nixpkgs // {
-            inherit system;
-          }));
+          pkgs = (import nixpkgs (pkgsOverride.nixpkgs // { inherit system; }));
 
           modules = import ./hmModules inputs;
 
           extraSpecialArgs = specialArgs conf pkgs;
         };
-    in
-    {
+    in {
       nixosConfigurations = {
-        kayak-asahi =
-          let
-            system = "aarch64-linux";
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit system;
+        kayak-asahi = let system = "aarch64-linux";
+        in nixpkgs.lib.nixosSystem {
+          inherit system;
 
-            specialArgs = (specialArgs "kayak-asahi") pkgsOverride.nixpkgs;
+          specialArgs = (specialArgs "kayak-asahi") pkgsOverride.nixpkgs;
 
-            modules = [
-              pkgsOverride
+          modules = [
+            pkgsOverride
 
-              apple-silicon.nixosModules.default
-              home-manager.nixosModules.home-manager
-              ./hosts/kayak/configuration.nix
-              ./mixins/asahi.nix
-              ./mixins/hmShim.nix
-            ];
-          };
+            apple-silicon.nixosModules.default
+            home-manager.nixosModules.home-manager
+            ./hosts/kayak/configuration.nix
+            ./mixins/asahi.nix
+            ./mixins/hmShim.nix
+          ];
+        };
       };
-
 
       # HM only configs
       homeConfigurations = {
@@ -90,18 +73,12 @@
         headless = mkHmOnlyConfig "hm-headless";
       };
 
-
     } // flake-utils.lib.eachDefaultSystem (system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      devShells.default = pkgs.mkShell {
-        name = "nixconfig";
-        packages = with pkgs; [
-          home-manager
-          nixfmt
-        ];
-      };
-    });
+      let pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        devShells.default = pkgs.mkShell {
+          name = "nixconfig";
+          packages = with pkgs; [ home-manager nixfmt ];
+        };
+      });
 }
