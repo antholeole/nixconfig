@@ -19,6 +19,7 @@ in
       zd = "${pkgs.zoxide}/bin/zoxide query $argv";
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
       sshdc = "rm ~/.ssh/ctrl-*";
+      cdb = "for i in (seq 1 $argv); cd ..; end";
     };
 
     plugins = [
@@ -58,8 +59,6 @@ in
             kill $fish_pid                                                                                                                                                                                                                                                        
         end                                                                                                                                                                                                                                                                       
       end  
-
-      ${pkgs.neofetch.outPath}/bin/neofetch
     '';
   };
 }
