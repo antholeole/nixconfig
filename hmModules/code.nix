@@ -1,13 +1,21 @@
-{ pkgs, mkWaylandElectronPkg, inputs, lib, sysConfig, ... }: {
+{ pkgs, mkWaylandElectronPkg, mkNixGLPkg, inputs, lib, sysConfig, ... }: {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
-    package = with pkgs.vscode;
-      {
-        inherit pname version;
-      } // mkWaylandElectronPkg {
-        pkg = pkgs.vscode;
-        exeName = "code";
-      };
+    package = let
+	details = with pkgs.vscode; {
+    		inherit pname version;
+	};
+
+
+	waylandWrapped = mkWaylandElectronPkg {
+    		pkg = pkgs.vscode;
+    		exeName = "code";
+	};
+
+	nixGlCode = mkNixGLPkg waylandWrapped"code";
+
+	finalCode = details // waylandWrapped;
+    in finalCode;
 
     extensions = with pkgs.vscode-extensions; [
       # This is much better than the complex setup

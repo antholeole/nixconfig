@@ -1,10 +1,12 @@
-{ inputs, pkgs, sysConfig, ... }:
+{ config, inputs, pkgs, sysConfig, ... }:
 let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
 in {
   programs.zellij = {
     enable = true;
+
+    # false; we dump it manually (so we get completions as well)
     enableFishIntegration = false;
 
     settings = {
@@ -18,10 +20,7 @@ in {
 
       ui = { pane_frames = { hide_session_name = true; }; };
 
-      # TODO ctrl hjkl should navigate pane / tab
-      keybinds = { };
-
-      themes = {
+     themes = {
         catpuccin = with colors; {
           inherit red green blue yellow;
 
@@ -37,6 +36,14 @@ in {
       };
     };
   };
+
+  programs.fish.interactiveShellInit = let
+	zellij = pkgs.lib.getExe config.programs.zellij.package;
+  in ''
+	eval "$(${zellij} setup --generate-auto-start fish)"
+	eval "$(${zellij} setup --generate-completion fish)"
+  '';
+
 
   home.file."${layoutDir}/default.kdl" = {
     enable = true;

@@ -12,7 +12,7 @@ in with sysConfig; {
         height = 30;
 
         modules-left =
-          [ "sway/workspaces" "brightness" "alsa" "custom/polydoro" ];
+          [ "sway/workspaces" "brightness" "alsa" ];
         modules-center = [ "custom/mpd-prev" "mpd" "custom/mpd-next" ];
         modules-right = (if laptop != null then [ "battery" ] else [ ])
           ++ [ "clock" ];
@@ -40,15 +40,6 @@ in with sysConfig; {
           };
 
           tooltip = false;
-        };
-
-        "custom/polydoro" = let polydoroPath = "${pkgs.polydoro}/bin/polydoro";
-        in {
-          exec = "${polydoroPath} run -f";
-          exec-on-event = false;
-
-          on-click = "${polydoroPath} toggle";
-          on-click-right = "${polydoroPath} skip";
         };
 
         "custom/mpd-prev" = {

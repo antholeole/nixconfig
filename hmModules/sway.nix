@@ -6,7 +6,7 @@ let
       inherit pkgs sysConfig config;
     });
   colors = import ../theme.nix;
-  nixGlSway = mkNixGLPkg pkgs.sway;
+  nixGlSway = mkNixGLPkg pkgs.sway pkgs.sway.meta.mainProgram;
   ewwExe = pkgs.lib.getExe config.programs.eww.package;
   ewwOnFocusedPath = pkgs.lib.getExe
     (import "${inputs.self}/scripts/eww_on_focused.nix" {
@@ -29,11 +29,10 @@ in {
     config = let powerbarMode = "powerbarMode";
     in {
       menu = launcherCommand;
-      terminal = "exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty)}";
+      terminal = "exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}";
       fonts = { names = [ "FiraCode Nerd Font" ]; };
       keybindings = lib.mkOptionDefault {
         "${modifier}+w" = "kill";
-        "${modifier}+b" = "exec ${pkgs.polydoro}/bin/polydoro toggle";
         "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
         "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
         "${modifier}+h" = "focus left";

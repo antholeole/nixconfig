@@ -2,16 +2,14 @@
   description = "Anthony's NixOS configuration";
 
   inputs = {
-    polydoro.url = "github:antholeole/polypomo/main";
-
-    apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
+   apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:antholeole/home-manager/repeating-kdl-key";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
   };
 
-  outputs = { self, nixpkgs, polydoro, flake-utils, home-manager, apple-silicon
+  outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon
     , nixgl, ... }@inputs:
     let
       pkgsOverride = {
@@ -19,8 +17,6 @@
           config.allowUnfree = true;
           overlays = [
             (import ./scripts/shutter-save.nix).overlay
-            (import ./scripts/gapp.nix).overlay
-            polydoro.overlays.default
             nixgl.overlay
           ];
         };

@@ -2,7 +2,6 @@
 let
   commands = with pkgs;
     {
-      "chrome" = "${lib.getExe chromium}";
       "alacritty (default)" = "${lib.getExe alacritty}";
       "code" = "${config.programs.vscode.package}/bin/code";
       "pavucontrol" = "${lib.getExe pavucontrol}";

@@ -4,7 +4,7 @@ in {
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    package = mkNixGLPkg pkgs.alacritty;
+    package = mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram;
 
     settings = {
       font = {

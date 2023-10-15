@@ -64,14 +64,11 @@
         fira-code-symbols
         dejavu_fonts
         dunst
-        gapp
         libnotify
         glib # for notifications
         pavucontrol
         swaybg
         mpc-cli # music
-        chromium # browser
-        polydoro # polybar pomodoro timer
         shutter-save # screenshotter (activated thru fluxbox keys)
         slock # screen locker
         brightnessctl

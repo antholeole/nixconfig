@@ -45,18 +45,6 @@ in {
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
       set MICRO_TRUECOLOR 1
-
-      if not set -q ZELLIJ                                                                                                                                                                                                                                                          
-        if test "$ZELLIJ_AUTO_ATTACH" = "true"                                                                                                                                                                                                                                    
-          zellij attach -c                                                                                                                                                                                                                                                      
-        else
-          set -q ZELLIJ_LAYOUT || set ZELLIJ_LAYOUT "default"
-          zellij --layout $ZELLIJ_LAYOUT
-        end                                                                                                                                                                                                                                                                       
-        if test "$ZELLIJ_AUTO_EXIT" = "true"                                                                                                                                                                                                                                      
-            kill $fish_pid                                                                                                                                                                                                                                                        
-        end                                                                                                                                                                                                                                                                       
-      end  
-    '';
+   '';
   };
 }
