@@ -58,6 +58,7 @@
         reptyr
         bottom
         google-cloud-sdk
+        nixfmt
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols

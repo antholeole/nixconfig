@@ -1,14 +1,24 @@
 { pkgs, inputs, ... }:
 {
-  programs.bat = {
+  programs.bat = let 
+    theme = "Catpuccin Machiatto";
+  in {
     enable = true;
 
     extraPackages = with pkgs.bat-extras; [ batman ];
 
-    themes.catpuccin-machiatto = builtins.readFile "${inputs.self}/confs/catpuccin-machiatto.bat.tmTheme";
+    themes."${theme}" = {
+          src = pkgs.fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "sublime-text";
+      rev = "f748732eb9752aa3d161a016e50cca296009c66b";
+      sha256 = "sha256-GehfCttJBAiV7k52D2TfUMeoK7hGextlnINaCwmQFi8=";
+    };
+      file = "${theme}.sublime-color-scheme";
+    };
 
     config = {
-      theme = "catpuccin-machiatto";
+      inherit theme;
 
       pager = "less -FR";
     };
