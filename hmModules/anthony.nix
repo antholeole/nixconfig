@@ -53,9 +53,7 @@
         fx
         neofetch
         trashy
-        mosh
         entr
-        reptyr
         bottom
         google-cloud-sdk
         nixfmt
@@ -80,11 +78,7 @@
         # some useful formatters for one-off scripts
         nixfmt
         python311Packages.flake8
-      ] else
-        [ ]) ++ (if pkgs.system == "x86_64-linux" && !sysConfig.headless then
-          [ insomnia ]
-        else
-          [ postman ]);
+      ] else [ ]);
   };
 
   programs = lib.mkIf (!sysConfig.headless) {
