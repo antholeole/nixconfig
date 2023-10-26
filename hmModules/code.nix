@@ -2,23 +2,24 @@
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
-    	# this vscode version seems to work on Wayland.
-    	# TODO: figure out why later ones don't
-    	vscode_1_81 = (mkOldNixPkg {
-		pkgsetHash = "50a7139fbd1acd4a3d4cfa695e694c529dd26f3a";
-		pkgSha = lib.fakeSha256;
-    	}).vscode;
+      # this vscode version seems to work on Wayland.
+      # TODO: figure out why later ones don't
+      vscode_1_81 = (mkOldNixPkg {
+        pkgsetHash = "50a7139fbd1acd4a3d4cfa695e694c529dd26f3a";
+        pkgSha = lib.fakeSha256;
+      }).vscode;
 
-	details = with vscode_1_81; {
-    		inherit pname version;
-	};
+      details = with vscode_1_81; { 
+        inherit pname version;
+        meta.mainProgram = "code";
+      };
 
-	waylandWrapped = mkWaylandElectronPkg {
-    		pkg = vscode_1_81;
-    		exeName = "code";
-	};
+      waylandWrapped = mkWaylandElectronPkg {
+        pkg = vscode_1_81;
+        exeName = "code";
+      };
 
-	finalCode = details // waylandWrapped;
+      finalCode = details // waylandWrapped;
     in finalCode;
 
     extensions = with pkgs.vscode-extensions; [

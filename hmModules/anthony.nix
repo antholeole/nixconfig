@@ -78,7 +78,8 @@
         # some useful formatters for one-off scripts
         nixfmt
         python311Packages.flake8
-      ] else [ ]);
+      ] else
+        [ ]);
   };
 
   programs = lib.mkIf (!sysConfig.headless) {

@@ -14,6 +14,7 @@ let
     });
   ewwOnFocused = "${ewwOnFocusedPath} --eww ${ewwExe}";
 
+  # useful for when stuff isn't working
   logSuffix = ">>/tmp/sway 2>&1";
 in {
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
@@ -29,12 +30,14 @@ in {
     config = let powerbarMode = "powerbarMode";
     in {
       menu = launcherCommand;
-      terminal = "exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}";
+      terminal = "exec ${
+          pkgs.lib.getExe
+          (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
+        }";
       fonts = { names = [ "FiraCode Nerd Font" ]; };
       keybindings = lib.mkOptionDefault {
         "${modifier}+w" = "kill";
         "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
-        "${modifier}+Shift+4" = "exec ${pkgs.shutter-save}/bin/shutter-save";
         "${modifier}+h" = "focus left";
         "${modifier}+j" = "focus down";
         "${modifier}+k" = "focus up";
@@ -68,10 +71,8 @@ in {
       window = { titlebar = false; };
 
       startup =
-        (builtins.map (cmd: { command = cmd; }) sysConfig.swayStartupCommands)
-        ++ [
-          #"${ewwExe} daemon"
-        ];
+        (builtins.map (cmd: { command = cmd; }) (sysConfig.swayStartupCommands
+          ++ [ "${ewwExe} daemon" ]));
 
       # bro got no bars
       bars = [ ];

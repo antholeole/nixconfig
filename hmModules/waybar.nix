@@ -11,8 +11,7 @@ in with sysConfig; {
         position = "top";
         height = 30;
 
-        modules-left =
-          [ "sway/workspaces" "brightness" "alsa" ];
+        modules-left = [ "sway/workspaces" "brightness" "alsa" ];
         modules-center = [ "custom/mpd-prev" "mpd" "custom/mpd-next" ];
         modules-right = (if laptop != null then [ "battery" ] else [ ])
           ++ [ "clock" ];

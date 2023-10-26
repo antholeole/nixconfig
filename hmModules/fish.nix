@@ -39,12 +39,16 @@ in {
           sha256 = "NAXaINBvjuRY2343OD4GkHZAZqcTJvE4RHgdi8xj028=";
         };
       }
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
     ];
 
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
       set MICRO_TRUECOLOR 1
-   '';
+    '';
   };
 }

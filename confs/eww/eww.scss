@@ -9,6 +9,7 @@ $lightbox-color: rgba(0, 0, 0, 0.564);
 
 * {
     all: unset;
+    color: $text;
 }
 
 .lightbox {
@@ -46,29 +47,36 @@ $lightbox-color: rgba(0, 0, 0, 0.564);
     }
 }
 
-.audio-slider {
-    $slider-width: 20px;
+.slider {
+    $slider-width: 12.5px;
     $slider-margin: 2px;
 
-    padding: 5px;
-    margin: 15px 5px;
-    
-    border-radius: $border-radius * 2;
-    background-color: $crust;
+    padding: 3px 3px 10px 3px;
 
-    .label {
-        color: pink;
-    }
+    .slider-inner {
+        $background-color: $crust;
+        
+        border-radius: $border-radius * 2;
+        background-color: $background-color;
 
-    trough {
-        padding: $slider-width $slider-margin;
-        border-radius: $border-radius;
-    }
+        trough {
+            padding: $slider-width $slider-margin;
+            border-radius: $border-radius;
+        }
 
-    progress {
-        border-radius: $border-radius;
+        progress {
+            border-radius: $border-radius;
 
-        background-color: $flamingo;
-        padding: $slider-width - $slider-margin;
+            background-color: $flamingo;
+            padding: $slider-width - $slider-margin;
+        }
+
+        &.selected {
+            border: 1px solid $text;
+        }
+
+        &:not(.selected) {
+            border: 1px solid $background-color;
+        }
     }
 }

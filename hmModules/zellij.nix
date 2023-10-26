@@ -20,7 +20,7 @@ in {
 
       ui = { pane_frames = { hide_session_name = true; }; };
 
-     themes = {
+      themes = {
         catpuccin = with colors; {
           inherit red green blue yellow;
 
@@ -37,13 +37,12 @@ in {
     };
   };
 
-  programs.fish.interactiveShellInit = let
-	zellij = pkgs.lib.getExe config.programs.zellij.package;
-  in ''
-	eval "$(${zellij} setup --generate-auto-start fish)"
-	eval "$(${zellij} setup --generate-completion fish)"
-  '';
-
+  programs.fish.interactiveShellInit =
+    let zellij = pkgs.lib.getExe config.programs.zellij.package;
+    in ''
+      eval "$(${zellij} setup --generate-auto-start fish)"
+      eval "$(${zellij} setup --generate-completion fish)"
+    '';
 
   home.file."${layoutDir}/default.kdl" = {
     enable = true;

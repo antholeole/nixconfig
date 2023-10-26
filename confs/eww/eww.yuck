@@ -1,3 +1,26 @@
+
+
+
+
+
+
+
+
+
+
+
+
+(defvar selectedIndex 1)
+
+(defpoll volstatus 
+  :interval "1s"
+  :inital []
+  "python3 /home/oleina/Projects/nixconfig/scripts/eww_helpers.py --eww eww --pactl pactl"
+)
+
+
+
+
 (defwidget action-button [text hotkey]
   (box :class "action-button"
     (box :orientation "v"
@@ -55,26 +78,36 @@
 (defwidget volume-ctrl []
   (container
     :orientation "v"
-    (audio-slider :name "chrome")
-    (audio-slider :name "music")
+    (box
+      (for entry in volstatus
+        (audio-slider 
+          :name {entry.name}
+          :percent {entry.volume}
+        ))
+    )
   )
 )
 
-(defwidget audio-slider [name]
+(defwidget audio-slider [name percent]
   (box
+    :class "slider"
     :orientation "v"
-    (label :class "label" :text name :xalign 0)
+    (label 
+      :class "label" 
+      :text name 
+      :xalign 0
+    )
     (progress
-      :class "audio-slider"
+      :class "slider-inner"
       :orientation "h"
-      :value 20.0
+      :value percent
       :flipped false
     ))
 )
 
 (defwindow volume-ctrl-a
   :monitor 0
-  :geometry (geometry :width 400 :x "30px" :anchor "center left")
+  :geometry (geometry :width 400 :x "30px" :anchor "top right")
   :stacking "fg"
   (volume-ctrl)
 )
