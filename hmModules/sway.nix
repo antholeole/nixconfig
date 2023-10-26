@@ -70,9 +70,8 @@ in {
 
       window = { titlebar = false; };
 
-      startup =
-        (builtins.map (cmd: { command = cmd; }) (sysConfig.swayStartupCommands
-          ++ [ "${ewwExe} daemon" ]));
+      startup = (builtins.map (cmd: { command = cmd; })
+        (sysConfig.swayStartupCommands ++ [ "${ewwExe} daemon" ]));
 
       # bro got no bars
       bars = [ ];

@@ -1,0 +1,144 @@
+[38;5;238m─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────[0m
+[38;2;190;132;255mGIT-COMMIT[0m[38;2;249;38;114m([0m[38;2;230;219;116m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m                                                                      [0m[38;2;253;151;31mGit[0m[38;2;253;151;31m [0m[38;2;253;151;31mManual[0m[38;2;248;248;242m                                                                      [0m[38;2;190;132;255mGIT-COMMIT[0m[38;2;249;38;114m([0m[38;2;230;219;116m1[0m[38;2;249;38;114m)[0m
+
+[38;2;253;151;31mNAME[0m
+[38;2;248;248;242m       git-commit - Record changes to the repository[0m
+
+[38;2;253;151;31mSYNOPSIS[0m
+[38;2;248;248;242m       git commit [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-a[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m--interactive[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m--patch[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-s[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-v[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-u[0m[38;2;248;248;242m<[0m[38;2;166;226;46mmode[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--amend[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--dry-run[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;248;248;242m([0m[38;2;166;226;46m-c[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m-C[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m--squash[0m[38;2;248;248;242m) [0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m--fixup[0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;248;248;242m([0m[38;2;253;151;31mamend[0m[38;2;249;38;114m|[0m[38;2;253;151;31mreword[0m[38;2;248;248;242m):[0m[38;2;248;248;242m][0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m[38;2;248;248;242m)[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-F[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mmsg[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--reset-author[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--allow-empty[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--allow-empty-message[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--no-verify[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-e[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--author[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mauthor[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--date[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mdate[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--cleanup[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mmode[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--[0m[38;2;166;226;46m[no-][0m[38;2;166;226;46mstatus[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-i[0m[38;2;248;248;242m [0m[38;2;249;38;114m|[0m[38;2;248;248;242m [0m[38;2;166;226;46m-o[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--pathspec-from-file[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;253;151;31m--pathspec-file-nul[0m[38;2;248;248;242m][0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;248;248;242m([0m[38;2;166;226;46m--trailer[0m[38;2;248;248;242m <token>[0m[38;2;248;248;242m[[0m[38;2;248;248;242m(=[0m[38;2;249;38;114m|[0m[38;2;248;248;242m:)<value>[0m[38;2;248;248;242m][0m[38;2;248;248;242m)...[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;166;226;46m-S[0m[38;2;166;226;46m[<keyid>][0m[38;2;248;248;242m][0m
+[38;2;248;248;242m                  [0m[38;2;248;248;242m[[0m[38;2;166;226;46m--[0m[38;2;248;248;242m][0m[38;2;248;248;242m [0m[38;2;248;248;242m[[0m[38;2;248;248;242m<pathspec>...[0m[38;2;248;248;242m][0m
+
+[38;2;253;151;31mDESCRIPTION[0m
+[38;2;248;248;242m       Create a new commit containing the current contents of the index and the given log message describing the changes. The new commit is a direct child of HEAD, usually the[0m
+[38;2;248;248;242m       tip of the current branch, and the branch is updated to point to it (unless no branch is associated with the working tree, in which case HEAD is "detached" as described[0m
+[38;2;248;248;242m       in [0m[38;2;166;226;46mgit-checkout[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m).[0m
+
+[38;2;248;248;242m       The content to be committed can be specified in several ways:[0m
+
+[38;2;248;248;242m        1. by using [0m[38;2;166;226;46mgit-add[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m to incrementally "add" changes to the index before using the commit command (Note: even modified files must be "added");[0m
+
+[38;2;248;248;242m        2. by using [0m[38;2;166;226;46mgit-rm[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m to remove files from the working tree and the index, again before using the commit command;[0m
+
+[38;2;248;248;242m        3. by listing files as arguments to the commit command (without [0m[38;2;166;226;46m--interactive[0m[38;2;248;248;242m or [0m[38;2;166;226;46m--patch[0m[38;2;248;248;242m switch), in which case the commit will ignore changes staged in the index, and[0m
+[38;2;248;248;242m           instead record the current content of the listed files (which must already be known to Git);[0m
+
+[38;2;248;248;242m        4. by using the [0m[38;2;166;226;46m-a[0m[38;2;248;248;242m switch with the commit command to automatically "add" changes from all known files (i.e. all files that are already listed in the index) and to[0m
+[38;2;248;248;242m           automatically "rm" files in the index that have been removed from the working tree, and then perform the actual commit;[0m
+
+[38;2;248;248;242m        5. by using the [0m[38;2;166;226;46m--interactive[0m[38;2;248;248;242m or [0m[38;2;166;226;46m--patch[0m[38;2;248;248;242m switches with the commit command to decide one by one which files or hunks should be part of the commit in addition to contents[0m
+[38;2;248;248;242m           in the index, before finalizing the operation. See the “Interactive Mode” section of [0m[38;2;166;226;46mgit-add[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m to learn how to operate these modes.[0m
+
+[38;2;248;248;242m       The [0m[38;2;166;226;46m--dry-run[0m[38;2;248;248;242m option can be used to obtain a summary of what is included by any of the above for the next commit by giving the same set of parameters (options and[0m
+[38;2;248;248;242m       paths).[0m
+
+[38;2;248;248;242m       If you make a commit and then find a mistake immediately after that, you can recover from it with git reset.[0m
+
+[38;2;253;151;31mOPTIONS[0m
+[38;2;248;248;242m       [0m[38;2;166;226;46m-a[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--all[0m
+[38;2;248;248;242m           Tell the command to automatically stage files that have been modified and deleted, but new files you have not told Git about are not affected.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-p[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--patch[0m
+[38;2;248;248;242m           Use the interactive patch selection interface to choose which changes to commit. See [0m[38;2;166;226;46mgit-add[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m for details.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-C[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--reuse-message[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Take an existing commit object, and reuse the log message and the authorship information (including the timestamp) when creating the commit.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-c[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--reedit-message[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Like [0m[38;2;166;226;46m-C[0m[38;2;248;248;242m, but with [0m[38;2;166;226;46m-c[0m[38;2;248;248;242m the editor is invoked, so that the user can further edit the commit message.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;248;248;242m[[0m[38;2;248;248;242m([0m[38;2;253;151;31mamend[0m[38;2;249;38;114m|[0m[38;2;253;151;31mreword[0m[38;2;248;248;242m):[0m[38;2;248;248;242m][0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Create a new commit which "fixes up" <commit> when applied with git rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m. Plain [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31m<commit>[0m[38;2;248;248;242m creates a "fixup!" commit which changes the content[0m
+[38;2;248;248;242m           of <commit> but leaves its log message untouched.  [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31mamend:<commit>[0m[38;2;248;248;242m is similar but creates an "amend!" commit which also replaces the log message of <commit>[0m
+[38;2;248;248;242m           with the log message of the "amend!" commit.  [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31mreword:<commit>[0m[38;2;248;248;242m creates an "amend!" commit which replaces the log message of <commit> with its own log message[0m
+[38;2;248;248;242m           but makes no changes to the content of <commit>.[0m
+
+[38;2;248;248;242m           The commit created by plain [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31m<commit>[0m[38;2;248;248;242m has a subject composed of "fixup!" followed by the subject line from <commit>, and is recognized specially by git rebase[0m
+[38;2;248;248;242m           [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m. The [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m option may be used to supplement the log message of the created commit, but the additional commentary will be thrown away once the "fixup!"[0m
+[38;2;248;248;242m           commit is squashed into <commit> by git rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m           The commit created by [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31mamend:<commit>[0m[38;2;248;248;242m is similar but its subject is instead prefixed with "amend!". The log message of <commit> is copied into the log message[0m
+[38;2;248;248;242m           of the "amend!" commit and opened in an editor so it can be refined. When git rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m squashes the "amend!" commit into <commit>, the log message of[0m
+[38;2;248;248;242m           <commit> is replaced by the refined log message from the "amend!" commit. It is an error for the "amend!" commit’s log message to be empty unless[0m
+[38;2;248;248;242m           [0m[38;2;166;226;46m--allow-empty-message[0m[38;2;248;248;242m is specified.[0m
+
+[38;2;248;248;242m           [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31mreword:<commit>[0m[38;2;248;248;242m is shorthand for [0m[38;2;166;226;46m--fixup[0m[38;2;249;38;114m=[0m[38;2;253;151;31mamend:<commit>[0m[38;2;248;248;242m [0m[38;2;166;226;46m--only[0m[38;2;248;248;242m. It creates an "amend!" commit with only a log message (ignoring any changes staged in the[0m
+[38;2;248;248;242m           index). When squashed by git rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m, it replaces the log message of <commit> without making any other changes.[0m
+
+[38;2;248;248;242m           Neither "fixup!" nor "amend!" commits change authorship of <commit> when applied by git rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m. See [0m[38;2;166;226;46mgit-rebase[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m for details.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--squash[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mcommit[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Construct a commit message for use with rebase [0m[38;2;166;226;46m--autosquash[0m[38;2;248;248;242m. The commit message subject line is taken from the specified commit with a prefix of "squash! ". Can be[0m
+[38;2;248;248;242m           used with additional commit message options ([0m[38;2;166;226;46m-m[0m[38;2;248;248;242m/[0m[38;2;166;226;46m-c[0m[38;2;248;248;242m/[0m[38;2;166;226;46m-C[0m[38;2;248;248;242m/[0m[38;2;166;226;46m-F[0m[38;2;248;248;242m). See [0m[38;2;166;226;46mgit-rebase[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m for details.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--reset-author[0m
+[38;2;248;248;242m           When used with [0m[38;2;166;226;46m-C[0m[38;2;248;248;242m/[0m[38;2;166;226;46m-c[0m[38;2;248;248;242m/[0m[38;2;166;226;46m--amend[0m[38;2;248;248;242m options, or when committing after a conflicting cherry-pick, declare that the authorship of the resulting commit now belongs to the[0m
+[38;2;248;248;242m           committer. This also renews the author timestamp.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--short[0m
+[38;2;248;248;242m           When doing a dry-run, give the output in the short-format. See [0m[38;2;166;226;46mgit-status[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m for details. Implies [0m[38;2;166;226;46m--dry-run[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--branch[0m
+[38;2;248;248;242m           Show the branch and tracking info even in short-format.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--porcelain[0m
+[38;2;248;248;242m           When doing a dry-run, give the output in a porcelain-ready format. See [0m[38;2;166;226;46mgit-status[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m for details. Implies [0m[38;2;166;226;46m--dry-run[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--long[0m
+[38;2;248;248;242m           When doing a dry-run, give the output in the long-format. Implies [0m[38;2;166;226;46m--dry-run[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-z[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--null[0m
+[38;2;248;248;242m           When showing short or porcelain status output, print the filename verbatim and terminate the entries with NUL, instead of LF. If no format is given, implies the[0m
+[38;2;248;248;242m           [0m[38;2;166;226;46m--porcelain[0m[38;2;248;248;242m output format. Without the [0m[38;2;166;226;46m-z[0m[38;2;248;248;242m option, filenames with "unusual" characters are quoted as explained for the configuration variable core.quotePath (see git-[0m
+[38;2;248;248;242m           [0m[38;2;166;226;46mconfig[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m).[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-F[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--file[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Take the commit message from the given file. Use - to read the message from the standard input.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--author[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mauthor[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Override the commit author. Specify an explicit author using the standard A U Thor <author@example.com> format. Otherwise <author> is assumed to be a pattern and is[0m
+[38;2;248;248;242m           used to search for an existing commit by that author (i.e. rev-list [0m[38;2;166;226;46m--all[0m[38;2;248;248;242m [0m[38;2;166;226;46m-i[0m[38;2;248;248;242m [0m[38;2;166;226;46m--author[0m[38;2;249;38;114m=[0m[38;2;253;151;31m<author>[0m[38;2;248;248;242m); the commit author is then copied from the first such commit found.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--date[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mdate[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Override the author date used in the commit.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mmsg[0m[38;2;248;248;242m>[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--message[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mmsg[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           Use the given <msg> as the commit message. If multiple [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m options are given, their values are concatenated as separate paragraphs.[0m
+
+[38;2;248;248;242m           The [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m option is mutually exclusive with [0m[38;2;166;226;46m-c[0m[38;2;248;248;242m, [0m[38;2;166;226;46m-C[0m[38;2;248;248;242m, and [0m[38;2;166;226;46m-F[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-t[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--template[0m[38;2;249;38;114m=[0m[38;2;248;248;242m<[0m[38;2;253;151;31mfile[0m[38;2;248;248;242m>[0m
+[38;2;248;248;242m           When editing the commit message, start the editor with the contents in the given file. The commit.template configuration variable is often used to give this option[0m
+[38;2;248;248;242m           implicitly to the command. This mechanism can be used by projects that want to guide participants with some hints on what to write in the message in what order. If[0m
+[38;2;248;248;242m           the user exits the editor without editing the message, the commit is aborted. This has no effect when a message is given by other means, e.g. with the [0m[38;2;166;226;46m-m[0m[38;2;248;248;242m or [0m[38;2;166;226;46m-F[0m
+[38;2;248;248;242m           options.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-s[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--signoff[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--no-signoff[0m
+[38;2;248;248;242m           Add a Signed-off-by trailer by the committer at the end of the commit log message. The meaning of a signoff depends on the project to which you’re committing. For[0m
+[38;2;248;248;242m           example, it may certify that the committer has the rights to submit the work under the project’s license or agrees to some contributor representation, such as a[0m
+[38;2;248;248;242m           Developer Certificate of Origin. (See http://developercertificate.org for the one used by the Linux kernel and Git projects.) Consult the documentation or leadership[0m
+[38;2;248;248;242m           of the project to which you’re contributing to understand how the signoffs are used in that project.[0m
+
+[38;2;248;248;242m           The [0m[38;2;166;226;46m--no-signoff[0m[38;2;248;248;242m option can be used to countermand an earlier [0m[38;2;166;226;46m--signoff[0m[38;2;248;248;242m option on the command line.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--trailer[0m[38;2;248;248;242m [0m[38;2;248;248;242m<[0m[38;2;253;151;31mtoken[0m[38;2;248;248;242m>[0m[38;2;248;248;242m[[0m[38;2;248;248;242m(=[0m[38;2;249;38;114m|[0m[38;2;248;248;242m:)[0m[38;2;248;248;242m<[0m[38;2;253;151;31mvalue[0m[38;2;248;248;242m>[0m[38;2;248;248;242m][0m
+[38;2;248;248;242m           Specify a (<token>, <value>) pair that should be applied as a trailer. (e.g.  git commit [0m[38;2;166;226;46m--trailer[0m[38;2;248;248;242m "Signed-off-by:C O Mitter \ <committer@example.com>" [0m[38;2;166;226;46m--trailer[0m
+[38;2;248;248;242m           "Helped-by:C O Mitter \ <committer@example.com>" will add the "Signed-off-by" trailer and the "Helped-by" trailer to the commit message.) The trailer.*[0m
+[38;2;248;248;242m           configuration variables ([0m[38;2;166;226;46mgit-interpret-trailers[0m[38;2;249;38;114m([0m[38;2;190;132;255m1[0m[38;2;249;38;114m)[0m[38;2;248;248;242m) can be used to define if a duplicated trailer is omitted, where in the run of trailers each trailer would appear,[0m
+[38;2;248;248;242m           and other details.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m-n[0m[38;2;248;248;242m,[0m[38;2;248;248;242m [0m[38;2;166;226;46m--[0m[38;2;166;226;46m[no-][0m[38;2;166;226;46mverify[0m
+[38;2;248;248;242m           By default, the pre-commit and commit-msg hooks are run. When any of [0m[38;2;166;226;46m--no-verify[0m[38;2;248;248;242m or [0m[38;2;166;226;46m-n[0m[38;2;248;248;242m is given, these are bypassed. See also [0m[38;2;166;226;46mgithooks[0m[38;2;249;38;114m([0m[38;2;190;132;255m5[0m[38;2;249;38;114m)[0m[38;2;248;248;242m.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--allow-empty[0m
+[38;2;248;248;242m           Usually recording a commit that has the exact same tree as its sole parent commit is a mistake, and the command prevents you from making such a commit. This option[0m
+[38;2;248;248;242m           bypasses the safety, and is primarily for use by foreign SCM interface scripts.[0m
+
+[38;2;248;248;242m       [0m[38;2;166;226;46m--allow-empty-message[0m
+[38;2;248;248;242m           Like [0m[38;2;166;226;46m--allow-empty[0m[38;2;248;248;242m this command is primarily for use by foreign SCM interface scripts. It allows you to create a commit with an empty commit message without using[0m
+[38;2;248;248;242m           plumbing comman

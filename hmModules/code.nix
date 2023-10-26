@@ -9,7 +9,7 @@
         pkgSha = lib.fakeSha256;
       }).vscode;
 
-      details = with vscode_1_81; { 
+      details = with vscode_1_81; {
         inherit pname version;
         meta.mainProgram = "code";
       };
