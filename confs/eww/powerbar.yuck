@@ -1,0 +1,22 @@
+(defwidget powerbar-widget []
+  (container
+    :orientation "v"
+    (action-button :text "" :hotkey "q")
+    (action-button :text "󰍃" :hotkey "l")
+    (action-button :text "" :hotkey "r")
+    (action-button :text "󰤆" :hotkey "s")
+  )
+)
+
+(defwindow powerbar-a
+  :monitor 0
+  :geometry (geometry :x "30px" :anchor "center right")
+  :stacking "fg"
+  (powerbar-widget)
+)
+(defwindow powerbar-b
+  :monitor 1
+  :geometry (geometry :x "30px" :anchorx "center right")
+  :stacking "fg"
+  (powerbar-widget)
+)

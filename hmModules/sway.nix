@@ -56,14 +56,13 @@ in {
       modes = {
         "${powerbarMode}" = let
           returnCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all; mode default";
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all ${logSuffix}; mode default";
 
         in {
-          "q" =
-            "exec swaylock; ${returnCmd}"; # not nixpkgs swaylock so that we can run on non-nixos systems
+          "q" = "exec swaylock; ${returnCmd}"; # not nixpkgs swaylock so that we can run on non-nixos systems
           "r" = "exec reboot; ${returnCmd}";
           "l" = "exec swaymsg exit; ${returnCmd}";
-          "s" = "exec poweroff; ${returnCmd}";
+          "s" = "exec sudo poweroff; ${returnCmd}";
           "escape" = returnCmd;
         };
       };

@@ -23,6 +23,10 @@ def get_monitor_letters() -> List[str]:
 
 
 for monitor_letter in get_monitor_letters():
-    subprocess.check_call(
-        f"{args.eww} {args.transform} {args.widget}-{monitor_letter}".split()
-    )
+    cmd = f"{args.eww} {args.transform} {args.widget}-{monitor_letter}"
+    try:
+        subprocess.check_call(
+            cmd.split()
+        )
+    except: 
+        print(f"got an error processing '{cmd}'. continuing")

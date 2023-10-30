@@ -1,0 +1,8 @@
+(defwidget action-button [text hotkey]
+  (box :class "action-button"
+    (box :orientation "v"
+      text
+      (box :class "keyhint" "(${hotkey})")
+    )
+  )
+)
