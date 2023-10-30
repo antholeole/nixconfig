@@ -1,11 +1,12 @@
 (include "./common/container.yuck")
+(include "./common/vars.yuck")
 
 (defvar volIndex 0)
 
-(defpoll volstatus 
-  :interval "1s"
+(defpoll volstatus
+  :interval "0.1s"
   :inital []
-  "python3 /home/oleina/Projects/nixconfig/scripts/eww_helpers.py list --eww eww --pactl pactl"
+  "python3 scripts/vol.py list --eww eww --pactl pactl"
 )
 
 (defwidget volume-ctrl []
@@ -13,7 +14,7 @@
     :orientation "v"
     (box
       (for entry in volstatus
-        (audio-slider 
+        (audio-slider
           :name {entry.name}
           :percent {entry.volume}
           :index {entry.index}
@@ -26,9 +27,9 @@
   (box
     :class "slider"
     :orientation "v"
-    (label 
-      :class "label" 
-      :text "${volIndex == index ? '*' : ''} name"
+    (label
+      :class "label"
+      :text "${volIndex == index ? '*' : ''} ${name}"
       :xalign 0
     )
     (progress
@@ -41,7 +42,13 @@
 
 (defwindow volume-ctrl-a
   :monitor 0
-  :geometry (geometry :width 400 :x "30px" :anchor "top right")
+  :geometry (geometry :width 400 :x "30px" :anchor "center right")
+  :stacking "fg"
+  (volume-ctrl)
+)
+(defwindow volume-ctrl-b
+  :monitor 0
+  :geometry (geometry :width 400 :x "30px" :anchor "center right")
   :stacking "fg"
   (volume-ctrl)
 )

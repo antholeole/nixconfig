@@ -20,14 +20,40 @@ in {
   wayland.windowManager.sway = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = nixGlSway;
-    extraSessionCommands = ''
-      export XDG_CURRENT_DESKTOP=sway # xdg-desktop-portal
-      export XDG_SESSION_DESKTOP=sway # systemd
-      export XDG_SESSION_TYPE=wayland # xdg/systemd
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-    '';
     systemd.enable = true;
-    config = let powerbarMode = "powerbarMode";
+    config = let
+      mkMode = { name, exitCmd, cmds, enterKey, enterCmd }: {
+        enter = { "${modifier}+${enterKey}" = "${enterCmd}; mode ${name}"; };
+
+        mode."${name}" = (lib.attrsets.concatMapAttrs
+          (keybind: cmd: { "${keybind}" = "${cmd}; ${exitCmd}"; }) cmds);
+      };
+
+      modes = [
+        (mkMode {
+          name = "powerbar";
+          exitCmd =
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all";
+          enterKey = "q";
+          enterCmd =
+            "exec ${ewwOnFocused} open powerbar; exec ${ewwOnFocused} open lightbox --all";
+
+          cmds = {
+            # global swaylock so that we can run on non-nixos systems
+            "q" = "exec swaylock";
+
+            # TODO these don't work
+            "r" = "exec reboot";
+            "l" = "exec swaymsg exit";
+            "s" = "exec sudo poweroff";
+          };
+        })
+        (mkMode {
+          name = "volctrl";
+          exitCmd =
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all";
+        })
+      ];
     in {
       menu = launcherCommand;
       terminal = "exec ${
@@ -35,37 +61,25 @@ in {
           (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
         }";
       fonts = { names = [ "FiraCode Nerd Font" ]; };
-      keybindings = lib.mkOptionDefault {
-        "${modifier}+w" = "kill";
-        "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
-        "${modifier}+h" = "focus left";
-        "${modifier}+j" = "focus down";
-        "${modifier}+k" = "focus up";
-        "${modifier}+l" = "focus right";
-        "${modifier}+r" = "exec ${launcherCommand}";
-        "${modifier}+shift+m" = "move workspace to output right";
-        "${modifier}+m" = "focus output right";
+      keybindings = with lib;
+        mkOptionDefault
+        ((attrsets.mergeAttrsList (builtins.map (mode: mode.enter) modes)) // {
+          "${modifier}+w" = "kill";
+          "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
+          "${modifier}+h" = "focus left";
+          "${modifier}+j" = "focus down";
+          "${modifier}+k" = "focus up";
+          "${modifier}+l" = "focus right";
+          "${modifier}+r" = "exec ${launcherCommand}";
+          "${modifier}+shift+m" = "move workspace to output right";
+          "${modifier}+m" = "focus output right";
 
-        "${modifier}+q" =
-          "exec ${ewwOnFocused} open powerbar; exec ${ewwOnFocused} open lightbox --all; mode ${powerbarMode}";
+          # disable the default dmenu launcher
+          "${modifier}+d" = null;
+        });
 
-        # disable the default dmenu launcher
-        "${modifier}+d" = null;
-      };
-
-      modes = {
-        "${powerbarMode}" = let
-          returnCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all ${logSuffix}; mode default";
-
-        in {
-          "q" = "exec swaylock; ${returnCmd}"; # not nixpkgs swaylock so that we can run on non-nixos systems
-          "r" = "exec reboot; ${returnCmd}";
-          "l" = "exec swaymsg exit; ${returnCmd}";
-          "s" = "exec sudo poweroff; ${returnCmd}";
-          "escape" = returnCmd;
-        };
-      };
+      modes = with builtins;
+        lib.attrsets.mergeAttrsList (map (mode: mode.mode) modes);
 
       window = { titlebar = false; };
 
