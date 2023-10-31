@@ -1,12 +1,12 @@
 (include "./common/container.yuck")
-(include "./common/vars.yuck")
 
 (defvar volIndex 0)
 
 (defpoll volstatus
   :interval "0.1s"
   :inital []
-  "python3 scripts/vol.py list --eww eww --pactl pactl"
+  ;; TODO add these to path using nix
+  "python3 scripts/vol.py list --pactl pactl"
 )
 
 (defwidget volume-ctrl []

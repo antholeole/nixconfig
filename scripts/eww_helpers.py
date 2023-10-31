@@ -3,8 +3,6 @@ from dataclasses import asdict, dataclass
 import json
 import subprocess
 from typing import List
-import os
-
 
 
 @dataclass
@@ -15,12 +13,13 @@ class Program:
     name: str
 
 VOLUME_INDEX_EWW_VAR = "volIndex"
-EWW = f"eww --config {os.path.dirname(os.path.realpath(__file__))}"
-print(EWW)
 
 parser = ArgumentParser()
 
 parser.add_argument("action")
+
+parser.add_argument("--eww", required = True)
+parser.add_argument("--pactl", required = True)
 
 # idk how to do it but this is only for inc / dec action
 parser.add_argument("--amount", required = False)
@@ -30,7 +29,7 @@ args = parser.parse_args()
 sh = lambda pgm: subprocess.check_output(pgm.split(' ')).decode('utf-8')
 
 def get_programs() -> List[Program]:
-    inputs = json.loads(sh(f"pactl --format=json list sink-inputs"))
+    inputs = json.loads(sh(f"{args.pactl} --format=json list sink-inputs"))
     programs = []
     for idx, input in enumerate(inputs):
         programs.append(Program(
@@ -54,11 +53,11 @@ def bound_vol_index(offset: int = 0):
 
     set_vol_index(new_idx)
 
-def inc_volume(mult):
+def inc_volume_for(inc: int = 0):
     program = programs[curr_vol_index]
-    new_vol = (mult * args.amount) + program.volume
+    new_vol = inc + program.volume
 
-    sh(f"pactl set-sink-input-volume {program.id} {new_vol}%")
+    sh(f"{args.pactl} set-sink-input-volume {program.id} {new_vol}%")
 
 
 
@@ -69,7 +68,4 @@ elif args.action == "idx_inc":
     bound_vol_index(offset = 1)
 elif args.action == "idx_dec":
     bound_vol_index(offset = -1)
-elif args.action == "vol_inc":
-    inc_volume(1)
-elif args.action == "vol_dec":
-    inc_volume(-1)
+elif args.action == "s"

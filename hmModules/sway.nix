@@ -22,36 +22,52 @@ in {
     package = nixGlSway;
     systemd.enable = true;
     config = let
-      mkMode = { name, exitCmd, cmds, enterKey, enterCmd }: {
-        enter = { "${modifier}+${enterKey}" = "${enterCmd}; mode ${name}"; };
+      # TODO add widget since it's mostly the same
+      mkMode = { name, widget, cmds ? { }, closingCmds ? { }, enterKey }: {
+        enter = {
+          "${modifier}+${enterKey}" =
+            "exec ${ewwOnFocused} open ${widget}; exec ${ewwOnFocused} open lightbox --all; mode ${name}";
+        };
 
-        mode."${name}" = (lib.attrsets.concatMapAttrs
-          (keybind: cmd: { "${keybind}" = "${cmd}; ${exitCmd}"; }) cmds);
+        mode."${name}" = let
+          closeCmd =
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close ${widget} --all";
+
+          closingKeybinds = (lib.attrsets.concatMapAttrs (keybind: closingCmd: {
+            "${keybind}" = "${closingCmd}; ${closeCmd}";
+          }) closingCmds);
+
+          keybinds = lib.attrsets.concatMapAttrs
+            (keybind: cmd: { "${keybind}" = "${cmd}"; }) cmds;
+
+          stdKeybinds = { "escape" = "${closeCmd}; mode default"; };
+        in (closingKeybinds // keybinds // stdKeybinds);
       };
 
       modes = [
         (mkMode {
           name = "powerbar";
-          exitCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all";
+          widget = "powerbar";
           enterKey = "q";
-          enterCmd =
-            "exec ${ewwOnFocused} open powerbar; exec ${ewwOnFocused} open lightbox --all";
 
           cmds = {
-            # global swaylock so that we can run on non-nixos systems
-            "q" = "exec swaylock";
-
             # TODO these don't work
             "r" = "exec reboot";
             "l" = "exec swaymsg exit";
             "s" = "exec sudo poweroff";
           };
+
+          closingCmds = {
+            # global swaylock so that we can run on non-nixos systems
+            "q" = "exec swaylock";
+          };
         })
         (mkMode {
           name = "volctrl";
-          exitCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close powerbar --all";
+          widget = "volume-ctrl";
+          enterKey = "space";
+
+          cmds = { "space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle"; };
         })
       ];
     in {
@@ -65,7 +81,6 @@ in {
         mkOptionDefault
         ((attrsets.mergeAttrsList (builtins.map (mode: mode.enter) modes)) // {
           "${modifier}+w" = "kill";
-          "${modifier}+space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
           "${modifier}+h" = "focus left";
           "${modifier}+j" = "focus down";
           "${modifier}+k" = "focus up";

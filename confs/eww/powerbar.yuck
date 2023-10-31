@@ -1,3 +1,6 @@
+(include "./common/action_button.yuck")
+(include "./common/container.yuck")
+
 (defwidget powerbar-widget []
   (container
     :orientation "v"
