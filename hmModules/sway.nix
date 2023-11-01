@@ -31,7 +31,7 @@ in {
 
         mode."${name}" = let
           closeCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close ${widget} --all";
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close ${widget} --all; mode default";
 
           closingKeybinds = (lib.attrsets.concatMapAttrs (keybind: closingCmd: {
             "${keybind}" = "${closingCmd}; ${closeCmd}";
