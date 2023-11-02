@@ -1,10 +1,8 @@
 from argparse import ArgumentParser
 from dataclasses import asdict, dataclass
 import json
-import subprocess
+from shared import EWW, sh
 from typing import List
-import os
-
 
 
 @dataclass
@@ -15,8 +13,6 @@ class Program:
     name: str
 
 VOLUME_INDEX_EWW_VAR = "volIndex"
-EWW = f"eww --config {os.path.dirname(os.path.realpath(__file__))}"
-print(EWW)
 
 parser = ArgumentParser()
 
@@ -27,7 +23,6 @@ parser.add_argument("--amount", required = False)
 
 args = parser.parse_args()
 
-sh = lambda pgm: subprocess.check_output(pgm.split(' ')).decode('utf-8')
 
 def get_programs() -> List[Program]:
     inputs = json.loads(sh(f"pactl --format=json list sink-inputs"))
@@ -43,7 +38,7 @@ def get_programs() -> List[Program]:
 
 
 
-curr_vol_index = int(sh(f"{args.eww} get {VOLUME_INDEX_EWW_VAR}"))
+curr_vol_index = int(sh(f"eww get {VOLUME_INDEX_EWW_VAR}"))
 programs = get_programs()
 
 def bound_vol_index(offset: int = 0):
