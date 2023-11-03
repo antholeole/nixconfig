@@ -22,7 +22,6 @@ in {
     package = nixGlSway;
     systemd.enable = true;
     config = let
-      # TODO add widget since it's mostly the same
       mkMode = { name, widget, cmds ? { }, closingCmds ? { }, enterKey }: {
         enter = {
           "${modifier}+${enterKey}" =
@@ -44,7 +43,10 @@ in {
         in (closingKeybinds // keybinds // stdKeybinds);
       };
 
-      modes = [
+      modes = let
+        ewwScriptsDir = "~/.config/eww/scripts/";
+        execEwwScript = script: args: "exec ${pkgs.python3} ${ewwScriptsDir}/${script}.py ${args}";
+      in [
         (mkMode {
           name = "powerbar";
           widget = "powerbar";

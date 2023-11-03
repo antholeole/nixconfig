@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from dataclasses import asdict, dataclass
 import json
-from shared import EWW, sh
+from shared import EWW, amount_arg, sh
 from typing import List
 
 
@@ -15,11 +15,9 @@ class Program:
 VOLUME_INDEX_EWW_VAR = "volIndex"
 
 parser = ArgumentParser()
+get_amount_arg = amount_arg(parser)
 
 parser.add_argument("action")
-
-# idk how to do it but this is only for inc / dec action
-parser.add_argument("--amount", required = False)
 
 args = parser.parse_args()
 
@@ -65,6 +63,6 @@ elif args.action == "idx_inc":
 elif args.action == "idx_dec":
     bound_vol_index(offset = -1)
 elif args.action == "vol_inc":
-    inc_volume(1)
+    inc_volume(get_amount_arg(args))
 elif args.action == "vol_dec":
     inc_volume(-1)

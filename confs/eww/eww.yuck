@@ -1,3 +1,4 @@
 (include "./volbar.yuck")
 (include "./lightbox.yuck")
 (include "./powerbar.yuck")
+(include "./brightness.yuck")
