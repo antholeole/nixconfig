@@ -7,7 +7,7 @@ in {
     enable = true;
 
     # false; we dump it manually (so we get completions as well)
-    enableFishIntegration = false;
+    enableFishIntegration = true;
 
     settings = {
       theme = "catpuccin";
