@@ -43,8 +43,6 @@ in {
           "%" = "percent";
           "sv" = "server";
           "tal" = "take a look";
-          "rv" = "review";
-          "tf" = "traffic";
           "rz" = "reason";
           "xp" = "expire";
           "ud" = "update";

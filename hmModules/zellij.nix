@@ -6,7 +6,6 @@ in {
   programs.zellij = {
     enable = true;
 
-    # false; we dump it manually (so we get completions as well)
     enableFishIntegration = true;
 
     settings = {
