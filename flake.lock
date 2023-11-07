@@ -73,16 +73,15 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1696830539,
-        "narHash": "sha256-jHOIMAYyiVhZDm+/P8k6iyLh+3aWnbD1Y5WM4la+JXg=",
-        "owner": "antholeole",
+        "lastModified": 1699290318,
+        "narHash": "sha256-weH8oEJo+g0yJtGGU+Zo2pg5kOxPUCAFl8v/5dEnH00=",
+        "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "28036439d2e732ff33f3e3ae9604632f6d8a50da",
+        "rev": "c067d57fc4552835987fd7611c3a6741ee32ebd5",
         "type": "github"
       },
       "original": {
-        "owner": "antholeole",
-        "ref": "repeating-kdl-key",
+        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }

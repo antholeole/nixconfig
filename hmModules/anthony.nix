@@ -53,7 +53,6 @@
         fx
         neofetch
         trashy
-        entr
         bottom
         google-cloud-sdk
         nixfmt
