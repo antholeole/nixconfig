@@ -24,3 +24,9 @@ def amount_arg(parser: ArgumentParser) -> Callable[[Namespace], int]:
     parser.add_argument("--amount", required = False, type=int)
 
     return lambda args: args.amount
+
+
+def eww_arg(parser: ArgumentParser) -> Callable[[Namespace], str]:
+    parser.add_argument("--eww", required = False, type=str, default="eww")
+
+    return lambda args: args.eww

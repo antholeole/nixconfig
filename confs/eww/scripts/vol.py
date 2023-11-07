@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 from dataclasses import asdict, dataclass
 import json
-from shared import EWW, amount_arg, sh
+from shared import EWW, amount_arg, sh, eww_arg
 from typing import List
 
 
@@ -15,11 +15,14 @@ class Program:
 VOLUME_INDEX_EWW_VAR = "volIndex"
 
 parser = ArgumentParser()
+
 get_amount_arg = amount_arg(parser)
+get_eww = eww_arg(parser)
 
 parser.add_argument("action")
 
 args = parser.parse_args()
+eww = get_eww(args)
 
 
 def get_programs() -> List[Program]:
@@ -36,11 +39,11 @@ def get_programs() -> List[Program]:
 
 
 
-curr_vol_index = int(sh(f"eww get {VOLUME_INDEX_EWW_VAR}"))
+curr_vol_index = int(sh(f"{eww} get {VOLUME_INDEX_EWW_VAR}"))
 programs = get_programs()
 
 def bound_vol_index(offset: int = 0):
-    set_vol_index = lambda new_idx: sh(f"eww update {VOLUME_INDEX_EWW_VAR}={new_idx}")
+    set_vol_index = lambda new_idx: sh(f"{eww} update {VOLUME_INDEX_EWW_VAR}={new_idx}")
 
     new_idx = curr_vol_index + offset
     new_idx = max(0, min(len(programs) - 1, new_idx))
@@ -49,7 +52,7 @@ def bound_vol_index(offset: int = 0):
 
 def inc_volume(mult):
     program = programs[curr_vol_index]
-    new_vol = (mult * args.amount) + program.volume
+    new_vol = (mult * get_amount_arg(args)) + program.volume
 
     sh(f"pactl set-sink-input-volume {program.id} {new_vol}%")
 
@@ -63,6 +66,6 @@ elif args.action == "idx_inc":
 elif args.action == "idx_dec":
     bound_vol_index(offset = -1)
 elif args.action == "vol_inc":
-    inc_volume(-get_amount_arg(args))
+    inc_volume(1)
 elif args.action == "vol_dec":
-    inc_volume(get_amount_arg(args))
+    inc_volume(-1)

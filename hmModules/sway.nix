@@ -45,7 +45,7 @@ in {
 
       modes = let
         ewwScriptsDir = "~/.config/eww/scripts/";
-        execEwwScript = script: args: "exec ${pkgs.lib.getExe pkgs.python3} ${ewwScriptsDir}${script}.py ${args}";
+        execEwwScript = script: args: "exec ${pkgs.lib.getExe pkgs.python3} ${ewwScriptsDir}${script}.py --eww ${ewwExe} ${args}";
       in [
         (mkMode {
           name = "powerbar";
@@ -53,7 +53,6 @@ in {
           enterKey = "q";
 
           cmds = {
-            # TODO these don't work
             "r" = "exec reboot";
             "l" = "exec swaymsg exit";
             "s" = "exec sudo poweroff";

@@ -10,16 +10,32 @@
 )
 
 (defwidget volume-ctrl []
-  (container
+  (box
     :orientation "v"
-    (box
-      (for entry in volstatus
-        (audio-slider
-          :name {entry.name}
-          :percent {entry.volume}
-          :index {entry.index}
-        ))
+    (container
+      :orientation "v"
+      (box
+        :orientation "v"
+        (for entry in volstatus
+          (audio-slider
+            :name {entry.name}
+            :percent {entry.volume}
+            :index {entry.index}
+          ))
+      )
     )
+    ;; (container
+    ;;   :orientation "v"
+    ;;   (box
+    ;;     :orientation "v"
+    ;;     (for entry in volstatus
+    ;;       (audio-slider
+    ;;         :name {entry.name}
+    ;;         :percent {entry.volume}
+    ;;         :index {entry.index}
+    ;;       ))
+    ;;   )
+    ;; )
   )
 )
 
