@@ -1,2 +1,3 @@
 firmware/
 .direnv/
+**/__pycache__/

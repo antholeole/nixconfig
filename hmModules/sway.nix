@@ -45,7 +45,7 @@ in {
 
       modes = let
         ewwScriptsDir = "~/.config/eww/scripts/";
-        execEwwScript = script: args: "exec ${pkgs.python3} ${ewwScriptsDir}/${script}.py ${args}";
+        execEwwScript = script: args: "exec ${pkgs.lib.getExe pkgs.python3} ${ewwScriptsDir}${script}.py ${args}";
       in [
         (mkMode {
           name = "powerbar";
@@ -69,7 +69,18 @@ in {
           widget = "volume-ctrl";
           enterKey = "space";
 
-          cmds = { "space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle"; };
+          cmds = { 
+            "space" = "exec ${pkgs.mpc-cli}/bin/mpc toggle";
+
+            "l" = execEwwScript "vol" "vol_inc --amount 1";
+            "shift+l" = execEwwScript "vol" "vol_inc --amount 5";
+
+            "h" = execEwwScript "vol" "vol_dec --amount 1";
+            "shift+h" = execEwwScript "vol" "vol_dec --amount 5";
+
+            "j" = execEwwScript "vol" "idx_inc";
+            "k" = execEwwScript "vol" "idx_dec";
+          };
         })
       ];
     in {

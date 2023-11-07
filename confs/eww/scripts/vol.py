@@ -63,6 +63,6 @@ elif args.action == "idx_inc":
 elif args.action == "idx_dec":
     bound_vol_index(offset = -1)
 elif args.action == "vol_inc":
-    inc_volume(get_amount_arg(args))
+    inc_volume(-get_amount_arg(args))
 elif args.action == "vol_dec":
-    inc_volume(-1)
+    inc_volume(get_amount_arg(args))
