@@ -34,14 +34,11 @@ in {
         };
       };
     };
-  };
 
-  programs.fish.interactiveShellInit =
-    let zellij = pkgs.lib.getExe config.programs.zellij.package;
-    in ''
-      eval "$(${zellij} setup --generate-auto-start fish)"
-      eval "$(${zellij} setup --generate-completion fish)"
-    '';
+    settings = {
+      default_shell = "${pkgs.lib.getExe config.programs.fish.package}";
+    };
+  };
 
   home.file."${layoutDir}/default.kdl" = {
     enable = true;

@@ -45,11 +45,15 @@ in {
       }
     ];
 
+    shellInit = ''
+      source ~/.nix-profile/etc/profile.d/nix.fish
+    '';
+
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
       set MICRO_TRUECOLOR 1
-      
+
       eval $(${pkgs.lib.getExe config.programs.thefuck.package} --alias fck | source)
 
     '';

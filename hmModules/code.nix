@@ -1,4 +1,5 @@
-{ pkgs, mkWaylandElectronPkg, mkOldNixPkg, inputs, lib, sysConfig, ... }: {
+{ pkgs, config, mkWaylandElectronPkg, mkOldNixPkg, inputs, lib, sysConfig, ...
+}: {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
@@ -60,6 +61,12 @@
           }
         ]) (lib.lists.range 1 9));
     userSettings = with builtins;
-      fromJSON (readFile "${inputs.self}/confs/code/settings.json");
+      ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // {
+        "terminal.integrated.profiles.linux" = {
+          "fish" = {
+            "path" = "${pkgs.lib.getExe config.programs.fish.package}";
+          };
+        };
+      });
   };
 }
