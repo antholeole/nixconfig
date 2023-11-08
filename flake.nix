@@ -3,7 +3,7 @@
 
   inputs = {
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/master";
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
