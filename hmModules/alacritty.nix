@@ -13,6 +13,10 @@ in {
         size = sysConfig.fontSizes.glFontSize;
       };
 
+      shell = {
+        program = "${pkgs.lib.getExe config.programs.fish.package}";
+      };
+
       colors = with colors; {
         primary = {
           background = base;
