@@ -4,6 +4,10 @@
     "key": "ctrl+n"
   },
   {
+    "key": "ctrl+m",
+    "command": "-editor.action.toggleTabFocusMode"
+  },
+  {
     "command": "moveFileToTrash",
     "key": "backspace",
     "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"

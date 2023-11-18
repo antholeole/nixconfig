@@ -10,14 +10,15 @@ in {
       rd = "rm -rf";
     };
 
-    functions = {
+    functions = with pkgs; {
       cdc = "mkdir -p $argv && cd $argv";
-      rmt = "${pkgs.trashy}/bin/trash put $argv";
+      rmt = "${trashy}/bin/trash put $argv";
       killp = "kill (lsof -t -i:$argv)";
-      zd = "${pkgs.zoxide}/bin/zoxide query $argv";
+      zd = "${zoxide}/bin/zoxide query $argv";
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
+      ch = "${lib.getExe cliphist} list | ${lib.getExe fzf} -d '\\t' --with-nth 2 --height=8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
     };
 
     plugins = [
@@ -54,7 +55,6 @@ in {
       set EDITOR ${pkgs.kakoune}/bin/kak
       set MICRO_TRUECOLOR 1
 
-      eval $(${pkgs.lib.getExe' config.programs.thefuck.package "thefuck"} --alias fck | source)
 
     '';
   };

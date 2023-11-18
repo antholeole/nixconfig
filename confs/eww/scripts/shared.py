@@ -30,3 +30,4 @@ def eww_arg(parser: ArgumentParser) -> Callable[[Namespace], str]:
     parser.add_argument("--eww", required = False, type=str, default="eww")
 
     return lambda args: args.eww
+

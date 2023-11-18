@@ -1,10 +1,12 @@
 (include "./common/container.yuck")
 
 (defvar volIndex 0)
+(defvar volumeControlIsVisible false)
 
 (defpoll volstatus
   :interval "0.1s"
   :inital []
+  :run-while volumeControlIsVisible
   ;; TODO add these to path using nix. python3, pactl, eww
   "python3 scripts/vol.py list"
 )
@@ -24,18 +26,6 @@
           ))
       )
     )
-    ;; (container
-    ;;   :orientation "v"
-    ;;   (box
-    ;;     :orientation "v"
-    ;;     (for entry in volstatus
-    ;;       (audio-slider
-    ;;         :name {entry.name}
-    ;;         :percent {entry.volume}
-    ;;         :index {entry.index}
-    ;;       ))
-    ;;   )
-    ;; )
   )
 )
 

@@ -22,15 +22,22 @@ in {
     package = nixGlSway;
     systemd.enable = true;
     config = let
-      mkMode = { name, widget, cmds ? { }, closingCmds ? { }, enterKey }: {
+      mkMode = { 
+        name, 
+        widget, 
+        cmds ? { }, 
+        closingCmds ? { }, 
+        enterKey,
+        isVisibleVar ? null
+      }: {
         enter = {
           "${modifier}+${enterKey}" =
-            "exec ${ewwOnFocused} open ${widget}; exec ${ewwOnFocused} open lightbox --all; mode ${name}";
+            "exec ${ewwOnFocused} open ${widget}; exec ${ewwOnFocused} open lightbox --all; mode ${name}" + (if isVisibleVar != null then "; ${ewwExe} update ${isVisibleVar}IsVisible=true" else "");
         };
 
         mode."${name}" = let
           closeCmd =
-            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close ${widget} --all; mode default";
+            "exec ${ewwOnFocused} close lightbox --all; exec ${ewwOnFocused} close ${widget} --all; mode default" + (if isVisibleVar != null then "; ${ewwExe} update ${isVisibleVar}IsVisible=false" else "");
 
           closingKeybinds = (lib.attrsets.concatMapAttrs (keybind: closingCmd: {
             "${keybind}" = "${closingCmd}; ${closeCmd}";
@@ -51,6 +58,7 @@ in {
           name = "powerbar";
           widget = "powerbar";
           enterKey = "q";
+          isVisibleVar = "volumeControl";
 
           cmds = {
             "r" = "exec reboot";
