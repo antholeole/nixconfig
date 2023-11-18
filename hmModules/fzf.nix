@@ -17,5 +17,9 @@
       prompt = "#c6a0f6";
       "hl+" = "#ed8796";
     };
+
+    defaultOptions = [
+      "--height=8"
+    ];
   };
 }
