@@ -43,13 +43,16 @@
       source = "${inputs.self}/images/bg_tall.png";
     };
 
+    file.".ssh/id_ed25519.pub" = {
+      enable = true;
+      source = "${inputs.self}/assets/id_ed25519.pub";
+    };
+
     packages = with pkgs;
       [
         fd # find!
-        tree
         httpie
         unzip
-        dconf
         fx
         neofetch
         trashy
@@ -67,9 +70,8 @@
         swaybg
         mpc-cli # music
         shutter-save # screenshotter (activated thru fluxbox keys)
-        slock # screen locker
         brightnessctl
-        pipes-rs # for funziesi
+        pipes-rs # for funzies
         wl-clipboard # clipboard
         dbeaver
         pamixer
