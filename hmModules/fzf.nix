@@ -19,7 +19,7 @@
     };
 
     defaultOptions = [
-      "--height=8"
+      "--height 20%"
     ];
   };
 }

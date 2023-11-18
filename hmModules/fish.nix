@@ -20,8 +20,8 @@ in {
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
-      ch = "${lib.getExe cliphist} list | ${fzfExe} -d '\\t' --with-nth 2 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
-      iforgot = "${fzfExe} ~/.config/other/often_forgotten.md";
+      ch = "${lib.getExe cliphist} list | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
+      iforgot = "cat ~/.config/other/often_forgotten.md | ${fzfExe} --height 8";
     };
 
     plugins = [
