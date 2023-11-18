@@ -1,3 +1,4 @@
-[] wpaperd
 [] gh-dash
-[] script-directory (w/ fish) (figure out if we want thisla)
+[] ZELLIJ REMIND!
+[] remote ssh clipboard (https://stackoverflow.com/a/66169758)
+[] add ssh stuff 
