@@ -116,13 +116,21 @@ in {
       modes = with builtins;
         lib.attrsets.mergeAttrsList (map (mode: mode.mode) modes);
 
-      window = { titlebar = false; };
-
       startup = (builtins.map (cmd: { command = cmd; })
         (sysConfig.swayStartupCommands ++ [ "${ewwExe} daemon" ]));
 
       # bro got no bars
       bars = [ ];
+
+      gaps = {
+        outer = 3;
+        inner = 3;
+      };
+
+      window = {
+        titlebar = false;
+        border = 0;
+      };
     };
 
     extraConfig = ''

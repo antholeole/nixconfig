@@ -64,6 +64,7 @@
         trashy
         bottom
         google-cloud-sdk
+        socat
         nixfmt
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })

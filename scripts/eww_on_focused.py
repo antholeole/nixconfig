@@ -2,6 +2,9 @@ from argparse import ArgumentParser
 import json
 import subprocess
 from typing import List
+from os import kill
+import signal
+import sys
 
 parser = ArgumentParser()
 
@@ -30,3 +33,9 @@ for monitor_letter in get_monitor_letters():
         )
     except: 
         print(f"got an error processing '{cmd}'. continuing")
+
+eww_procs = subprocess.check_output("pgrep eww".split()).decode(sys.stdout.encoding)
+print(eww_procs)
+
+if len(eww_procs) > 1:
+    kill(int(eww_procs[1]), signal.SIGKILL) 
