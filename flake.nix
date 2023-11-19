@@ -25,6 +25,8 @@
 
         sysConfig = (import ./conf.nix)."${confName}";
 
+
+        systemCopy = (import ./mixins/mkSystemCopy.nix) sysConfig pkgs;
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
         mkOldNixPkg = (import ./mixins/mkOldNixPkg.nix);

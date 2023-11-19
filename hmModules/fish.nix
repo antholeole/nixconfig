@@ -1,11 +1,11 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, config, systemCopy, ... }:
 let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
 in {
   programs.fish = {
     enable = true;
 
     shellAliases = {
-      c = "${wlClipPath}wl-copy";
+      c = systemCopy;
       v = "${wlClipPath}wl-paste";
       rd = "rm -rf";
     };
