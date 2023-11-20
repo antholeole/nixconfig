@@ -5,3 +5,4 @@
 [] brightness
 [] wl-sunset
 [] zoxide exclude nix
+[] redo starship to 

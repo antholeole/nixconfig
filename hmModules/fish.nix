@@ -5,6 +5,7 @@ in {
     enable = true;
 
     shellAliases = {
+      # TODO this should be bidirectional
       c = systemCopy;
       v = "${wlClipPath}wl-paste";
       rd = "rm -rf";
