@@ -1,5 +1,9 @@
 [
   {
+    "command": "-workbench.action.terminal.goToRecentDirectory",
+    "key": "ctrl+g"
+  },
+  {
     "command": "-workbench.action.files.newUntitledFile",
     "key": "ctrl+n"
   },

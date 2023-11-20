@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-    services.cliphist.enable = true;
+{ pkgs, lib, sysConfig, ... }: {
+    services.cliphist.enable = !sysConfig.headless;
 }
