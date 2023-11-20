@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, systemCopy, ... }:
+{ inputs, pkgs, config, systemCopy, sysConfig, lib, ... }:
 let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
 in {
   programs.fish = {
@@ -13,6 +13,7 @@ in {
     functions = with pkgs; let 
       fzfExe = lib.getExe config.programs.fzf.package;
     in {
+      remoteClip = lib.mkIf (!sysConfig.headless) "${pkgs.socat}/bin/socat tcp-listen:9791,fork exec:'${wl-clipboard.outPath}/bin/wl-copy'";
       cdc = "mkdir -p $argv && cd $argv";
       rmt = "${trashy}/bin/trash put $argv";
       killp = "kill (lsof -t -i:$argv)";

@@ -117,7 +117,10 @@ in {
         lib.attrsets.mergeAttrsList (map (mode: mode.mode) modes);
 
       startup = (builtins.map (cmd: { command = cmd; })
-        (sysConfig.swayStartupCommands ++ [ "${ewwExe} daemon" ]));
+        (sysConfig.swayStartupCommands ++ [ 
+          "${ewwExe} daemon"
+          "${pkgs.socat}/bin/socat tcp-listen:9791,fork exec:'${pkgs.wl-clipboard.outPath}/bin/wl-copy'"
+         ]));
 
       # bro got no bars
       bars = [ ];

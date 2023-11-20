@@ -83,6 +83,8 @@
         dbeaver
         pamixer
 
+        (mkWaylandElectronPkg activitywatch)
+
         # some useful formatters for one-off scripts
         nixfmt
         python311Packages.flake8
