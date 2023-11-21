@@ -23,7 +23,7 @@
 
     settings = {
       format = "$character";
-      right_format = "$git_branch $git_metrics $directory┃$hostname";
+      right_format = "$git_branch $git_metrics $directory$hostname";
       
       directory = { format = "[  ┃ $path ](${bgFill})"; };
       cmd_duration = { format = "${seperator}[$duration](${bgFill})"; };
@@ -40,7 +40,7 @@
       hostname = {
         ssh_symbol = "󱘖 ";
         disabled = false;
-        format = "[ $ssh_symbol ](${bgFill})";
+        format = "[┃](${fgFill})[ $ssh_symbol ](${bgFill})";
       };
 
       character = {
