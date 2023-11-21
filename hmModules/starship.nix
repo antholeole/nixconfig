@@ -40,7 +40,7 @@
       hostname = {
         ssh_symbol = "󱘖 ";
         disabled = false;
-        format = "[ $ssh_symbol ](${bgFill})";
+        format = "[$ssh_symbol ](${bgFill})";
       };
 
       character = {
