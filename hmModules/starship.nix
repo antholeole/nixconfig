@@ -4,10 +4,17 @@
       disabled = true;
     };
 
-    style = "bold ${(import ../theme.nix).lavender}";
+    colors = import ../theme.nix;
+
+    color = "${colors.lavender}";
+    bgFill = "bg:${color} fg:${colors.base}";
+    fgFill = "fg:${color}";
+
+    seperator = "[┃](${bgFill})";
+
 
     vc = {
-      format = "[\\[$symbol$branch\\]](${style})";
+      format = "[$symbol]($fgFill)[$branch](${fgFill})";
       disabled = false;
     };
   in {
@@ -15,35 +22,36 @@
     enableFishIntegration = true;
 
     settings = {
-      gcloud.disabled = true;
-      directory = { format = "[\\[$path$read_only\\]](${style})"; };
-      username = { format = "[\\[$user\\]](${style})"; };
-      cmd_duration = { format = "[\\[$duration\\]]($style)"; };
+      format = "$character";
+      right_format = "$git_branch  $git_metrics $directory $time $duration $hostname";
+      
+      directory = { format = "[  ┃ $path ](${bgFill})"; };
+      cmd_duration = { format = "${seperator}[$duration](${bgFill})"; };
       shlvl = { disabled = true; };
       git_branch = vc;
+      git_metrics = { 
+        only_nonzero_diffs = true;
+        disabled = false; 
+        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})"; 
+      };
       hg_branch = vc;
-      git_status = { disabled = true; };
-      line_break = { disabled = true; };
-      right_format = "$time";
       battery.disabled = true;
 
       hostname = {
         ssh_symbol = "󱘖 ";
-        format = "[\\[$ssh_symbol\\]](${style})";
-      };
-
-      time = {
         disabled = false;
-        style = "bold bright-black";
-        format = "[$time]($style)";
+        format = "${seperator}[ $ssh_symbol ](${bgFill})";
       };
 
       character = {
-        success_symbol = "";
-        error_symbol = "[\\[!\\]](bold red)";
+        success_symbol = "[󰘧](${fgFill})";
+        error_symbol = "[󰘧](red)";
         format = "$symbol($style) ";
       };
 
+      time = disabled;
+      gcloud = disabled;
+      line_break = disabled;
       python = disabled;
       java = disabled;
       package = disabled;
