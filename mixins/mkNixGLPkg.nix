@@ -6,7 +6,7 @@ writeShellApplication {
   runtimeInputs = [ ];
 
   text = let 
-    sysNixGL = lib.getExe nixgl.aeuto.nixGLDefault;
+    sysNixGL = lib.getExe nixgl.auto.nixGLDefault;
   in ''
     ${sysNixGL} ${lib.getExe' pkg exeName} "$@"
   '';
