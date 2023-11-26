@@ -1,6 +1,10 @@
 { pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, ... }: {
   fonts.fontconfig.enable = true;
 
+  imports = [ 
+    inputs.ags.homeManagerModules.default 
+  ];
+  
   xdg = {
     enable = true;
 
@@ -66,8 +70,10 @@
         google-cloud-sdk
         socat
         nixfmt
+        watchexec
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+        inputs.ags.packages."${pkgs.system}".default
         fira-code-symbols
         dejavu_fonts
         dunst

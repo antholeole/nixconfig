@@ -3,6 +3,7 @@
 
   inputs = {
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
+    ags.url = "github:Aylur/ags";
     home-manager.url = "github:nix-community/home-manager/master";
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";

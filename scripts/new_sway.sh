@@ -1,1 +1,1 @@
-sudo cp ~/sway.desktop /usr/share/wayland-sessions/sway.desktop
+sudo cp ~/.config/other/hyprland.desktop /usr/share/wayland-sessions/hyprland.desktop
