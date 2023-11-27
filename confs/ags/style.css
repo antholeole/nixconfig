@@ -25,6 +25,10 @@
   font-size: small;
   padding: 7.5px 35px; }
 
+.ws-text {
+  color: #cad3f5;
+  margin: 2.3px; }
+
 .dot, .dot-full, .dot-empty {
   padding: 3px 7px;
   border-radius: 100%;
