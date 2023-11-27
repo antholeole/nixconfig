@@ -19,10 +19,20 @@
 
 .bar {
   font-family: "FiraCode Nerd Font";
-  background-color: #1e2030;
+  background-color: #181926;
   border-bottom: 4px solid black;
   color: #cad3f5;
   font-size: small;
-  padding: 7.5px; }
+  padding: 7.5px 35px; }
+
+.dot, .dot-full, .dot-empty {
+  padding: 3px 7px;
+  border-radius: 100%;
+  margin: 2px; }
+  .dot-full {
+    background-color: #cad3f5; }
+  .dot-empty {
+    padding: 3px 5px;
+    border: 2px solid #cad3f5; }
 
 /*# sourceMappingURL=style.css.map */

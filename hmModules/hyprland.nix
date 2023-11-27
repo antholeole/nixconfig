@@ -1,26 +1,42 @@
-{config, pkgs, sysConfig, mkNixGLPkg, ...}: let
+{config, pkgs, sysConfig, mkNixGLPkg, inputs, ...}: let
     nixGlHyprland = mkNixGLPkg pkgs.hyprland pkgs.hyprland.meta.mainProgram;
 in {
   wayland.windowManager.hyprland = let 
     mod = "ALT";
+    colors = import "${inputs.self}/theme.nix";
   in {
     enable = !sysConfig.headless;
-    extraConfig = ''
-    bind = , Print, exec, grimblast copy area
+    extraConfig = let 
+    in ''
+    animation = global,0
 
-    bind = ${mod}, U, exec ${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
+    decoration {
+      rounding = 10
+      inactive_opacity = 0.8
 
-    # workspaces
-    # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+
+      drop_shadow = true
+      shadow_range = 0
+      shadow_offset = 15 15
+      shadow_render_power = 0
+      col.shadow = 0xff000000
+    }
+
+    general {
+      border_size = 2
+      col.active_border = 0xff000000
+    }
+
+    bind = ${mod},U,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
+    bind = ${mod},Q,killactive
+
+    # binds workspace keys
     ${builtins.concatStringsSep "\n" (builtins.genList (
-        x: let
-          ws = let
-            c = (x + 1) / 10;
-          in
-            builtins.toString (x + 1 - (c * 10));
+        i: let
+          iStr = builtins.toString i;
         in ''
-          bind = $mod, ${ws}, workspace, ${toString (x + 1)}
-          bind = $mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}
+          bind = ${mod}, ${iStr}, workspace, ${iStr}
+          bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
         ''
       )
       10)}

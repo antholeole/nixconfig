@@ -1,4 +1,5 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
 import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 
 const Clock = () => Widget.Box({
@@ -13,6 +14,22 @@ const Clock = () => Widget.Box({
 });
 
 
+const Workspaces = (monitor) => Widget.Box({
+    className: 'workspaces',
+    connections: [[Hyprland.active.workspace, self => {
+        const thisMonitor = Hyprland.getMonitor(monitor)
+        const workspaces = Hyprland.workspaces.filter((workspace) => workspace.monitor === thisMonitor.name)
+
+        const isActive =
+
+            self.children = workspaces.map(workspace => Widget.Box({
+                className: (thisMonitor.activeWorkspace.id === workspace.id && Hyprland.active.monitor == thisMonitor.name) ? "dot-full" : "dot-empty",
+                children: []
+            }));
+    }]],
+});
+
+
 
 export default (monitor) => Widget.Window({
     name: `bar-${monitor}`,
@@ -22,7 +39,7 @@ export default (monitor) => Widget.Window({
     child:
         Widget.CenterBox({
             className: 'bar',
-            startWidget: Widget.Label("temp"),
+            startWidget: Workspaces(monitor),
             endWidget: Clock()
         })
 })

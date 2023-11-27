@@ -7,6 +7,7 @@ export default {
     style: App.configDir + "/style.css",
     windows: [
         Powerbar(0),
-        Bar(0)
+        Bar(0),
+        Bar(1)
     ]
 }

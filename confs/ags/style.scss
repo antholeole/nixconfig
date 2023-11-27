@@ -28,9 +28,28 @@ $border-radius: 18px;
 
 .bar {
     font-family: "FiraCode Nerd Font";
-    background-color: #1e2030;
+    background-color: #181926;
     border-bottom: 4px solid black;
     color: $text;
     font-size: small;
-    padding: 7.5px;
+    padding: 7.5px 35px;
+}
+
+.dot {
+    padding: 3px 7px;
+    border-radius: 100%;
+    margin: 2px;
+
+    &-full {
+        @extend .dot;
+
+        background-color: $text;
+    }
+
+    &-empty {
+        @extend .dot;
+        padding: 3px 5px;
+
+        border: 2px solid $text;
+    }
 }
