@@ -1,7 +1,28 @@
+.container {
+  border-radius: 18px;
+  background-color: #24273a;
+  border: 2px solid black;
+  margin: 20px;
+  box-shadow: black 8px 8px;
+  padding: 12px; }
+
 .command-button {
-  padding: 20px 10px;
-  background-color: #deadbe;
-  box-shadow: black 10px 10px;
-  color: red; }
+  background-color: #24273a;
+  padding: 25px 17px;
+  color: #cad3f5; }
+
+.icon {
+  font-size: 20px; }
+
+.subtext {
+  color: #a5adcb; }
+
+.bar {
+  font-family: "FiraCode Nerd Font";
+  background-color: #1e2030;
+  border-bottom: 4px solid black;
+  color: #cad3f5;
+  font-size: small;
+  padding: 7.5px; }
 
 /*# sourceMappingURL=style.css.map */

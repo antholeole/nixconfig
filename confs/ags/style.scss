@@ -1,7 +1,36 @@
+$text: #cad3f5;
+$base: #24273a;
+$border-radius: 18px;
+
+.container {
+    $shadow-offset: 8px;
+    border-radius: $border-radius;    
+    background-color: $base;
+    border: 2px solid black;
+    margin: 20px;
+    box-shadow: black $shadow-offset $shadow-offset;
+    padding: 12px;
+}
+
 .command-button {
-    padding: 20px 10px;
-    background-color: #deadbe;
-    
-    box-shadow: black 10px 10px;
-    color: red;
+    background-color: $base;
+    padding: 25px 17px;
+    color: $text;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.subtext {
+    color: #a5adcb;
+}
+
+.bar {
+    font-family: "FiraCode Nerd Font";
+    background-color: #1e2030;
+    border-bottom: 4px solid black;
+    color: $text;
+    font-size: small;
+    padding: 7.5px;
 }
