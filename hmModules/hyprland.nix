@@ -4,6 +4,7 @@ in {
   wayland.windowManager.hyprland = let 
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
+    agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
   in {
     enable = !sysConfig.headless;
     extraConfig = let 
@@ -27,8 +28,12 @@ in {
       col.active_border = 0xff000000
     }
 
-    bind = ${mod},U,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
-    bind = ${mod},Q,killactive
+    # when holding alt + space, we should show the numbers
+    bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
+    bindr=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = false"
+
+    bind = ${mod},G,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
+    bind = ${mod},W,killactive
 
     # binds workspace keys
     ${builtins.concatStringsSep "\n" (builtins.genList (

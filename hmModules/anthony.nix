@@ -89,6 +89,9 @@
         dbeaver
         pamixer
 
+        # deving dots
+        wev
+
         (mkWaylandElectronPkg { pkg = activitywatch; exeName = "aw-watcher-window"; })
 
         # some useful formatters for one-off scripts

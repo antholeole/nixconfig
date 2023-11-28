@@ -27,10 +27,10 @@
 
 .ws-text {
   color: #cad3f5;
-  margin: 2.3px; }
+  margin: 0 5.9px; }
 
 .dot, .dot-full, .dot-empty {
-  padding: 3px 7px;
+  padding: 3px 8px;
   border-radius: 100%;
   margin: 2px; }
   .dot-full {
