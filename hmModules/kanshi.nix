@@ -1,6 +1,10 @@
-{ pkgs, lib, sysConfig, ... }: {
-  services.kanshi = lib.mkIf (!sysConfig.headless) {
+{ pkgs, lib, sysConfig, inputs, ... }: let
+    agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
+in {
+  services.kanshi = lib.mkIf (!sysConfig.headless) let {
     enable = true;
+
+    systemdTarget = "hyprland-session.target";
 
     profiles = let
       mkBgStatement = criteria:
@@ -32,11 +36,12 @@
       mkKanshiConfig = displays:
         with builtins; {
           outputs = map (display: display.kanshi) displays;
-          exec = map mkBgStatement displays;
+          exec = (map mkBgStatement displays) ++ [
+            "/usr/bin/pkill ags ; ${agsExe}"
+          ];
         };
     in {
       latopOnly = mkKanshiConfig [ laptop ];
-
       dellUltrawide = mkKanshiConfig [ ultraWide laptop ];
       second = mkKanshiConfig [ laptop monitor ];
     };

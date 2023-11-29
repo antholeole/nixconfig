@@ -26,14 +26,23 @@ in {
     general {
       border_size = 2
       col.active_border = 0xff000000
+      gaps_in = 9
     }
 
     # when holding alt + space, we should show the numbers
     bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
     bindr=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = false"
 
-    bind = ${mod},G,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
+    bind = ${mod},RETURN,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
     bind = ${mod},W,killactive
+
+    bind=${mod},h,movefocus,l
+    bind=${mod},l,movefocus,r
+    bind=${mod},k,movefocus,u
+    bind=${mod},j,movefocus,d
+
+    bind=${mod},m,focusmonitor,+1
+    bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
     # binds workspace keys
     ${builtins.concatStringsSep "\n" (builtins.genList (
