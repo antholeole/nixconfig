@@ -1,7 +1,7 @@
 { pkgs, lib, sysConfig, inputs, ... }: let
     agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
 in {
-  services.kanshi = lib.mkIf (!sysConfig.headless) let {
+  services.kanshi = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     systemdTarget = "hyprland-session.target";
