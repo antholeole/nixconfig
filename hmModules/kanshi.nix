@@ -37,7 +37,7 @@ in {
         with builtins; {
           outputs = map (display: display.kanshi) displays;
           exec = (map mkBgStatement displays) ++ [
-            "/usr/bin/pkill ags ; ${agsExe}"
+            "${agsExe} -q ; ${agsExe} >>/tmp/kanshi 2>&1 &"
           ];
         };
     in {

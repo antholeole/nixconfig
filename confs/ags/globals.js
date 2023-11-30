@@ -3,8 +3,3 @@ import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js'
 
 export const altDown = Variable(false)
 globalThis.altDown = altDown
-
-export const monitors = Variable(Hyprland.monitors)
-monitors.connect('changed', () => {
-    console.log("monitor switch")
-})

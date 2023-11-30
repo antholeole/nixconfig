@@ -1,4 +1,6 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
+import Widget from 'resource:///com/github/Aylur/ags/widget.js'
+import Variable from 'resource:///com/github/Aylur/ags/variable.js'
+import App from 'resource:///com/github/Aylur/ags/app.js'
 
 const commands = [
     { text: "", hotkey: "q" },
@@ -7,9 +9,12 @@ const commands = [
     { text: "󰤆", hotkey: "s" },
 ]
 
-export default (monitor) => Widget.Window({
-    monitor,
-    name: `bar${monitor}`,
+
+const showPowerbar = Variable(false)
+globalThis.showPowerbar = showPowerbar
+
+export const Powerbar = () => Widget.Window({
+    name: `powerbar`,
     class_name: 'window',
     anchor: ['right'],
     margins: [0, 40],
@@ -29,6 +34,20 @@ export default (monitor) => Widget.Window({
                     class_name: "subtext"
                 })
             ]
-        }))
+        })),
     })
+})
+
+var window = undefined
+showPowerbar.connect('changed', ({ value }) => {
+    if (value) {
+        if (window === undefined) {
+            window = Powerbar()
+            App.addWindow(window)
+        } else {
+            App.openWindow(window.name)
+        }
+    } else {
+        App.closeWindow(window.name)
+    }
 })

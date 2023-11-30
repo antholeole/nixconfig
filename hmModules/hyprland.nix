@@ -44,6 +44,26 @@ in {
     bind=${mod},m,focusmonitor,+1
     bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
+
+    bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
+    bind=${mod},Q,submap,powerbar
+    submap=powerbar
+
+    bind=,q,exec,swaylock
+    bind=,q,exec,${agsExe} --run-js "showPowerbar.value = false;"
+    bind=,q,submap,reset 
+    
+    bind=,r,exec,reboot
+    bind=,l,exec,logout
+    bind=,s,exec,poweroff
+
+
+    bind=,escape,exec,${agsExe} --run-js "showPowerbar.value = false;"
+    bind=,escape,submap,reset 
+
+    # will reset the submap, meaning end the current one and return to the global one
+    submap=reset
+
     # binds workspace keys
     ${builtins.concatStringsSep "\n" (builtins.genList (
         i: let
@@ -54,6 +74,11 @@ in {
         ''
       )
       10)}
+
+    input "1:1:AT_Translated_Set_2_keyboard" {
+      xkb_layout us
+      xkb_options caps:swapescape
+    }
   '';
   };
 

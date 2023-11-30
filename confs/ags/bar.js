@@ -1,9 +1,7 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
-import Battery from 'resource:///com/github/Aylur/ags/service/battery.js';
 import { execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
 import { altDown } from './globals.js';
-import { monitorExists } from './utils.js';
 
 const Clock = () => Widget.Box({
     hpack: 'end',

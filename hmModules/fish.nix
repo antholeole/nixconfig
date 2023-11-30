@@ -57,7 +57,7 @@ in {
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
-      eval $(${pkgs.watchexec} --completions fish)
+      eval $(${pkgs.lib.getExe pkgs.watchexec} --completions fish)
 
       set MICRO_TRUECOLOR 1
 
