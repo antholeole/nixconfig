@@ -39,4 +39,12 @@
     padding: 3px 5px;
     border: 2px solid #cad3f5; }
 
+.battery-text {
+  color: #b8c0e0; }
+
+.battery-icon {
+  color: #b8c0e0;
+  margin-right: 10px;
+  margin-left: 3px; }
+
 /*# sourceMappingURL=style.css.map */
