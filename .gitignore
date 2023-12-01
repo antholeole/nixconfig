@@ -3,3 +3,4 @@ firmware/
 **/__pycache__/
 .sass-cache/
 *.map
+.devenv/

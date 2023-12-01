@@ -47,4 +47,46 @@
   margin-right: 10px;
   margin-left: 3px; }
 
+.container.launcher {
+  padding: 0;
+  min-width: 500px;
+  margin-bottom: 10px;
+  background-color: #1e2030;
+  color: #cad3f5; }
+  .container.launcher .input {
+    color: #cad3f5; }
+  .container.launcher entry {
+    border: 0px;
+    background-color: transparent; }
+
+.input-stack {
+  border-radius: 9px;
+  background-color: rgba(36, 39, 58, 0.4);
+  margin: 62.5px 32.5px; }
+  .input-stack .search-icon {
+    margin-left: 10px;
+    font-family: "FiraCode Nerd Font"; }
+
+.launcher-text {
+  padding: 4px; }
+  .launcher-text.first {
+    background-color: #24273a;
+    margin: 5px;
+    border-radius: 5px; }
+
+.cat-image {
+  font-size: 200px;
+  margin-top: 50px;
+  margin-left: 250px; }
+
+.search-container {
+  margin: 10px;
+  border-radius: 9px;
+  min-width: 500px;
+  min-height: 150px;
+  background-color: #f0c6c6; }
+
+.results {
+  min-height: 100px; }
+
 /*# sourceMappingURL=style.css.map */

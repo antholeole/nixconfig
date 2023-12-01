@@ -1,14 +1,17 @@
 import App from 'resource:///com/github/Aylur/ags/app.js'
-import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js';
+import { exec } from 'resource:///com/github/Aylur/ags/utils.js'
 import { Bar } from "./bar.js"
-import "./powerbar.js"
+import "./launcher.js"
+import"./powerbar.js"
 
 let windows = [
     // always have bar 0
     Bar(0)
 ]
 
-if (Hyprland.monitors.length > 1) {
+// Hyprland does not populate here so syscall instead
+const monitors = JSON.parse(exec("hyprctl monitors -j"))
+if (monitors.length > 1) {
     windows.push(Bar(1))
 }
 

@@ -4,7 +4,7 @@ $border-radius: 18px;
 
 .container {
     $shadow-offset: 8px;
-    border-radius: $border-radius;    
+    border-radius: $border-radius;
     background-color: $base;
     border: 2px solid black;
     margin: 20px;
@@ -67,4 +67,64 @@ $border-radius: 18px;
     color: #b8c0e0;
     margin-right: 10px;
     margin-left: 3px;
+}
+
+$search-container-height: 150px;
+$search-container-width: 500px;
+
+.container.launcher {
+    padding: 0;
+    min-width: $search-container-width;
+    margin-bottom: 10px;
+    background-color: #1e2030;
+    color: $text;
+
+    .input {
+        color: $text;
+    }
+
+    entry {
+        border: 0px;
+        background-color: transparent;
+    }
+}
+
+.input-stack {
+    border-radius: $border-radius / 2;
+    background-color: rgba($base, .4);
+
+    .search-icon {
+        margin-left: 10px;
+        font-family: "FiraCode Nerd Font";
+    }
+
+    margin: 62.5px 32.5px;
+}
+
+.launcher-text {
+    padding: 4px;
+
+    &.first {
+        background-color: #24273a;
+        margin: 5px;
+        border-radius: 5px;
+    }
+}
+
+.cat-image {
+    font-size: 200px;
+    margin-top: 50px;
+    margin-left: 250px;
+}
+
+.search-container {
+    margin: 10px;
+    border-radius: $border-radius / 2;
+    min-width: $search-container-width;
+    min-height: $search-container-height;
+    background-color: #f0c6c6;
+}
+
+.results {
+    min-height: 100px;
 }

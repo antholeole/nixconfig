@@ -45,6 +45,7 @@ in {
     bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
 
+    # POWERBAR
     bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
     bind=${mod},Q,submap,powerbar
     submap=powerbar
@@ -61,8 +62,13 @@ in {
     bind=,escape,exec,${agsExe} --run-js "showPowerbar.value = false;"
     bind=,escape,submap,reset 
 
-    # will reset the submap, meaning end the current one and return to the global one
     submap=reset
+
+    bindt=${mod},Y,exec,${agsExe} --run-js "showForgot.value = true;"
+    bindt=${mod},R,exec,${agsExe} --run-js "showLauncher.value = true;"
+
+    bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;"
+    bindtn=,escape,exec,${agsExe} --run-js "showLauncher.value = false;"
 
     # binds workspace keys
     ${builtins.concatStringsSep "\n" (builtins.genList (

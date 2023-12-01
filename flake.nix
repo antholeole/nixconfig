@@ -90,7 +90,7 @@
                 agsExe = lib.getExe inputs.ags.packages."${system}".default;
                 agsDir = "$DEVENV_ROOT/confs/ags/";
               in ''
-              ${lib.getExe watchexec} -w  ${agsDir} --exts scss,js --restart -- '${lib.getExe sass} ${agsDir}style.scss:${agsDir}/style.css && ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js'
+              ${lib.getExe watchexec} -w  ${agsDir} --exts scss,js --restart -- '${lib.getExe sass} ${agsDir}style.scss:${agsDir}/style.css && (pkill ags ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
               '';
             };
             packages = [ pkgs.hello ];

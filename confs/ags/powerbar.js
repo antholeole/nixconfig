@@ -1,6 +1,5 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js'
-import Variable from 'resource:///com/github/Aylur/ags/variable.js'
-import App from 'resource:///com/github/Aylur/ags/app.js'
+import { addToggleableWindow } from './globals.js'
 
 const commands = [
     { text: "", hotkey: "q" },
@@ -8,10 +7,6 @@ const commands = [
     { text: "", hotkey: "r" },
     { text: "󰤆", hotkey: "s" },
 ]
-
-
-const showPowerbar = Variable(false)
-globalThis.showPowerbar = showPowerbar
 
 export const Powerbar = () => Widget.Window({
     name: `powerbar`,
@@ -38,16 +33,6 @@ export const Powerbar = () => Widget.Window({
     })
 })
 
-var window = undefined
-showPowerbar.connect('changed', ({ value }) => {
-    if (value) {
-        if (window === undefined) {
-            window = Powerbar()
-            App.addWindow(window)
-        } else {
-            App.openWindow(window.name)
-        }
-    } else {
-        App.closeWindow(window.name)
-    }
-})
+
+addToggleableWindow("Powerbar", Powerbar)
+

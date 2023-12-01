@@ -52,12 +52,6 @@
       source = "${inputs.self}/assets/id_ed25519.pub";
     };
 
-    
-    file.".config/other/often_forgotten.md" = {
-      enable = true;
-      source = "${inputs.self}/assets/often_forgotten.md";
-    };
-
     packages = with pkgs;
       [
         fd # find!
