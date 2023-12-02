@@ -4,10 +4,10 @@ import App from 'resource:///com/github/Aylur/ags/app.js'
 export const altDown = Variable(false)
 globalThis.altDown = altDown
 
-export const addToggleableWindow = (windowName, windowBuilder) => {
+export const addToggleableWindow = (windowName, windowBuilder, defaultOn = false) => {
     const showWindow = Variable(false)
     globalThis[`show${windowName}`] = showWindow
-    var window = undefined
+    var window = defaultOn ? windowBuilder(showWindow) : undefined
     showWindow.connect('changed', ({ value }) => {
         if (value) {
             if (window === undefined) {

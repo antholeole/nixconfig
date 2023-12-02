@@ -1,9 +1,7 @@
 [] brightness
 [] wl-sunset
 [] if its not focused focus sidebar
-[] make kanshi on startup
 [] Monitor stuff
-[] swaylock stuff
-[] Cliphist should have a remote option as well
+[] Cliphist should have a remote option as well... golang microservice in da dotfiles?
 [] we should fix espanso
 

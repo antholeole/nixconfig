@@ -5,11 +5,17 @@
   margin: 20px;
   box-shadow: black 8px 8px;
   padding: 12px; }
+  .container.horizontal {
+    padding: 10px 40px; }
 
 .command-button {
   background-color: #24273a;
   padding: 25px 17px;
   color: #cad3f5; }
+  .command-button.horizontal {
+    color: green;
+    border: 1px solid red;
+    margin: 10px; }
 
 .icon {
   font-size: 20px; }

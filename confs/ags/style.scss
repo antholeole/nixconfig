@@ -10,12 +10,22 @@ $border-radius: 18px;
     margin: 20px;
     box-shadow: black $shadow-offset $shadow-offset;
     padding: 12px;
+
+    &.horizontal {
+        padding: 10px 40px;
+    }
 }
 
 .command-button {
     background-color: $base;
     padding: 25px 17px;
     color: $text;
+
+    &.horizontal {
+        color: green;
+        border: 1px solid red;
+        margin: 10px;
+    }
 }
 
 .icon {
