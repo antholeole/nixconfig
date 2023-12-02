@@ -74,7 +74,6 @@
         libnotify
         glib # for notifications
         pavucontrol
-        swaybg
         mpc-cli # music
         shutter-save # screenshotter (activated thru fluxbox keys)
         brightnessctl

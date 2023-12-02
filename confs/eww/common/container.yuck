@@ -1,6 +1,0 @@
-(defwidget container [orientation] (
-    box
-    :orientation orientation
-    :class "container"
-    (children)
-))
