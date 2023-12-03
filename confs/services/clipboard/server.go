@@ -4,6 +4,7 @@ import (
   "net/http"
   "fmt"
   "os"
+  "oleinaconf.com/utils"
   "os/exec"
   "github.com/gin-gonic/gin"
   "github.com/mkideal/cli"
@@ -53,8 +54,7 @@ func run(args *argT) error {
       return
     }
 
-    cmd := exec.Command("/bin/bash", "-c", fmt.Sprintf("echo \"%s\" | %s > /dev/null 2>&1 &", toCopy, args.Wlcopy))
-    _, err = cmd.Output()
+    err = utils.Copy(string(toCopy), args.Wlcopy)
     if err != nil {
       c.AbortWithError(http.StatusInternalServerError, err)
       return
@@ -74,5 +74,5 @@ func run(args *argT) error {
     return
   })
 
-  return r.Run("localhost:9791")
+  return r.Run(fmt.Sprintf("localhost:%s", utils.Port))
 }
