@@ -52,6 +52,17 @@ func run(args *argT) error {
 			log.Fatal(err.Error)
 			return nil
 		}
+	case "cliphist":
+		resp, err := http.Get("http://localhost:9791/cliphist")
+		defer resp.Body.Close()
+		body, err := io.ReadAll(resp.Body)
+
+		if err != nil {
+			log.Fatal(err.Error)
+			return nil
+		}
+
+		print(string(body))
 	default: 
 		log.Fatalf("unknown command %s", cmd)
 	}
