@@ -65,6 +65,8 @@
         socat
         nixfmt
         watchexec
+
+        go
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         inputs.ags.packages."${pkgs.system}".default
@@ -75,7 +77,6 @@
         glib # for notifications
         pavucontrol
         mpc-cli # music
-        shutter-save # screenshotter (activated thru fluxbox keys)
         brightnessctl
         pipes-rs # for funzies
         wl-clipboard # clipboard

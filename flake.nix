@@ -26,7 +26,7 @@
         nixpkgs = {
           config.allowUnfree = true;
           overlays =
-            [ (import ./scripts/shutter-save.nix).overlay nixgl.overlay ];
+            [ nixgl.overlay ];
         };
       };
 
@@ -85,6 +85,10 @@
         inherit inputs pkgs;
         modules = [
           ({ pkgs, config, ... }: with pkgs; {
+            languages = {
+              go.enable = true;
+            };
+
             scripts = {
               agsdev.exec = let 
                 agsExe = lib.getExe inputs.ags.packages."${system}".default;
