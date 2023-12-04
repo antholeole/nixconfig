@@ -1,9 +1,10 @@
 pkgs: let 
     fs = pkgs.lib.fileset;
 
-    remoteClipPkg = filterOut: let
+    remoteClipPkg = filterOut: vendorHash: let
         fileset = fs.fileFilter (file: file.name != filterOut) ./.;
     in pkgs.buildGoModule {
+        inherit vendorHash;
         src = fs.toSource {
             inherit fileset;
 
@@ -11,14 +12,14 @@ pkgs: let
         };
 
         name = "remoteclipboard";
-        vendorHash = "sha256-KMsYgkLRoQvxDJQvqC58zOyUlU2Kc1sx0s0EbDDGIVQ=";
+        vendorHash = ;
     };
 in {
     # this is confusing but its much simpler to specify the file 
     # that we don't want 
-    server = remoteClipPkg "client.go";
+    server = remoteClipPkg "client.go" "sha256-KMsYgkLRoQvxDJQvqC58zOyUlU2Kc1sx0s0EbDDGIVQ=";
     client = let 
-        rcClient = remoteClipPkg "server.go";
+        rcClient = remoteClipPkg "server.go" pkgs.lib.fakeHash;
     in {
         copy = "${rcClient}/bin/oleinaconf.com copy";
         paste = "${rcClient}/bin/oleinaconf.com paste";

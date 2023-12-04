@@ -4,4 +4,5 @@
 [] Monitor stuff
 [] Cliphist should have a remote option as well... golang microservice in da dotfiles?
 [] we should fix espanso
+[] zellij shouldn't start on boot. only vsc and ala should
 

@@ -1,4 +1,4 @@
-{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, ... }: {
+{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ... }: {
   fonts.fontconfig.enable = true;
 
   imports = [ 
@@ -69,7 +69,6 @@
         go
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-        inputs.ags.packages."${pkgs.system}".default
         fira-code-symbols
         dejavu_fonts
         dunst
