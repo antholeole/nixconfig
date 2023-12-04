@@ -1,4 +1,3 @@
-sysConfig: pkgs: if sysConfig.headless then
- with pkgs; "${netcat}/bin/nc -w 0 localhost 9791"
-else
- "${pkgs.wl-clipboard.outPath}/bin/wl-copy"
+sysConfig: inputs: pkgs: if sysConfig.headless then 
+(import "${inputs.self}/confs/services/clipboard" pkgs).client.copy
+else "${pkgs.wl-clipboard.outPath}/bin/wl-copy"

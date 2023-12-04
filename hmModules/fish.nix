@@ -1,15 +1,22 @@
 { inputs, pkgs, config, systemCopy, sysConfig, lib, ... }:
 let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
 in {
-  programs.fish = {
+  programs.fish = let 
+      remoteClipClient = (import "${inputs.self}/confs/services/clipboard" pkgs).client;
+  in {
     enable = true;
 
-    shellAliases = {
-      # TODO this should be bidirectional
-      c = systemCopy;
-      v = "${wlClipPath}wl-paste";
+    shellAliases = let 
+      cv = if sysConfig.headless then {
+        c = remoteClipClient.copy;
+        v = remoteClipClient.paste;
+      } else {
+        c = systemCopy;
+        v = "${wlClipPath}wl-paste";
+      };
+    in {
       rd = "rm -rf";
-    };
+    } // cv;
 
     functions = with pkgs; let 
       fzfExe = lib.getExe config.programs.fzf.package;
@@ -21,7 +28,10 @@ in {
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
-      ch = "${lib.getExe cliphist} list | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
+      done = "${libnotify}/out/notify-send done!";
+      ch = let 
+        sysCliphist = if sysConfig.headless then remoteClipClient.cliphist else lib.getExe cliphist;
+      in "${sysCliphist} list | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
     };
 
     plugins = [
