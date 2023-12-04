@@ -4,15 +4,10 @@ import (
   "os"
   "strings"
   "io"
+  "fmt"
   "log"
   "net/http"
-  "github.com/mkideal/cli"
-  "oleinaconf.com/utils"
 )
-
-type argT struct {
-  Wlcopy string `cli:"*wlcopy" usage:"path to wlcopy package to use"`
-}
 
 func main() {
 	if len(os.Args) == 1 {
@@ -20,15 +15,13 @@ func main() {
 		return
 	}
 
-	os.Exit(cli.Run(new(argT), func(ctx *cli.Context) error {
-		argv := ctx.Argv().(*argT)
-    	run(argv)
-    	return nil
-	}))
-	
+	err := run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
-func run(args *argT) error {
+func run() error {
 	switch cmd := os.Args[1]; cmd {
 	case "paste": 
 		resp, err := http.Get("http://localhost:9791/paste")
@@ -36,21 +29,23 @@ func run(args *argT) error {
 		body, err := io.ReadAll(resp.Body)
 
 		if err != nil {
-			log.Fatal(err.Error)
-			return nil
+			return err
 		}
 
-		utils.Copy(string(body), args.Wlcopy)
+		print(string(body))
 	case "copy":
-		if len(os.Args) < 2 {
-			log.Fatal("what to copy?")
+		stdin, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			return err
 		}
 
-		toCopy := os.Args[2]
-		_, err := http.Post("http://localhost:9791/copy", "text/plain", strings.NewReader(toCopy))
+		suffixless := strings.TrimSuffix(string(stdin), "\n")
+		reader := strings.NewReader(suffixless)
+
+		_, err = http.Post("http://localhost:9791/copy", "text/plain", reader)
+
 		if err != nil {
-			log.Fatal(err.Error)
-			return nil
+			return err
 		}
 	case "cliphist":
 		resp, err := http.Get("http://localhost:9791/cliphist")
@@ -58,13 +53,12 @@ func run(args *argT) error {
 		body, err := io.ReadAll(resp.Body)
 
 		if err != nil {
-			log.Fatal(err.Error)
-			return nil
+			return err
 		}
 
 		print(string(body))
 	default: 
-		log.Fatalf("unknown command %s", cmd)
+		return fmt.Errorf("unknown command %s", cmd)
 	}
 
 	return nil

@@ -91,7 +91,7 @@
 
             scripts = {
               agsdev.exec = let 
-                agsExe = lib.getExe inputs.ags.packages."${system}".default;
+                agsExe = "${inputs.ags.packages."${system}".default}/bin/ags";
                 agsDir = "$DEVENV_ROOT/confs/ags/";
               in ''
               ${lib.getExe watchexec} -w  ${agsDir} --exts scss,js --restart -- '${lib.getExe sass} ${agsDir}style.scss:${agsDir}/style.css && (pkill ags ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
