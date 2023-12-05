@@ -29,9 +29,11 @@ in {
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
       done = "${libnotify}/out/notify-send done!";
+
+      # TODO this isnt working :(
       ch = let 
-        sysCliphist = if sysConfig.headless then remoteClipClient.cliphist else lib.getExe cliphist;
-      in "${sysCliphist} list | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
+        sysCliphist = if sysConfig.headless then remoteClipClient.cliphist else "${lib.getExe cliphist} list";
+      in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
     };
 
     plugins = [

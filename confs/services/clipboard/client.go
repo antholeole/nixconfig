@@ -56,7 +56,7 @@ func run() error {
 			return err
 		}
 
-		print(string(body))
+		fmt.Print(string(body))
 	default: 
 		return fmt.Errorf("unknown command %s", cmd)
 	}
