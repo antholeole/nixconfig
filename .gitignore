@@ -1,6 +1,5 @@
 firmware/
-.direnv/
-**/__pycache__/
+.direnv/**/__pycache__/
 .sass-cache/
 *.map
 .devenv/
