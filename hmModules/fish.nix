@@ -29,6 +29,11 @@ in {
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
       done = "${libnotify}/out/notify-send done!";
+
+      gacp = let 
+        git = "${config.programs.git.package}/bin/git";
+      in "${git} add --all && ${git} commit -m $argv && ${git} push";
+
       ch = let 
         sysCliphist = if sysConfig.headless then remoteClipClient.cliphist else "${lib.getExe cliphist} list";
       in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
