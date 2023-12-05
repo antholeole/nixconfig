@@ -66,6 +66,7 @@
         nixfmt
         watchexec
 
+        nixgl.auto.nixGLDefault
         go
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
