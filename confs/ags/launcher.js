@@ -49,6 +49,7 @@ export const Launcher = (
                                             console.log(selected.exec)
                                         }
 
+                                        launcherText.value = "";
                                         variable.value = false;
                                     },
                                 }),

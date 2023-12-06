@@ -71,6 +71,8 @@ in {
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
+      
+      fish_add_path ~/.config/git
 
       set MICRO_TRUECOLOR 1
     '';

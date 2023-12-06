@@ -1,5 +1,11 @@
-{ pkgs, sysConfig, ... }:
-let nonixGitignoreFilename = ".nonix.gitignore";
+{ inputs, pkgs, sysConfig, ... }:
+let 
+  nonixGitignoreFilename = ".nonix.gitignore";
+
+  mkGitScript = script: {
+    executable = true;
+    source = "${inputs.self}/scripts/git/git-${script}";
+  };
 in {
   home.file."${nonixGitignoreFilename}".text = ''
     .direnv/
@@ -8,6 +14,11 @@ in {
     flake.lock
     .devenv/
   '';
+
+  home.file.".config/git/git-spinoff" = mkGitScript "spinoff";
+  home.file.".config/git/git-wip" = mkGitScript "wip";
+  home.file.".config/git/git-is-clean" = mkGitScript "is-clean";
+  home.file.".config/git/git-is-dirty" = mkGitScript "is-dirty";
 
   programs.git = {
     enable = true;

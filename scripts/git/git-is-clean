@@ -1,0 +1,83 @@
+#!/bin/sh
+set -eu
+
+usage () {
+    echo "usage: git is-{clean,dirty} [-wih]" >&2
+    echo >&2
+    echo "Options:" >&2
+    echo "-w    Check if worktree is {clean,dirty}" >&2
+    echo "-i    Check if index is {clean,dirty}" >&2
+    echo "-a    Check if any files are marked (un)skipped" >&2
+    echo "-v    Be verbose, print errors to stderr" >&2
+    echo "-h    Show this help" >&2
+}
+
+is_index_clean () {
+    git diff-index --cached --quiet --ignore-submodules --exit-code HEAD --
+}
+
+has_unstaged_changes () {
+    # As per this discussion[1], picking the 'git diff' solution over the other
+    # alternatives.  This does mean, however, that we need to check explicitly
+    # for any untracked files in the repo in another function.
+    # [1]: https://gist.github.com/sindresorhus/3898739
+    ! git diff --no-ext-diff --ignore-submodules --quiet --exit-code
+}
+
+has_untracked_files () {
+    num_untracked_files=$(git ls-files --other --exclude-standard | wc -l)
+    [ $num_untracked_files -gt 0 ]
+}
+
+is_worktree_clean () {
+    ! has_unstaged_changes && ! has_untracked_files
+}
+
+is_skipped () {
+    git show-skipped -q
+}
+
+check_index=0
+check_worktree=0
+check_skipped=0
+verbose=0
+while getopts iwavh flag; do
+    case "$flag" in
+        i) check_index=1;;
+        w) check_worktree=1;;
+        a) check_skipped=1;;
+        v) verbose=1;;
+        h) usage; exit 2;;
+    esac
+done
+shift $(($OPTIND - 1))
+
+# If nothing is explicitly specified, check everything
+if [ $check_index -eq 0 -a $check_worktree -eq 0 -a $check_skipped -eq 0 ]; then
+    check_index=1
+    check_worktree=1
+    check_skipped=1
+fi
+
+if [ $check_index -eq 1 ]; then
+    if ! is_index_clean; then
+        [ $verbose -eq 1 ] && echo "git index not clean" >&2
+        exit 2
+    fi
+fi
+
+if [ $check_worktree -eq 1 ]; then
+    if ! is_worktree_clean; then
+        [ $verbose -eq 1 ] && echo "git work tree not clean" >&2
+        exit 3
+    fi
+fi
+
+if [ $check_skipped -eq 1 ]; then
+    if ! is_skipped; then
+        [ $verbose -eq 1 ] && echo "there are skipped files" >&2
+        exit 4
+    fi
+fi
+
+exit 0
