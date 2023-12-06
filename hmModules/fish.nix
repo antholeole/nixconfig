@@ -28,7 +28,7 @@ in {
       hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
       sshdc = "rm ~/.ssh/ctrl-*";
       cdb = "for i in (seq 1 $argv); cd ..; end";
-      done = "${libnotify}/out/notify-send done!";
+      done = "${libnotify}/bin/notify-send done!";
 
       gacp = let 
         git = "${config.programs.git.package}/bin/git";

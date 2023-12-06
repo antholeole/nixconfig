@@ -9,8 +9,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
 
-    # idk why other ocmmits don't work
-    ags.url = "github:Aylur/ags/2c2fa98543ed013d85a38bb0cd7e12fecb5c3a30";
+    ags.url = "github:antholeole/ags";
   };
 
   nixConfig = {
