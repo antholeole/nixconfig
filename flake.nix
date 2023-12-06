@@ -4,11 +4,13 @@
   inputs = {
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";
-    ags.url = "github:Aylur/ags";
     home-manager.url = "github:nix-community/home-manager/master";
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
+
+    # idk why other ocmmits don't work
+    ags.url = "github:Aylur/ags/2c2fa98543ed013d85a38bb0cd7e12fecb5c3a30";
   };
 
   nixConfig = {
