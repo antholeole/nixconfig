@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+git rev-parse --show-toplevel

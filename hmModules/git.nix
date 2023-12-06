@@ -17,8 +17,10 @@ in {
 
   home.file.".config/git/git-spinoff" = mkGitScript "spinoff";
   home.file.".config/git/git-wip" = mkGitScript "wip";
+  home.file.".config/git/git-cleave" = mkGitScript "cleave";
   home.file.".config/git/git-is-clean" = mkGitScript "is-clean";
   home.file.".config/git/git-is-dirty" = mkGitScript "is-dirty";
+  home.file.".config/git/git-root" = mkGitScript "root";
 
   programs.git = {
     enable = true;
