@@ -44,7 +44,7 @@ in {
     bind=${mod},m,focusmonitor,+1
     bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
-    bind=ALT_SHIFT,s,exec,${pkgs.lib.getExe (pkgs.grimblast)} --notify save area
+    bind=ALT_SHIFT,s,exec,${pkgs.lib.getExe (pkgs.grimblast)} --notify save area ~/Pictures/$(${pkgs.openssl}/bin/openssl rand -base64 12).png
 
 
     # POWERBAR
