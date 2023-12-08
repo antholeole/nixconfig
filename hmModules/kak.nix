@@ -2,7 +2,6 @@
   programs.kakoune = {
     enable = true;
 
-    
     extraConfig = ''
       eval %sh{${pkgs.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
 

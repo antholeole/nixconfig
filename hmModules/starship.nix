@@ -1,8 +1,6 @@
 { ... }: {
   programs.starship = let
-    disabled = {
-      disabled = true;
-    };
+    disabled = { disabled = true; };
 
     colors = import ../theme.nix;
 
@@ -11,7 +9,6 @@
     fgFill = "fg:${color}";
 
     seperator = "[┃](${bgFill})";
-
 
     vc = {
       format = "[$symbol]($fgFill)[$branch](${fgFill})";
@@ -24,15 +21,15 @@
     settings = {
       format = "$character";
       right_format = "$git_branch $git_metrics $directory$hostname";
-      
+
       directory = { format = "[  ┃ $path ](${bgFill})"; };
       cmd_duration = { format = "${seperator}[$duration](${bgFill})"; };
       shlvl = { disabled = true; };
       git_branch = vc;
-      git_metrics = { 
+      git_metrics = {
         only_nonzero_diffs = true;
-        disabled = false; 
-        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})"; 
+        disabled = false;
+        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})";
       };
       hg_branch = vc;
       battery.disabled = true;

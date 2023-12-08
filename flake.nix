@@ -13,26 +13,18 @@
   };
 
   nixConfig = {
-    extra-trusted-public-keys = "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
+    extra-trusted-public-keys =
+      "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=";
     extra-substituters = "https://devenv.cachix.org";
   };
 
-  outputs = { 
-    self,
-     nixpkgs,
-     flake-utils,
-     home-manager,
-     apple-silicon,
-     nixgl, 
-     devenv,
-     ... 
-     } @ inputs:
+  outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
+    , devenv, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
           config.allowUnfree = true;
-          overlays =
-            [ nixgl.overlay ];
+          overlays = [ nixgl.overlay ];
         };
       };
 
@@ -41,7 +33,6 @@
 
         sysConfig = (import ./conf.nix)."${confName}";
 
-
         systemCopy = (import ./mixins/mkSystemCopy.nix) sysConfig inputs pkgs;
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
@@ -49,9 +40,11 @@
       };
 
       system = "x86_64-linux";
-      mkPkgs = system: (import nixpkgs (pkgsOverride.nixpkgs // { inherit system; }));
+      mkPkgs = system:
+        (import nixpkgs (pkgsOverride.nixpkgs // { inherit system; }));
 
-      mkHmOnlyConfig = conf: home-manager.lib.homeManagerConfiguration rec {
+      mkHmOnlyConfig = conf:
+        home-manager.lib.homeManagerConfiguration rec {
           # allows us to define pkgsOverride as a module for easy consumption 
           # on nixos, but as a override for pkgs here.
           pkgs = (import nixpkgs (pkgsOverride.nixpkgs // { inherit system; }));
@@ -85,27 +78,29 @@
         headless = mkHmOnlyConfig "hm-headless";
       };
 
-      devShell.x86_64-linux = let 
-        pkgs = mkPkgs system;
+      devShell.x86_64-linux = let pkgs = mkPkgs system;
       in devenv.lib.mkShell {
         inherit inputs pkgs;
         modules = [
-          ({ pkgs, config, ... }: with pkgs; {
-            languages = {
-              go.enable = true;
-            };
+          ({ pkgs, config, ... }:
+            with pkgs; {
+              languages = { go.enable = true; };
 
-            scripts = {
-              agsdev.exec = let 
-                agsExe = "${inputs.ags.packages."${system}".default}/bin/ags";
-                agsDir = "$DEVENV_ROOT/confs/ags/";
-              in ''
-              ${lib.getExe watchexec} -w  ${agsDir} --exts scss,js --restart -- '${lib.getExe sass} ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -q ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
-              '';
-            };
-            packages = [ pkgs.hello ];
-          })
+              scripts = {
+                agsdev.exec = let
+                  agsExe = "${inputs.ags.packages."${system}".default}/bin/ags";
+                  agsDir = "$DEVENV_ROOT/confs/ags/";
+                in ''
+                  ${
+                    lib.getExe watchexec
+                  } -w  ${agsDir} --exts scss,js --restart -- '${
+                    lib.getExe sass
+                  } ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -q ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
+                '';
+              };
+              packages = [ pkgs.hello ];
+            })
         ];
       };
-      };
+    };
 }

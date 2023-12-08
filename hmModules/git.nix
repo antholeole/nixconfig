@@ -1,5 +1,5 @@
 { inputs, pkgs, sysConfig, ... }:
-let 
+let
   nonixGitignoreFilename = ".nonix.gitignore";
 
   mkGitScript = script: {
@@ -33,7 +33,7 @@ in {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       pull.rebase = true;
-      
+
       core.editor = with pkgs; "${lib.getExe kakoune}";
 
       user = with sysConfig; { inherit email name; };

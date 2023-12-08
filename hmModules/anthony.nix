@@ -1,10 +1,9 @@
-{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ... }: {
+{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ...
+}: {
   fonts.fontconfig.enable = true;
 
-  imports = [ 
-    inputs.ags.homeManagerModules.default 
-  ];
-  
+  imports = [ inputs.ags.homeManagerModules.default ];
+
   xdg = {
     enable = true;
 
@@ -84,7 +83,10 @@
         # deving dots
         wev
 
-        (mkWaylandElectronPkg { pkg = activitywatch; exeName = "aw-watcher-window"; })
+        (mkWaylandElectronPkg {
+          pkg = activitywatch;
+          exeName = "aw-watcher-window";
+        })
 
         # some useful formatters for one-off scripts
         nixfmt

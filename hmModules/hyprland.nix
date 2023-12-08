@@ -1,96 +1,97 @@
-{config, pkgs, sysConfig, mkNixGLPkg, inputs, ...}: let
-    nixGlHyprland = mkNixGLPkg pkgs.hyprland pkgs.hyprland.meta.mainProgram;
+{ config, pkgs, sysConfig, mkNixGLPkg, inputs, ... }:
+let nixGlHyprland = mkNixGLPkg pkgs.hyprland pkgs.hyprland.meta.mainProgram;
 in {
-  wayland.windowManager.hyprland = let 
+  wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
     agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
   in {
     enable = !sysConfig.headless;
-    extraConfig = let 
+    extraConfig = let
     in ''
-    animation = global,0
+      animation = global,0
 
-    decoration {
-      rounding = 10
-      inactive_opacity = 0.8
-
-
-      drop_shadow = true
-      shadow_range = 0
-      shadow_offset = 15 15
-      shadow_render_power = 0
-      col.shadow = 0xff000000
-    }
-
-    general {
-      border_size = 2
-      col.active_border = 0xff000000
-      gaps_in = 9
-    }
-
-    # when holding alt + space, we should show the numbers
-    bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
-    bindr=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = false"
-
-    bind = ${mod},RETURN,exec,${pkgs.lib.getExe (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)}
-    bind = ${mod},W,killactive
-
-    bind=${mod},h,movefocus,l
-    bind=${mod},l,movefocus,r
-    bind=${mod},k,movefocus,u
-    bind=${mod},j,movefocus,d
-
-    bind=${mod},m,focusmonitor,+1
-    bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
-
-    bind=ALT_SHIFT,s,exec,${pkgs.lib.getExe (pkgs.grimblast)} --notify save area ~/Pictures/$(${pkgs.openssl}/bin/openssl rand -base64 12).png
+      decoration {
+        rounding = 10
+        inactive_opacity = 0.8
 
 
-    # POWERBAR
-    bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
-    bind=${mod},Q,submap,powerbar
-    submap=powerbar
+        drop_shadow = true
+        shadow_range = 0
+        shadow_offset = 15 15
+        shadow_render_power = 0
+        col.shadow = 0xff000000
+      }
 
-    bind=,q,exec,swaylock
-    bind=,q,exec,${agsExe} --run-js "showPowerbar.value = false;"
-    bind=,q,submap,reset 
-    
-    bind=,r,exec,reboot
-    bind=,l,exec,logout
-    bind=,s,exec,poweroff
+      general {
+        border_size = 2
+        col.active_border = 0xff000000
+        gaps_in = 9
+      }
+
+      # when holding alt + space, we should show the numbers
+      bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
+      bindr=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = false"
+
+      bind = ${mod},RETURN,exec,${
+        pkgs.lib.getExe
+        (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
+      }
+      bind = ${mod},W,killactive
+
+      bind=${mod},h,movefocus,l
+      bind=${mod},l,movefocus,r
+      bind=${mod},k,movefocus,u
+      bind=${mod},j,movefocus,d
+
+      bind=${mod},m,focusmonitor,+1
+      bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
+
+      bind=ALT_SHIFT,s,exec,${
+        pkgs.lib.getExe (pkgs.grimblast)
+      } --notify save area ~/Pictures/$(${pkgs.openssl}/bin/openssl rand -base64 12).png
 
 
-    bind=,escape,exec,${agsExe} --run-js "showPowerbar.value = false;"
-    bind=,escape,submap,reset 
+      # POWERBAR
+      bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
+      bind=${mod},Q,submap,powerbar
+      submap=powerbar
 
-    submap=reset
+      bind=,q,exec,swaylock
+      bind=,q,exec,${agsExe} --run-js "showPowerbar.value = false;"
+      bind=,q,submap,reset 
 
-    bindt=${mod},Y,exec,${agsExe} --run-js "showForgot.value = true;"
-    bindt=${mod},R,exec,${agsExe} --run-js "showLauncher.value = true;"
+      bind=,r,exec,reboot
+      bind=,l,exec,logout
+      bind=,s,exec,poweroff
 
-    bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;"
-    bindtn=,escape,exec,${agsExe} --run-js "showLauncher.value = false;"
 
-    # binds workspace keys
-    ${builtins.concatStringsSep "\n" (builtins.genList (
-        i: let
-          iStr = builtins.toString i;
+      bind=,escape,exec,${agsExe} --run-js "showPowerbar.value = false;"
+      bind=,escape,submap,reset 
+
+      submap=reset
+
+      bindt=${mod},Y,exec,${agsExe} --run-js "showForgot.value = true;"
+      bindt=${mod},R,exec,${agsExe} --run-js "showLauncher.value = true;"
+
+      bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;"
+      bindtn=,escape,exec,${agsExe} --run-js "showLauncher.value = false;"
+
+      # binds workspace keys
+      ${builtins.concatStringsSep "\n" (builtins.genList (i:
+        let iStr = builtins.toString i;
         in ''
           bind = ${mod}, ${iStr}, workspace, ${iStr}
           bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
-        ''
-      )
-      10)}
+        '') 10)}
 
-    input "1:1:AT_Translated_Set_2_keyboard" {
-      xkb_layout us
-      xkb_options caps:swapescape
-    }
-  '';
+      input "1:1:AT_Translated_Set_2_keyboard" {
+        xkb_layout us
+        xkb_options caps:swapescape
+      }
+    '';
   };
 
-  
   home.file.".config/other/hyprland.desktop" = {
     enable = true;
     text = ''

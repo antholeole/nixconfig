@@ -1,12 +1,13 @@
 { inputs, pkgs, config, systemCopy, sysConfig, lib, ... }:
 let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
 in {
-  programs.fish = let 
-      remoteClipClient = (import "${inputs.self}/confs/services/clipboard" pkgs).client;
+  programs.fish = let
+    remoteClipClient =
+      (import "${inputs.self}/confs/services/clipboard" pkgs).client;
   in {
     enable = true;
 
-    shellAliases = let 
+    shellAliases = let
       cv = if sysConfig.headless then {
         c = remoteClipClient.copy;
         v = remoteClipClient.paste;
@@ -14,30 +15,32 @@ in {
         c = systemCopy;
         v = "${wlClipPath}wl-paste";
       };
-    in {
-      rd = "rm -rf";
-    } // cv;
+    in { rd = "rm -rf"; } // cv;
 
-    functions = with pkgs; let 
-      fzfExe = lib.getExe config.programs.fzf.package;
-    in {
-      cdc = "mkdir -p $argv && cd $argv";
-      rmt = "${trashy}/bin/trash put $argv";
-      killp = "kill (lsof -t -i:$argv)";
-      zd = "${zoxide}/bin/zoxide query $argv";
-      hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
-      sshdc = "rm ~/.ssh/ctrl-*";
-      cdb = "for i in (seq 1 $argv); cd ..; end";
-      done = "${libnotify}/bin/notify-send done!";
+    functions = with pkgs;
+      let fzfExe = lib.getExe config.programs.fzf.package;
+      in {
+        cdc = "mkdir -p $argv && cd $argv";
+        rmt = "${trashy}/bin/trash put $argv";
+        killp = "kill (lsof -t -i:$argv)";
+        zd = "${zoxide}/bin/zoxide query $argv";
+        hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
+        sshdc = "rm ~/.ssh/ctrl-*";
+        cdb = "for i in (seq 1 $argv); cd ..; end";
+        done = "${libnotify}/bin/notify-send done!";
 
-      gacp = let 
-        git = "${config.programs.git.package}/bin/git";
-      in "${git} add --all && ${git} commit -m $argv && ${git} push";
+        gacp = let git = "${config.programs.git.package}/bin/git";
+        in "${git} add --all && ${git} commit -m $argv && ${git} push";
 
-      ch = let 
-        sysCliphist = if sysConfig.headless then remoteClipClient.cliphist else "${lib.getExe cliphist} list";
-      in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${lib.getExe cliphist} decode | ${wlClipPath}wl-copy";
-    };
+        ch = let
+          sysCliphist = if sysConfig.headless then
+            remoteClipClient.cliphist
+          else
+            "${lib.getExe cliphist} list";
+        in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
+          lib.getExe cliphist
+        } decode | ${wlClipPath}wl-copy";
+      };
 
     plugins = [
       {
@@ -71,7 +74,7 @@ in {
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
-      
+
       fish_add_path ~/.config/git
 
       set MICRO_TRUECOLOR 1

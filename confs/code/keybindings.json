@@ -4,6 +4,10 @@
     "key": "ctrl+g"
   },
   {
+    "command": "-workbench.action.quit",
+    "key": "ctrl+q"
+  },
+  {
     "command": "-workbench.action.files.newUntitledFile",
     "key": "ctrl+n"
   },
@@ -131,12 +135,28 @@
     "command": "workbench.action.focusFirstEditorGroup"
   },
   {
-    "key": "ctrl+shift+l",
-    "command": "workbench.action.focusSecondEditorGroup"
+    "command": "workbench.action.closeSidebar",
+    "key": "ctrl+shift+h"
   },
   {
-    "key": "ctrl+h",
-    "command": "-workbench.action.focusFirstEditorGroup"
+    "key": "ctrl+shift+l",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "workbench.action.focusSecondEditorGroup",
+        "workbench.action.closeSidebar"
+      ]
+    }
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "workbench.action.focusFirstEditorGroup",
+        "workbench.action.closeSidebar"
+      ]
+    }
   },
   {
     "key": "ctrl+k ctrl+left",

@@ -18,8 +18,6 @@
       "hl+" = "#ed8796";
     };
 
-    defaultOptions = [
-      "--height 20%"
-    ];
+    defaultOptions = [ "--height 20%" ];
   };
 }
