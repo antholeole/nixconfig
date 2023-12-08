@@ -2,8 +2,7 @@
 let magic_key = "|";
 in {
   services.espanso = lib.mkIf (!sysConfig.headless) {
-    # sad
-    enable = false;
+    enable = true;
 
     package = with pkgs;
       pkgs.symlinkJoin {

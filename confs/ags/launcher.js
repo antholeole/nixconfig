@@ -52,6 +52,13 @@ export const Launcher = (
                                         launcherText.value = "";
                                         variable.value = false;
                                     },
+                                    connections: [
+                                        [variable, (self) => {
+                                            if (!variable.value) {
+                                                self.text = ""
+                                            }
+                                        }]
+                                    ]
                                 }),
                             ]
                         })
