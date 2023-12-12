@@ -51,6 +51,11 @@
       source = "${inputs.self}/assets/id_ed25519.pub";
     };
 
+    file.".ssh/authorized_keys" = {
+      enable = true;
+      source = "${inputs.self}/assets/authorized_keys";
+    };
+
     packages = with pkgs;
       [
         fd # find!
