@@ -76,6 +76,7 @@
         pc = mkHmOnlyConfig "hm-pc";
         work = mkHmOnlyConfig "hm-work";
         headless = mkHmOnlyConfig "hm-headless";
+        headless-work = mkHmOnlyConfig "hm-headless-work";
       };
 
       devShell.x86_64-linux = let pkgs = mkPkgs system;

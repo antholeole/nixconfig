@@ -22,7 +22,7 @@ let
       adapter = "macsmc-ac";
     };
   };
-in {
+in rec {
   kayak-asahi = default_conf;
 
   hm-pc = default_conf // {
@@ -60,10 +60,14 @@ in {
     };
   };
 
-  hm-headless = default_conf // {
+  hm-headless-work = default_conf // {
     name = "oleina";
     headless = true;
     bluetooth = false;
     homeDirPath = "/usr/local/google/home/";
+  };
+
+  hm-headless = hm-headless-work // {
+    name = "anthony";
   };
 }
