@@ -67,7 +67,7 @@ in rec {
     homeDirPath = "/usr/local/google/home/";
   };
 
-  hm-headless = hm-headless-work // {
-    name = "anthony";
+  hm-headless = default_conf // {
+    headless = true;
   };
 }
