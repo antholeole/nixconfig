@@ -51,9 +51,9 @@
       source = "${inputs.self}/assets/id_ed25519.pub";
     };
 
-    file.".ssh/authorized_keys" = {
+    file.".ssh/config" = {
       enable = true;
-      source = "${inputs.self}/assets/authorized_keys";
+      source = "${inputs.self}/assets/config";
     };
 
     packages = with pkgs;
