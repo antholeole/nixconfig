@@ -17,3 +17,4 @@ If you're using a nixos, you're good!
 If you're using home-manager, you'll need to:
 - run `sudo setcap "cap_dac_override+p" $(hmWhich espanso)/bin/.espanso-wrapped`
 - run `sudo cp ~/sway.desktop /usr/share/wayland-sessions/sway.desktop`
+- copy `assets/authorized_keys` into `~/.ssh/authorized_keys`
