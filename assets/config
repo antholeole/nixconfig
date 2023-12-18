@@ -1,6 +1,12 @@
 Host github.com
  HostName github.com
- IdentityFile ~/.ssh/id_ed25519.pub
+ IdentityFile ~/.ssh/id_ed25519
+
+Host dev
+ HostName 45.33.59.79
+ User anthony
+ IdentityFile ~/.ssh/id_ed25519
+ RemoteForward 9791 localhost:9791
 
 Host *
  RemoteForward 9791 localhost:9791
