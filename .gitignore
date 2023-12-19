@@ -3,3 +3,5 @@ firmware/
 .sass-cache/
 *.map
 .devenv/
+
+custom/

@@ -8,5 +8,8 @@ Host dev
  IdentityFile ~/.ssh/id_ed25519
  RemoteForward 9791 localhost:9791
 
-Host *
+Host personal
+ HostName 2607:fb90:9fa1:49ca:c9b:48ca:9ad7:6c55
+ User anthony
+ IdentityFile ~/.ssh/id_ed25519
  RemoteForward 9791 localhost:9791

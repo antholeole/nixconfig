@@ -18,3 +18,6 @@ If you're using home-manager, you'll need to:
 - run `sudo setcap "cap_dac_override+p" $(hmWhich espanso)/bin/.espanso-wrapped`
 - run `sudo cp ~/sway.desktop /usr/share/wayland-sessions/sway.desktop`
 - copy `assets/authorized_keys` into `~/.ssh/authorized_keys`
+
+I also include some stuff in /custom/, for configuration that I do not want to leak.
+These are gitignored but they don't need to exist.
