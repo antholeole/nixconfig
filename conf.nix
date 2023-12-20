@@ -74,5 +74,5 @@ in rec {
   gce = default_conf // {
     headless = true;
     name = "oleina_google_com";
-  }
+  };
 }
