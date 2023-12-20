@@ -7,6 +7,7 @@ import (
   "fmt"
   "log"
   "net/http"
+  "oleinaconf.com/utils"
 )
 
 func main() {
@@ -21,10 +22,14 @@ func main() {
 	}
 }
 
+func mkUrl(path string) string {
+	return fmt.Sprintf("http://localhost:%s/%s", utils.Port, path)
+}
+
 func run() error {
 	switch cmd := os.Args[1]; cmd {
 	case "paste": 
-		resp, err := http.Get("http://localhost:9791/paste")
+		resp, err := http.Get(mkUrl(cmd))
 		defer resp.Body.Close()
 		body, err := io.ReadAll(resp.Body)
 
@@ -42,13 +47,13 @@ func run() error {
 		suffixless := strings.TrimSuffix(string(stdin), "\n")
 		reader := strings.NewReader(suffixless)
 
-		_, err = http.Post("http://localhost:9791/copy", "text/plain", reader)
+		_, err = http.Post(mkUrl(cmd), "text/plain", reader)
 
 		if err != nil {
 			return err
 		}
 	case "cliphist":
-		resp, err := http.Get("http://localhost:9791/cliphist")
+		resp, err := http.Get(mkUrl(cmd))
 		defer resp.Body.Close()
 		body, err := io.ReadAll(resp.Body)
 
@@ -57,6 +62,13 @@ func run() error {
 		}
 
 		fmt.Print(string(body))
+	case "done": 	
+		resp, err := http.Get(mkUrl(cmd))
+		defer resp.Body.Close()
+
+		if err != nil {
+			return err
+		}
 	default: 
 		return fmt.Errorf("unknown command %s", cmd)
 	}

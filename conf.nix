@@ -70,4 +70,9 @@ in rec {
   hm-headless = default_conf // {
     headless = true;
   };
+
+  gce = default_conf // {
+    headless = true;
+    name = "oleina_google_com";
+  }
 }

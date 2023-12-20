@@ -15,6 +15,7 @@ type argT struct {
 	Cliphist string `cli:"*cliphist" usage:"path to cliphist package to use"`
 	Wlcopy   string `cli:"*wlcopy" usage:"path to wlcopy package to use"`
 	Wlpaste  string `cli:"*wlpaste" usage:"path to wlpaste package to use"`
+	NotifySend string `cli:"*notify-send" usage:"path to notify-send package to use"`
 }
 
 func main() {
@@ -61,6 +62,19 @@ func run(args *argT) error {
 	})
 
 	r.GET("/paste", func(c *gin.Context) {
+		cmd := exec.Command(args.Wlpaste)
+		out, err := cmd.Output()
+
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		c.Data(http.StatusOK, "text/plain", out)
+		return
+	})
+
+	r.GET("/done", func(c *gin.Context) {
 		cmd := exec.Command(args.Wlpaste)
 		out, err := cmd.Output()
 
