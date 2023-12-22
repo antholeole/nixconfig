@@ -3,13 +3,15 @@
     enable = true;
     defaultEditor = true;
 
-    config = {
-      numberLines.relative = true;
-      colorScheme = "catppuccin_macchiato";
-    };
-
     extraConfig = ''
       eval %sh{${pkgs.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
+
+      
+      # line numbers
+      add-highlighter global/ number-lines -relative
+
+      # color scheme
+      colorscheme catppuccin_macchiato
 
       # add copy to system clipboard
       hook global RegisterModified '"' %{ nop %sh{
