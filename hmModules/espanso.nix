@@ -7,10 +7,10 @@ in {
     package = with pkgs;
       pkgs.symlinkJoin {
         name = "espanso";
+        # TODO: this needs to be version >2.2.0 or else it won't work
         paths = [ espanso-wayland wl-clipboard ];
         buildInputs = [ makeWrapper ];
         version = espanso-wayland.version;
-        #TODO this doesn't work and it spams journalctl with "cannot find gsettings"
         postBuild = ''
           wrapProgram $out/bin/espanso --set PATH ${
             lib.makeBinPath [ "/usr/bin/" "${glib.out}/" wl-clipboard ]

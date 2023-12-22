@@ -5,6 +5,7 @@
 
     config = {
       numberLines.relative = true;
+      colorScheme = "catppuccin_macchiato";
     };
 
     extraConfig = ''
@@ -23,6 +24,6 @@
 
   home.file.".config/kak/colors/catppuccin_macchiato.kak" = {
     enable = true;
-    source = "${inputs.self}/confs/kak/catpuccin_macchiato.kak";
+    source = "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
   };
 }

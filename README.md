@@ -15,7 +15,7 @@ enter the program `ncmpcpp` then click 2 to enter the browse menu. Then, click "
 If you're using a nixos, you're good!
 
 If you're using home-manager, you'll need to:
-- run `sudo setcap "cap_dac_override+p" $(hmWhich espanso)/bin/.espanso-wrapped`
+- run `sudo setcap "cap_dac_override+p" $(hmWhich espanso)/bin/espanso`
 - copy `assets/authorized_keys` into `~/.ssh/authorized_keys`
 
 I also include some stuff in /custom/, for configuration that I do not want to leak.
