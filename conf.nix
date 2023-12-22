@@ -14,7 +14,7 @@ let
 
     wofiCmds = { };
     dailysh = { };
-    swayStartupCommands = [ ];
+    wmStartupCommands = [ ];
 
     laptop = {
       brightnessDir = "gpio-bl";
@@ -46,7 +46,7 @@ in rec {
     wofiCmds = { chrome = "/bin/google-chrome"; };
     dailysh = { gcert = "gcert"; };
 
-    swayStartupCommands = [ "ssh-agent -a $SSH_AUTH_SOCK" ];
+    wmStartupCommands = [ "ssh-agent -a $SSH_AUTH_SOCK" ];
 
     fontSizes = mkFontSizes {
       defaultFontSize = 20;
@@ -67,9 +67,7 @@ in rec {
     homeDirPath = "/usr/local/google/home/";
   };
 
-  hm-headless = default_conf // {
-    headless = true;
-  };
+  hm-headless = default_conf // { headless = true; };
 
   hm-headless-gce = default_conf // {
     headless = true;

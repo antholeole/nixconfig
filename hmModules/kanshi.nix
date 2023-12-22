@@ -36,8 +36,10 @@ in {
       mkKanshiConfig = displays:
         with builtins; {
           outputs = map (display: display.kanshi) displays;
-          exec = (map mkBgStatement displays)
-            ++ [ "${agsExe} -q ; ${agsExe} >>/tmp/kanshi 2>&1 &" ];
+          exec = (map mkBgStatement displays) ++ [
+            # I cannot get this to work
+            "pkill ags"
+          ];
         };
     in {
       latopOnly = mkKanshiConfig [ laptop ];

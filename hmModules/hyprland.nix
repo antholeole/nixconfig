@@ -74,8 +74,7 @@ in {
       bindt=${mod},Y,exec,${agsExe} --run-js "showForgot.value = true;"
       bindt=${mod},R,exec,${agsExe} --run-js "showLauncher.value = true;"
 
-      bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;"
-      bindtn=,escape,exec,${agsExe} --run-js "showLauncher.value = false;"
+      bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;" ; ${agsExe} --run-js "showLauncher.value = false;"
 
       # binds workspace keys
       ${builtins.concatStringsSep "\n" (builtins.genList (i:
@@ -85,7 +84,12 @@ in {
           bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
         '') 10)}
 
-      input "1:1:AT_Translated_Set_2_keyboard" {
+        
+      ${builtins.concatStringsSep "\n" (map (cmd: ''
+        exec-once=${cmd}
+      '') sysConfig.wmStartupCommands)}
+
+      device:AT_Translated_Set_2_keyboard {
         xkb_layout us
         xkb_options caps:swapescape
       }

@@ -59,35 +59,32 @@
             key = "ctrl+${n}";
             command = "-workbench.action.focusThirdEditorGroup";
           }
-        ]) (lib.lists.range 1 9)) ++ (lib.lists.flatten (map (view: [
-            {
-              command = "workbench.action.closeSidebar";
-              key = "ctrl+shift+${view.key}";
-              when =
-                "focusedView == 'workbench.view.${view.name}'";
-            }
-          ]) [
-            {
-              key = "e";
-              name = "explorer";
-            }
-            {
-              key = "g";
-              name = "scm";
-            }
-            {
-              key = "f";
-              name = "search";
-            }
-            {
-              key = "d";
-              name = "debug";
-            }
-            {
-              key = "x";
-              name = "extensions";
-            }
-          ]));
+        ]) (lib.lists.range 1 9)) ++ (lib.lists.flatten (map (view: [{
+          command = "workbench.action.closeSidebar";
+          key = "ctrl+shift+${view.key}";
+          when = "focusedView == 'workbench.view.${view.name}'";
+        }]) [
+          {
+            key = "e";
+            name = "explorer";
+          }
+          {
+            key = "g";
+            name = "scm";
+          }
+          {
+            key = "f";
+            name = "search";
+          }
+          {
+            key = "d";
+            name = "debug";
+          }
+          {
+            key = "x";
+            name = "extensions";
+          }
+        ]));
     userSettings = with builtins;
       ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // {
         "terminal.integrated.profiles.linux" = {

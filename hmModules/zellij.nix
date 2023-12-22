@@ -54,33 +54,33 @@ in {
     '';
   };
 
-  home.file."${layoutDir}/standard.kdl" = let
-    daily = import "${inputs.self}/scripts/daily_sh.nix" pkgs sysConfig;
-    notes = import "${inputs.self}/scripts/notes.nix" { inherit pkgs inputs; };
-  in {
-    enable = true;
-    text = ''
-      layout {
-      default_tab_template {
-        children
-        pane size=1 borderless=true {
-            plugin location="zellij:tab-bar"
+  home.file."${layoutDir}/daily.kdl" =
+    let daily = import "${inputs.self}/scripts/daily_sh.nix" pkgs sysConfig;
+    in {
+      enable = true;
+      text = ''
+        layout {
+        default_tab_template {
+          children
+          pane size=1 borderless=true {
+              plugin location="zellij:tab-bar"
+            }
           }
-        }
-        tab name="btm" {
-          pane command="${pkgs.lib.getExe pkgs.bottom}"
-        }
-        tab name="daily" split_direction="vertical" {
-          pane split_direction="horizontal" {
-            pane command="${pkgs.lib.getExe daily}"
-            pane command="${pkgs.lib.getExe' pkgs.pipes-rs "pipes-rs"}" {
-              args "--rainbow" "5" "-c" "rgb" "-p" "1" "-r" "0.75"
-            } 
+          tab name="btm" {
+            pane command="${pkgs.lib.getExe pkgs.bottom}"
           }
-          pane command="${pkgs.lib.getExe notes}"
+          tab name="daily" split_direction="vertical" {
+            pane split_direction="horizontal" {
+              pane command="${pkgs.lib.getExe' pkgs.pipes-rs "pipes-rs"}" {
+                args "--rainbow" "5" "-c" "rgb" "-p" "1" "-r" "0.75"
+              } 
+            }
+          }
+          tab name="joplin" {
+            pane command="${pkgs.lib.getExe pkgs.joplin}"
+          }
+          tab name="misc"
         }
-        tab name="misc"
-      }
-    '';
-  };
+      '';
+    };
 }

@@ -58,18 +58,22 @@
 
     packages = with pkgs;
       [
-        fd # find!
-        httpie
+        fd # a faster find
+        httpie # a simpler curl
         unzip
-        fx
-        neofetch
-        trashy
-        bottom
-        socat
-        nixfmt
-        watchexec
+        fx # jq but simpler
+        neofetch # for funzies
+        trashy # allows us to move stuff to a trash dir 
+        bottom # top but nicer
+        socat # sometimes socat is useful for quick hacks
+        nixfmt # most projects are going to have a flake.nix. this is helpful
+        watchexec # code agnostic file watcher. very helpful for dev setups
+        parallel # xargs but doesn't take 1 million years
 
-        go
+        # LANGUAGE SPECIFIC
+        # These are here because vscode unfortunately does not have the
+        # best integration with the world.
+        go 
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols

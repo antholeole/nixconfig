@@ -10,7 +10,7 @@
     in {
       Environment = "GIN_MODE=release";
       ExecStart = with pkgs;
-        "${remoteClipServer}/bin/oleinaconf.com --cliphist ${cliphist}/bin/cliphist --wlcopy ${wl-clipboard.outPath}/bin/wl-copy --wlpaste ${wl-clipboard.outPath}/bin/wl-paste";
+        "${remoteClipServer}/bin/oleinaconf.com --cliphist ${cliphist}/bin/cliphist --wlcopy ${wl-clipboard.outPath}/bin/wl-copy --wlpaste ${wl-clipboard.outPath}/bin/wl-paste --notify-send ${libnotify}/bin/notify-send";
     };
   };
 }

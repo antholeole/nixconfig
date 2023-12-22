@@ -11,9 +11,11 @@ in {
       cv = if sysConfig.headless then {
         c = remoteClipClient.copy;
         v = remoteClipClient.paste;
+        done = remoteClipClient.done;
       } else {
         c = systemCopy;
         v = "${wlClipPath}wl-paste";
+        done = "${pkgs.libnotify}/bin/notify-send done!";
       };
     in { rd = "rm -rf"; } // cv;
 
@@ -27,7 +29,7 @@ in {
         hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
         sshdc = "rm ~/.ssh/ctrl-*";
         cdb = "for i in (seq 1 $argv); cd ..; end";
-        done = "${libnotify}/bin/notify-send done!";
+        skak = "sudo ${kakoune} $argv";
 
         gacp = let git = "${config.programs.git.package}/bin/git";
         in "${git} add --all && ${git} commit -m $argv && ${git} push";
