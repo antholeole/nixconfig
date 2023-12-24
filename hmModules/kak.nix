@@ -3,6 +3,11 @@
     enable = true;
     defaultEditor = true;
 
+    plugins = with pkgs.kakounePlugins; [
+      fzf-kak
+      quickscope-kak
+    ];
+
     extraConfig = ''
       eval %sh{${pkgs.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
 
@@ -21,6 +26,11 @@
       # add paste to system clipboard
       map global user P '!${pkgs.wl-clipboard}/bin/wl-paste<ret>'
       map global user p '<a-!>${pkgs.wl-clipboard}/bin/wl-paste<ret>'
+
+      map global normal <c-h> ': fzf-mode<ret>'
+
+      # ignore some garbage
+      set-option global fzf_file_command "${pkgs.fd}/bin/fd . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -print"
     '';
   };
 

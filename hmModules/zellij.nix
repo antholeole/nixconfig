@@ -11,15 +11,15 @@ let
         children
         pane size=1 borderless=true {
             plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-              format_space "#[fg=${bgColor}]┃"
+              format_space "#[bg=${bgColor}]"
 
-              mode_normal  "#[bg=${colors.mantle}] "
+              mode_normal  "{name}"
 
               tab_normal   "#[fg=${fgColor}] {name} "
               tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
 
               format_left  "{tabs}"
-              format_right "{mode}#[fg=${colors.subtext1}]{session}"
+              format_right "#[fg=${colors.crust},bg=${bgColor}] {session} #[bg=${fgColor},fg=${colors.base}] {mode} "
             }
           }
         }

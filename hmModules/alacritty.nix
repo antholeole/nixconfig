@@ -95,6 +95,11 @@ in {
           cyan = teal;
           white = subtext1;
         };
+
+        window.padding = {
+          x = 5;
+          y = 5;
+        };
       };
     };
   };
