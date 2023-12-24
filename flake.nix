@@ -9,6 +9,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
 
+    zjstatus.url = "github:dj95/zjstatus";
     ags.url = "github:antholeole/ags";
   };
 
@@ -19,12 +20,17 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
-    , devenv, ... }@inputs:
+    , devenv, zjstatus, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
           config.allowUnfree = true;
-          overlays = [ nixgl.overlay ];
+          overlays = [
+            nixgl.overlay
+            (final: prev: {
+              zjstatus = zjstatus.packages.${prev.system}.default;
+            })
+          ];
         };
       };
 

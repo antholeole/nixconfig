@@ -22,9 +22,10 @@
     let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
     in {
       Restart = "Always";
-      
+
       # needs hyprland on path or it fails
-      Environment="PATH=${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+      Environment =
+        "PATH=${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
       ExecStart = "${agsExe}";
     };
 }

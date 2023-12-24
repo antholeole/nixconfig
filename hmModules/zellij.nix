@@ -2,11 +2,33 @@
 let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
+
+  bgColor = colors.mantle;
+  fgColor = colors.lavender;
+  
+  defaultTab = ''
+      default_tab_template {
+        children
+        pane size=1 borderless=true {
+            plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+              format_space "#[fg=${bgColor}]┃"
+
+              mode_normal  "#[bg=${colors.mantle}] "
+
+              tab_normal   "#[fg=${fgColor}] {name} "
+              tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
+
+              format_left  "{tabs}"
+              format_right "{mode}#[fg=${colors.subtext1}]{session}"
+            }
+          }
+        }
+  '';
 in {
   programs.zellij = {
     enable = true;
 
-    enableFishIntegration = true;
+    enableFishIntegration = false;
 
     settings = {
       theme = "catpuccin";
@@ -44,12 +66,7 @@ in {
     enable = true;
     text = ''
       layout {
-        default_tab_template {
-          children
-          pane size=1 borderless=true {
-              plugin location="zellij:tab-bar"
-            }
-          }
+        ${defaultTab}
       }
     '';
   };
@@ -60,12 +77,7 @@ in {
       enable = true;
       text = ''
         layout {
-        default_tab_template {
-          children
-          pane size=1 borderless=true {
-              plugin location="zellij:tab-bar"
-            }
-          }
+          ${defaultTab}
           tab name="btm" {
             pane command="${pkgs.lib.getExe pkgs.bottom}"
           }
@@ -75,9 +87,6 @@ in {
                 args "--rainbow" "5" "-c" "rgb" "-p" "1" "-r" "0.75"
               } 
             }
-          }
-          tab name="joplin" {
-            pane command="${pkgs.lib.getExe pkgs.joplin}"
           }
           tab name="misc"
         }
