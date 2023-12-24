@@ -1,5 +1,9 @@
 [
   {
+    "command": "-vscode.openFolder",
+    "key": "ctrl+o"
+  },
+  {
     "command": "-workbench.action.terminal.goToRecentDirectory",
     "key": "ctrl+g"
   },
