@@ -12,7 +12,7 @@
         "alacritty (daily)" =
           "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
         "alacritty (default)" =
-          "${lib.getExe alacritty} -e ${zellij}/bin/zellij";
+          "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
         "code" = "${config.programs.vscode.package}/bin/code";
         "pavucontrol" = "${lib.getExe pavucontrol}";
       } // sysConfig.wofiCmds);
