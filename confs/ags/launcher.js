@@ -1,9 +1,14 @@
-import { readFile, execAsync } from 'resource:///com/github/Aylur/ags/utils.js'
+import { readFile, execAsync, exec } from 'resource:///com/github/Aylur/ags/utils.js'
 import { addToggleableWindow } from './globals.js'
 import App from 'resource:///com/github/Aylur/ags/app.js'
-
 import Widget from 'resource:///com/github/Aylur/ags/widget.js'
 import Variable from 'resource:///com/github/Aylur/ags/variable.js'
+
+
+const filterInput = (launcherData, launcherText) => {
+    const out = exec(`bash -c 'echo "${launcherData.join("\n")}" | fzf --filter "${launcherText}"'`)
+    return out.split('\n')
+}
 
 
 
@@ -42,11 +47,19 @@ export const Launcher = (
                                     class_name: 'input',
                                     onChange: ({ text }) => launcherText.value = text,
                                     onAccept: ({ text }) => {
-                                        const selected = launcherData.filter(({ data }) => data.toLowerCase().includes(text))[0]
+                                        const selectedKey = filterInput(launcherData.map(v => v.data), text)[0]
+                                        
+                                        if (selectedKey === undefined) {
+                                            launcherText.value = ""
+                                            variable.value = false
+                                            return
+                                        }
 
-                                        if (selected !== undefined && selected.exec !== undefined) {
-                                            execAsync(['bash', '-c', selected.exec])
-                                            console.log(selected.exec)
+                                        const exec = launcherData.filter(v => v.data === selectedKey)[0].exec
+
+                                        if (exec !== undefined) {
+                                            execAsync(['bash', '-c', exec])
+                                            console.log(exec)
                                         }
 
                                         launcherText.value = "";
@@ -73,12 +86,12 @@ export const Launcher = (
                         vertical: true,
                         connections: [
                             [launcherText,
-                                self => self.children = launcherData.filter(
-                                    ({ data }) => data.toLowerCase().includes(launcherText.value)
-                                ).map(({ data }, i) => Widget.Label({
+                                self => self.children = filterInput(launcherData.map(v => v.data), launcherText.value).map((data, i) => Widget.Label({
                                     label: data,
                                     justification: 'left',
-                                    class_name: "launcher-text" + (i === 0 ? " first" : "")
+                                    class_name:                                        
+                                        
+                                    "launcher-text" + (i === 0 ? " first" : "")
                                 }))]
                         ]
                     })
@@ -98,7 +111,7 @@ addToggleableWindow("Forgot", ((v) => Launcher(
 )))
 
 addToggleableWindow("Launcher", ((v) => {
-    const json = JSON.parse(readFile(`${App.configDir}/../data/launcher.json`))
+    const json = JSON.parse(readFile(`/home/oleina/.config/data/launcher.json`))
     const formatted = Object.entries(json).map(([data, exec]) => ({
         data, exec
     }))

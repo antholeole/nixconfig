@@ -1,6 +1,4 @@
-{ pkgs, lib, sysConfig, inputs, ... }:
-let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
-in {
+{ pkgs, lib, sysConfig, inputs, ... }: {
   services.kanshi = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
@@ -38,7 +36,7 @@ in {
           outputs = map (display: display.kanshi) displays;
           exec = (map mkBgStatement displays) ++ [
             # I cannot get this to work
-            "pkill ags"
+            "/usr/bin/pkill ags"
           ];
         };
     in {

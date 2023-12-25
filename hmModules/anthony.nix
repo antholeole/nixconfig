@@ -70,6 +70,11 @@
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but doesn't take 1 million years
 
+        (symlinkJoin {
+          name = "fx";
+          paths = [ fx deno ];
+        })
+
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
         # best integration with the world.
