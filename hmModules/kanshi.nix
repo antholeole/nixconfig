@@ -13,10 +13,10 @@
           ''
             ${pkgs.swaybg}/bin/swaybg -i ~/wall.png -c "#24273a" -m center -o ${criteria.kanshi.criteria}'';
       ultraWide = {
-        tall = true;
+        tall = false;
         kanshi = {
           criteria = "DP-2";
-          mode = "2560x1440@59.951Hz";
+          # mode = "2560x1440@59.951Hz";
           scale = 1.0;
         };
       };

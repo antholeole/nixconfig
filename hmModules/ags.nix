@@ -2,6 +2,7 @@
   programs.ags = {
     enable = !sysConfig.headless;
     configDir = "${inputs.self}/confs/ags";
+    extraPackages = with pkgs; [ fzf hyprland ];
   };
 
   home.file.".config/data/launcher.json" = {
@@ -21,7 +22,7 @@
   systemd.user.services.ags.Service =
     let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
     in {
-      Restart = "Always";
+      Restart = "always";
 
       # needs hyprland on path or it fails
       Environment =

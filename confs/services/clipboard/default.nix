@@ -25,6 +25,7 @@ in {
   in {
     copy = "${rcClient}/bin/oleinaconf.com copy";
     paste = "${rcClient}/bin/oleinaconf.com paste";
+    done = "${rcClient}/bin/oleinaconf.com done";
     cliphist = "${rcClient}/bin/oleinaconf.com cliphist";
   };
 }

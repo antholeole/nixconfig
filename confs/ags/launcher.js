@@ -56,7 +56,6 @@ export const Launcher = (
                                         }
 
                                         const exec = launcherData.filter(v => v.data === selectedKey)[0].exec
-
                                         if (exec !== undefined) {
                                             execAsync(['bash', '-c', exec])
                                             console.log(exec)
