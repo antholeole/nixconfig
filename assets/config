@@ -12,4 +12,6 @@ Host personal
  HostName 2607:fb90:9fa1:49ca:233c:6b4d:b80:60d1
  User anthony
  IdentityFile ~/.ssh/id_ed25519
+
+Host * !github.com
  RemoteForward 9791 localhost:9791

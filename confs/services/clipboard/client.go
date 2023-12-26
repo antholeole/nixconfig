@@ -54,21 +54,20 @@ func run() error {
 		}
 	case "cliphist":
 		resp, err := http.Get(mkUrl(cmd))
-		defer resp.Body.Close()
-		body, err := io.ReadAll(resp.Body)
-
 		if err != nil {
 			return err
-		}
-
+		}		
+		
+		defer resp.Body.Close()
+		body, err := io.ReadAll(resp.Body)
 		fmt.Print(string(body))
 	case "done": 	
 		resp, err := http.Get(mkUrl(cmd))
-		defer resp.Body.Close()
-
 		if err != nil {
 			return err
 		}
+
+		defer resp.Body.Close()
 	default: 
 		return fmt.Errorf("unknown command %s", cmd)
 	}
