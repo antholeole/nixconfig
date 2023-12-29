@@ -5,24 +5,25 @@ let
 
   bgColor = colors.mantle;
   fgColor = colors.lavender;
-  
+
   defaultTab = ''
-      default_tab_template {
-        children
-        pane size=1 borderless=true {
-            plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-              format_space "#[bg=${bgColor}]"
+    default_tab_template {
+      children
+      pane size=1 borderless=true {
+          plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+            format_space "#[bg=${bgColor}]"
 
-              mode_normal  "{name}"
+            mode_normal  "#[bg=${fgColor},fg=${colors.base}] {name} "
+            mode_locked  "#[bg=${colors.yellow},fg=${bgColor}] {name} "
 
-              tab_normal   "#[fg=${fgColor}] {name} "
-              tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
+            tab_normal   "#[fg=${fgColor}] {name} "
+            tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
 
-              format_left  "{tabs}"
-              format_right "#[fg=${colors.crust},bg=${bgColor}] {session} #[bg=${fgColor},fg=${colors.base}] {mode} "
-            }
+            format_left  "{tabs}"
+            format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
           }
         }
+      }
   '';
 in {
   programs.zellij = {

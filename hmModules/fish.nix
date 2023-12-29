@@ -19,6 +19,10 @@ in {
       };
     in { rd = "rm -rf"; } // cv;
 
+    shellAbbrs = {
+        pl = "parallel";
+    };
+
     functions = with pkgs;
       let fzfExe = lib.getExe config.programs.fzf.package;
       in {
@@ -29,7 +33,7 @@ in {
         hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
         sshdc = "rm ~/.ssh/ctrl-*";
         cdb = "for i in (seq 1 $argv); cd ..; end";
-        skak = "sudo ${kakoune} $argv";
+        skak = "sudo ${kakoune}/bin/kak $argv";
 
         gacp = let git = "${config.programs.git.package}/bin/git";
         in "${git} add --all && ${git} commit -m $argv && ${git} push";

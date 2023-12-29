@@ -75,7 +75,7 @@ func run(args *argT) error {
 	})
 
 	r.GET("/done", func(c *gin.Context) {
-		cmd := exec.Command(args.Wlpaste)
+		cmd := exec.Command(args.NotifySend)
 		out, err := cmd.Output()
 
 		if err != nil {

@@ -3,13 +3,22 @@
     enable = true;
     defaultEditor = true;
 
-    plugins = with pkgs.kakounePlugins; [
-      fzf-kak
-      quickscope-kak
-    ];
+    plugins = with pkgs.kakounePlugins; [ fzf-kak quickscope-kak ];
+    config = {
+      hooks = [{
+        name = "ModuleLoaded";
+        once = true;
+        option = "fzf-file";
+        commands = ''
+          set-option global fzf_file_command '${pkgs.fd}/bin/fd --type f'
+          set-option global fzf_highlight_command '${pkgs.bat}/bin/bat'
+	  set-option global fzf_grep_command '${pkgs.ripgrep}/bin/rg'
+        '';
+      }];
+    };
 
-    extraConfig = ''
-      eval %sh{${pkgs.kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
+    extraConfig = with pkgs; ''
+      eval %sh{${kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
 
 
       # line numbers
@@ -24,13 +33,13 @@
       }}
 
       # add paste to system clipboard
-      map global user P '!${pkgs.wl-clipboard}/bin/wl-paste<ret>'
-      map global user p '<a-!>${pkgs.wl-clipboard}/bin/wl-paste<ret>'
+      map global user P '!${wl-clipboard}/bin/wl-paste -n<ret>'
+      map global user p '<a-!>${wl-clipboard}/bin/wl-paste -n<ret>'
 
       map global normal <c-h> ': fzf-mode<ret>'
 
       # ignore some garbage
-      set-option global fzf_file_command "${pkgs.fd}/bin/fd . \( -path '*/.svn*' -o -path '*/.git*' \) -prune -o -type f -print"
+      set-option global fzf_file_command '${fd}/bin/fd'
     '';
   };
 

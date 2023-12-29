@@ -68,11 +68,12 @@
         socat # sometimes socat is useful for quick hacks
         nixfmt # most projects are going to have a flake.nix. this is helpful
         watchexec # code agnostic file watcher. very helpful for dev setups
-        parallel # xargs but doesn't take 1 million years
+
+	parallel # xargs but I like it better
 
         (symlinkJoin {
           name = "fx";
-          paths = [ fx deno ];
+          paths = [ fx deno ]; # packaging in deno allows for reducers (ex: fx x.name)
         })
 
         # LANGUAGE SPECIFIC
