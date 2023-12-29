@@ -10,7 +10,7 @@
     "window.titleBarStyle": "custom",
     "window.title": "${dirty}${activeEditorShort}",
     "remote.SSH.remotePlatform": {
-    "oleina.c.googlers.com": "linux"
+        "oleina.c.googlers.com": "linux"
     },
     "update.mode": "none",
     "terminal.integrated.defaultProfile.linux": "fish",
@@ -45,5 +45,64 @@
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "workbench.colorTheme": "Catppuccin Macchiato",
     "workbench.iconTheme": "catppuccin-macchiato",
-    "workbench.editor.showTabs": false
+    "workbench.editor.showTabs": "single",
+    "workbench.list.automaticKeyboardNavigation": false,
+    "dance.menus": {
+        "file-explorer": {
+            "items": {
+                "F": {
+                    "command": "copyRelativeFilePath",
+                    "text": "Copy relative file path"
+                },
+                "N": {
+                    "command": "explorer.newFolder",
+                    "text": "New file"
+                },
+                "O": {
+                    "command": "explorer.openAndPassFocus",
+                    "text": "Open"
+                },
+                "c": {
+                    "command": "renameFile",
+                    "text": "Rename file"
+                },
+                "d": {
+                    "command": "moveFileToTrash",
+                    "text": "Delete file"
+                },
+                "f": {
+                    "command": "copyFilePath",
+                    "text": "Copy file path"
+                },
+                "n": {
+                    "command": "explorer.newFile",
+                    "text": "New folder"
+                },
+                "o": {
+                    "command": "explorer.openWith",
+                    "text": "Open with..."
+                },
+                "p": {
+                    "command": "filesExplorer.paste",
+                    "text": "Paste file"
+                },
+                "r": {
+                    "command": "revealFileInOS",
+                    "text": "Reveal in file explorer"
+                },
+                "v": {
+                    "command": "filesExplorer.openFilePreserveFocus",
+                    "text": "View"
+                },
+                "x": {
+                    "command": "filesExplorer.cut",
+                    "text": "Cut file"
+                },
+                "y": {
+                    "command": "filesExplorer.copy",
+                    "text": "Yank file"
+                }
+            }
+        }
+    }
 }

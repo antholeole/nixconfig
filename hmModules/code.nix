@@ -1,40 +1,50 @@
-{ pkgs, config, mkWaylandElectronPkg, mkOldNixPkg, inputs, lib, sysConfig, ...
+{ 
+pkgs,
+ config,
+ mkWaylandElectronPkg,
+ mkOldNixPkg,
+ inputs,
+ lib,
+ sysConfig,
+ ...
 }: {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
-      # this vscode version seems to work on Wayland.
-      # TODO: figure out why later ones don't
-      vscode_1_81 = (mkOldNixPkg {
-        pkgsetHash = "50a7139fbd1acd4a3d4cfa695e694c529dd26f3a";
-        pkgSha = lib.fakeSha256;
-      }).vscode;
-
-      details = with vscode_1_81; {
-        inherit pname version;
-        meta.mainProgram = "code";
-      };
-
-      waylandWrapped = mkWaylandElectronPkg {
-        pkg = vscode_1_81;
+      waylandWrapped = let 
+        vscode = pkgs.vscode;
+      in mkWaylandElectronPkg {
+        pkg = pkgs.vscode;
         exeName = "code";
-      };
+      } // (with vscode; {
+        inherit pname version;
+      });
 
-      finalCode = details // waylandWrapped;
+      finalCode = waylandWrapped;
     in finalCode;
 
-    extensions = with pkgs.vscode-extensions; [
-      # This is much better than the complex setup
+    enableUpdateCheck = false;
+
+    extensions = let 
+    marketplace = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
+    in with marketplace; [
+      #theme
+      catppuccin.catppuccin-vsc
+      catppuccin.catppuccin-vsc-icons
+
+      # good stuff
+      gregoire.dance
+      tobias-z.vscode-harpoon
+      eamodio.gitlens
+
+      # languages
+      bbenoist.nix
+      golang.go
+      yzhang.markdown-all-in-one
       rust-lang.rust-analyzer
       scalameta.metals
-      golang.go
-      # gregoire.dance :(
-      # tobias-z.vscode-harpoon :(
-      catppuccin.catppuccin-vsc
-      # catppuccin.catppuccin-vsc-icons
-      yzhang.markdown-all-in-one
     ];
-    keybindings = with builtins;
+    keybindings = with builtins; (pkgs.lib.mkIf true) (
       fromJSON (readFile "${inputs.self}/confs/code/keybindings.json") ++ [ ]
       ++ lib.lists.flatten (map (nInt:
         let n = toString nInt;
@@ -84,7 +94,7 @@
             key = "x";
             name = "extensions";
           }
-        ]));
+        ])));
     userSettings = with builtins;
       ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // {
         "terminal.integrated.profiles.linux" = {

@@ -9,6 +9,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     zjstatus.url = "github:dj95/zjstatus";
     ags.url = "github:antholeole/ags";
   };
@@ -20,7 +21,7 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
-    , devenv, zjstatus, ... }@inputs:
+    , devenv, zjstatus, nix-vscode-extensions, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
@@ -106,7 +107,7 @@
                   } ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -q ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
                 '';
               };
-              packages = [ pkgs.hello ];
+              packages = with pkgs; [ nodejs_21 ];
             })
         ];
       };
