@@ -90,7 +90,10 @@
         "terminal.integrated.profiles.linux" = {
           "fish" = {
             path = "${pkgs.lib.getExe config.programs.fish.package}";
-            args = ["-C" "${pkgs.zellij}/bin/zellij --layout ~/.config/zellij/layouts/default.kdl"];
+            args = [
+              "-C"
+              "${pkgs.zellij}/bin/zellij --layout ~/.config/zellij/layouts/default.kdl"
+            ];
           };
         };
       });
