@@ -30,14 +30,6 @@
     "key": "ctrl+p"
   },
   {
-    "command": "explorer.newFile",
-    "key": "ctrl+n ctrl+f"
-  },
-  {
-    "command": "explorer.newFolder",
-    "key": "ctrl+n ctrl+d"
-  },
-  {
     "command": "-workbench.action.toggleSidebarVisibility",
     "key": "ctrl+b"
   },
@@ -270,9 +262,11 @@
     "command": "-workbench.action.newWindow"
   },
   {
-        "key": "shift+m",
-        "command": "dance.selections.reduce",
-        "args": {"where": "both"}
+    "key": "shift+m",
+    "command": "dance.selections.reduce",
+    "args": {
+      "where": "both"
+    }
   },
   {
     "key": "h",
@@ -338,7 +332,7 @@
     "key": "ctrl+u",
     "command": "list.focusPageUp",
     "when": "listFocus && !inputFocus"
-  },    
+  },
   {
     "key": "escape",
     "command": "workbench.action.toggleSidebarVisibility",
@@ -412,13 +406,25 @@
   {
     "key": ",",
     "command": "dance.openMenu",
-    "args": { "input": "file-explorer" },
+    "args": {
+      "input": "file-explorer"
+    },
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
   },
   {
     "key": "m",
     "command": "dance.openMenu",
-    "args": { "input": "file-explorer" },
+    "args": {
+      "input": "file-explorer"
+    },
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && !inputFocus"
+  },
+  {
+    "key": "ctrl+o",
+    "command": "workbench.action.navigateBack"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "workbench.action.navigateForward"
   }
 ]
