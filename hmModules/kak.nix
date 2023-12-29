@@ -5,16 +5,25 @@
 
     plugins = with pkgs.kakounePlugins; [ fzf-kak quickscope-kak ];
     config = {
-      hooks = [{
+      hooks = [
+      {
         name = "ModuleLoaded";
         once = true;
         option = "fzf-file";
         commands = ''
           set-option global fzf_file_command '${pkgs.fd}/bin/fd --type f'
           set-option global fzf_highlight_command '${pkgs.bat}/bin/bat'
-	  set-option global fzf_grep_command '${pkgs.ripgrep}/bin/rg'
         '';
-      }];
+      }
+      {
+          name="ModuleLoaded";
+          once = true;
+          option = "fzf-grep";
+          commands = ''
+	  set-option global fzf_grep_command '${pkgs.ripgrep}/bin/rg'
+          '';
+      }
+      ];
     };
 
     extraConfig = with pkgs; ''
@@ -37,10 +46,7 @@
       map global user p '<a-!>${wl-clipboard}/bin/wl-paste -n<ret>'
 
       map global normal <c-h> ': fzf-mode<ret>'
-
-      # ignore some garbage
-      set-option global fzf_file_command '${fd}/bin/fd'
-    '';
+   '';
   };
 
   home.file.".config/kak/colors/catppuccin_macchiato.kak" = {

@@ -1,6 +1,6 @@
-{ config, pkgs, sysConfig, mkNixGLPkg, inputs, ... }:
+{ config, lib, pkgs, sysConfig, mkNixGLPkg, inputs, ... }:
 let nixGlHyprland = mkNixGLPkg pkgs.hyprland pkgs.hyprland.meta.mainProgram;
-in {
+in lib.mkIf (!sysConfig.headless) {
   wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
@@ -36,7 +36,8 @@ in {
       bind = ${mod},RETURN,exec,${
         pkgs.lib.getExe
         (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
-      }
+      }  -e ${pkgs.zellij}/bin/zellij --layout default
+      
       bind = ${mod},W,killactive
 
       bind=${mod},h,movefocus,l
@@ -94,6 +95,11 @@ in {
         xkb_options caps:swapescape
       }
     '';
+  };
+
+  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
+    enable = true;
+    source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
   };
 
   home.file.".config/other/hyprland.desktop" = {
