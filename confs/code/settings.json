@@ -20,6 +20,7 @@
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,
     "editor.inlineSuggest.enabled": true,
+    "workbench.editor.navigationScope": "editorGroup",
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
