@@ -16,16 +16,6 @@
     "command": "-editor.action.toggleTabFocusMode"
   },
   {
-    "command": "moveFileToTrash",
-    "key": "backspace",
-    "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
-  },
-  {
-    "command": "-moveFileToTrash",
-    "key": "delete",
-    "when": "explorerResourceMoveableToTrash && filesExplorerFocus && foldersViewVisible && !explorerResourceReadonly && !inputFocus"
-  },
-  {
     "command": "-workbench.action.quickOpen",
     "key": "ctrl+p"
   },
@@ -91,14 +81,6 @@
     "when": "editorTextFocus && activeEditor != 'workbench.editor.notebook' && editorLangId in 'julia.supportedLanguageIds'"
   },
   {
-    "command": "vscode-harpoon.editorQuickPick",
-    "key": "alt+enter"
-  },
-  {
-    "command": "vscode-harpoon.editEditors",
-    "key": "shift+alt+enter"
-  },
-  {
     "command": "workbench.action.closeGroup",
     "key": "ctrl+shift+w",
     "when": "multipleEditorGroups"
@@ -123,10 +105,6 @@
     "when": "editorFocus || editorIsOpen"
   },
   {
-    "key": "ctrl+shift+h",
-    "command": "workbench.action.focusFirstEditorGroup"
-  },
-  {
     "command": "workbench.action.closeSidebar",
     "key": "ctrl+shift+h"
   },
@@ -138,11 +116,23 @@
         "workbench.action.focusSecondEditorGroup",
         "workbench.action.closeSidebar"
       ]
-    }
+    },
+    "when": "!isInDiffLeftEditor"
+  },
+  {
+    "command": "diffEditor.switchSide",
+    "when": "isInDiffLeftEditor",
+    "key": "ctrl+shift+l"
+  },
+  {
+    "command": "diffEditor.switchSide",
+    "when": "isInDiffRightEditor",
+    "key": "ctrl+shift+h"
   },
   {
     "key": "ctrl+shift+h",
     "command": "runCommands",
+    "when": "!isInDiffRightEditor",
     "args": {
       "commands": [
         "workbench.action.focusFirstEditorGroup",
@@ -238,21 +228,6 @@
     "when": "editorTextFocus && !textCompareEditorActive"
   },
   {
-    "key": "ctrl+shift+g ,",
-    "command": "-gitlens.diffWithPreviousInDiffRight",
-    "when": "editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/"
-  },
-  {
-    "key": "ctrl+shift+g ,",
-    "command": "-gitlens.diffWithPreviousInDiffLeft",
-    "when": "editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/"
-  },
-  {
-    "key": "ctrl+shift+g ,",
-    "command": "-gitlens.diffWithPrevious",
-    "when": "editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/"
-  },
-  {
     "key": "ctrl+k o",
     "command": "-workbench.action.files.showOpenedFileInNewWindow",
     "when": "emptyWorkspaceSupport"
@@ -260,13 +235,6 @@
   {
     "key": "ctrl+shift+n",
     "command": "-workbench.action.newWindow"
-  },
-  {
-    "key": "shift+m",
-    "command": "dance.selections.reduce",
-    "args": {
-      "where": "both"
-    }
   },
   {
     "key": "h",
@@ -426,5 +394,260 @@
   {
     "key": "ctrl+i",
     "command": "workbench.action.navigateForward"
+  },
+  {
+    "key": "'",
+    "command": "dance.openMenu",
+    "args": {
+      "menu": {
+        "items": {
+          "l": {
+            "text": "character left",
+            "command": "dance.run",
+            "args": {
+              "commands": [
+                ".select.left.extend",
+                ".selections.changeDirection",
+                ".select.right.extend",
+                ".selections.changeDirection"
+              ]
+            }
+          },
+          "h": {
+            "text": "character right",
+            "command": "dance.run",
+            "args": {
+              "commands": [
+                ".select.right.extend",
+                ".selections.changeDirection",
+                ".select.left.extend",
+                ".selections.changeDirection"
+              ]
+            }
+          },
+          "j": {
+            "text": "line down",
+            "command": "dance.run",
+            "args": {
+              "commands": [
+                ".select.down.extend",
+                ".selections.changeDirection",
+                ".select.up.extend",
+                ".selections.changeDirection"
+              ]
+            }
+          },
+          "k": {
+            "text": "line up",
+            "command": "dance.run",
+            "args": {
+              "commands": [
+                ".select.up.extend",
+                ".selections.changeDirection",
+                ".select.down.extend",
+                ".selections.changeDirection"
+              ]
+            }
+          },
+          "(": {
+            "text": "(surround)",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '(' + x + ')')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "("
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": ")"
+                  }
+                ]
+              ]
+            }
+          },
+          "{": {
+            "text": "{surround}",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '{' + x + '}')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "{"
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": "}"
+                  }
+                ]
+              ]
+            }
+          },
+          "[": {
+            "text": "[surround]",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '[' + x + ']')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "["
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": "]"
+                  }
+                ]
+              ]
+            }
+          },
+          "<": {
+            "text": "<surround>",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '<' + x + '>')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "<"
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": ">"
+                  }
+                ]
+              ]
+            }
+          },
+          "\"": {
+            "text": "\"surround\"",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '\"' + x + '\"')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "\""
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": "\""
+                  }
+                ]
+              ]
+            }
+          },
+          "'": {
+            "text": "'surround'",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => `'` + x + `'`)",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "'"
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": "'"
+                  }
+                ]
+              ]
+            }
+          },
+          "`": {
+            "text": "`surround`",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => '`' + x + '`')",
+              "commands": [
+                [
+                  ".edit.insert",
+                  {
+                    "where": "start",
+                    "shift": "extend",
+                    "text": "`"
+                  }
+                ],
+                [
+                  ".edit.insert",
+                  {
+                    "where": "end",
+                    "shift": "extend",
+                    "text": "`"
+                  }
+                ]
+              ]
+            }
+          },
+          "s": {
+            "text": "selection around",
+            "command": "dance.selections.reduce",
+            "args": {
+              "where": "both"
+            }
+          },
+          "d": {
+            "text": "delete surround",
+            "command": "dance.run",
+            "args": {
+              "input": "await replace((x) => x.slice(1 -1))",
+              "commands": [
+                ".selections.save",
+                ".selections.reduce.edges",
+                ".edit.delete",
+                ".selections.restore"
+              ]
+            }
+          }
+        }
+      },
+      "locked": true
+    },
+    "when": "editorTextFocus && dance.mode == 'normal'"
   }
 ]
