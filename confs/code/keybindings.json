@@ -223,6 +223,16 @@
     "when": "textCompareEditorVisible"
   },
   {
+    "key": "n",
+    "command": "workbench.action.compareEditor.nextChange",
+    "when": "dance.mode == 'normal' && isInDiffEditor"
+  },
+  {
+    "key": "p",
+    "command": "workbench.action.compareEditor.previousChange",
+    "when": "dance.mode == 'normal' && isInDiffEditor"
+  },
+  {
     "key": "shift+alt+f5",
     "command": "-workbench.action.editor.previousChange",
     "when": "editorTextFocus && !textCompareEditorActive"
