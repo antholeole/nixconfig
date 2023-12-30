@@ -53,11 +53,11 @@
             "items": {
                 "M": {
                     "text": "to previous marker",
-                    "command": "editor.action.marker.nextInFiles"
+                    "command": "editor.action.marker.next"
                 },
                 "m": {
                     "text": "to next marker",
-                    "command": "editor.action.marker.prevInFiles"
+                    "command": "editor.action.marker.prev"
                 }
             }
         },

@@ -667,6 +667,10 @@
   },
   {
     "key": "ctrl+shift+g g",
-    "command": "gitlens.views.graph.openInTab"
+    "command": "git-graph.view"
+  },
+  {
+    "key": "ctrl+shift+g f",
+    "command": "git-graph.openFile"
   }
 ]
