@@ -12,9 +12,9 @@ import (
 )
 
 type argT struct {
-	Cliphist string `cli:"*cliphist" usage:"path to cliphist package to use"`
-	Wlcopy   string `cli:"*wlcopy" usage:"path to wlcopy package to use"`
-	Wlpaste  string `cli:"*wlpaste" usage:"path to wlpaste package to use"`
+	Cliphist   string `cli:"*cliphist" usage:"path to cliphist package to use"`
+	Wlcopy     string `cli:"*wlcopy" usage:"path to wlcopy package to use"`
+	Wlpaste    string `cli:"*wlpaste" usage:"path to wlpaste package to use"`
 	NotifySend string `cli:"*notify-send" usage:"path to notify-send package to use"`
 }
 
@@ -75,7 +75,7 @@ func run(args *argT) error {
 	})
 
 	r.GET("/done", func(c *gin.Context) {
-		cmd := exec.Command(args.NotifySend)
+		cmd := exec.Command(args.NotifySend, "done!")
 		out, err := cmd.Output()
 
 		if err != nil {
