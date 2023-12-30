@@ -49,23 +49,15 @@
     "workbench.editor.showTabs": "single",
     "workbench.list.automaticKeyboardNavigation": false,
     "dance.menus": {
-        "git": {
+        "goto": {
             "items": {
-                "h": {
-                    "command": "",
-                    "text": "History for current file"
+                "M": {
+                    "text": "to previous marker",
+                    "command": "editor.action.marker.nextInFiles"
                 },
-                "c": {
-                    "command": "",
-                    "text": "Compare with branch"
-                },
-                "p": {
-                    "command": "",
-                    "text": "previous commit (with diff)"
-                },
-                "n": {
-                    "command": "",
-                    "text": "next commit (with diff)"
+                "m": {
+                    "text": "to next marker",
+                    "command": "editor.action.marker.prevInFiles"
                 }
             }
         },
