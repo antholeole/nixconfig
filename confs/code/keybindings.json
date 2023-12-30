@@ -659,5 +659,14 @@
       "locked": true
     },
     "when": "editorTextFocus && dance.mode == 'normal'"
+  },
+  {
+    "key": "ctrl+shift+g g",
+    "command": "-workbench.view.scm",
+    "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
+  },
+  {
+    "key": "ctrl+shift+g g",
+    "command": "gitlens.views.graph.openInTab"
   }
 ]
