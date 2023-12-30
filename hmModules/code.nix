@@ -36,6 +36,7 @@ pkgs,
       gregoire.dance
       tobias-z.vscode-harpoon
       eamodio.gitlens
+      mhutchie.git-graph
 
       # languages
       bbenoist.nix
