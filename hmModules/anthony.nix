@@ -85,7 +85,6 @@
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
         dejavu_fonts
-        dunst
         libnotify
         glib # for notifications
         pavucontrol
