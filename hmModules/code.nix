@@ -37,6 +37,7 @@ pkgs,
       tobias-z.vscode-harpoon
       eamodio.gitlens
       mhutchie.git-graph
+      tyriar.lorem-ipsum
 
       # languages
       bbenoist.nix

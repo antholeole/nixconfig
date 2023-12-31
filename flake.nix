@@ -11,7 +11,7 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     zjstatus.url = "github:dj95/zjstatus";
-    ags.url = "github:antholeole/ags";
+    ags.url = "github:Aylur/ags";
   };
 
   nixConfig = {
@@ -104,7 +104,7 @@
                     lib.getExe watchexec
                   } -w  ${agsDir} --exts scss,js --restart -- '${
                     lib.getExe sass
-                  } ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -q ; ${agsExe} -c $DEVENV_ROOT/confs/ags/config.js)'
+                  } ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -c $DEVENV_ROOT/confs/ags/config.js -b devags)'
                 '';
               };
               packages = with pkgs; [ nodejs_21 ];
