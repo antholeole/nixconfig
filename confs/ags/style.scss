@@ -1,6 +1,29 @@
 $text: #cad3f5;
 $base: #24273a;
+$flamingo: #f0c6c6;
+$sapphire: #7dc4e4;
+$red: #ed8796;
 $border-radius: 18px;
+$teal: #8bd5ca;
+
+.debug {
+    border: 1px solid red;
+}
+
+
+@mixin urgency {
+    &.info {
+        color: $sapphire;
+    }
+
+    &.normal {
+        color: $teal;
+    }
+
+    &.critical {
+        color: $red;
+    }
+}
 
 .container {
     $shadow-offset: 8px;
@@ -10,6 +33,10 @@ $border-radius: 18px;
     margin: 20px;
     box-shadow: black $shadow-offset $shadow-offset;
     padding: 12px;
+
+    
+    font-family: "FiraCode Nerd Font";
+    color: $text;
 
     &.horizontal {
         padding: 10px 40px;
@@ -34,6 +61,10 @@ $border-radius: 18px;
 
 .subtext {
     color: #a5adcb;
+
+    &.small {
+        font-size: 12px;
+    }
 }
 
 .bar {
@@ -132,9 +163,29 @@ $search-container-width: 500px;
     border-radius: $border-radius / 2;
     min-width: $search-container-width;
     min-height: $search-container-height;
-    background-color: #f0c6c6;
+    background-color: $flamingo;
 }
 
 .results {
     min-height: 100px;
 }
+
+.notification {
+    min-width: 400px;
+    margin-bottom: 8px;
+
+    .notification-icon {
+        padding-right: 10px;
+        font-size: 36px;
+        @include urgency;
+    }
+}
+
+.title {
+    color: $flamingo;
+    font-weight: bold;
+    font-size: large;
+
+    @include urgency;
+}
+
