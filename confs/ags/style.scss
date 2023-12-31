@@ -10,6 +10,10 @@ $teal: #8bd5ca;
     border: 1px solid red;
 }
 
+.mb-2 {
+    margin-bottom: 2.5px;
+}
+
 
 @mixin urgency {
     &.info {

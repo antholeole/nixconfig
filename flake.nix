@@ -11,7 +11,7 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     zjstatus.url = "github:dj95/zjstatus";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:antholeole/ags";
   };
 
   nixConfig = {

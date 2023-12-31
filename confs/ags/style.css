@@ -1,6 +1,9 @@
 .debug {
   border: 1px solid red; }
 
+.mb-2 {
+  margin-bottom: 2.5px; }
+
 .container {
   border-radius: 18px;
   background-color: #24273a;
