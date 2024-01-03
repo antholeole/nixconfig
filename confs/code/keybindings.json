@@ -661,14 +661,6 @@
     "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
   },
   {
-    "key": "ctrl+shift+g g",
-    "command": "git-graph.view"
-  },
-  {
-    "key": "ctrl+shift+g f",
-    "command": "git-graph.openFile"
-  },
-  {
     "command": "dance.openMenu",
     "when": "editorTextFocus && dance.mode == 'normal'",
     "key": "/",
@@ -683,7 +675,7 @@
             "text": "global search",
             "command": "workbench.action.experimental.quickTextSearch"
           }
-        },
+        }
       }
     }
   }
