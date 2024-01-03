@@ -176,7 +176,7 @@
     "command": "-workbench.action.files.openLocalFile",
     "when": "remoteFileDialogVisible"
   },
-  {
+{
     "key": "/",
     "command": "-dance.search",
     "when": "editorTextFocus && dance.mode == 'normal'"

@@ -46,8 +46,11 @@
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "workbench.colorTheme": "Catppuccin Macchiato",
     "workbench.iconTheme": "catppuccin-macchiato",
-    "workbench.editor.showTabs": "single",
+    "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
+    "workbench.activityBar.location": "hidden",
+    "workbench.statusBar.visible": false,
+    "editor.minimap.enabled": false,
     "dance.menus": {
         "goto": {
             "items": {
