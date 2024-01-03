@@ -19,7 +19,8 @@ pkgs,
       } // (with vscode; {
         inherit pname version;
       });
-
+      
+      # TODO this may be broken. try --disable-gpu or xwayland.
       finalCode = waylandWrapped;
     in finalCode;
 
@@ -37,6 +38,8 @@ pkgs,
       tobias-z.vscode-harpoon
       eamodio.gitlens
       mhutchie.git-graph
+      ms-vscode-remote.remote-ssh
+      drcika.apc-extension
       tyriar.lorem-ipsum
 
       # languages
