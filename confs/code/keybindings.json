@@ -176,14 +176,9 @@
     "command": "-workbench.action.files.openLocalFile",
     "when": "remoteFileDialogVisible"
   },
-{
-    "key": "/",
-    "command": "-dance.search",
-    "when": "editorTextFocus && dance.mode == 'normal'"
-  },
   {
     "key": "/",
-    "command": "workbench.action.experimental.quickTextSearch",
+    "command": "-dance.search",
     "when": "editorTextFocus && dance.mode == 'normal'"
   },
   {
@@ -672,5 +667,24 @@
   {
     "key": "ctrl+shift+g f",
     "command": "git-graph.openFile"
+  },
+  {
+    "command": "dance.openMenu",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "key": "/",
+    "args": {
+      "menu": {
+        "items": {
+          "/": {
+            "text": "regex search",
+            "command": "dance.search"
+          },
+          "f": {
+            "text": "global search",
+            "command": "workbench.action.experimental.quickTextSearch"
+          }
+        },
+      }
+    }
   }
 ]
