@@ -67,6 +67,7 @@
         nixfmt # most projects are going to have a flake.nix. this is helpful
         watchexec # code agnostic file watcher. very helpful for dev setups
       	parallel # xargs but I like it better
+        tldr # i HATE manpages
 
         (symlinkJoin {
           name = "fx";

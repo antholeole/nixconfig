@@ -678,5 +678,24 @@
         }
       }
     }
+  },
+  {
+    "command": "dance.openMenu",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "key": "ctrl+g",
+    "args": {
+      "menu": {
+        "items": {
+          "g": {
+            "text": "graph",
+            "command": "git-graph.view"
+          },
+          "w": {
+            "text": "working diff copy",
+            "command": "gitlens.diffWithPrevious"
+          }
+        }
+      }
+    }
   }
 ]

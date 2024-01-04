@@ -48,7 +48,6 @@
     "workbench.iconTheme": "catppuccin-macchiato",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
-    "workbench.activityBar.location": "hidden",
     "workbench.statusBar.visible": false,
     "editor.minimap.enabled": false,
     "dance.menus": {
