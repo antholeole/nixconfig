@@ -71,6 +71,10 @@ in {
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
       }
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
     ];
 
     shellInit = ''
@@ -82,8 +86,14 @@ in {
       set EDITOR ${pkgs.kakoune}/bin/kak
 
       fish_add_path ~/.config/git
+      fish_config theme save "Catppuccin macchiato"
 
       set MICRO_TRUECOLOR 1
     '';
   };
+
+  home.file."~/.config/fish/theme/scatppuccin-machiatto.theme" = {
+    enable = true;
+    src = "${inputs.self}/confs/fish/catppuccin-machiatto.theme";
+  }
 }
