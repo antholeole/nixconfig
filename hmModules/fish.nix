@@ -86,14 +86,14 @@ in {
       set EDITOR ${pkgs.kakoune}/bin/kak
 
       fish_add_path ~/.config/git
-      fish_config theme save "Catppuccin macchiato"
+      fish_config theme save "catppuccin-macchiato"
 
       set MICRO_TRUECOLOR 1
     '';
   };
 
-  home.file."~/.config/fish/theme/scatppuccin-machiatto.theme" = {
+  home.file.".config/fish/themes/catppuccin-macchiato.theme" = {
     enable = true;
-    src = "${inputs.self}/confs/fish/catppuccin-machiatto.theme";
-  }
+    source = "${inputs.self}/confs/fish/catppuccin-macchiato.theme";
+  };
 }
