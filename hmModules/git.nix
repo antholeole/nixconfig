@@ -5,9 +5,13 @@ let
     source = "${inputs.self}/scripts/git/git-${script}";
   };
 in {
+  # top level
   home.file.".config/git/git-spinoff" = mkGitScript "spinoff";
   home.file.".config/git/git-wip" = mkGitScript "wip";
   home.file.".config/git/git-cleave" = mkGitScript "cleave";
+
+  # deps
+  home.file.".config/git/git-current-branch" = mkGitScript "current-branch";
   home.file.".config/git/git-is-clean" = mkGitScript "is-clean";
   home.file.".config/git/git-is-dirty" = mkGitScript "is-dirty";
   home.file.".config/git/git-root" = mkGitScript "root";
