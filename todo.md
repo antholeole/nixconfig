@@ -7,3 +7,5 @@
 [] resize mode
 [] show mode in bar
 [] chane system font to avenir next
+[] remove sidebar from vsc
+[] daily should be better
