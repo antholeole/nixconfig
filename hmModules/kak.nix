@@ -6,23 +6,23 @@
     plugins = with pkgs.kakounePlugins; [ fzf-kak quickscope-kak ];
     config = {
       hooks = [
-      {
-        name = "ModuleLoaded";
-        once = true;
-        option = "fzf-file";
-        commands = ''
-          set-option global fzf_file_command '${pkgs.fd}/bin/fd --type f'
-          set-option global fzf_highlight_command '${pkgs.bat}/bin/bat'
-        '';
-      }
-      {
-          name="ModuleLoaded";
+        {
+          name = "ModuleLoaded";
+          once = true;
+          option = "fzf-file";
+          commands = ''
+            set-option global fzf_file_command '${pkgs.fd}/bin/fd --type f'
+            set-option global fzf_highlight_command '${pkgs.bat}/bin/bat'
+          '';
+        }
+        {
+          name = "ModuleLoaded";
           once = true;
           option = "fzf-grep";
           commands = ''
-	  set-option global fzf_grep_command '${pkgs.ripgrep}/bin/rg'
+            set-option global fzf_grep_command '${pkgs.ripgrep}/bin/rg'
           '';
-      }
+        }
       ];
     };
 
@@ -46,7 +46,7 @@
       map global user p '<a-!>${wl-clipboard}/bin/wl-paste -n<ret>'
 
       map global normal <c-h> ': fzf-mode<ret>'
-   '';
+    '';
   };
 
   home.file.".config/kak/colors/catppuccin_macchiato.kak" = {

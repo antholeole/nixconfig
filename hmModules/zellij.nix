@@ -4,7 +4,7 @@ let
   layoutDir = ".config/zellij/layouts";
 
   bgColor = colors.mantle;
-  fgColor = colors.lavender;
+  fgColor = sysConfig.termColor;
 
   defaultTab = ''
     default_tab_template {
