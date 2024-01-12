@@ -37,7 +37,7 @@ in lib.mkIf (!sysConfig.headless) {
         pkgs.lib.getExe
         (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
       }  -e ${pkgs.zellij}/bin/zellij --layout default
-      
+
       bind = ${mod},W,killactive
 
       bind=${mod},h,movefocus,l
@@ -97,10 +97,12 @@ in lib.mkIf (!sysConfig.headless) {
     '';
   };
 
-  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
-    enable = true;
-    source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
-  };
+  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" =
+    {
+      enable = true;
+      source =
+        "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
+    };
 
   home.file.".config/other/hyprland.desktop" = {
     enable = true;

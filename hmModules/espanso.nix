@@ -5,18 +5,17 @@ in {
     enable = true;
 
     package = with pkgs;
-      pkgs.symlinkJoin {
-        name = "espanso";
-        # TODO: this needs to be version >2.2.0 or else it won't work
-        paths = [ espanso-wayland wl-clipboard ];
-        buildInputs = [ makeWrapper ];
-        version = espanso-wayland.version;
-        postBuild = ''
-          wrapProgram $out/bin/espanso --set PATH ${
-            lib.makeBinPath [ "/usr/bin/" "${glib.out}/" wl-clipboard ]
-          }
-        '';
-      };
+      let
+        espanso2_21 = espanso-wayland.overrideAttrs (old: rec {
+          version = "2.2.1";
+          src = fetchFromGitHub {
+            owner = "espanso";
+            repo = "espanso";
+            rev = "v${version}";
+            hash = "sha256-5TUo5B1UZZARgTHbK2+520e3mGZkZ5tTez1qvZvMnxs=";
+          };
+        });
+      in espanso2_21;
 
     configs.default = {
       toggle_key = "ALT";

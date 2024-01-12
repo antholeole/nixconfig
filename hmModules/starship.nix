@@ -1,17 +1,18 @@
-{ ... }: {
+{ sysConfig, ... }: {
   programs.starship = let
     disabled = { disabled = true; };
 
     colors = import ../theme.nix;
 
-    color = "${colors.lavender}";
+    color = sysConfig.termColor;
+    
     bgFill = "bg:${color} fg:${colors.base}";
     fgFill = "fg:${color}";
 
     seperator = "[┃](${bgFill})";
 
     vc = {
-      format = "[$symbol]($fgFill)[$branch](${fgFill})";
+      format = "[$symbol](${fgFill})[$branch](${fgFill})";
       disabled = false;
     };
   in {
@@ -20,7 +21,9 @@
 
     settings = {
       format = "$character";
-      right_format = "$git_branch $git_metrics $directory$hostname";
+
+      # trailing space so it lines up with zellij
+      right_format = "$git_branch $git_metrics $directory$hostname ";
 
       directory = { format = "[  ┃ $path ](${bgFill})"; };
       cmd_duration = { format = "${seperator}[$duration](${bgFill})"; };

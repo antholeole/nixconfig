@@ -19,9 +19,7 @@ in {
       };
     in { rd = "rm -rf"; } // cv;
 
-    shellAbbrs = {
-        pl = "parallel";
-    };
+    shellAbbrs = { pl = "parallel"; };
 
     functions = with pkgs;
       let fzfExe = lib.getExe config.programs.fzf.package;

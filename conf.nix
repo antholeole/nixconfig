@@ -1,5 +1,6 @@
 let
   mkFontSizes = { defaultFontSize ? 18, glFontSize ? 10, }@fontSizes: fontSizes;
+  colors = import ./theme.nix;
 
   default_conf = {
     name = "anthony";
@@ -9,6 +10,7 @@ let
     keymap = "ctrl:swap_lwin_lctl";
     alsaSupport = true;
     homeDirPath = "/home/";
+    termColor = colors.lavender;
 
     fontSizes = mkFontSizes { };
 
@@ -72,5 +74,6 @@ in rec {
   hm-headless-gce = default_conf // {
     headless = true;
     name = "oleina_google_com";
+    termColor = colors.teal;
   };
 }
