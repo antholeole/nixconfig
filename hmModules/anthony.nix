@@ -2,7 +2,10 @@
 }: {
   fonts.fontconfig.enable = true;
 
-  imports = [ inputs.ags.homeManagerModules.default ];
+  imports = [ 
+      inputs.ags.homeManagerModules.default 
+      inputs.nix-index-database.hmModules.nix-index
+  ];
 
   xdg = {
     enable = true;
