@@ -5,7 +5,7 @@
     colors = import ../theme.nix;
 
     color = sysConfig.termColor;
-    
+
     bgFill = "bg:${color} fg:${colors.base}";
     fgFill = "fg:${color}";
 
