@@ -2,9 +2,10 @@
 }: {
   fonts.fontconfig.enable = true;
 
-  imports = [ 
-      inputs.ags.homeManagerModules.default 
-      inputs.nix-index-database.hmModules.nix-index
+  imports = [
+    inputs.ags.homeManagerModules.default
+    inputs.nix-index-database.hmModules.nix-index
+    "${inputs.self}/mixins/mutable.nix"
   ];
 
   xdg = {

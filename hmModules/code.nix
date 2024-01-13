@@ -1,5 +1,24 @@
 { pkgs, config, mkWaylandElectronPkg, mkOldNixPkg, inputs, lib, sysConfig, ...
-}: {
+}:
+let
+  cfg = config.programs.vscode;
+
+  userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
+  configFilePath = "${userSettingsPath}/settings.json";
+  keybindingsFilePath = "${userSettingsPath}/keybindings.json";
+  # tasksFilePath = "${userSettingsPath}/tasks.json";
+  # snippetsPath = "${userSettingsPath}/snippets";
+
+  pathsToMakeWritable = lib.flatten [
+    (lib.optional (cfg.userSettings != { }) configFilePath)
+    (lib.optional (cfg.keybindings != { }) keybindingsFilePath)
+    # (lib.optional (cfg.userTasks != { }) tasksFilePath)
+    # (lib.optional (cfg.globalSnippets != { })
+    # "${snippetsPath}/global.code-snippets")
+    # (lib.mapAttrsToList (language: _: "${snippetsPath}/${language}.json")
+    # cfg.languageSnippets)
+  ];
+in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
@@ -104,4 +123,9 @@
         };
       });
   };
+
+  home.file = lib.genAttrs pathsToMakeWritable (_: {
+    force = true;
+    mutable = true;
+  });
 }
