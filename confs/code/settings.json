@@ -6,7 +6,6 @@
     "remote.SSH.useLocalServer": true,
     "remote.SSH.showLoginTerminal": true,
     "remote.autoForwardPorts": false,
-    "window.menuBarVisibility": "compact",
     "window.titleBarStyle": "custom",
     "window.title": "${dirty}${activeEditorShort}",
     "remote.SSH.remotePlatform": {
@@ -119,5 +118,9 @@
                 }
             }
         }
-    }
+    },
+
+    
+  "window.menuBarVisibility": "compact",
+  "workbench.activityBar.location": "hidden"
 }
