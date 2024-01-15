@@ -90,6 +90,8 @@ in lib.mkIf (!sysConfig.headless) {
         exec-once=${cmd}
       '') sysConfig.wmStartupCommands)}
 
+      exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
       device:AT_Translated_Set_2_keyboard {
         xkb_layout us
         xkb_options caps:swapescape

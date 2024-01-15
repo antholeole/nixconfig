@@ -33,6 +33,7 @@ in {
     in finalCode;
 
     enableUpdateCheck = false;
+    mutableExtensionsDir = true;
 
     extensions = let
       marketplace =
@@ -48,7 +49,7 @@ in {
       eamodio.gitlens
       mhutchie.git-graph
       ms-vscode-remote.remote-ssh
-      drcika.apc-extension
+      # drcika.apc-extension doesnt work with nix for some reason
       tyriar.lorem-ipsum
 
       # languages
@@ -124,8 +125,8 @@ in {
       });
   };
 
-  home.file = lib.genAttrs pathsToMakeWritable (_: {
-    force = true;
-    mutable = true;
-  });
+  #home.file = lib.genAttrs pathsToMakeWritable (_: {
+  #  force = true;
+  #  mutable = true;
+  #});
 }
