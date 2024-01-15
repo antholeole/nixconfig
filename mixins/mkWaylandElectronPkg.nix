@@ -8,6 +8,7 @@ in pkgs.symlinkJoin {
   buildInputs = [ makeWrapper ];
   postBuild = ''
     wrapProgram $out/bin/${if exeName != null then exeName else pname} \
-      --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland"
+      --add-flags "--enable-features=UseOzonePlatform --ozone-platform=wayland" \
+      --set NIXOS_OZONE_WL 1
   '';
 }
