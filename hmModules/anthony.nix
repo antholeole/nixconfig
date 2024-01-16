@@ -26,12 +26,13 @@
   gtk = lib.mkIf (!sysConfig.headless) {
     enable = true;
     theme = {
-      name = "Catppuccin-Frappe-Standard-Flamingo-Dark";
+      name = "Catppuccin-Macchiato-Standard-Flamingo-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "flamingo" ];
         size = "standard";
         tweaks = [ "rimless" ];
         variant = "macchiato";
+
       };
     };
   };
@@ -99,11 +100,6 @@
         wl-clipboard # clipboard
         dbeaver
         pamixer
-
-        (mkWaylandElectronPkg {
-          pkg = activitywatch;
-          exeName = "aw-watcher-window";
-        })
 
         # some useful formatters for one-off scripts
         nixfmt

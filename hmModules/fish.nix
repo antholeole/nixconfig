@@ -17,9 +17,16 @@ in {
         v = "${wlClipPath}wl-paste";
         done = "${pkgs.libnotify}/bin/notify-send done!";
       };
-    in { rd = "rm -rf"; } // cv;
+    in { 
+      rd = "rm -rf";
+    } // cv;
 
-    shellAbbrs = { pl = "parallel"; };
+    shellAbbrs = { 
+      pl = "parallel";
+
+      # unfortunatly an alias leads to infinite recursion.
+      cd = "z";
+    };
 
     functions = with pkgs;
       let fzfExe = lib.getExe config.programs.fzf.package;

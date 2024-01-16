@@ -9,10 +9,14 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
 
-    nix-index-database.url = "github:Mic92/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    nix-riced-vscode.url = "github:antholeole/nix-rice-vscode";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     zjstatus.url = "github:dj95/zjstatus";
     ags.url = "github:antholeole/ags";
   };

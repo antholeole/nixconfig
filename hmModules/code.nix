@@ -22,15 +22,18 @@ in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
-      waylandWrapped = let vscode = pkgs.vscode;
-      in mkWaylandElectronPkg {
-        pkg = pkgs.vscode;
-        exeName = "code";
-      } // (with vscode; { inherit pname version; });
+      rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
+        js = [];
+        css = [ "${inputs.self}/confs/code/injected/test.css" ];
+      };
+
+      waylandWrapped = mkWaylandElectronPkg {
+        pkg = rawCode;
+        exeName = "codium";
+      } // (with rawCode; { inherit pname version; });
 
       # TODO this may be broken. try --disable-gpu or xwayland.
-      finalCode = waylandWrapped;
-    in finalCode;
+    in waylandWrapped;
 
     enableUpdateCheck = false;
     mutableExtensionsDir = true;
@@ -38,26 +41,27 @@ in {
     extensions = let
       marketplace =
         inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
-    in with marketplace; [
+      open-vsx = 
+        inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
+    in [
       #theme
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
+      open-vsx.catppuccin.catppuccin-vsc
+      open-vsx.catppuccin.catppuccin-vsc-icons
 
       # good stuff
-      gregoire.dance
-      tobias-z.vscode-harpoon
-      eamodio.gitlens
-      mhutchie.git-graph
-      ms-vscode-remote.remote-ssh
-      # drcika.apc-extension doesnt work with nix for some reason
-      tyriar.lorem-ipsum
+      open-vsx.gregoire.dance
+      marketplace.tobias-z.vscode-harpoon
+      open-vsx.eamodio.gitlens
+      open-vsx.mhutchie.git-graph
+      open-vsx.jeanp413.open-remote-ssh
+      marketplace.tyriar.lorem-ipsum
 
       # languages
-      bbenoist.nix
-      golang.go
-      yzhang.markdown-all-in-one
-      rust-lang.rust-analyzer
-      scalameta.metals
+      open-vsx.bbenoist.nix
+      open-vsx.golang.go
+      open-vsx.yzhang.markdown-all-in-one
+      open-vsx.rust-lang.rust-analyzer
+      open-vsx.scalameta.metals
     ];
     keybindings = with builtins;
       (pkgs.lib.mkIf true)

@@ -4,7 +4,9 @@ in {
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    package = mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram;
+    package =  ((mkNixGLPkg pkgs.alacritty "alacritty") // (with pkgs.alacritty; {
+      inherit meta version;
+    }));
 
     settings = {
       font = {
@@ -38,11 +40,6 @@ in {
           focused_match = {
             foreground = base;
             background = green;
-          };
-
-          footer_bar = {
-            foreground = base;
-            background = subtext0;
           };
         };
 
@@ -95,12 +92,12 @@ in {
           cyan = teal;
           white = subtext1;
         };
+      };
 
         window.padding = {
           x = 5;
           y = 5;
         };
-      };
     };
   };
 }
