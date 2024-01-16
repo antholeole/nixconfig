@@ -321,11 +321,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1705369531,
-        "narHash": "sha256-05cFdVyhZxHYaLhLfXPszUgHQ5g62+XZwbiGRZkP3ms=",
+        "lastModified": 1705375568,
+        "narHash": "sha256-ocjxQc/1ri+5hrH0ONvk+MRmaFEtAVDME0UMOucpaXg=",
         "owner": "antholeole",
         "repo": "nix-rice-vscode",
-        "rev": "bb172fe9f45732f822cb44fb8a42cc40cfe4d292",
+        "rev": "e9b101d12b15134c915f25b999be9b888b2d27ff",
         "type": "github"
       },
       "original": {
