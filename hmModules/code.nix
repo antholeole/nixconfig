@@ -23,7 +23,7 @@ in {
     enable = true;
     package = let
       rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
-        js = [];
+        js = [ "${inputs.self}/confs/code/injected/logger.js" ];
         css = [ "${inputs.self}/confs/code/injected/test.css" ];
       };
 
