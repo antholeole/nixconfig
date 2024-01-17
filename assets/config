@@ -13,11 +13,5 @@ Host personal
  User anthony
  IdentityFile ~/.ssh/id_ed25519
 
-Host cloudtop
- HostName oleina.c.googlers.com
- ControlPath ~/.ssh/controlmasters/%r@%h:%p
- ControlMaster auto
- ControlPersist 10m
-
 Host * !github.com
  RemoteForward 9791 localhost:9791
