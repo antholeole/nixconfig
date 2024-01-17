@@ -22,14 +22,15 @@ in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
-      rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
-        js = [ "${inputs.self}/confs/code/injected/logger.js" ];
-        css = [ "${inputs.self}/confs/code/injected/test.css" ];
-      };
+      rawCode = pkgs.vscode; 
+      # rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
+      #   js = [ "${inputs.self}/confs/code/injected/logger.js" ];
+      #   css = [ "${inputs.self}/confs/code/injected/test.css" ];
+      # };
 
       waylandWrapped = mkWaylandElectronPkg {
         pkg = rawCode;
-        exeName = "codium";
+        exeName = "code";
       } // (with rawCode; { inherit pname version; });
 
       # TODO this may be broken. try --disable-gpu or xwayland.
@@ -53,7 +54,8 @@ in {
       marketplace.tobias-z.vscode-harpoon
       open-vsx.eamodio.gitlens
       open-vsx.mhutchie.git-graph
-      open-vsx.jeanp413.open-remote-ssh
+       # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
+      marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
 
       # languages
