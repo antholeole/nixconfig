@@ -22,11 +22,11 @@ in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
     package = let
-      rawCode = pkgs.vscode; 
-      # rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
-      #   js = [ "${inputs.self}/confs/code/injected/logger.js" ];
-      #   css = [ "${inputs.self}/confs/code/injected/test.css" ];
-      # };
+      rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
+        pkg = pkgs.vscode;
+        js = [ "${inputs.self}/confs/code/injected/logger.js" ];
+        css = [ "${inputs.self}/confs/code/injected/test.css" ];
+      };
 
       waylandWrapped = mkWaylandElectronPkg {
         pkg = rawCode;
