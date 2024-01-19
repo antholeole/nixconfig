@@ -24,8 +24,8 @@ in {
     package = let
       rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
         pkg = pkgs.vscode;
-        js = [ "${inputs.self}/confs/code/injected/logger.js" ];
-        css = [ "${inputs.self}/confs/code/injected/test.css" ];
+        js = [ "${inputs.self}/confs/code/injected/floating_pallet.js" ];
+        css = [ "${inputs.self}/confs/code/injected/floating_pallet.css" ];
       };
 
       waylandWrapped = mkWaylandElectronPkg {
