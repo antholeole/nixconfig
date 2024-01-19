@@ -1,0 +1,26 @@
+
+  .quick-input-widget {
+    /* the base style for containers */
+      border-radius: 18px !important;
+      box-shadow: black 8px 8px !important;
+      padding-bottom: 5px !important;
+      padding-top: 5px !important;
+
+    /* we can't touch the parents since it messes a bunch up. ghetto center */
+        position: absolute;
+        transform: translateY(25vh);
+  }
+  .quick-input-widget .monaco-inputbox {
+    padding: 5px !important;
+    border-radius: 5px !important;
+    font-size: 14px !important;
+  }
+  .quick-input-widget .quick-input-action {
+    font-size: 14px !important;
+  }
+
+
+.quick-input-titlebar {
+    /* I don't think we need this. TODO: remember to re-add if its important */
+    background-color: transparent !important;
+}
