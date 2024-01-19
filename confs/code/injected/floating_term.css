@@ -1,0 +1,20 @@
+
+/* TODO this is not working yet. will likely have to hook into js */
+.split-view-container > :nth-child(2) {
+    position: absolute !important;
+    top: 0px !important;
+    width: 90% !important;
+    transform: translate(5%, 10vh);
+    height: min(800px, 80%) !important;
+
+      /* the base style for containers */
+      border-radius: 18px !important;
+      box-shadow: black 8px 8px !important;
+      padding-bottom: 10px !important;
+      padding-top: 10px !important;
+      border: 2px solid black;
+}
+
+#workbench\.parts\.panel > div.composite.title.has-composite-bar {
+  display: none;
+}
