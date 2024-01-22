@@ -24,13 +24,13 @@ in {
     package = let
       rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
         pkg = pkgs.vscode;
-        js = [ "${inputs.self}/confs/code/injected/floating_pallet.js" ];
+        js = [ ];
         css = [ "${inputs.self}/confs/code/injected/floating_pallet.css" ];
       };
 
       waylandWrapped = mkWaylandElectronPkg {
-        pkg = rawCode;
-        exeName = "code";
+        pkg = ricedCode;
+        exeName = "code-insiders";
       } // (with rawCode; { inherit pname version; });
 
       # TODO this may be broken. try --disable-gpu or xwayland.
@@ -54,7 +54,7 @@ in {
       marketplace.tobias-z.vscode-harpoon
       open-vsx.eamodio.gitlens
       open-vsx.mhutchie.git-graph
-       # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
+      # open-vsx.jeanp413.open-remote-ssh # TODO: determine if this is safe
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
 

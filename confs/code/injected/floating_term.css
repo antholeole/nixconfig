@@ -1,20 +1,28 @@
-
-/* TODO this is not working yet. will likely have to hook into js */
-.split-view-container > :nth-child(2) {
-    position: absolute !important;
-    top: 0px !important;
-    width: 90% !important;
-    transform: translate(5%, 10vh);
-    height: min(800px, 80%) !important;
-
-      /* the base style for containers */
-      border-radius: 18px !important;
-      box-shadow: black 8px 8px !important;
-      padding-bottom: 10px !important;
-      padding-top: 10px !important;
-      border: 2px solid black;
+:root {
+  --term-height: 60vh;
 }
 
-#workbench\.parts\.panel > div.composite.title.has-composite-bar {
-  display: none;
+.split-view-view.visible:has(>#workbench\.parts\.panel) {
+  height: var(--term-height) !important;
+  top: 10vh !important;
+}
+
+/* TODO: we should override every child with the height attr and give it the one we want.*/
+/* we should also do it with height prop to target xterm*/
+#workbench\.parts\.panel>*[style*="height"] {
+  height: var(--term-height) !important;
+}
+
+/* make the editor go full screen regardless */
+.split-view-view:has(#workbench\.parts\.editor) {
+  height: 100% !important;
+}
+
+#workbench\.parts\.editor {
+  height: 100%;
+}
+
+#workbench\.parts\.editor>*[style*="height"] {
+  height: 100% !important;
+  position: relative !important;
 }
