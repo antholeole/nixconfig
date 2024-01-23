@@ -51,13 +51,9 @@
     "dance.menus": {
         "goto": {
             "items": {
-                "M": {
-                    "text": "to previous marker",
-                    "command": "editor.action.marker.next"
-                },
                 "m": {
-                    "text": "to next marker",
-                    "command": "editor.action.marker.prev"
+                    "text": "to previous marker",
+                    "command": "errorLens.selectProblem"
                 }
             }
         },

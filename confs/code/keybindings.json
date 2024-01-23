@@ -690,9 +690,44 @@
             "text": "graph",
             "command": "git-graph.view"
           },
-          "w": {
-            "text": "working diff copy",
+          "p": {
+            "text": "previous diff",
             "command": "gitlens.diffWithPrevious"
+          },
+          "c": {
+            "text": "commit details",
+            "command": "gitlens.showQuickCommitFileDetails"
+          },
+          "h": {
+            "text": "commit details",
+            "command": "gitlens.showQuickFileHistory"
+          },
+          "s": {
+            "text": "status",
+            "command": "gitlens.showQuickRepoStatus"
+          }
+        }
+      }
+    }
+  },
+  {
+    "key": "ctrl+p",
+    "command": "dance.openMenu",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "args": {
+      "menu": {
+        "items": {
+          "d": {
+            "text": "delete current file",
+            "command": "dynoFileUtils.deleteFile"
+          },
+          "a": {
+            "text": "new file at current path",
+            "command": "dynoFileUtils.newItemsAtCurrentPath"
+          },
+          "c": {
+            "text": "change file name",
+            "command": "dynoFileUtils.renameFile"
           }
         }
       }
