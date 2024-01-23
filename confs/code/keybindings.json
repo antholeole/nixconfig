@@ -661,6 +661,15 @@
     "when": "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'"
   },
   {
+    "key": "ctrl+`",
+    "command": "workbench.action.closePanel"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.toggleMaximizedPanel",
+    "when": "!terminalFocus"
+  },
+  {
     "command": "dance.openMenu",
     "when": "editorTextFocus && dance.mode == 'normal'",
     "key": "/",

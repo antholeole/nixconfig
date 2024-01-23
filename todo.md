@@ -8,5 +8,4 @@
 [] chane system font to avenir next
 
 [] vscode see if we can make the window popout
-[] get apc working, then center the command pallet
 [] catpuccin gtk
