@@ -8,20 +8,23 @@
   home.file.".config/data/launcher.json" = {
     enable = !sysConfig.headless;
 
-    text = with pkgs; let 
-      broPleaseItsWaylandTrustMe = pgm: "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
+    text = with pkgs;
+      let
+        broPleaseItsWaylandTrustMe = pgm:
+          "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
 
-      entries = {
-        "alacritty (daily)" = "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
-        "alacritty (default)" =
-          "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
-        "pavucontrol" = "${lib.getExe pavucontrol}";
+        entries = {
+          "alacritty (daily)" =
+            "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
+          "alacritty (default)" =
+            "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
+          "pavucontrol" = "${lib.getExe pavucontrol}";
 
-        "code" = broPleaseItsWaylandTrustMe "${config.programs.vscode.package}/bin/code";
-        "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome";
-      };
-    in
-      builtins.toJSON entries;
+          "code" = broPleaseItsWaylandTrustMe
+            "${config.programs.vscode.package}/bin/code";
+          "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome";
+        };
+      in builtins.toJSON entries;
   };
 
   systemd.user.services.ags.Service =

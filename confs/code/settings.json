@@ -76,7 +76,7 @@
                     "text": "Rename file"
                 },
                 "d": {
-                    "": "moveFileToTrash",
+                    "command": "moveFileToTrash",
                     "text": "Delete file"
                 },
                 "f": {
@@ -118,5 +118,6 @@
     "workbench.activityBar.location": "hidden",
     "workbench.statusBar.visible": false,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 5000
+    "files.autoSaveDelay": 5000,
+    "catppuccin.workbenchMode": "minimal"
 }
