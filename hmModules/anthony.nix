@@ -1,15 +1,48 @@
 { pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ...
-}: {
+}: rec {
   fonts.fontconfig.enable = true;
 
-  imports = [ 
-      inputs.ags.homeManagerModules.default 
-      inputs.nix-index-database.hmModules.nix-index
-      "${inputs.self}/mixins/mutable.nix"
+  imports = [
+    inputs.ags.homeManagerModules.default
+
+    inputs.nix-index-database.hmModules.nix-index
+    "${inputs.self}/mixins/mutable.nix"
   ];
 
-  xdg = {
+  gtk = {
+    enable = !sysConfig.headless;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        accent = "mauve";
+        flavor = "mocha";
+      };
+    };
+
+    theme = {
+      name = "Catppuccin-Macchiato-Standard-Flamingo-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "flamingo" ];
+        size = "standard";
+        tweaks = [ "rimless" ];
+        variant = "macchiato";
+      };
+    };
+
+    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+  };
+
+  xdg = let themeDir = "${gtk.theme.package}/share/themes/${gtk.theme.name}";
+  in {
     enable = true;
+    configFile."gtk-4.0/assets" = {
+      source = "${themeDir}/gtk-4.0/assets";
+      recursive = true;
+    };
+    configFile."gtk-4.0/gtk.css".source = "${themeDir}/gtk-4.0/gtk.css";
+    configFile."gtk-4.0/gtk-dark.css".source =
+      "${themeDir}/gtk-4.0/gtk-dark.css";
 
     userDirs = {
       enable = true;
@@ -21,18 +54,10 @@
     playerctld.enable = true;
     blueman-applet.enable = sysConfig.bluetooth;
     gnome-keyring.enable = true;
-  };
-
-  gtk = lib.mkIf (!sysConfig.headless) {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Standard-Flamingo-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "flamingo" ];
-        size = "standard";
-        tweaks = [ "rimless" ];
-        variant = "macchiato";
-
+    xsettingsd = {
+      settings = {
+        "Net/IconThemeName" = "${gtk.iconTheme.name}";
+        "Net/ThemeName" = "${gtk.theme.name}";
       };
     };
   };

@@ -45,7 +45,10 @@ in rec {
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
 
-    wofiCmds = { chrome = "/usr/bin/google-chrome --enable-features=UseOzonePlatform --ozone-platform=wayland"; };
+    wofiCmds = {
+      chrome =
+        "/usr/bin/google-chrome --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    };
     dailysh = { gcert = "gcert"; };
 
     wmStartupCommands = [ "ssh-agent -a $SSH_AUTH_SOCK" ];

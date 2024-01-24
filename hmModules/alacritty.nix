@@ -4,9 +4,8 @@ in {
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    package =  ((mkNixGLPkg pkgs.alacritty "alacritty") // (with pkgs.alacritty; {
-      inherit meta version;
-    }));
+    package = ((mkNixGLPkg pkgs.alacritty "alacritty")
+      // (with pkgs.alacritty; { inherit meta version; }));
 
     settings = {
       font = {
@@ -94,10 +93,10 @@ in {
         };
       };
 
-        window.padding = {
-          x = 5;
-          y = 5;
-        };
+      window.padding = {
+        x = 5;
+        y = 5;
+      };
     };
   };
 }
