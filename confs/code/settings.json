@@ -47,7 +47,8 @@
     "workbench.iconTheme": "catppuccin-macchiato",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
+    "editor.scrollbar.vertical": "hidden",
     "dance.menus": {
         "goto": {
             "items": {
