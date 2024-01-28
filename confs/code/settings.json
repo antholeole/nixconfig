@@ -119,5 +119,5 @@
     "workbench.statusBar.visible": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000,
-    "catppuccin.workbenchMode": "minimal"
+    "catppuccin.workbenchMode": "flat"
 }
