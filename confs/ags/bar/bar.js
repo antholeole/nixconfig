@@ -18,8 +18,8 @@ export const Bar = (monitor) => Widget.Window({
                 hpack: 'end',
                 children: [
                     NetworkIndicator(),
-                    Clock(),
                     BatteryBar(),
+                    Clock(),
                 ]
             })
         })
