@@ -4,6 +4,10 @@
 .mb-2 {
   margin-bottom: 2.5px; }
 
+.bar-section {
+  margin-right: 5px;
+  margin-left: 5px; }
+
 .container {
   border-radius: 18px;
   background-color: #24273a;
@@ -128,5 +132,14 @@
     color: #8bd5ca; }
   .title.critical {
     color: #ed8796; }
+
+.chip {
+  border-radius: 18px; }
+  .chip.error {
+    background-color: #ed8796; }
+
+.network-indicator {
+  padding-right: 14px;
+  padding-left: 9px; }
 
 /*# sourceMappingURL=style.css.map */

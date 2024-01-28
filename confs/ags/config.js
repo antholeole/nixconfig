@@ -1,5 +1,5 @@
 import App from 'resource:///com/github/Aylur/ags/app.js'
-import { Bar } from "./bar.js"
+import { Bar } from "./bar/bar.js"
 import "./launcher.js"
 import "./powerbar.js"
 import { NotificationBar } from './notifications.js'

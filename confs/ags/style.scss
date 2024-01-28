@@ -14,6 +14,11 @@ $teal: #8bd5ca;
     margin-bottom: 2.5px;
 }
 
+.bar-section {
+    $horizontal-margin: 5px;
+    margin-right: $horizontal-margin;
+    margin-left: $horizontal-margin;
+}
 
 @mixin urgency {
     &.info {
@@ -38,7 +43,7 @@ $teal: #8bd5ca;
     box-shadow: black $shadow-offset $shadow-offset;
     padding: 12px;
 
-    
+
     font-family: "FiraCode Nerd Font";
     color: $text;
 
@@ -193,3 +198,18 @@ $search-container-width: 500px;
     @include urgency;
 }
 
+.chip {
+    border-radius: $border-radius;
+
+    &.error {
+        background-color: $red;
+    }
+}
+
+.network-indicator {
+    $padding: 9px;
+
+    // the icon is larger than one char
+    padding-right: 5px + $padding;
+    padding-left: $padding;
+}
