@@ -18,7 +18,8 @@
             "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
           "alacritty (default)" =
             "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
-          "pavucontrol" = "${lib.getExe pavucontrol}";
+            
+          "pavucontrol" = "${lib.getExe pwvucontrol}";
 
           "code" = broPleaseItsWaylandTrustMe
             "${config.programs.vscode.package}/bin/code";

@@ -1,5 +1,11 @@
-{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ...
-}: rec {
+{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ... }:
+let
+  theme = {
+    package = pkgs.catppuccin-gtk;
+    name = "Catppuccin-Frappe-Standard-Blue-Dark";
+
+  };
+in {
   fonts.fontconfig.enable = true;
 
   imports = [
@@ -11,6 +17,8 @@
 
   gtk = {
     enable = !sysConfig.headless;
+    inherit theme;
+
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
@@ -19,31 +27,12 @@
       };
     };
 
-    theme = {
-      name = "Catppuccin-Macchiato-Standard-Flamingo-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "flamingo" ];
-        size = "standard";
-        tweaks = [ "rimless" ];
-        variant = "macchiato";
-      };
-    };
-
     gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
     gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
   };
 
-  xdg = let themeDir = "${gtk.theme.package}/share/themes/${gtk.theme.name}";
-  in {
+  xdg = {
     enable = true;
-    configFile."gtk-4.0/assets" = {
-      source = "${themeDir}/gtk-4.0/assets";
-      recursive = true;
-    };
-    configFile."gtk-4.0/gtk.css".source = "${themeDir}/gtk-4.0/gtk.css";
-    configFile."gtk-4.0/gtk-dark.css".source =
-      "${themeDir}/gtk-4.0/gtk-dark.css";
-
     userDirs = {
       enable = true;
       createDirectories = true;
@@ -54,12 +43,10 @@
     playerctld.enable = true;
     blueman-applet.enable = sysConfig.bluetooth;
     gnome-keyring.enable = true;
-    xsettingsd = {
-      settings = {
-        "Net/IconThemeName" = "${gtk.iconTheme.name}";
-        "Net/ThemeName" = "${gtk.theme.name}";
-      };
-    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
   };
 
   home = {
@@ -118,7 +105,8 @@
         dejavu_fonts
         libnotify
         glib # for notifications
-        pavucontrol
+        pwvucontrol
+        
         mpc-cli # music
         brightnessctl
         pipes-rs # for funzies

@@ -16,8 +16,7 @@ const Clock = () => Widget.Box({
 });
 
 const buildWorkspacesChildren = (altIsDown, monitor) => {
-    const thisMonitor = Hyprland.getMonitor(monitor)
-
+    const thisMonitor = Hyprland.monitors.find(hMonitor => hMonitor.id === monitor)
     const workspaces = Hyprland.workspaces.filter((workspace) => workspace.monitor === thisMonitor.name).sort((a, b) => a.id - b.id)
 
 
