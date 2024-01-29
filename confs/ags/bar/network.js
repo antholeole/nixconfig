@@ -18,6 +18,8 @@ export const NetworkIndicator = () => Widget.Box({
             self.children = [
                 mkWidget("error", "󰤫")
             ]
+        } else {
+            self.children = []
         }
     }]]
 })
