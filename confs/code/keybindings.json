@@ -640,7 +640,7 @@
             "text": "delete surround",
             "command": "dance.run",
             "args": {
-              "input": "await replace((x) => x.slice(1 -1))",
+              "input": "await replace((x) => x.slice(1, -1))",
               "commands": [
                 ".selections.save",
                 ".selections.reduce.edges",
@@ -667,7 +667,7 @@
   {
     "key": "ctrl+`",
     "command": "workbench.action.toggleMaximizedPanel",
-    "when": "!terminalFocus"
+    "when": "!panelFocus"
   },
   {
     "command": "dance.openMenu",
