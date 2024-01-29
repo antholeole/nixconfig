@@ -1,7 +1,25 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js'
 import Notifications from 'resource:///com/github/Aylur/ags/service/notifications.js'
+import Variable from 'resource:///com/github/Aylur/ags/variable.js'
 
 const { Box } = Widget;
+
+
+
+// since we can't subscribe to notifications more than once,
+// we shim it through this so we can have the notifications pop up on both screens.
+const shimNotifications = Variable([])
+Notifications.connect("notified", () => {
+    shimNotifications.setValue(Notifications.popups)
+})
+
+Notifications.connect("dismissed", () => {
+    shimNotifications.setValue(Notifications.popups)
+})
+
+Notifications.connect("closed", () => {
+    shimNotifications.setValue(Notifications.popups)
+})
 
 const timeAgo = (timestamp) => {
     const delta = new Date() - new Date(timestamp * 1000)
@@ -61,6 +79,7 @@ const Notification = (n) => {
 }
 
 export const NotificationBar = (monitor) => Widget.Window({
+    monitor: monitor,
     className: 'window',
     layer: "overlay",
     name: `notification-center-${monitor}`,
@@ -70,8 +89,8 @@ export const NotificationBar = (monitor) => Widget.Window({
         className: 'list',
         css: 'padding: 1px;', // so it shows up (WTF?)
         vertical: true,
-        connections: [[Notifications, box => {
-            box.children = Array.from(Notifications.popups.values())
+        connections: [[shimNotifications, box => {
+            box.children = shimNotifications.value
                 .map(n => Notification(n));
         }]],
     })

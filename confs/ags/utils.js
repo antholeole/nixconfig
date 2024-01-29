@@ -14,6 +14,10 @@ export const monitorWatcher = (app, windowBuilders) => {
     }
 
     const populateWindows = (monitors) => {
+        if (windows.length > 0) {
+            throw Error("We should always clear before population.")
+        }
+
         for (const windowBuilder of windowBuilders) {
             for (const monitor of monitors) { 
                 const window = windowBuilder(monitor.id)
