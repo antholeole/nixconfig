@@ -4,18 +4,7 @@ in {
   services.espanso = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    package = with pkgs;
-      let
-        espanso2_21 = espanso-wayland.overrideAttrs (old: rec {
-          version = "2.2.1";
-          src = fetchFromGitHub {
-            owner = "espanso";
-            repo = "espanso";
-            rev = "v${version}";
-            hash = "sha256-5TUo5B1UZZARgTHbK2+520e3mGZkZ5tTez1qvZvMnxs=";
-          };
-        });
-      in espanso2_21;
+    package = pkgs.espanso-wayland;
 
     configs.default = {
       toggle_key = "ALT";
@@ -58,6 +47,7 @@ in {
           "tyt" = "take your time";
           "plz" = "please";
           "qu" = "question";
+          "qq" = "quick question";
           "cl" = "calendar";
           "tg" = "together";
           "sp" = "specific";
