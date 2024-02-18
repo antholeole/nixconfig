@@ -27,6 +27,8 @@ in {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       pull.rebase = true;
+      merge.conflictStyle = "xdiff";
+      diff.algorithm = "histogram";
 
       core.editor = with pkgs; "${lib.getExe kakoune}";
 

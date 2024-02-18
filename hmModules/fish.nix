@@ -22,8 +22,11 @@ in {
     shellAbbrs = {
       pl = "parallel";
 
-      # unfortunatly an alias leads to infinite recursion.
+      # unfortunatly an alias leads to infinite recursion
       cd = "z";
+
+      # git diff for patch
+      gdp = "git diff --no-ext-diff";
     };
 
     functions = with pkgs;
