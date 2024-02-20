@@ -59,6 +59,7 @@ in {
       # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
+      open-vsx.arrterian.nix-env-selector
 
       # languages
       open-vsx.bbenoist.nix

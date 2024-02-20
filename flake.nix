@@ -8,6 +8,8 @@
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
+    rust-overlay.url = "github:oxalica/rust-overlay";
+
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -28,13 +30,14 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
-    , devenv, zjstatus, nix-vscode-extensions, nix-index-database, ... }@inputs:
+    , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
           config.allowUnfree = true;
           overlays = [
             nixgl.overlay
+            rust-overlay.overlays.default
             (final: prev: {
               zjstatus = zjstatus.packages.${prev.system}.default;
             })
