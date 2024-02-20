@@ -17,5 +17,6 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "nixEnvSelector.nixFile": "${workspaceFolder}/flake.nix"
 }
