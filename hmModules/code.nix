@@ -65,7 +65,6 @@ in {
       open-vsx.bbenoist.nix
       open-vsx.golang.go
       open-vsx.yzhang.markdown-all-in-one
-      open-vsx.rust-lang.rust-analyzer
       open-vsx.scalameta.metals
     ];
     keybindings = with builtins;
