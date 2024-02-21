@@ -6,3 +6,6 @@
 [] show mode in bar
 [] add an underline to the selected window
 [] add a keybind for rewrap
+
+# DO THIS ONE!
+[] set lang exe in settings. picat, rust
