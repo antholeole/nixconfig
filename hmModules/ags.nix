@@ -18,7 +18,7 @@
             "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
           "alacritty (default)" =
             "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
-            
+
           "pavucontrol" = "${lib.getExe pwvucontrol}";
 
           "code" = broPleaseItsWaylandTrustMe

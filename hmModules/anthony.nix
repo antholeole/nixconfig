@@ -106,7 +106,7 @@ in {
         libnotify
         glib # for notifications
         pwvucontrol
-        
+
         mpc-cli # music
         brightnessctl
         pipes-rs # for funzies

@@ -10,7 +10,6 @@
     nixgl.url = "github:guibou/nixGL";
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +29,8 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
-    , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay, ... }@inputs:
+    , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay
+    , ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
