@@ -5,6 +5,7 @@
     gcc
     (rust-bin.stable.latest.default.override {
       extensions = [ "rust-analyzer" "rust-src" ];
+      targets = [ "wasm32-wasi" ];
     })
     nixpkgs-fmt
     picat

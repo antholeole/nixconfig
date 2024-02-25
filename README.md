@@ -20,7 +20,6 @@ If you're using home-manager, you'll need to:
 
 I also include some stuff in /custom/, for configuration that I do not want to leak.
 These are gitignored but they don't need to exist.
-hello 
 
 
 
