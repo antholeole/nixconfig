@@ -65,14 +65,16 @@ in rec {
     };
   };
 
-  hm-headless-work = default_conf // {
-    name = "oleina";
-    headless = true;
-    bluetooth = false;
-    homeDirPath = "/usr/local/google/home/";
+  
+  hm-headless = default_conf // { 
+    headless = true; 
+    termColor = colors.rosewater;
   };
 
-  hm-headless = default_conf // { headless = true; };
+  hm-headless-work = hm-headless // {
+    name = "oleina";
+    homeDirPath = "/usr/local/google/home/";
+  };
 
   hm-headless-gce = default_conf // {
     headless = true;
