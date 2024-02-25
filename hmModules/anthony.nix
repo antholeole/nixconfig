@@ -85,6 +85,7 @@ in {
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
         tldr # i HATE manpages
+        rclone # very useful for remote stuff
 
         (symlinkJoin {
           name = "fx";
