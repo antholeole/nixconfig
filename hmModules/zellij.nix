@@ -71,7 +71,7 @@ in {
   };
 
  home.file."${layoutDir}/zedit.kdl" = {
-    enable = false;
+    enable = true;
     text = ''
       	layout {
       	floating_panes {
