@@ -97,6 +97,12 @@ in {
         x = 5;
         y = 5;
       };
+
+      keyboard.bindings = [{
+        key = "`";
+        mods = "Control";
+        chars = "\\u001b\\u005b\\u0032\\u0033\\u007e";
+      }];
     };
   };
 }

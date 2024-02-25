@@ -1,4 +1,4 @@
-{ config, inputs, pkgs, sysConfig, ... }:
+{ config, pkgs, sysConfig, ... }:
 let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
@@ -56,9 +56,7 @@ in {
           white = text;
         };
       };
-    };
 
-    settings = {
       default_shell = "${pkgs.lib.getExe config.programs.fish.package}";
     };
   };
@@ -72,25 +70,28 @@ in {
     '';
   };
 
-  home.file."${layoutDir}/daily.kdl" =
-    let daily = import "${inputs.self}/scripts/daily_sh.nix" pkgs sysConfig;
-    in {
-      enable = true;
-      text = ''
-        layout {
-          ${defaultTab}
-          tab name="btm" {
-            pane command="${pkgs.lib.getExe pkgs.bottom}"
-          }
-          tab name="daily" split_direction="vertical" {
-            pane split_direction="horizontal" {
-              pane command="${pkgs.lib.getExe' pkgs.pipes-rs "pipes-rs"}" {
-                args "--rainbow" "5" "-c" "rgb" "-p" "1" "-r" "0.75"
-              } 
-            }
-          }
-          tab name="misc"
-        }
-      '';
-    };
+ home.file."${layoutDir}/zedit.kdl" = {
+    enable = false;
+    text = ''
+      	layout {
+      	floating_panes {
+      		pane {
+      			width "90%"
+      			height "90%"
+      			x "5%"
+      			y "5%"
+      		}
+      	}
+      }
+      keybinds clear-defaults=true {
+      	shared {
+      		bind "F11" { ToggleFloatingPanes; }		
+      	}
+      }
+
+      default_shell "fish"
+      default_layout "compact"
+
+      	'';
+  };
 }

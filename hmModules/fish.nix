@@ -17,7 +17,10 @@ in {
         v = "${wlClipPath}wl-paste";
         done = "${pkgs.libnotify}/bin/notify-send done!";
       };
-    in { rd = "rm -rf"; } // cv;
+    in { 
+      rd = "rm -rf"; 
+      zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
+    } // cv;
 
     shellAbbrs = {
       pl = "parallel";

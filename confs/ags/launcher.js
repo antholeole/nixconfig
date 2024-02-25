@@ -48,7 +48,7 @@ export const Launcher = (
                                     onChange: ({ text }) => launcherText.value = text,
                                     onAccept: ({ text }) => {
                                         const selectedKey = filterInput(launcherData.map(v => v.data), text)[0]
-                                        
+
                                         if (selectedKey === undefined) {
                                             launcherText.value = ""
                                             variable.value = false
@@ -88,9 +88,9 @@ export const Launcher = (
                                 self => self.children = filterInput(launcherData.map(v => v.data), launcherText.value).map((data, i) => Widget.Label({
                                     label: data,
                                     justification: 'left',
-                                    class_name:                                        
-                                        
-                                    "launcher-text" + (i === 0 ? " first" : "")
+                                    class_name:
+
+                                        "launcher-text" + (i === 0 ? " first" : "")
                                 }))]
                         ]
                     })
