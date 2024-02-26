@@ -101,7 +101,7 @@ in
       keybinds clear-defaults=true {
       	shared {
       		bind "F11" { ToggleFloatingPanes; }		
-          bind "Ctrl Q" { Quit; }
+          bind "Ctrl q" { Quit; }
       	}
       }
 
