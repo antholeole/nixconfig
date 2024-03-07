@@ -86,6 +86,7 @@ in {
         parallel # xargs but I like it better
         tldr # i HATE manpages
         rclone # very useful for remote stuff
+        spr # useful for github stacked PRs
 
         (symlinkJoin {
           name = "fx";
