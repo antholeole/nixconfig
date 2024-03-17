@@ -25,8 +25,7 @@ let
         }
       }
   '';
-in
-{
+in {
   programs.zellij = {
     enable = true;
 
@@ -35,7 +34,7 @@ in
     settings = {
       # allows ctrl Q to just exit zedit. We live inside zellij anyway
       keybinds.unbind = "Ctrl Q";
-    
+
       theme = "catpuccin";
 
       scrollback_editor = "${pkgs.kakoune}/bin/kak";
@@ -77,37 +76,37 @@ in
   home.file."${layoutDir}/zedit.kdl" = {
     enable = true;
     text = ''
-      	layout {
-        tab {
-        pane {
-            command "${pkgs.helix}/bin/hx"
-            args "."
+       	layout {
+         tab {
+         pane {
+             command "${pkgs.helix}/bin/hx"
+             args "."
+           }
+
+           
+       	floating_panes {
+       		pane {
+             command "${pkgs.zellij}/bin/zellij"
+             args "--layout" "default"
+           
+       			width "90%"
+       			height "90%"
+       			x "5%"
+       			y "5%"
+       		}
+       	}
           }
-
-          
-      	floating_panes {
-      		pane {
-            command "${pkgs.zellij}/bin/zellij"
-            args "--layout" "default"
-          
-      			width "90%"
-      			height "90%"
-      			x "5%"
-      			y "5%"
-      		}
-      	}
-         }
-     }
-      keybinds clear-defaults=true {
-      	shared {
-      		bind "F11" { ToggleFloatingPanes; }		
-          bind "Ctrl q" { Quit; }
-      	}
       }
+       keybinds clear-defaults=true {
+       	shared {
+       		bind "F11" { ToggleFloatingPanes; }		
+           bind "Ctrl q" { Quit; }
+       	}
+       }
 
-      default_shell "fish"
-      default_layout "compact"
+       default_shell "fish"
+       default_layout "compact"
 
-      	'';
+       	'';
   };
 }

@@ -21,13 +21,12 @@ in {
 
     difftastic = { enable = true; };
 
-    ignores = [ 
-      "node_modules/" 
-      ".vscode" 
+    ignores = [
+      "node_modules/"
+      ".vscode"
 
-      ".direnv/" 
-      ".devenv/" 
-
+      ".direnv/"
+      ".devenv/"
 
       "**/__scratch/"
     ];
