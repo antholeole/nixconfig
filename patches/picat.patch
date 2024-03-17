@@ -1,16 +1,22 @@
+diff --git a/out/src/features/editHelpers.js b/out/src/features/editHelpers.js
+index d45e7c8..7f48849 100644
+--- a/out/src/features/editHelpers.js
++++ b/out/src/features/editHelpers.js
+@@ -116,6 +116,10 @@ function loadEditHelpers(subscriptions) {
+     }
+     vscode_1.workspace.onDidChangeTextDocument(e => {
+         let lastChange = e.contentChanges[0];
++        if (lastChange === undefined) {
++            return;
++        }
++
+         let lastChar = lastChange.text;
+         let range = lastChange.range;
+         let start = range.start;
 diff --git a/out/src/features/picatLinter.js b/out/src/features/picatLinter.js
-index 2803613..3761839 100644
+index 2803613..3cbe76c 100644
 --- a/out/src/features/picatLinter.js
 +++ b/out/src/features/picatLinter.js
-@@ -20,7 +20,7 @@ class PicatLinter {
-     }
-     outputMsg(msg) {
-         this._outputChannel.append(msg + "\n");
--        this._outputChannel.show(true);
-+        // this._outputChannel.show(true);
-     }
-     loadConfiguration() {
-         let section = vscode_1.workspace.getConfiguration("picat");
 @@ -86,4 +86,4 @@ class PicatLinter {
      }
  }

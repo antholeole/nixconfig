@@ -65,9 +65,8 @@ in rec {
     };
   };
 
-  
-  hm-headless = default_conf // { 
-    headless = true; 
+  hm-headless = default_conf // {
+    headless = true;
     termColor = colors.rosewater;
   };
 
