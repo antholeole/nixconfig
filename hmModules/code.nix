@@ -66,6 +66,13 @@ in {
       open-vsx.golang.go
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.scalameta.metals
+      (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
+        # to apply the patch we must unzip it 
+
+        # this patch makes it so the terminal does not pop up whenever there is
+        # an error (literally almost all the time)
+        patches = (o.patches or []) ++ [ "${inputs.self}/patches/picat.patch" ];
+      }))
     ];
     keybindings = with builtins;
       (pkgs.lib.mkIf true)

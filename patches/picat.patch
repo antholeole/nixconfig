@@ -1,0 +1,20 @@
+diff --git a/out/src/features/picatLinter.js b/out/src/features/picatLinter.js
+index 2803613..3761839 100644
+--- a/out/src/features/picatLinter.js
++++ b/out/src/features/picatLinter.js
+@@ -20,7 +20,7 @@ class PicatLinter {
+     }
+     outputMsg(msg) {
+         this._outputChannel.append(msg + "\n");
+-        this._outputChannel.show(true);
++        // this._outputChannel.show(true);
+     }
+     loadConfiguration() {
+         let section = vscode_1.workspace.getConfiguration("picat");
+@@ -86,4 +86,4 @@ class PicatLinter {
+     }
+ }
+ exports.default = PicatLinter;
+-//# sourceMappingURL=picatLinter.js.map
+\ No newline at end of file
++//# sourceMappingURL=picatLinter.js.map

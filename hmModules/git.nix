@@ -21,7 +21,16 @@ in {
 
     difftastic = { enable = true; };
 
-    ignores = [ "node_modules/" ".vscode" ".direnv/" ];
+    ignores = [ 
+      "node_modules/" 
+      ".vscode" 
+
+      ".direnv/" 
+      ".devenv/" 
+
+
+      "**/__scratch/"
+    ];
 
     extraConfig = {
       push.autoSetupRemote = true;
