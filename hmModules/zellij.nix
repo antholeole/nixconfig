@@ -87,7 +87,7 @@ in {
           args "ARGS"
         }
 
-        tab {
+        tab name="COMMAND" {
       	pane stacked=true {
           REPEAT_ME
       	}
