@@ -28,6 +28,8 @@ in {
       pl = "parallel";
 
       # unfortunatly an alias leads to infinite recursion
+      # TODO: is this not required because of enable fish 
+      # integration?
       cd = "z";
 
       # git diff for patch

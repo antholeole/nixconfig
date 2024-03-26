@@ -6,30 +6,34 @@ let
   bgColor = colors.mantle;
   fgColor = sysConfig.termColor;
 
+  zjStatus = ''
+    pane size=1 borderless=true {
+           plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+             format_space "#[bg=${bgColor}]"
+
+             mode_normal  "#[bg=${fgColor},fg=${colors.base}] {name} "
+             mode_locked  "#[bg=${colors.yellow},fg=${bgColor}] {name} "
+
+             tab_normal   "#[fg=${fgColor}] {name} "
+             tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
+
+             format_left  "{tabs}"
+             format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
+           }
+         }
+  '';
+
   defaultTab = ''
     default_tab_template {
       children
-      pane size=1 borderless=true {
-          plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-            format_space "#[bg=${bgColor}]"
-
-            mode_normal  "#[bg=${fgColor},fg=${colors.base}] {name} "
-            mode_locked  "#[bg=${colors.yellow},fg=${bgColor}] {name} "
-
-            tab_normal   "#[fg=${fgColor}] {name} "
-            tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
-
-            format_left  "{tabs}"
-            format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
-          }
-        }
+      ${zjStatus}
       }
   '';
 in {
   programs.zellij = {
     enable = true;
 
-    enableFishIntegration = false;
+    enableFishIntegration = true;
 
     settings = {
       # allows ctrl Q to just exit zedit. We live inside zellij anyway
@@ -69,6 +73,27 @@ in {
     text = ''
       layout {
         ${defaultTab}
+      }
+    '';
+  };
+
+  # "command tab"
+  home.file."${layoutDir}/templates/ct.kdl" = {
+    enable = true;
+    text = ''
+      layout {
+        pane_template name="cmd" {
+          command "COMMAND"
+          args "ARGS"
+        }
+
+        tab {
+      	pane stacked=true {
+          REPEAT_ME
+      	}
+        
+        ${zjStatus}
+        }
       }
     '';
   };

@@ -1,3 +1,4 @@
+# Prbably never happeining
 [] brightness
 [] wl-sunset
 [] we should fix espanso
@@ -7,5 +8,6 @@
 [] add an underline to the selected window
 [] add a keybind for rewrap
 
-# DO THIS ONE!
-[] set lang exe in settings. picat, rust
+# Do
+[] Add a zellij config that has all fun stuff
+[] Have launcher dish out to wm
