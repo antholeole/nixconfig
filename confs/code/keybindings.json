@@ -741,5 +741,10 @@
         }
       }
     }
+  },
+  {
+    "key": "shift+;",
+    "command": "workbench.action.showCommands",
+    "when": "(editorTextFocus && dance.mode == 'normal') || (!terminalFocus && !editorFocus && !editorTextFocus && !inputFocus)"
   }
 ]
