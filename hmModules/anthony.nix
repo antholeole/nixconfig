@@ -101,6 +101,7 @@ in {
         # These are here because vscode unfortunately does not have the
         # best integration with the world.
         go
+        d2
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
