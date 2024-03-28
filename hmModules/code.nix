@@ -6,6 +6,8 @@ let
   userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
   configFilePath = "${userSettingsPath}/settings.json";
   keybindingsFilePath = "${userSettingsPath}/keybindings.json";
+
+  rust = import "${inputs.self}/pkgs/rust.nix" pkgs;
 in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
@@ -132,7 +134,11 @@ in {
           };
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
-        "rust-analyzer.cargo.sysroot" = "discover";
+
+        "rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
+        "rust-analyzer.cargo.sysrootSrc" = "${rust}/bin/rust-analyzer";
+        "rust-analyzer.cargo.sysroot" = "${rust}/lib/rustlib/src/rust/library";
+
         "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       });
   };
