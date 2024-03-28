@@ -58,6 +58,8 @@ in {
       open-vsx.golang.go
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.scalameta.metals
+      open-vsx.mkhl.direnv
+      
       open-vsx.arrterian.nix-env-selector 
       (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
         # this patch makes it so the terminal does not pop up whenever there is
