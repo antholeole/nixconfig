@@ -129,5 +129,6 @@
         "**/.devenv/*": true,
         "**/.terraform/*": true
     },
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "rust-analyzer.server.path": "rust-analyzer"
 }
