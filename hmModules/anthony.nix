@@ -87,6 +87,7 @@ in {
         tldr # i HATE manpages
         rclone # very useful for remote stuff
         spr # useful for github stacked PRs
+        direnv # vsc ext checks path for this
 
         (symlinkJoin {
           name = "fx";

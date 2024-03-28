@@ -130,11 +130,6 @@ in {
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
         "rust-analyzer.cargo.sysroot" = "discover";
-        "rust-analyzer.server.path" = let
-          rustPath = (pkgs.rust-bin.stable.latest.default.override {
-            extensions = [ "rust-analyzer" "rust-src" ];
-          });
-        in "${rustPath}/bin/rust-analyzer";
       });
   };
 
