@@ -58,6 +58,7 @@ in {
       open-vsx.golang.go
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.scalameta.metals
+      open-vsx.arrterian.nix-env-selector 
       (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
         # this patch makes it so the terminal does not pop up whenever there is
         # a linter issue.
@@ -130,6 +131,7 @@ in {
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
         "rust-analyzer.cargo.sysroot" = "discover";
+        "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       });
   };
 
