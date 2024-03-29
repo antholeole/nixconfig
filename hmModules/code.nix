@@ -61,6 +61,7 @@ in {
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.scalameta.metals
       open-vsx.mkhl.direnv
+      pkgs.vscode-extensions.rust-lang.rust-analyzer
       
       open-vsx.arrterian.nix-env-selector 
       (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
@@ -135,9 +136,13 @@ in {
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
 
-        "rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
-        "rust-analyzer.cargo.sysrootSrc" = "${rust}/bin/rust-analyzer";
-        "rust-analyzer.cargo.sysroot" = "${rust}/lib/rustlib/src/rust/library";
+        # Maybe delete
+        #"rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
+        #"rust-analyzer.cargo.sysrootSrc" = "${rust}/bin/rust-analyzer";
+        #"rust-analyzer.cargo.sysroot" = "${rust}";
+
+        ## NOT THE RIGHT PATH!
+	      #"rust-analyzer.procMacro.server" = "${rust}/bin/rust-analyzer";
 
         "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       });

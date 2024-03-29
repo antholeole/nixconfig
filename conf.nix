@@ -2,6 +2,12 @@ let
   mkFontSizes = { defaultFontSize ? 18, glFontSize ? 10, }@fontSizes: fontSizes;
   colors = import ./theme.nix;
 
+
+  work = {
+    email = "oleina@google.com";
+    name = "oleina";
+  };
+
   default_conf = {
     name = "anthony";
     email = "antholeinik@gmail.com";
@@ -39,9 +45,7 @@ in rec {
     };
   };
 
-  hm-work = default_conf // {
-    name = "oleina";
-    email = "oleina@google.com";
+  hm-work = default_conf // work // {
     alsaSupport = false;
     keymap = "altwin:ctrl_alt_win";
 
@@ -70,8 +74,7 @@ in rec {
     termColor = colors.rosewater;
   };
 
-  hm-headless-work = hm-headless // {
-    name = "oleina";
+  hm-headless-work = hm-headless // work // {
     homeDirPath = "/usr/local/google/home/";
   };
 
