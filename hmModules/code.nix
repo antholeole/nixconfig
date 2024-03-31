@@ -6,8 +6,6 @@ let
   userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
   configFilePath = "${userSettingsPath}/settings.json";
   keybindingsFilePath = "${userSettingsPath}/keybindings.json";
-
-  rust = import "${inputs.self}/pkgs/rust.nix" pkgs;
 in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
@@ -61,7 +59,7 @@ in {
       open-vsx.yzhang.markdown-all-in-one
       open-vsx.scalameta.metals
       open-vsx.mkhl.direnv
-      pkgs.vscode-extensions.rust-lang.rust-analyzer
+      open-vsx.rust-lang.rust-analyzer
       
       open-vsx.arrterian.nix-env-selector 
       (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
