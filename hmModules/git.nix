@@ -20,6 +20,11 @@ in {
       "**/__scratch/"
     ];
 
+    aliases = {
+        # just gerrit things
+        cl = "!f() { git push origin HEAD:refs/for/\$\{1:-master}; }; f";
+    };
+
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
