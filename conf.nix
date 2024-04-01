@@ -2,7 +2,6 @@ let
   mkFontSizes = { defaultFontSize ? 18, glFontSize ? 10, }@fontSizes: fontSizes;
   colors = import ./theme.nix;
 
-
   work = {
     email = "oleina@google.com";
     name = "oleina";

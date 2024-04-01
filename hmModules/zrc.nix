@@ -1,10 +1,10 @@
 { pkgs, ... }: {
   home.packages = let
     ntc = (pkgs.writeShellApplication {
-        name = "zrc";
-        runtimeInputs = with pkgs; [zellij];
+      name = "zrc";
+      runtimeInputs = with pkgs; [ zellij ];
 
-      text = let 
+      text = let
         # For now, create four of the same pane. it's a good enough number that
         # doesn't take up the whole screen and should be enough.
         elements = 4;

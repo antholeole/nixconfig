@@ -60,8 +60,8 @@ in {
       open-vsx.scalameta.metals
       open-vsx.mkhl.direnv
       open-vsx.rust-lang.rust-analyzer
-      
-      open-vsx.arrterian.nix-env-selector 
+
+      open-vsx.arrterian.nix-env-selector
       (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
         # this patch makes it so the terminal does not pop up whenever there is
         # a linter issue.
@@ -140,7 +140,7 @@ in {
         #"rust-analyzer.cargo.sysroot" = "${rust}";
 
         ## NOT THE RIGHT PATH!
-	      #"rust-analyzer.procMacro.server" = "${rust}/bin/rust-analyzer";
+        #"rust-analyzer.procMacro.server" = "${rust}/bin/rust-analyzer";
 
         "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       });
