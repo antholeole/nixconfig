@@ -20,8 +20,12 @@ in {
     in {
       rd = "rm -rf";
       zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
+
       # last command duration
       ldc = "humantime $CMD_DURATION";
+
+      # git create change list
+      gccl = "git cl";
     } // cv;
 
     shellAbbrs = {
