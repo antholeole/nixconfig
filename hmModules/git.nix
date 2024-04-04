@@ -21,8 +21,8 @@ in {
     ];
 
     aliases = {
-        # just gerrit things
-        cl = "!f() { git push origin HEAD:refs/for/\$\{1:-master}; }; f";
+      # just gerrit things
+      cl = "!f() { git push origin HEAD:refs/for/\${1:-master}; }; f";
     };
 
     extraConfig = {
