@@ -55,10 +55,6 @@
                 "m": {
                     "text": "to previous marker",
                     "command": "errorLens.selectProblem"
-                },
-                "x": {
-                    "text": "to implementations",
-                    "command": "editor.action.peekImplementation"
                 }
             }
         },
