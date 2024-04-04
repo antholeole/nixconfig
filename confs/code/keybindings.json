@@ -308,11 +308,6 @@
   },
   {
     "key": "escape",
-    "command": "workbench.action.toggleSidebarVisibility",
-    "when": "sideBarFocus && !inputFocus && !HasSelectionOrFocus"
-  },
-  {
-    "key": "escape",
     "command": "list.clear",
     "when": "listFocus && listHasSelectionOrFocus && !inputFocus"
   },
@@ -668,25 +663,6 @@
     "key": "ctrl+`",
     "command": "workbench.action.toggleMaximizedPanel",
     "when": "!panelFocus"
-  },
-  {
-    "command": "dance.openMenu",
-    "when": "editorTextFocus && dance.mode == 'normal'",
-    "key": "/",
-    "args": {
-      "menu": {
-        "items": {
-          "/": {
-            "text": "regex search",
-            "command": "dance.search"
-          },
-          "f": {
-            "text": "global search",
-            "command": "workbench.action.experimental.quickTextSearch"
-          }
-        }
-      }
-    }
   },
   {
     "command": "dance.openMenu",

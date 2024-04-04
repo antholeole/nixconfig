@@ -6,8 +6,9 @@
 [] resize mode
 [] show mode in bar
 [] add an underline to the selected window
-[] add a keybind for rewrap
+[] Add a zellij config that has all fun stuff
 
 # Do
-[] Add a zellij config that has all fun stuff
 [] Have launcher dish out to wm
+[] add a keybind for rewrap
+[] escape should not close the explorer pane
