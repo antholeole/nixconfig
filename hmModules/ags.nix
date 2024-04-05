@@ -10,6 +10,9 @@
 
     text = with pkgs;
       let
+        broPleaseItsWaylandTrustMe = pgm:
+          "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
+
         entries = {
           "alacritty (daily)" =
             "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
@@ -18,26 +21,23 @@
 
           "pavucontrol" = "${lib.getExe pwvucontrol}";
 
-          "code" = "${config.programs.vscode.package}/bin/code";
-          "chrome" = "/bin/google-chrome";
+          "code" = broPleaseItsWaylandTrustMe
+            "${config.programs.vscode.package}/bin/code";
+          "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome";
         };
       in builtins.toJSON entries;
   };
 
-  systemd.user.services.ags = {
-    Install.WantedBy = [ "graphical-session.target" ];
-    
-    Service =
-      let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
-      in {
-        Restart = "always";
+  systemd.user.services.ags.Service =
+    let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
+    in {
+      Restart = "always";
 
-        # needs hyprland on path or it fails
-        Environment =
-          "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
-        ExecStart = "${agsExe}";
-        ExecStartPre = "-/bin/pkill ags";
-      };
-  };
+      # needs hyprland on path or it fails
+      Environment =
+        "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+      ExecStart = "${agsExe}";
+      ExecStartPre = "-/bin/pkill ags";
+    };
 }
 
