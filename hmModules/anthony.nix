@@ -103,6 +103,7 @@ in {
         # best integration with the world.
         go
         d2
+        scala-cli
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
