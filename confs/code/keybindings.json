@@ -24,36 +24,6 @@
     "key": "ctrl+b"
   },
   {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+e",
-    "when": "activeViewlet == 'workbench.view.explorer'"
-  },
-  {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+g",
-    "when": "activeViewlet == 'workbench.view.git'"
-  },
-  {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+f",
-    "when": "activeViewlet == 'workbench.view.search'"
-  },
-  {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+a",
-    "when": "activeViewlet == 'workbench.view.git'"
-  },
-  {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+d",
-    "when": "activeViewlet == 'workbench.view.debug'"
-  },
-  {
-    "command": "workbench.action.closeSidebar",
-    "key": "ctrl+shift+x",
-    "when": "activeViewlet == 'workbench.view.extensions'"
-  },
-  {
     "command": "workbench.action.quickOpen",
     "key": "ctrl+'"
   },
@@ -83,7 +53,7 @@
   {
     "command": "workbench.action.closeGroup",
     "key": "ctrl+shift+w",
-    "when": "multipleEditorGroups"
+    "when": "multipleEditorGroups && editorTextFocus"
   },
   {
     "command": "-workbench.action.closeWindow",
@@ -751,5 +721,19 @@
     "command": "dance.search",
     "when": "editorTextFocus && dance.mode == 'normal'",
     "key": "/"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-workbench.action.closeActiveEditor"
+  },
+  {
+    "command": "workbench.action.closeActiveEditor",
+    "when": "editorTextFocus",
+    "key": "ctrl+w"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "workbench.action.closeSidebar",
+    "when": "sideBarFocus"
   }
 ]

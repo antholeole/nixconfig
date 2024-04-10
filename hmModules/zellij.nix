@@ -33,7 +33,9 @@ in {
   programs.zellij = {
     enable = true;
 
-    enableFishIntegration = true;
+    # enabling this would autostart a zellij session every time we activate
+    # fish. We can do that manually, with more configuration.
+    enableFishIntegration = false;
 
     settings = {
       # allows ctrl Q to just exit zedit. We live inside zellij anyway
