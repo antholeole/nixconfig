@@ -735,5 +735,21 @@
     "key": "ctrl+w",
     "command": "workbench.action.closeSidebar",
     "when": "sideBarFocus"
+  },
+  {
+    "key": "enter",
+    "command": "-explorer.openAndPassFocus",
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
+  },
+  {
+    "command": "runCommands",
+    "key": "enter", 
+    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
+    "args": {
+      "commands": [
+        "explorer.openAndPassFocus",
+        "workbench.action.closeSidebar"
+      ]
+    }
   }
 ]
