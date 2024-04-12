@@ -4,8 +4,9 @@
 
 # HomeManager only: 
 1. Install nix
-2. enable flakes: `mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf`
-3. `nix run home-manager/master --  switch --flake .#work --impure`. (you only need impure if nixGL is enabled)
+1. enable flakes: `mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf`
+1. `nix run home-manager/master --  switch --flake .#work --impure`. (you only need impure if nixGL is enabled)
+
 
 # Getting Music added
 enter the program `ncmpcpp` then click 2 to enter the browse menu. Then, click "a" on the folder to add the entire folder. 
