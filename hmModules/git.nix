@@ -8,7 +8,10 @@ in {
   programs.git = {
     enable = true;
 
-    difftastic = { enable = true; };
+    delta = {
+        enable = true;
+    };
+
 
     ignores = import "${inputs.self}/shared/ignores.nix";
 

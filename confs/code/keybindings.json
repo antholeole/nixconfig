@@ -742,6 +742,10 @@
           "i": {
             "text": "accept incoming",
             "command": "merge-conflict.accept.incoming"
+          },
+          "a": {
+            "text": "add current file",
+            "command": "git.stage"
           }
         }
       }
