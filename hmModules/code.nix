@@ -109,6 +109,8 @@ in {
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
 
+        "search.exclude" = "${inputs.self}/shared/ignores.nix";
+
         # Maybe delete
         #"rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
         #"rust-analyzer.cargo.sysrootSrc" = "${rust}/bin/rust-analyzer";

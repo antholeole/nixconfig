@@ -10,19 +10,14 @@ in {
 
     difftastic = { enable = true; };
 
-    ignores = [
-      "node_modules/"
-      ".vscode"
-
-      ".direnv/"
-      ".devenv/"
-
-      "**/__scratch/"
-    ];
+    ignores = import "${inputs.self}/shared/ignores.nix";
 
     aliases = {
       # just gerrit things
       cl = "!f() { git push origin HEAD:refs/for/\${1:-master}; }; f";
+
+      # list all the conflicts
+      conflicts = "git diff --name-only --diff-filter=U";
     };
 
     extraConfig = {

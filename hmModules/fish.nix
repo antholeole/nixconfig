@@ -26,6 +26,9 @@ in {
 
       # git create change list
       gccl = "git cl";
+
+      # list all the conflicts
+      gcn = "git conflicts";
     } // cv;
 
     shellAbbrs = {
