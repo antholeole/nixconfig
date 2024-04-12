@@ -719,6 +719,10 @@
     "args": {
       "menu": {
         "items": {
+          "g": {
+            "text": "next global conflict",
+            "command": "merge.goToNextUnhandledConflict"
+          },
           "n": {
             "text": "next conflict in file",
             "command": "merge-conflict.next"
@@ -774,7 +778,7 @@
   },
   {
     "command": "runCommands",
-    "key": "enter", 
+    "key": "enter",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
     "args": {
       "commands": [
