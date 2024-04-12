@@ -17,7 +17,7 @@ in {
       cl = "!f() { git push origin HEAD:refs/for/\${1:-master}; }; f";
 
       # list all the conflicts
-      conflicts = "git diff --name-only --diff-filter=U";
+      conflicts = "diff --name-only --diff-filter=U";
     };
 
     extraConfig = {
