@@ -713,6 +713,37 @@
     }
   },
   {
+    "key": "-",
+    "command": "dance.openMenu",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "args": {
+      "menu": {
+        "items": {
+          "n": {
+            "text": "next conflict in file",
+            "command": "merge-conflict.next"
+          },
+          "p": {
+            "text": "previous conflict in file",
+            "command": "merge-conflict.previous"
+          },
+          "b": {
+            "text": "accept both",
+            "command": "merge-conflict.accept.both"
+          },
+          "c": {
+            "text": "accept current",
+            "command": "merge-conflict.accept.current"
+          },
+          "i": {
+            "text": "accept incoming",
+            "command": "merge-conflict.accept.incoming"
+          }
+        }
+      }
+    }
+  },
+  {
     "key": "shift+;",
     "command": "workbench.action.showCommands",
     "when": "(editorTextFocus && dance.mode == 'normal') || (!terminalFocus && !editorFocus && !editorTextFocus && !inputFocus)"
