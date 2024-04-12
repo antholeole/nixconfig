@@ -121,13 +121,5 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000,
     "catppuccin.workbenchMode": "flat",
-    "search.exclude": {
-        "**/node_modules": true,
-        "**/bower_components": true,
-        "**/*.code-search": true,
-        "**/.direnv/*": true,
-        "**/.devenv/*": true,
-        "**/.terraform/*": true
-    },
     "workbench.startupEditor": "none"
 }
