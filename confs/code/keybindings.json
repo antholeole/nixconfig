@@ -308,7 +308,7 @@
   },
   {
     "key": "/",
-    "command": "list.toggleKeyboardNavigation",
+    "command": "list.find",
     "when": "listFocus && listSupportsKeyboardNavigation"
   },
   {
