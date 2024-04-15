@@ -10,6 +10,11 @@ in {
 
     delta = {
         enable = true;
+        options = {
+           syntax-theme = "catppuccin-macchiato";
+           line-numbers = true;
+           side-by-side = true;
+        };
     };
 
 
