@@ -684,6 +684,10 @@
           "s": {
             "text": "status",
             "command": "gitlens.showQuickRepoStatus"
+          },
+          "r": {
+              "text": "revert",
+              "command": "git.revertSelectedRanges"
           }
         }
       }
