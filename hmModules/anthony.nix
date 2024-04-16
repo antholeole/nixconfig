@@ -97,6 +97,7 @@ in {
 
         neofetch # for funzies
         ttyper # funzies
+	asciinema # makes for some good demos
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
