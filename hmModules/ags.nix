@@ -22,8 +22,8 @@
           "pavucontrol" = "${lib.getExe pwvucontrol}";
 
           "code" = broPleaseItsWaylandTrustMe
-            "${config.programs.vscode.package}/bin/code";
-          "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome";
+            "${config.programs.vscode.package}/bin/code  --enable-features=UseOzonePlatform --ozone-platform=wayland";
+          "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
         };
       in builtins.toJSON entries;
   };
