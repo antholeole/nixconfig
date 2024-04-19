@@ -106,7 +106,7 @@ in {
        	layout {
          tab {
          pane {
-             command "${pkgs.helix}/bin/hx"
+             command "${pkgs.kakoune}/bin/kak"
              args "."
            }
 

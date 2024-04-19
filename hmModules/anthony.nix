@@ -3,7 +3,6 @@ let
   theme = {
     package = pkgs.catppuccin-gtk;
     name = "Catppuccin-Frappe-Standard-Blue-Dark";
-
   };
 in {
   fonts.fontconfig.enable = true;
@@ -14,6 +13,7 @@ in {
     inputs.nix-index-database.hmModules.nix-index
     "${inputs.self}/mixins/mutable.nix"
   ];
+
 
   gtk = {
     enable = !sysConfig.headless;
@@ -98,6 +98,7 @@ in {
         neofetch # for funzies
         ttyper # funzies
 	asciinema # makes for some good demos
+	topfew-rs # fast!
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the

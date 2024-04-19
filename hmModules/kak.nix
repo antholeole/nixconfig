@@ -45,7 +45,9 @@
       map global user P '!${wl-clipboard}/bin/wl-paste -n<ret>'
       map global user p '<a-!>${wl-clipboard}/bin/wl-paste -n<ret>'
 
-      map global normal <c-h> ': fzf-mode<ret>'
+      # configure fzf
+      map global normal <c-e> ': fzf-mode<ret>'
+      set-option global fzf-file ${pkgs.bat}/bin/bat
     '';
   };
 
