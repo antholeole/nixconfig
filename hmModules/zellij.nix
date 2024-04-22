@@ -47,19 +47,22 @@ in {
 
       pane_frames = false;
       mouse_mode = false;
-      default_layout = "compact";
+      default_layout = "default";
 
       ui = { pane_frames = { hide_session_name = true; }; };
 
       themes = {
         catpuccin = with colors; {
-          inherit red green blue yellow;
+          inherit red blue yellow;
+
+          # green is used for the borders
+          green = mantle;
+          orange = sysConfig.termColor;
 
           bg = surface2;
           fg = text;
 
           magenta = pink;
-          orange = peach;
           cyan = sky;
           black = mantle;
           white = text;
