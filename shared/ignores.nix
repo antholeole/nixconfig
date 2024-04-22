@@ -8,4 +8,6 @@
   "__scratch/"
   ".terraform/"
   ".metals/"
+  ".scala-build/"
+  ".bsp/"
 ]
