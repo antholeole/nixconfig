@@ -56,8 +56,8 @@ in {
           inherit red blue yellow;
 
           # green is used for the borders
-          green = mantle;
-          orange = sysConfig.termColor;
+          green = overlay0;
+          orange = peach;
 
           bg = surface2;
           fg = text;
