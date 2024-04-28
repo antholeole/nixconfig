@@ -57,7 +57,6 @@ func run() error {
 
 		suffixless := strings.TrimSuffix(string(stdin), "\n")
 		reader := strings.NewReader(b64.StdEncoding.EncodeToString([]byte(suffixless)))
-		fmt.Println(suffixless)
 
 		_, err = http.Post(mkUrl(cmd), "text/plain", reader)
 
