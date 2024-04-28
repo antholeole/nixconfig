@@ -4,6 +4,7 @@ in lib.mkIf (!sysConfig.headless) {
   wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
+    screenshotUtils = (import "${inputs.self}/shared/screenshot.nix") pkgs config;
     agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
   in {
     enable = !sysConfig.headless;
@@ -48,9 +49,9 @@ in lib.mkIf (!sysConfig.headless) {
       bind=${mod},m,focusmonitor,+1
       bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
-      bind=ALT_SHIFT,s,exec,${
-        pkgs.lib.getExe (pkgs.grimblast)
-      } --notify save area ~/Pictures/$(${pkgs.openssl}/bin/openssl rand -base64 12).png
+      # screenshot stuff
+      bind=ALT_SHIFT,s,exec,${screenshotUtils.screenshot}
+      bind=ALT_SHIFT,e,exec,${screenshotUtils.edit}
 
 
       # POWERBAR
