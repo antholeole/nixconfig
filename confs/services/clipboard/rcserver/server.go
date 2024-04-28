@@ -79,9 +79,11 @@ func run(args *argT) error {
 			return
 		}
 
-		bytes := []byte{}
-		b64.StdEncoding.Encode(bytes, out)
-		c.Data(http.StatusOK, "text/plain", bytes)
+		outBytes := []byte(out)
+		out64String := b64.StdEncoding.EncodeToString(outBytes)
+		out64Bytes := []byte(out64String)
+
+		c.Data(http.StatusOK, "text/plain", out64Bytes)
 	})
 
 	r.GET("/done", func(c *gin.Context) {
