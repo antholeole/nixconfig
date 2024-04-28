@@ -1,13 +1,15 @@
 package main
 
 import (
-  "os"
-  "strings"
-  "io"
-  "fmt"
-  "log"
-  "net/http"
-  "oleinaconf.com/utils"
+	b64 "encoding/base64"
+	"fmt"
+	"io"
+	"log"
+	"net/http"
+	"os"
+	"strings"
+
+	"oleinaconf.com/utils"
 )
 
 func main() {
@@ -28,16 +30,25 @@ func mkUrl(path string) string {
 
 func run() error {
 	switch cmd := os.Args[1]; cmd {
-	case "paste": 
+	case "paste":
 		resp, err := http.Get(mkUrl(cmd))
+		if err != nil {
+			return err
+		}
+
 		defer resp.Body.Close()
-		body, err := io.ReadAll(resp.Body)
+		bodyB64, err := io.ReadAll(resp.Body)
 
 		if err != nil {
 			return err
 		}
 
-		print(string(body))
+		data, err := b64.StdEncoding.DecodeString(string(bodyB64))
+		if err != nil {
+			return err
+		}
+
+		fmt.Println(strings.TrimSuffix(string(data), "\n"))
 	case "copy":
 		stdin, err := io.ReadAll(os.Stdin)
 		if err != nil {
@@ -45,7 +56,7 @@ func run() error {
 		}
 
 		suffixless := strings.TrimSuffix(string(stdin), "\n")
-		reader := strings.NewReader(suffixless)
+		reader := strings.NewReader(b64.StdEncoding.EncodeToString([]byte(suffixless)))
 
 		_, err = http.Post(mkUrl(cmd), "text/plain", reader)
 
@@ -56,19 +67,28 @@ func run() error {
 		resp, err := http.Get(mkUrl(cmd))
 		if err != nil {
 			return err
-		}		
-		
+		}
+
 		defer resp.Body.Close()
-		body, err := io.ReadAll(resp.Body)
-		fmt.Print(string(body))
-	case "done": 	
+		bodyB64, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return err
+		}
+
+		body, err := b64.StdEncoding.DecodeString(string(bodyB64))
+		if err != nil {
+			return err
+		}
+
+		fmt.Print(strings.TrimSuffix(string(body), "\n"))
+	case "done":
 		resp, err := http.Get(mkUrl(cmd))
 		if err != nil {
 			return err
 		}
 
 		defer resp.Body.Close()
-	default: 
+	default:
 		return fmt.Errorf("unknown command %s", cmd)
 	}
 
