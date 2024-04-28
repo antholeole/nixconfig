@@ -11,6 +11,7 @@ in {
       cv = if sysConfig.headless then {
         c = remoteClipClient.copy;
         v = remoteClipClient.paste;
+        cliphist = remoteClipClient.cliphist;
         done = remoteClipClient.done;
       } else {
         c = systemCopy;
@@ -66,7 +67,7 @@ in {
             "${lib.getExe cliphist} list";
         in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
           lib.getExe cliphist
-        } decode | ${wlClipPath}wl-copy";
+        } decode | ${systemCopy}";
       };
 
     plugins = [
