@@ -23,5 +23,5 @@ in {
     paste = mkCommand "paste";
     done = mkCommand "done";
     cliphist = mkCommand "cliphist";
-  }
+  };
 }
