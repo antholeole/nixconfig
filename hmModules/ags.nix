@@ -33,6 +33,8 @@
     in {
       Restart = "always";
 
+      
+
       # needs hyprland on path or it fails
       Environment =
         "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
