@@ -55,10 +55,11 @@ export const Launcher = (
                                             return
                                         }
 
-                                        const exec = launcherData.filter(v => v.data === selectedKey)[0].exec
-                                        if (exec !== undefined) {
-                                            execAsync(['bash', '-c', exec])
-                                            console.log(exec)
+                                        const toExec = launcherData.filter(v => v.data === selectedKey)[0].exec
+                                        if (toExec !== undefined) {
+                                            const command = `hyprctl dispatch -- exec "${toExec}"`
+                                            console.log("COMMAND: ", command)
+                                            exec(command)
                                         }
 
                                         launcherText.value = "";
@@ -89,7 +90,6 @@ export const Launcher = (
                                     label: data,
                                     justification: 'left',
                                     class_name:
-
                                         "launcher-text" + (i === 0 ? " first" : "")
                                 }))]
                         ]
