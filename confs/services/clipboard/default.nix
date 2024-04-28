@@ -16,7 +16,7 @@ let
 in {
   server = remoteClip;
   client = let
-    mkCommand = cmd: "${remoteClip}/bin/rcclient";
+    mkCommand = cmd: "${remoteClip}/bin/rcclient ${cmd}";
   in {
     copy = mkCommand "copy";
     paste = mkCommand "paste";
