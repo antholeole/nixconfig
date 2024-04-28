@@ -14,7 +14,6 @@ in {
     "${inputs.self}/mixins/mutable.nix"
   ];
 
-
   gtk = {
     enable = !sysConfig.headless;
     inherit theme;
@@ -97,8 +96,8 @@ in {
 
         neofetch # for funzies
         ttyper # funzies
-	asciinema # makes for some good demos
-	topfew-rs # fast!
+        asciinema # makes for some good demos
+        topfew-rs # fast!
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the

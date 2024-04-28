@@ -9,14 +9,13 @@ in {
     enable = true;
 
     delta = {
-        enable = true;
-        options = {
-           syntax-theme = "catppuccin-macchiato";
-           line-numbers = true;
-           side-by-side = true;
-        };
+      enable = true;
+      options = {
+        syntax-theme = "catppuccin-macchiato";
+        line-numbers = true;
+        side-by-side = true;
+      };
     };
-
 
     ignores = import "${inputs.self}/shared/ignores.nix";
 

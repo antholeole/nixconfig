@@ -4,20 +4,22 @@ in lib.mkIf (!sysConfig.headless) {
   wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
-    screenshotUtils = (import "${inputs.self}/shared/screenshot.nix") pkgs config;
+    screenshotUtils =
+      (import "${inputs.self}/shared/screenshot.nix") pkgs config;
     agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
     resizeUnit = "30";
 
     # given a direction and a command, returns that command for both
     # the vim keybinding and the direction.
-    directionKeymap = dir: commandFn: let 
-      dirs = {
-        right = ["l" "right"];
-        left = ["left" "h"];
-        up = ["up" "k"];
-        down = ["j" "down"];
-      };
-    in lib.concatLines (builtins.map commandFn dirs."${dir}");
+    directionKeymap = dir: commandFn:
+      let
+        dirs = {
+          right = [ "l" "right" ];
+          left = [ "left" "h" ];
+          up = [ "up" "k" ];
+          down = [ "j" "down" ];
+        };
+      in lib.concatLines (builtins.map commandFn dirs."${dir}");
 
   in {
     enable = !sysConfig.headless;
@@ -67,10 +69,14 @@ in lib.mkIf (!sysConfig.headless) {
       bind=ALT_SHIFT,e,exec,${screenshotUtils.edit}
 
       # resize 
-      ${directionKeymap "left" (key: "binde=ALT_SHIFT,${key},resizeactive,-${resizeUnit} 0")}
-      ${directionKeymap "right" (key: "binde=ALT_SHIFT,${key},resizeactive,${resizeUnit} 0")}
-      ${directionKeymap "up" (key: "binde=ALT_SHIFT,${key},resizeactive,0 -${resizeUnit}")}
-      ${directionKeymap "down" (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
+      ${directionKeymap "left"
+      (key: "binde=ALT_SHIFT,${key},resizeactive,-${resizeUnit} 0")}
+      ${directionKeymap "right"
+      (key: "binde=ALT_SHIFT,${key},resizeactive,${resizeUnit} 0")}
+      ${directionKeymap "up"
+      (key: "binde=ALT_SHIFT,${key},resizeactive,0 -${resizeUnit}")}
+      ${directionKeymap "down"
+      (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
 
       # POWERBAR
       bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
