@@ -14,32 +14,38 @@
           "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
 
         entries = {
-          "alacritty (daily)" =
-            "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout daily";
-          "alacritty (default)" =
-            "${lib.getExe alacritty} -e ${zellij}/bin/zellij --layout default";
-
           "pavucontrol" = "${lib.getExe pwvucontrol}";
+          "brightness" = "${pkgs.wl-gammactl}/bin/wl-gammactl";
 
           "code" = broPleaseItsWaylandTrustMe
             "${config.programs.vscode.package}/bin/code  --enable-features=UseOzonePlatform --ozone-platform=wayland";
-          "chrome" = broPleaseItsWaylandTrustMe "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
+          "chrome" = broPleaseItsWaylandTrustMe
+            "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
         };
       in builtins.toJSON entries;
   };
 
-  systemd.user.services.ags.Service =
-    let agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
-    in {
-      Restart = "always";
+  systemd.user.services.ags = {
+    Service = {
+        Restart = "always";
+      	RestartSec = 2;
 
-      
+        # needs hyprland on path or it fails
+        Environment =
+          "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
+        ExecStart = "${config.programs.ags.package}/bin/ags";
+        ExecStartPre = "/bin/pkill ags";
+      };
 
-      # needs hyprland on path or it fails
-      Environment =
-        "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
-      ExecStart = "${agsExe}";
-      ExecStartPre = "-/bin/pkill ags";
+    Install = { WantedBy =  [ "hyprland-session.target" ]; };
+
+    Unit = {
+      After = "hyprland-session.target";
+      PartOf = "hyprland-session.target";
+      Requires = "hyprland-session.target";
+      StartLimitInterval = 200;
+      StartLimitBurst = 5;
     };
+  };
 }
 

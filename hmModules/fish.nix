@@ -40,7 +40,6 @@ in {
       # git diff for patch
       gdp = "git diff --no-ext-diff";
 
-
       # git create change list
       gccl = "git cl";
     };
