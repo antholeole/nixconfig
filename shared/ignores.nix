@@ -1,13 +1,13 @@
 [
-  "node_modules/"
-  ".vscode/"
+  "node_modules"
+  ".vscode"
 
-  ".direnv/"
-  ".devenv/"
+  ".direnv"
+  ".devenv"
 
-  "__scratch/"
-  ".terraform/"
-  ".metals/"
-  ".scala-build/"
-  ".bsp/"
+  "__scratch"
+  ".terraform"
+  ".metals"
+  ".scala-build"
+  ".bsp"
 ]

@@ -2,7 +2,8 @@
 let magic_key = "|";
 in {
   services.espanso = lib.mkIf (!sysConfig.headless) {
-    enable = true;
+    # this don't work on wayland :/
+    enable = false;
 
     package = pkgs.espanso-wayland;
 

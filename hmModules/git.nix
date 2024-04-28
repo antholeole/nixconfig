@@ -17,6 +17,7 @@ in {
       };
     };
 
+    # TODO: do I need to add a / to the end?
     ignores = import "${inputs.self}/shared/ignores.nix";
 
     aliases = {
