@@ -51,7 +51,7 @@ in {
       # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
-      open-vsx.arrterian.nix-env-selector
+      open-vsx.mechatroner.rainbow-csv
 
       # languages
       open-vsx.bbenoist.nix
@@ -62,12 +62,6 @@ in {
       open-vsx.rust-lang.rust-analyzer
 
       open-vsx.arrterian.nix-env-selector
-      (marketplace.arthurwang.vsc-picat.overrideAttrs (o: {
-        # this patch makes it so the terminal does not pop up whenever there is
-        # a linter issue.
-        patches = (o.patches or [ ])
-          ++ [ "${inputs.self}/patches/picat.patch" ];
-      }))
     ];
     keybindings = with builtins;
       (pkgs.lib.mkIf true)

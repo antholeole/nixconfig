@@ -1,10 +1,13 @@
 package main
 
 import (
+	b64 "encoding/base64"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mkideal/cli"
@@ -42,19 +45,25 @@ func run(args *argT) error {
 			return
 		}
 
-		c.Data(http.StatusOK, "text/plain", out)
-		return
+		str := b64.StdEncoding.EncodeToString(out)
+
+		c.Data(http.StatusOK, "text/plain", []byte(str))
 	})
 
 	r.POST("/copy", func(c *gin.Context) {
-		toCopy, err := c.GetRawData()
-
+		toCopyB64, err := io.ReadAll(c.Request.Body)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
 
-		err = utils.Copy(string(toCopy), args.Wlcopy)
+		data, err := b64.StdEncoding.DecodeString(string(toCopyB64))
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		err = utils.Copy(strings.TrimSuffix(string(data), "\n"), args.Wlcopy)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
@@ -70,8 +79,9 @@ func run(args *argT) error {
 			return
 		}
 
-		c.Data(http.StatusOK, "text/plain", out)
-		return
+		bytes := []byte{}
+		b64.StdEncoding.Encode(bytes, out)
+		c.Data(http.StatusOK, "text/plain", bytes)
 	})
 
 	r.GET("/done", func(c *gin.Context) {
@@ -84,7 +94,6 @@ func run(args *argT) error {
 		}
 
 		c.Data(http.StatusOK, "text/plain", out)
-		return
 	})
 
 	return r.Run(fmt.Sprintf("localhost:%s", utils.Port))

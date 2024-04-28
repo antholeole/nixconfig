@@ -121,5 +121,6 @@
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000,
     "catppuccin.workbenchMode": "flat",
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "dynoFileUtils.confirmDelete": false
 }
