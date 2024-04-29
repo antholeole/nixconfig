@@ -70,15 +70,15 @@ in {
       };
 
     plugins = [
-      {
-        name = "fzf";
-        src = pkgs.fetchFromGitHub {
-          owner = "PatrickF1";
-          repo = "fzf.fish";
-          rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
-          sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
-        };
-      }
+      # {
+      #   name = "fzf";
+      #   src = pkgs.fetchFromGitHub {
+      #     owner = "PatrickF1";
+      #     repo = "fzf.fish";
+      #     rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
+      #     sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
+      #   };
+      # }
       {
         name = "bang-bang";
         src = pkgs.fetchFromGitHub {
