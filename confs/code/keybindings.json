@@ -259,12 +259,12 @@
   {
     "key": "n",
     "command": "explorer.newFile",
-    "when": "listFocus && !inputFocus"
+    "when": "listFocus && !inputFocus && filesExplorerFocus"
   },
   {
     "key": "shift+n",
     "command": "explorer.newFolder",
-    "when": "listFocus && !inputFocus"
+    "when": "listFocus && !inputFocus && filesExplorerFocus"
   },
   {
     "key": "ctrl+d",
@@ -780,19 +780,28 @@
     "when": "sideBarFocus"
   },
   {
+    "key": "f4",
+    "command": "-search.action.focusNextSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-search.action.focusPreviousSearchResult",
+    "when": "hasSearchResult || inSearchEditor"
+  },
+  {
+    "key": "enter",
+    "command": "search.action.focusSearchList",
+    "when": "searchViewletFocus && !listHasSelectionOrFocus"
+  },
+  {
     "key": "enter",
     "command": "-explorer.openAndPassFocus",
     "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus"
   },
   {
-    "command": "runCommands",
     "key": "enter",
-    "when": "filesExplorerFocus && foldersViewVisible && !explorerResourceIsFolder && !inputFocus",
-    "args": {
-      "commands": [
-        "explorer.openAndPassFocus",
-        "workbench.action.closeSidebar"
-      ]
-    }
+    "command": "-search.action.openResult",
+    "when": "fileMatchOrMatchFocus && searchViewletVisible"
   }
 ]
