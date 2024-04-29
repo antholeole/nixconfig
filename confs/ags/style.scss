@@ -88,6 +88,15 @@ $teal: #8bd5ca;
 .ws-text {
     color: $text;
     margin: 0 5.9px;
+
+    &-selected {
+        @extend .ws-text;
+        font-weight: bold;
+    }
+
+    &-not-selected {
+        @extend .ws-text;
+    }
 }
 
 .dot {
@@ -95,13 +104,13 @@ $teal: #8bd5ca;
     border-radius: 100%;
     margin: 2px;
 
-    &-full {
+    &-selected {
         @extend .dot;
 
         background-color: $text;
     }
 
-    &-empty {
+    &-not-selected {
         @extend .dot;
         padding: 3px 5px;
 
