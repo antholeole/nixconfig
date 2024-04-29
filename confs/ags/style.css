@@ -45,17 +45,19 @@
   font-size: small;
   padding: 7.5px 35px; }
 
-.ws-text {
+.ws-text, .ws-text-selected, .ws-text-not-selected {
   color: #cad3f5;
   margin: 0 5.9px; }
+  .ws-text-selected {
+    font-weight: bold; }
 
-.dot, .dot-full, .dot-empty {
+.dot, .dot-selected, .dot-not-selected {
   padding: 3px 8px;
   border-radius: 100%;
   margin: 2px; }
-  .dot-full {
+  .dot-selected {
     background-color: #cad3f5; }
-  .dot-empty {
+  .dot-not-selected {
     padding: 3px 5px;
     border: 2px solid #cad3f5; }
 
