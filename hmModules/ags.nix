@@ -15,8 +15,6 @@
 
         entries = {
           "pavucontrol" = "${lib.getExe pwvucontrol}";
-          "brightness" = "${pkgs.wl-gammactl}/bin/wl-gammactl";
-
           "code" = broPleaseItsWaylandTrustMe
             "${config.programs.vscode.package}/bin/code  --enable-features=UseOzonePlatform --ozone-platform=wayland";
           "chrome" = broPleaseItsWaylandTrustMe
