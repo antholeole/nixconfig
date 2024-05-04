@@ -25,6 +25,8 @@ in lib.mkIf (!sysConfig.headless) {
     enable = !sysConfig.headless;
     extraConfig = let
     in ''
+      exec-once=${config.programs.ags.package}/bin/ags &
+
       animation = global,0
 
       decoration {

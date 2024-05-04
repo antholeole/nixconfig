@@ -7,4 +7,4 @@
 # Do
 [] add a keybind for rewrap
 [] escape should not close the explorer pane
-[] scalascript default
+[] atuin controls

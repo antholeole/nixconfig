@@ -140,6 +140,10 @@
   .chip.error {
     background-color: #ed8796; }
 
+.active-workspace-text {
+  padding-left: 9px;
+  color: #494d64; }
+
 .network-indicator {
   padding-right: 14px;
   padding-left: 9px; }

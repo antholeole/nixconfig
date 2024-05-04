@@ -1,5 +1,6 @@
 $text: #cad3f5;
 $base: #24273a;
+$surface1: #494d64;
 $flamingo: #f0c6c6;
 $sapphire: #7dc4e4;
 $red: #ed8796;
@@ -213,6 +214,11 @@ $search-container-width: 500px;
     &.error {
         background-color: $red;
     }
+}
+
+.active-workspace-text {
+    padding-left: 9px;
+    color: $surface1;
 }
 
 .network-indicator {
