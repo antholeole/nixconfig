@@ -22,28 +22,5 @@
         };
       in builtins.toJSON entries;
   };
-
-  systemd.user.services.ags = {
-    Service = {
-        Restart = "always";
-      	RestartSec = 2;
-
-        # needs hyprland on path or it fails
-        Environment =
-          "PATH=${pkgs.fzf}/bin:${pkgs.hyprland}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin";
-        ExecStart = "${config.programs.ags.package}/bin/ags";
-        ExecStartPre = "/bin/pkill ags";
-      };
-
-    Install = { WantedBy =  [ "hyprland-session.target" ]; };
-
-    Unit = {
-      After = "hyprland-session.target";
-      PartOf = "hyprland-session.target";
-      Requires = "hyprland-session.target";
-      StartLimitInterval = 200;
-      StartLimitBurst = 5;
-    };
-  };
 }
 
