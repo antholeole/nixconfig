@@ -25,7 +25,7 @@ in lib.mkIf (!sysConfig.headless) {
     enable = !sysConfig.headless;
     extraConfig = let
     in ''
-      exec-once=${config.programs.ags.package}/bin/ags &
+      exec=${agsExe} &
 
       animation = global,0
 
@@ -138,7 +138,7 @@ in lib.mkIf (!sysConfig.headless) {
       [Desktop Entry]
       Name=Hyprland
       Comment=Main WM
-      Exec=${pkgs.lib.getExe nixGlHyprland}
+      Exec=${pkgs.lib.getExe nixGlHyprland} >> /var/log/hyprland.log
       Type=Application
     '';
   };
