@@ -88,8 +88,8 @@ in {
     text = ''
       layout {
         pane_template name="cmd" {
-          command "{{ (ds "in").command }}"
-          args "{{ (ds "in").args }}"
+          command "/bin/bash" 
+          args "-c" {{ strings.Quote (ds "in").both }}
         }
 
         tab name="{{ (ds "in").command }}" {
