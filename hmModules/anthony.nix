@@ -104,6 +104,7 @@ in {
         # best integration with the world.
         d2
         scala-cli
+        bazelisk
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
