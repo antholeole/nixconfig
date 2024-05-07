@@ -82,19 +82,20 @@ in {
     '';
   };
 
-  # "command tab"
-  home.file."${layoutDir}/templates/ct.kdl" = {
+  # "command tab"; has to be templated using gomplate from zrc.nix.
+  home.file."${layoutDir}/templates/command-tab.kdl" = {
     enable = true;
     text = ''
       layout {
         pane_template name="cmd" {
-          command "COMMAND"
-          args "ARGS"
+          command "{{ (ds "in").command }}"
+          args "{{ (ds "in").args }}"
         }
 
-        tab name="COMMAND" {
+        tab name="{{ (ds "in").command }}" {
       	pane stacked=true {
-          REPEAT_ME
+          {{ range seq 4 1 }}cmd
+          {{ end }}
       	}
         
         ${zjStatus}

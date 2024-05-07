@@ -32,6 +32,9 @@ in {
     shellAbbrs = {
       pl = "parallel";
 
+      # expand cuz I can never remember
+      ct = "command-tab";
+
       # unfortunatly an alias leads to infinite recursion
       # TODO: is this not required because of enable fish 
       # integration?

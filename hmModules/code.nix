@@ -80,7 +80,7 @@ in {
             {
               key = "ctrl+${n}";
               command = "vscode-harpoon.gotoEditor${n}";
-              when = "!terminalFocus";
+              when = "editorTextFocus && dance.mode == 'normal'";
             }
             {
               command = "-workbench.action.openEditorAtIndex${n}";
