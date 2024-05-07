@@ -10,11 +10,11 @@
         args="''${*:2}"
         kdl=$(mktemp "/tmp/XXXXXXXXXXXX.kdl")
 
-        echo "{'command': '$command', 'args': '$args'}" | gomplate -d in=stdin:///in.json -f ~/.config/zellij/layouts/templates/command-tab.kdl > "$kdl";
+        echo "{'command': '$command', 'args': '$args', 'both': '$command $args'}" | gomplate -d in=stdin:///in.json -f ~/.config/zellij/layouts/templates/command-tab.kdl > "$kdl";
 
         zellij action new-tab -l "$kdl";
 
-        rm "$kdl";
+        # rm "$kdl";
       '';
     });
 
