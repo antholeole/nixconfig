@@ -58,6 +58,7 @@ in {
         sshdc = "rm ~/.ssh/ctrl-*";
         cdb = "for i in (seq 1 $argv); cd ..; end";
         skak = "sudo ${kakoune}/bin/kak $argv";
+	bazel = "${pkgs.bazelisk}/bin/bazelisk $argv";
 
         gacp = let git = "${config.programs.git.package}/bin/git";
         in "${git} add --all && ${git} commit -m $argv && ${git} push";
