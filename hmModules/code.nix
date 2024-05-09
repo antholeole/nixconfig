@@ -9,9 +9,17 @@ let
 in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
+
     package = let
+      # until https://github.com/microsoft/vscode/issues/204178 is fixed
+      code_185 = (import inputs.nixpkgs-with-code-185 {
+          config.allowUnfree = true;
+          system = pkgs.system;
+      }).vscode;
+
+
       rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
-        pkg = pkgs.vscode;
+        pkg = code_185;
         js = [ "${inputs.self}/confs/code/injected/floating_pallet.js" ];
         css = [
           "${inputs.self}/confs/code/injected/floating_pallet.css"
@@ -104,14 +112,18 @@ in {
         };
         "picat.executablePath" = "${pkgs.picat}/bin/picat";
 
-        "search.exclude" = with builtins; let
-          # the format we use in ignores.nix is "path/"; we need "**/path/"
-          mapToExpectedFormat = dir: "**/${dir}";
+        "search.exclude" = with builtins;
+          let
+            # the format we use in ignores.nix is "path/"; we need "**/path/"
+            mapToExpectedFormat = dir: "**/${dir}";
 
-          asList = import "${inputs.self}/shared/ignores.nix";
-          asNvList = map (toIgnore: {name = (mapToExpectedFormat toIgnore); value = true; }) asList;
-          asTrueMap = listToAttrs asNvList;
-        in asTrueMap;
+            asList = import "${inputs.self}/shared/ignores.nix";
+            asNvList = map (toIgnore: {
+              name = (mapToExpectedFormat toIgnore);
+              value = true;
+            }) asList;
+            asTrueMap = listToAttrs asNvList;
+          in asTrueMap;
 
         # Maybe delete
         #"rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
