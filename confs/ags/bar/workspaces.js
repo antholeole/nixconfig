@@ -18,19 +18,16 @@ const buildWorkspacesChildren = (altIsDown, monitor) => {
 
     const workspaceDots = workspaces.map(workspace => Widget.Box({
         className: buildClassName(workspace),
-        className: altIsDown ? "ws-text" : `dot-${active(workspace) ? 'full' : 'empty'}`,
         children: altIsDown ? [Widget.Label({
             label: `${workspace.id}`
         })] : []
-    }));
-
-    const activeWorkspace = workspaces.find(active)
+    }))
 
     return [
         ...workspaceDots,
         Widget.Label({ 
             className: "active-workspace-text",
-            label: `${activeWorkspace.id}` 
+            label: `${thisMonitor.activeWorkspace.id}` 
         }),
     ]
 }

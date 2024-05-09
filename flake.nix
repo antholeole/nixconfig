@@ -2,10 +2,15 @@
   description = "Anthony's NixOS configuration";
 
   inputs = {
+    # main nixpkgs
+    nixpkgs.url = "github:nixos/nixpkgs";
+
+    # nixpkgs with vscode 1.85
+    nixpkgs-with-code-185.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
+
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";
     home-manager.url = "github:nix-community/home-manager/master";
-    nixpkgs.url = "github:nixos/nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -30,7 +35,7 @@
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
     , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay
-    , ... }@inputs:
+    , nixpkgs-with-code-185, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
