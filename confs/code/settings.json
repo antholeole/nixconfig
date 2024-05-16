@@ -122,5 +122,7 @@
     "files.autoSaveDelay": 5000,
     "catppuccin.workbenchMode": "flat",
     "workbench.startupEditor": "none",
-    "dynoFileUtils.confirmDelete": false
+    "dynoFileUtils.confirmDelete": false,
+    "editor.minimap.renderCharacters": false,
+    "editor.cursorBlinking": "solid"
 }
