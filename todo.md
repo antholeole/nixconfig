@@ -7,4 +7,3 @@
 # Do
 [] add a keybind for rewrap
 [] escape should not close the explorer pane
-[] atuin controls
