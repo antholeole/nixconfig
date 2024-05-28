@@ -829,6 +829,11 @@
     "command": "search.action.focusPreviousSearchResult"
   },
   {
+    "key": "enter",
+    "when": "inSearchEditor && searchInputBoxFocus",
+    "command": "search.action.focusNextSearchResult"
+  },
+  {
     "key": "ctrl+shift+f",
     "when": "inSearchEditor",
     "command": "dance.openMenu",

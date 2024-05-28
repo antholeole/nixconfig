@@ -24,6 +24,11 @@ export const addToggleableWindow = (windowName, windowBuilder, defaultOn = false
     return showWindow
 }
 
-export const selectedMenu = Variable('none')
-globalThis.selectedMenu = selectedMenu
+export const counter = {
+    variable: "hi"
+}
+
+globalThis.emitter = {
+
+}
 
