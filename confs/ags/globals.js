@@ -23,3 +23,7 @@ export const addToggleableWindow = (windowName, windowBuilder, defaultOn = false
 
     return showWindow
 }
+
+export const selectedMenu = Variable('none')
+globalThis.selectedMenu = selectedMenu
+
