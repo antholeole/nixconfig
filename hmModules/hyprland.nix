@@ -25,7 +25,8 @@ in lib.mkIf (!sysConfig.headless) {
     enable = !sysConfig.headless;
     extraConfig = let
     in ''
-      exec=${agsExe} &
+      # why sleep? I Have no idea, but it seems to work
+      exec=sleep 5; ${agsExe} &
 
       animation = global,0
 
@@ -79,6 +80,13 @@ in lib.mkIf (!sysConfig.headless) {
       (key: "binde=ALT_SHIFT,${key},resizeactive,0 -${resizeUnit}")}
       ${directionKeymap "down"
       (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
+
+      # CONTROL
+      bindt=${mod},=,exec,${agsExe} --run-js "showControl.value = true;"
+      bind=${mod},=,submap,control
+      submap=control
+      submap=reset
+      # END CONTROL
 
       # POWERBAR
       bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
