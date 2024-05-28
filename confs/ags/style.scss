@@ -228,3 +228,49 @@ $search-container-width: 500px;
     padding-right: 5px + $padding;
     padding-left: $padding;
 }
+
+.menu {
+    $x-padding: 10px;
+    $menu-width: 300px;
+
+    padding: 5px $x-padding;
+
+    .max-width {
+        min-width: $menu-width;
+    }
+
+    .slider-container {
+        .slider {
+            // https://docs.gtk.org/gtk3/class.Scale.html
+
+            value {
+                font-size: 0;
+            }
+
+            contents {
+
+                slider {
+                    border: 0;
+                }
+
+                trough {
+
+                    // no idea what the selector is 
+                    >* {
+                        background-color: $flamingo;
+                    }
+
+                    background-color: $surface1;
+                    border: 0;
+                    min-height: 9px;
+                    border-radius: $border-radius;
+                }
+            }
+        }
+
+        .label {
+            padding: 0;
+            margin: 0 $x-padding;
+        }
+    }
+}

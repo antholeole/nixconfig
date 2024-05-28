@@ -1,4 +1,4 @@
-import Hyprland from 'resource:///com/github/Aylur/ags/service/hyprland.js'
+import Hyprland from 'resource:///com/github/Aylur/ags/j/hyprland.js'
 
 import { exec } from 'resource:///com/github/Aylur/ags/utils.js'
 

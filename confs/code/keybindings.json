@@ -686,8 +686,8 @@
             "command": "gitlens.showQuickRepoStatus"
           },
           "r": {
-              "text": "revert",
-              "command": "git.revertSelectedRanges"
+            "text": "revert",
+            "command": "git.revertSelectedRanges"
           }
         }
       }
@@ -803,5 +803,72 @@
     "key": "enter",
     "command": "-search.action.openResult",
     "when": "fileMatchOrMatchFocus && searchViewletVisible"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "command": "-workbench.action.findInFiles"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "when": "!inSearchEditor",
+    "command": "search.action.openNewEditor"
+  },
+  {
+    "key": "ctrl+e",
+    "when": "inSearchEditor && searchInputBoxFocus",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+n",
+    "when": "inSearchEditor",
+    "command": "search.action.focusNextSearchResult"
+  },
+  {
+    "key": "ctrl+p",
+    "when": "inSearchEditor && !searchInputBoxFocus",
+    "command": "search.action.focusPreviousSearchResult"
+  },
+  {
+    "key": "ctrl+shift+f",
+    "when": "inSearchEditor",
+    "command": "dance.openMenu",
+    "args": {
+      "menu": {
+        "items": {
+          "f": {
+            "text": "jump to find box",
+            "command": "search.action.focusQueryEditorWidget"
+          },
+          "c": {
+            "text": "case match",
+            "command": "toggleSearchEditorCaseSensitive"
+          },
+          "w": {
+            "text": "whole word match",
+            "command": "toggleSearchEditorWholeWord"
+          },
+          "r": {
+            "text": "regular expression",
+            "command": "toggleSearchEditorRegex"
+          },
+          "i": {
+            "text": "jump to (i)nclude box",
+            "command": "search.action.focusFilesToInclude"
+          },
+          "e": {
+            "text": "jump to (e)xclude box",
+            "command": "search.action.focusFilesToExclude"
+          },
+          "+": {
+            "text": "increase context lines",
+            "command": "increaseSearchEditorContextLines"
+          },
+          "-": {
+            "text": "decrease context lines",
+            "command": "decreaseSearchEditorContextLines"
+          }
+        }
+      }
+    }
   }
 ]
