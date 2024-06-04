@@ -834,6 +834,11 @@
     "command": "search.action.focusNextSearchResult"
   },
   {
+    "key": "ctrl+w",
+    "when": "inSearchEditor && searchInputBoxFocus",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
     "key": "ctrl+shift+f",
     "when": "inSearchEditor",
     "command": "dance.openMenu",
@@ -874,6 +879,13 @@
           }
         }
       }
+    }
+  },
+  {
+    "key": "ctrl+alt+u",
+    "command": "workbench.action.terminal.sendSequence",
+    "args": {
+      "text": "upsert-tab nnn nnn"
     }
   }
 ]

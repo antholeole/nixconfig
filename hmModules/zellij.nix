@@ -1,4 +1,4 @@
-{ config, pkgs, sysConfig, ... }:
+{ config, pkgs, sysConfig, inputs, ... }:
 let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
@@ -6,22 +6,7 @@ let
   bgColor = colors.mantle;
   fgColor = sysConfig.termColor;
 
-  zjStatus = ''
-    pane size=1 borderless=true {
-           plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-             format_space "#[bg=${bgColor}]"
-
-             mode_normal  "#[bg=${fgColor},fg=${colors.base}] {name} "
-             mode_locked  "#[bg=${colors.yellow},fg=${bgColor}] {name} "
-
-             tab_normal   "#[fg=${fgColor}] {name} "
-             tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
-
-             format_left  "{tabs}"
-             format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
-           }
-         }
-  '';
+  zjStatus = (import "${inputs.self}/shared/zjstatus.nix") pkgs sysConfig;
 
   defaultTab = ''
     default_tab_template {
@@ -78,28 +63,6 @@ in {
     text = ''
       layout {
         ${defaultTab}
-      }
-    '';
-  };
-
-  # "command tab"; has to be templated using gomplate from zrc.nix.
-  home.file."${layoutDir}/templates/command-tab.kdl" = {
-    enable = true;
-    text = ''
-      layout {
-        pane_template name="cmd" {
-          command "/bin/bash" 
-          args "-c" {{ strings.Quote (ds "in").both }}
-        }
-
-        tab name="{{ (ds "in").command }}" {
-      	pane stacked=true {
-          {{ range seq 4 1 }}cmd
-          {{ end }}
-      	}
-        
-        ${zjStatus}
-        }
       }
     '';
   };

@@ -6,6 +6,16 @@ let
   userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
   configFilePath = "${userSettingsPath}/settings.json";
   keybindingsFilePath = "${userSettingsPath}/keybindings.json";
+
+  machineBased = {
+    settings = {
+      "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
+    };
+
+    tasks = {
+      
+    };
+  };
 in {
   programs.vscode = lib.mkIf (!sysConfig.headless) {
     enable = true;
@@ -13,10 +23,9 @@ in {
     package = let
       # until https://github.com/microsoft/vscode/issues/204178 is fixed
       code_185 = (import inputs.nixpkgs-with-code-185 {
-          config.allowUnfree = true;
-          system = pkgs.system;
+        config.allowUnfree = true;
+        system = pkgs.system;
       }).vscode;
-
 
       rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
         pkg = code_185;
@@ -100,7 +109,7 @@ in {
             }
           ]) (lib.lists.range 1 9)));
     userSettings = with builtins;
-      ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // {
+      ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // machineBased.settings // {
         "terminal.integrated.profiles.linux" = {
           "fish" = {
             path = "${pkgs.lib.getExe config.programs.fish.package}";
@@ -133,12 +142,14 @@ in {
         ## NOT THE RIGHT PATH!
         #"rust-analyzer.procMacro.server" = "${rust}/bin/rust-analyzer";
 
-        "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       });
   };
 
-  #home.file = lib.genAttrs pathsToMakeWritable (_: {
-  #  force = true;
-  #  mutable = true;
-  #});
+  # this file doesn't hurt if its not a headless VM, we don't make a
+  # distinction. this allows us to SSH into a non-headless VM and still be able
+  # to use it normally.
+  home.file.".vscode-server/data/Machine/settings.json" = {
+    enable = true;
+    text = builtins.toJSON machineBased.settings;
+  };
 }

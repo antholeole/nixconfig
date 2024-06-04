@@ -6,7 +6,8 @@
     nixpkgs.url = "github:nixos/nixpkgs";
 
     # nixpkgs with vscode 1.85
-    nixpkgs-with-code-185.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
+    nixpkgs-with-code-185.url =
+      "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";

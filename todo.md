@@ -7,4 +7,6 @@
 # Do
 [] add a keybind for rewrap
 [] zellij should resurect old
-
+[] we should have ctrl shift e run "zellij command nnn" or something. Need to ressurrect old and then send it externally. user level task. Then need to have it be the correct location on remote
+[] clippy for vsc
+[] focus terminal on tilda
