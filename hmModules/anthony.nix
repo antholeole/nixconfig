@@ -87,17 +87,12 @@ in {
         rclone # very useful for remote stuff
         spr # useful for github stacked PRs
         direnv # vsc ext checks path for this
-
-        (symlinkJoin {
-          name = "fx";
-          paths =
-            [ fx deno ]; # packaging in deno allows for reducers (ex: fx x.name)
-        })
-
+        nnn # file exploerer
         neofetch # for funzies
         ttyper # funzies
         asciinema # makes for some good demos
         topfew-rs # fast!
+        ncdu # see where our big folders are
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
