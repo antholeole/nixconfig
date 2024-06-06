@@ -15,48 +15,42 @@ let
       }
   '';
 in {
-  programs.zellij = {
-    enable = true;
-
-    # enabling this would autostart a zellij session every time we activate
-    # fish. We can do that manually, with more configuration.
-    enableFishIntegration = false;
-
-    settings = {
-      # allows ctrl Q to just exit zedit. We live inside zellij anyway
-      keybinds.unbind = "Ctrl Q";
-
-      theme = "catpuccin";
-
-      scrollback_editor = "${pkgs.kakoune}/bin/kak";
-
-      pane_frames = false;
-      mouse_mode = false;
-      default_layout = "default";
-
-      ui = { pane_frames = { hide_session_name = true; }; };
-
-      themes = {
-        catpuccin = with colors; {
-          inherit red blue yellow;
-
-          # green is used for the borders
-          green = overlay0;
-          orange = peach;
-
-          bg = surface2;
-          fg = text;
-
-          magenta = pink;
-          cyan = sky;
-          black = mantle;
-          white = text;
-        };
-      };
-
-      default_shell = "${pkgs.lib.getExe config.programs.fish.package}";
-    };
-  };
+  home.packages = [ pkgs.zellij ];
+  home.file.".config/zellij/config.kdl".text =  with colors; ''
+default_layout "default"
+default_shell "${config.programs.fish.package}/bin/fish"
+keybinds {
+	unbind "Ctrl Q"
+  scroll {
+    bind "Ctrl u" { HalfPageScrollUp; }
+    bind "Ctrl d" { HalfPageScrollDown; }
+  }
+}
+mouse_mode false
+pane_frames false
+scrollback_editor "${config.programs.kakoune.package}/bin/kak"
+theme "catpuccin"
+themes {
+	catpuccin {
+		bg "${surface2}"
+		black "${mantle}"
+		blue "${blue}"
+		cyan "${sky}"
+		fg "${text}"
+		green "${overlay0}"
+		magenta "${pink}"
+		orange "${peach}"
+		red "${red}"
+		white "${text}"
+		yellow "${yellow}"
+	}
+}
+ui {
+	pane_frames {
+		hide_session_name true
+	}
+}
+'';
 
   home.file."${layoutDir}/default.kdl" = {
     enable = true;
