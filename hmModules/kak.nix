@@ -3,7 +3,11 @@
     enable = true;
     defaultEditor = true;
 
-    plugins = with pkgs.kakounePlugins; [ fzf-kak quickscope-kak ];
+    plugins = with pkgs.kakounePlugins; [ 
+      fzf-kak
+      quickscope-kak
+    ];
+
     config = {
       hooks = [
         {
@@ -28,7 +32,10 @@
 
     extraConfig = with pkgs; ''
       eval %sh{${kak-lsp}/bin/kak-lsp --kakoune -s $kak_session}
+      lsp-enable
 
+      # TODO remove this
+      set global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
 
       # line numbers
       add-highlighter global/ number-lines -relative
@@ -51,8 +58,8 @@
     '';
   };
 
-  home.file.".config/kak/colors/catppuccin_macchiato.kak" = {
-    enable = true;
-    source = "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
+  home.file = {
+    ".config/kak/colors/catppuccin_macchiato.kak".source = "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
+    ".config/kak-lsp/kak-lsp.toml".source = "${inputs.self}/confs/kak/kak-lsp.toml";
   };
 }
