@@ -659,12 +659,38 @@
     }
   },
   {
+    "key": "alt+q",
+    "command": "-rewrap.rewrapComment",
+    "when": "editorTextFocus"
+  },
+  {
+    "command": "dance.openMenu",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "key": "z",
+    "args": {
+      "title": "misc",
+      "menu": {
+        "items": {
+          "w": {
+            "text": "wrap comment",
+            "command": "rewrap.wrapComment"
+          }
+        }
+      }
+    }
+  },
+  {
     "command": "dance.openMenu",
     "when": "editorTextFocus && dance.mode == 'normal'",
     "key": "ctrl+g",
     "args": {
+      "title": "git",
       "menu": {
         "items": {
+          "d": {
+            "text": "diff",
+            "command": "gitlens.diffWithRevision"
+          },
           "g": {
             "text": "graph",
             "command": "git-graph.view"
@@ -688,6 +714,10 @@
           "r": {
             "text": "revert",
             "command": "git.revertSelectedRanges"
+          },
+          "y": {
+            "text": "yank as patch",
+            "command": "gitlens.copyPatchToClipboard"
           }
         }
       }
