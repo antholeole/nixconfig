@@ -10,6 +10,8 @@ let
   machineBased = {
     settings = {
       "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
+        "picat.executablePath" = "${pkgs.picat}/bin/picat";
+        "D2.execPath" = "${pkgs.d2}/bin/d2";
     };
 
     tasks = {
@@ -115,11 +117,10 @@ in {
             path = "${pkgs.lib.getExe config.programs.fish.package}";
             args = [
               "-C"
-              "${pkgs.zellij}/bin/zellij attach -c 'vsc-session'"
+              "${pkgs.zellij}/bin/zellij a -c \"$(basename (pwd))\""
             ];
           };
         };
-        "picat.executablePath" = "${pkgs.picat}/bin/picat";
 
         "search.exclude" = with builtins;
           let
