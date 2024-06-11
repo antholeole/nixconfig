@@ -729,6 +729,7 @@
     "when": "editorTextFocus && dance.mode == 'normal'",
     "args": {
       "menu": {
+        "title": "path",
         "items": {
           "d": {
             "text": "delete current file",
