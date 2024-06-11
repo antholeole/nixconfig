@@ -115,7 +115,7 @@ in {
             path = "${pkgs.lib.getExe config.programs.fish.package}";
             args = [
               "-C"
-              "${pkgs.zellij}/bin/zellij --layout ~/.config/zellij/layouts/default.kdl"
+              "${pkgs.zellij}/bin/zellij attach -c 'vsc-session'"
             ];
           };
         };
