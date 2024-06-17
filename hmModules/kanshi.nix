@@ -8,10 +8,10 @@
       mkBgStatement = criteria:
         if criteria.tall then
           ''
-            ${pkgs.swaybg}/bin/swaybg -i ~/wall_tall.png -c "#24273a" -m center -o ${criteria.kanshi.criteria}''
+            ${pkgs.swaybg}/bin/swaybg -i ~/wall_tall.png -c "#24273a" -m fit -o ${criteria.kanshi.criteria}''
         else
           ''
-            ${pkgs.swaybg}/bin/swaybg -i ~/wall.png -c "#24273a" -m center -o ${criteria.kanshi.criteria}'';
+            ${pkgs.swaybg}/bin/swaybg -i ~/wall.png -c "#24273a" -m fit -o ${criteria.kanshi.criteria}'';
       ultraWide = {
         tall = false;
         kanshi = {

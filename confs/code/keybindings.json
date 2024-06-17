@@ -79,27 +79,6 @@
     "key": "ctrl+shift+h"
   },
   {
-    "key": "ctrl+shift+l",
-    "command": "runCommands",
-    "args": {
-      "commands": [
-        "workbench.action.focusSecondEditorGroup",
-        "workbench.action.closeSidebar"
-      ]
-    },
-    "when": "!isInDiffLeftEditor"
-  },
-  {
-    "command": "diffEditor.switchSide",
-    "when": "isInDiffLeftEditor",
-    "key": "ctrl+shift+l"
-  },
-  {
-    "command": "diffEditor.switchSide",
-    "when": "isInDiffRightEditor",
-    "key": "ctrl+shift+h"
-  },
-  {
     "key": "ctrl+shift+h",
     "command": "runCommands",
     "when": "!isInDiffRightEditor",

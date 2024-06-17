@@ -233,7 +233,7 @@ $search-container-width: 500px;
     $x-padding: 10px;
     $menu-width: 300px;
 
-    padding: 5px $x-padding;
+    padding: 10px $x-padding 5px $x-padding;
 
     .max-width {
         min-width: $menu-width;
@@ -271,6 +271,10 @@ $search-container-width: 500px;
         .label {
             padding: 0;
             margin: 0 $x-padding;
+
+            &.selected {
+                font-weight: bold;
+            }
         }
     }
 }

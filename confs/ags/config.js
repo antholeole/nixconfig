@@ -1,8 +1,8 @@
 import App from 'resource:///com/github/Aylur/ags/app.js'
 import { Bar } from "./bar/bar.js"
-// import  "./control/control.js"
 import "./launcher.js"
 import "./powerbar.js"
+import "./control/control.js"
 import { NotificationBar } from './notifications.js'
 
 import { monitorWatcher } from "./utils.js"

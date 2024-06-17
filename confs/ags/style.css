@@ -149,7 +149,7 @@
   padding-left: 9px; }
 
 .menu {
-  padding: 5px 10px; }
+  padding: 10px 10px 5px 10px; }
   .menu .max-width {
     min-width: 300px; }
   .menu .slider-container .slider value {
@@ -166,5 +166,7 @@
   .menu .slider-container .label {
     padding: 0;
     margin: 0 10px; }
+    .menu .slider-container .label.selected {
+      font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
