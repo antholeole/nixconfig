@@ -10,16 +10,16 @@ let
   machineBased = {
     settings = {
       "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
-        "picat.executablePath" = "${pkgs.picat}/bin/picat";
-        "D2.execPath" = "${pkgs.d2}/bin/d2";
+      "picat.executablePath" = "${pkgs.picat}/bin/picat";
+      "D2.execPath" = "${pkgs.d2}/bin/d2";
     };
 
     tasks = {
-      
+
     };
   };
 in {
-  programs.vscode = lib.mkIf (!sysConfig.headless) {
+  programs.vscode = with builtins; lib.mkIf (!sysConfig.headless) {
     enable = true;
 
     package = let
@@ -82,10 +82,14 @@ in {
 
       open-vsx.arrterian.nix-env-selector
     ];
-    keybindings = with builtins;
-      (pkgs.lib.mkIf true)
-      (fromJSON (readFile "${inputs.self}/confs/code/keybindings.json") ++ [ ]
-        ++ lib.lists.flatten (map (nInt:
+    keybindings = let
+      directionKeymap = dir: commandFn:
+        (import "${inputs.self}/shared/arrows.nix") {
+          inherit dir commandFn lib;
+        };
+
+      oneToTen = with builtins;
+        lib.lists.flatten (map (nInt:
           let n = toString nInt;
           in [
             {
@@ -109,41 +113,87 @@ in {
               key = "ctrl+${n}";
               command = "-workbench.action.focusThirdEditorGroup";
             }
-          ]) (lib.lists.range 1 9)));
+          ]) (lib.lists.range 1 9));
+
+      raw = fromJSON (readFile "${inputs.self}/confs/code/keybindings.json");
+
+      directional = let
+        capsFirstLetter = s: s;
+        # with lib.strings;
+        #   word:
+        #   let
+        #     letters = splitString "" word;
+        #     imapFn = idx: s: if idx == 0 then toUpper s else s;
+        #   in concatImapStrings imapFn letters;
+
+        mkDirectional = { side, keycode }: [
+          {
+            key = "ctrl+shift+${keycode}";
+            command = "runCommands";
+            args = {
+              commands = [
+                "workbench.action.focus${
+                  if side == "left" then "First" else "Second"
+                }EditorGroup"
+                "workbench.action.closeSidebar"
+              ];
+            };
+            when = "!isInDiff${capsFirstLetter side}Editor";
+          }
+          {
+            key = "ctrl+shift+${keycode}";
+            when = "isInDiff${capsFirstLetter side}Editor";
+            command = "diffEditor.switchSide";
+          }
+        ];
+
+        # this could probably be a combimatrix function.
+        directions = [ 
+          {
+            side = "left";
+            keycode = "left";
+          }
+          {
+            side = "left";
+            keycode = "h";
+          }
+          {
+            side = "right";
+            keycode = "right";
+          }
+          {
+            side = "right";
+            keycode = "l";
+          }
+         ];
+        keybinds = builtins.map mkDirectional directions;
+      in lib.lists.flatten keybinds;
+    in oneToTen ++ raw ++ directional;
+
     userSettings = with builtins;
-      ((fromJSON (readFile "${inputs.self}/confs/code/settings.json")) // machineBased.settings // {
-        "terminal.integrated.profiles.linux" = {
-          "fish" = {
-            path = "${pkgs.lib.getExe config.programs.fish.package}";
-            args = [
-              "-C"
-              "${pkgs.zellij}/bin/zellij a -c \"$(basename (pwd))\""
-            ];
+      ((builtins.fromJSON (readFile "${inputs.self}/confs/code/settings.json"))
+        // machineBased.settings // {
+          "terminal.integrated.profiles.linux" = {
+            "fish" = {
+              path = "${pkgs.lib.getExe config.programs.fish.package}";
+              args =
+                [ "-C" ''${pkgs.zellij}/bin/zellij a -c "$(basename (pwd))"'' ];
+            };
           };
-        };
 
-        "search.exclude" = with builtins;
-          let
-            # the format we use in ignores.nix is "path/"; we need "**/path/"
-            mapToExpectedFormat = dir: "**/${dir}";
+          "search.exclude" = with builtins;
+            let
+              # the format we use in ignores.nix is "path/"; we need "**/path/"
+              mapToExpectedFormat = dir: "**/${dir}";
 
-            asList = import "${inputs.self}/shared/ignores.nix";
-            asNvList = map (toIgnore: {
-              name = (mapToExpectedFormat toIgnore);
-              value = true;
-            }) asList;
-            asTrueMap = listToAttrs asNvList;
-          in asTrueMap;
-
-        # Maybe delete
-        #"rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
-        #"rust-analyzer.cargo.sysrootSrc" = "${rust}/bin/rust-analyzer";
-        #"rust-analyzer.cargo.sysroot" = "${rust}";
-
-        ## NOT THE RIGHT PATH!
-        #"rust-analyzer.procMacro.server" = "${rust}/bin/rust-analyzer";
-
-      });
+              asList = import "${inputs.self}/shared/ignores.nix";
+              asNvList = map (toIgnore: {
+                name = (mapToExpectedFormat toIgnore);
+                value = true;
+              }) asList;
+              asTrueMap = listToAttrs asNvList;
+            in asTrueMap;
+        });
   };
 
   # this file doesn't hurt if its not a headless VM, we don't make a

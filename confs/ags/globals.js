@@ -1,5 +1,6 @@
 import Variable from 'resource:///com/github/Aylur/ags/variable.js'
 import App from 'resource:///com/github/Aylur/ags/app.js'
+import {createEmitter} from "./utils.js"
 
 export const altDown = Variable(false)
 globalThis.altDown = altDown
@@ -28,7 +29,7 @@ export const counter = {
     variable: "hi"
 }
 
-globalThis.emitter = {
-
-}
-
+export const leftEmitter = createEmitter("left")
+export const rightEmitter = createEmitter("right")
+export const upEmitter = createEmitter("up")
+export const downEmitter = createEmitter("down")

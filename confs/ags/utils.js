@@ -48,3 +48,24 @@ export const monitorWatcher = (app, windowBuilders) => {
 
     populateWindows(shimMonitors)
 }
+
+// Only create an emitter once!
+export const createEmitter = (name) => {
+    const listeners = new Map()
+
+    const emitter = {
+        // returns listener ID
+        register: (voidCallback) => {
+            const randId = (Math.random() + 1).toString(36).substring(7)
+            listeners.set(randId, voidCallback)
+            return randId
+        },
+
+        deregister: (id) => {
+            listeners.delete(id)
+        },
+    }
+
+    globalThis[name] = () => listeners.forEach((v) => v())
+    return emitter
+}

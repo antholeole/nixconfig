@@ -3,10 +3,7 @@
     enable = true;
     defaultEditor = true;
 
-    plugins = with pkgs.kakounePlugins; [ 
-      fzf-kak
-      quickscope-kak
-    ];
+    plugins = with pkgs.kakounePlugins; [ fzf-kak quickscope-kak ];
 
     config = {
       hooks = [
@@ -59,7 +56,9 @@
   };
 
   home.file = {
-    ".config/kak/colors/catppuccin_macchiato.kak".source = "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
-    ".config/kak-lsp/kak-lsp.toml".source = "${inputs.self}/confs/kak/kak-lsp.toml";
+    ".config/kak/colors/catppuccin_macchiato.kak".source =
+      "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
+    ".config/kak-lsp/kak-lsp.toml".source =
+      "${inputs.self}/confs/kak/kak-lsp.toml";
   };
 }

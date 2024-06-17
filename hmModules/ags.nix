@@ -14,6 +14,8 @@
           "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
 
         entries = {
+          "alacritty" =
+            "${config.programs.alacritty.package}/bin/alacritty -e ${pkgs.zellij}/bin/zellij";
           "pavucontrol" = "${lib.getExe pwvucontrol}";
           "code" = broPleaseItsWaylandTrustMe
             "${config.programs.vscode.package}/bin/code  --enable-features=UseOzonePlatform --ozone-platform=wayland";

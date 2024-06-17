@@ -9,17 +9,10 @@ in lib.mkIf (!sysConfig.headless) {
     agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
     resizeUnit = "30";
 
-    # given a direction and a command, returns that command for both
-    # the vim keybinding and the direction.
     directionKeymap = dir: commandFn:
-      let
-        dirs = {
-          right = [ "l" "right" ];
-          left = [ "left" "h" ];
-          up = [ "up" "k" ];
-          down = [ "j" "down" ];
-        };
-      in lib.concatLines (builtins.map commandFn dirs."${dir}");
+      (import "${inputs.self}/shared/arrows.nix") {
+        inherit dir commandFn lib;
+      };
 
   in {
     enable = !sysConfig.headless;
@@ -55,7 +48,7 @@ in lib.mkIf (!sysConfig.headless) {
       bind = ${mod},RETURN,exec,${
         pkgs.lib.getExe
         (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
-      }  -e ${pkgs.zellij}/bin/zellij --layout default
+      }  -e ${pkgs.zellij}/bin/zellij a -c "alacritty"
 
       bind = ${mod},W,killactive
 
@@ -82,9 +75,17 @@ in lib.mkIf (!sysConfig.headless) {
       (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
 
       # CONTROL
-      bindt=${mod},=,exec,${agsExe} --run-js "showControl.value = true;"
-      bind=${mod},=,submap,control
+      bindt=${mod},equal,exec,${agsExe} --run-js "showControl.value = true;"
+      bind=${mod},equal,submap,control
       submap=control
+
+      ${directionKeymap "down"
+      (key: ''bind=,${key},exec,${agsExe} --run-js "down()"'')}
+      ${directionKeymap "up"
+      (key: ''bind=,${key},exec,${agsExe} --run-js "up()"'')}
+
+      bind=,escape,exec,${agsExe} --run-js "showControl.value = false;"
+      bind=,escape,submap,reset 
       submap=reset
       # END CONTROL
 

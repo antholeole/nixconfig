@@ -16,41 +16,41 @@ let
   '';
 in {
   home.packages = [ pkgs.zellij ];
-  home.file.".config/zellij/config.kdl".text =  with colors; ''
-default_layout "default"
-default_shell "${config.programs.fish.package}/bin/fish"
-keybinds {
-	unbind "Ctrl Q"
-  scroll {
-    bind "Ctrl u" { HalfPageScrollUp; }
-    bind "Ctrl d" { HalfPageScrollDown; }
-  }
-}
-mouse_mode false
-pane_frames false
-scrollback_editor "${config.programs.kakoune.package}/bin/kak"
-theme "catpuccin"
-themes {
-	catpuccin {
-		bg "${surface2}"
-		black "${mantle}"
-		blue "${blue}"
-		cyan "${sky}"
-		fg "${text}"
-		green "${overlay0}"
-		magenta "${pink}"
-		orange "${peach}"
-		red "${red}"
-		white "${text}"
-		yellow "${yellow}"
-	}
-}
-ui {
-	pane_frames {
-		hide_session_name true
-	}
-}
-'';
+  home.file.".config/zellij/config.kdl".text = with colors; ''
+    default_layout "default"
+    default_shell "${config.programs.fish.package}/bin/fish"
+    keybinds {
+    	unbind "Ctrl Q"
+      scroll {
+        bind "Ctrl u" { HalfPageScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+      }
+    }
+    mouse_mode false
+    pane_frames false
+    scrollback_editor "${config.programs.kakoune.package}/bin/kak"
+    theme "catpuccin"
+    themes {
+    	catpuccin {
+    		bg "${surface2}"
+    		black "${mantle}"
+    		blue "${blue}"
+    		cyan "${sky}"
+    		fg "${text}"
+    		green "${overlay0}"
+    		magenta "${pink}"
+    		orange "${peach}"
+    		red "${red}"
+    		white "${text}"
+    		yellow "${yellow}"
+    	}
+    }
+    ui {
+    	pane_frames {
+    		hide_session_name true
+    	}
+    }
+  '';
 
   home.file."${layoutDir}/default.kdl" = {
     enable = true;
