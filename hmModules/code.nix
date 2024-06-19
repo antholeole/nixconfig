@@ -71,6 +71,7 @@ in {
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
       open-vsx.mechatroner.rainbow-csv
+      open-vsx.streetsidesoftware.code-spell-checker
 
       # languages
       open-vsx.bbenoist.nix

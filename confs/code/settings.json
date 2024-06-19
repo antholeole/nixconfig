@@ -128,5 +128,10 @@
     "workbench.startupEditor": "none",
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
-    "editor.cursorBlinking": "solid"
+    "editor.cursorBlinking": "solid",
+    "cSpell.checkOnlyEnabledFileTypes": true,
+    "cSpell.enableFiletypes": [
+      "md"
+    ]
+
 }
