@@ -16,6 +16,9 @@
     nixgl.url = "github:guibou/nixGL";
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    # get latest, the one on nixpkgs isn't high enough version
+    wpaperd.url = "github:danyspin97/wpaperd/E03CEAEAD44EBE32EB7298A19E54DF0C3FD4E6C4";
+
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,7 +39,7 @@
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
     , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay
-    , nixpkgs-with-code-185, ... }@inputs:
+    , nixpkgs-with-code-185, wpaperd, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
@@ -46,6 +49,7 @@
             rust-overlay.overlays.default
             (final: prev: {
               zjstatus = zjstatus.packages.${prev.system}.default;
+              wpaperd = wpaperd.packages.${prev.system}.default;
             })
           ];
         };
