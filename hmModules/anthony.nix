@@ -52,15 +52,6 @@ in {
     username = sysConfig.name;
     homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
 
-    file."wall.png" = {
-      enable = !sysConfig.headless;
-      source = "${inputs.self}/images/bg.png";
-    };
-
-    file."wall_tall.png" = {
-      enable = !sysConfig.headless;
-      source = "${inputs.self}/images/bg_tall.png";
-    };
 
     file.".ssh/id_ed25519.pub" = {
       enable = true;
@@ -113,7 +104,6 @@ in {
         brightnessctl
         pipes-rs # for funzies
         wl-clipboard # clipboard
-        dbeaver
         pamixer
 
         # some useful formatters for one-off scripts
