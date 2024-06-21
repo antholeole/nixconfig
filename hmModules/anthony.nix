@@ -84,6 +84,7 @@ in {
         asciinema # makes for some good demos
         topfew-rs # fast!
         ncdu # see where our big folders are
+        nixgl.auto.nixGLDefault # unboxing nix sad
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the

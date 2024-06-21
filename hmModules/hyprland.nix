@@ -1,6 +1,4 @@
-{ config, lib, pkgs, sysConfig, mkNixGLPkg, inputs, ... }:
-let nixGlHyprland = mkNixGLPkg pkgs.hyprland pkgs.hyprland.meta.mainProgram;
-in lib.mkIf (!sysConfig.headless) {
+{ config, lib, pkgs, sysConfig, mkNixGLPkg, inputs, ... }: {
   wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
@@ -16,9 +14,18 @@ in lib.mkIf (!sysConfig.headless) {
 
   in {
     enable = !sysConfig.headless;
+    # TODO: unpin this version. you MUST change the desktop 
+    # file below to use a lowercase H or else it will explode.    
+    # there seems to be a regession between 0.34 and 0.40 that
+    # instantly segfaults.
+    package = (import inputs.nixpkgs-with-code-185 {
+        config.allowUnfree = true;
+        system = pkgs.system;
+      }).hyprland;
     extraConfig = let
     in ''
       # why sleep? I Have no idea, but it seems to work
+      exec-once=${pkgs.wpaperd}/bin/wpaperd -d
       exec=sleep 5; ${agsExe} &
 
       animation = global,0
@@ -126,29 +133,27 @@ in lib.mkIf (!sysConfig.headless) {
       '') sysConfig.wmStartupCommands)}
 
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-      device:AT_Translated_Set_2_keyboard {
-        xkb_layout us
-        xkb_options caps:swapescape
-      }
-    '';
+   '';
   };
 
   home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" =
     {
-      enable = true;
+    enable = !sysConfig.headless;
       source =
         "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
     };
 
-  home.file.".config/other/hyprland.desktop" = {
-    enable = true;
+  home.file.".config/other/hyprland.desktop" = let 
+   nixGLHyprland = mkNixGLPkg config.wayland.windowManager.hyprland.package "Hyprland";
+  in {
+    enable = !sysConfig.headless;
     text = ''
       [Desktop Entry]
       Name=Hyprland
       Comment=Main WM
-      Exec=${pkgs.lib.getExe nixGlHyprland} >> /var/log/hyprland.log
+      Exec=${nixGLHyprland}/bin/hyprland
       Type=Application
     '';
   };
 }
+

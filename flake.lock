@@ -259,16 +259,16 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1714430505,
-        "narHash": "sha256-SSJQ/KOy8uISnoZgqDoRha7g7PFLSFP/BtMWm0wUz8Q=",
+        "lastModified": 1718530513,
+        "narHash": "sha256-BmO8d0r+BVlwWtMLQEYnwmngqdXIuyFzMwvmTcLMee8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f8e6694edabe4aaa7a85aac47b43ea5d978b116d",
+        "rev": "a1fddf0967c33754271761d91a3d921772b30d0e",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "master",
+        "ref": "release-24.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -520,16 +520,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1714076141,
-        "narHash": "sha256-Drmja/f5MRHZCskS6mvzFqxEaZMeciScCTFxWVLqWEY=",
+        "lastModified": 1718835956,
+        "narHash": "sha256-wM9v2yIxClRYsGHut5vHICZTK7xdrUGfrLkXvSuv6s4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7bb2ccd8cdc44c91edba16c48d2c8f331fb3d856",
+        "rev": "dd457de7e08c6d06789b1f5b88fc9327f4d96309",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -581,15 +581,16 @@
     },
     "nixpkgs_8": {
       "locked": {
-        "lastModified": 1718858672,
-        "narHash": "sha256-Ad1hUieAm8YraQC1oFtPn2LnRLI3vxQsdoruzkpSkus=",
+        "lastModified": 1717179513,
+        "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "026f02ce7dfeba48a1c1a2b3cd8c7d8329f1f5b2",
+        "rev": "63dacb46bf939521bdc93981b4cbb7ecb58427a0",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -827,17 +828,16 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1718896333,
-        "narHash": "sha256-2EhtFq8eKRACZuvEM/ScHH/CgA4gI4LYOuPzaDKqJ5E=",
-        "owner": "danyspin97",
+        "lastModified": 1718906674,
+        "narHash": "sha256-9tOXh/dgNjgLKtY6IFmJ4IufDPNMgvkU0lYTcihjNmo=",
+        "owner": "antholeole",
         "repo": "wpaperd",
-        "rev": "e03ceaead44ebe32eb7298a19e54df0c3fd4e6c4",
+        "rev": "12078d8180429dba9dd9a6239467e791c1249b32",
         "type": "github"
       },
       "original": {
-        "owner": "danyspin97",
+        "owner": "antholeole",
         "repo": "wpaperd",
-        "rev": "e03ceaead44ebe32eb7298a19e54df0c3fd4e6c4",
         "type": "github"
       }
     },

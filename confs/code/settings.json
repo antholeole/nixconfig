@@ -129,6 +129,7 @@
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
     "editor.cursorBlinking": "solid",
+    "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {
       "md": true
     }

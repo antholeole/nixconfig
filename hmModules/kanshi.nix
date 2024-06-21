@@ -5,8 +5,6 @@
     systemdTarget = "hyprland-session.target";
 
     profiles = let
-      mkBgStatement= criteria:
-          ''${pkgs.swaybg}/bin/swaybg -i ~/wall.png -c "#24273a" -m center -o ${criteria.kanshi.criteria}'';
       ultraWide = {
         tall = false;
         kanshi = {
@@ -29,7 +27,7 @@
       mkKanshiConfig = displays:
         with builtins; {
           outputs = map (display: display.kanshi) displays;
-          exec = (map mkBgStatement displays) ++ [
+          exec = [
             # I cannot get this to work
             "/usr/bin/pkill ags"
           ];

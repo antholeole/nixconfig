@@ -3,7 +3,7 @@
 
   inputs = {
     # main nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/24.05";
 
     # nixpkgs with vscode 1.85
     nixpkgs-with-code-185.url =
@@ -11,13 +11,13 @@
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";
-    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     # get latest, the one on nixpkgs isn't high enough version
-    wpaperd.url = "github:danyspin97/wpaperd/E03CEAEAD44EBE32EB7298A19E54DF0C3FD4E6C4";
+    wpaperd.url = "github:antholeole/wpaperd";
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -47,9 +47,9 @@
           overlays = [
             nixgl.overlay
             rust-overlay.overlays.default
+            wpaperd.overlays.default
             (final: prev: {
               zjstatus = zjstatus.packages.${prev.system}.default;
-              wpaperd = wpaperd.packages.${prev.system}.default;
             })
           ];
         };
