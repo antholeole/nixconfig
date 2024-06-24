@@ -71,7 +71,7 @@ in {
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
       open-vsx.mechatroner.rainbow-csv
-      open-vsx.streetsidesoftware.code-spell-checker
+      # open-vsx.streetsidesoftware.code-spell-checker Disabling everything but markdown does not seem to work
 
       # languages
       open-vsx.bbenoist.nix
@@ -127,22 +127,33 @@ in {
         #     imapFn = idx: s: if idx == 0 then toUpper s else s;
         #   in concatImapStrings imapFn letters;
 
-        mkDirectional = { side, keycode }: [
+        mkDirectional = { side, keycode }: let
+          ourSide = if side == "left" then "First" else "Second";
+          editorIndex = builtins.toString (if side == "left" then 1 else 2);
+        in [
           {
             key = "ctrl+shift+${keycode}";
+            command = "workbench.action.increaseViewWidth";
+            when = "activeEditorGroupIndex != ${editorIndex}";
+          }
+          {
+            key = "ctrl+shift+${keycode}";
+            command = "workbench.action.decreaseViewWidth";
+            when = "activeEditorGroupIndex == ${editorIndex}";
+          }
+          {
+            key = "ctrl+${keycode}";
             command = "runCommands";
             args = {
               commands = [
-                "workbench.action.focus${
-                  if side == "left" then "First" else "Second"
-                }EditorGroup"
+                "workbench.action.focus${ourSide}EditorGroup"
                 "workbench.action.closeSidebar"
               ];
             };
             when = "!isInDiff${capsFirstLetter side}Editor";
           }
           {
-            key = "ctrl+shift+${keycode}";
+            key = "ctrl+${keycode}";
             when = "isInDiff${capsFirstLetter side}Editor";
             command = "diffEditor.switchSide";
           }

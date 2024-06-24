@@ -52,6 +52,18 @@
     "dance.menus": {
         "goto": {
             "items": {
+                "t": {
+                    "text": "to type definition",
+                    "command": "editor.action.goToTypeDefinition"
+                },
+                "p": {
+                    "text": "to previous problem",
+                    "command": "editor.action.marker.previous"
+                },
+                "n": {
+                    "text": "to next problem",
+                    "command": "editor.action.marker.next"
+                },
                 "m": {
                     "text": "to previous marker",
                     "command": "errorLens.selectProblem"
@@ -129,8 +141,11 @@
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
     "editor.cursorBlinking": "solid",
-    "cSpell.checkOnlyEnabledFileTypes": true,
+    "cSpell.enableFiletypes": [
+        "md"
+    ],
     "cSpell.enabledFileTypes": {
-      "md": true
+        "md": true,
+        "*": false
     }
 }
