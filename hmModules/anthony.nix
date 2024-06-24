@@ -93,6 +93,7 @@ in {
         scala-cli
         bazelisk
         gperftools
+        biome
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols
