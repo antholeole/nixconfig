@@ -129,17 +129,19 @@ in {
 
         mkDirectional = { side, keycode }: let
           ourSide = if side == "left" then "First" else "Second";
+
           editorIndex = builtins.toString (if side == "left" then 1 else 2);
+          otherIndex = builtins.toString (if side == "left" then 2 else 1);
         in [
           {
             key = "ctrl+shift+${keycode}";
             command = "workbench.action.increaseViewWidth";
-            when = "activeEditorGroupIndex != ${editorIndex}";
+            when = "activeEditorGroupIndex == ${otherIndex} && dance.mode == 'normal' && editorTextFocus";
           }
           {
             key = "ctrl+shift+${keycode}";
             command = "workbench.action.decreaseViewWidth";
-            when = "activeEditorGroupIndex == ${editorIndex}";
+            when = "activeEditorGroupIndex == ${editorIndex} && dance.mode == 'normal' && editorTextFocus";
           }
           {
             key = "ctrl+${keycode}";
