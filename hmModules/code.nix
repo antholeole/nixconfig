@@ -119,45 +119,61 @@ in {
       raw = fromJSON (readFile "${inputs.self}/confs/code/keybindings.json");
 
       directional = let
-        capsFirstLetter = s: s;
-        # with lib.strings;
-        #   word:
-        #   let
-        #     letters = splitString "" word;
-        #     imapFn = idx: s: if idx == 0 then toUpper s else s;
-        #   in concatImapStrings imapFn letters;
-
         mkDirectional = { side, keycode }: let
-          ourSide = if side == "left" then "First" else "Second";
+          fs = {
+            ours = if side == "left" then "First" else "Second";
+            other = if side == "left" then "Second" else "First";
+          };
 
-          editorIndex = builtins.toString (if side == "left" then 1 else 2);
-          otherIndex = builtins.toString (if side == "left" then 2 else 1);
+          lr = {
+            other = if side == "left" then "Right" else "Left";
+            ours = if side == "left" then "Left" else "Right";
+          };
+
+          idx = {
+            ours = builtins.toString (if side == "left" then 1 else 2);
+            other = builtins.toString (if side == "left" then 2 else 1);
+          };
+
         in [
-          {
-            key = "ctrl+shift+${keycode}";
-            command = "workbench.action.increaseViewWidth";
-            when = "activeEditorGroupIndex == ${otherIndex} && dance.mode == 'normal' && editorTextFocus";
-          }
+          # resizing binds
           {
             key = "ctrl+shift+${keycode}";
             command = "workbench.action.decreaseViewWidth";
-            when = "activeEditorGroupIndex == ${editorIndex} && dance.mode == 'normal' && editorTextFocus";
+            when = "activeEditorGroupIndex == ${idx.ours} && dance.mode == 'normal' && editorTextFocus";
           }
+          {
+            key = "ctrl+shift+${keycode}";
+            command = "workbench.action.increaseViewWidth";
+            when = "activeEditorGroupIndex == ${idx.other} && dance.mode == 'normal' && editorTextFocus";
+          }
+
+          # switch sides binds 
           {
             key = "ctrl+${keycode}";
             command = "runCommands";
             args = {
               commands = [
-                "workbench.action.focus${ourSide}EditorGroup"
+                "workbench.action.focus${fs.ours}EditorGroup"
                 "workbench.action.closeSidebar"
               ];
             };
-            when = "!isInDiff${capsFirstLetter side}Editor";
+            when = "activeEditorGroupIndex == ${idx.other} && !terminalFocus && !isInDiffEditor";
           }
+
+          # if we are in the other side, we should switch side.
           {
             key = "ctrl+${keycode}";
-            when = "isInDiff${capsFirstLetter side}Editor";
+            when = "isInDiff${lr.other}Editor";
             command = "diffEditor.switchSide";
+          }
+
+          # If we are in our own side, we are trying to get out of the 
+          # diff editor. We should go to the other index.
+          {
+            key = "ctrl+${keycode}";
+            when = "isInDiff${lr.ours}Editor";
+            command = "workbench.action.focus${fs.ours}EditorGroup";
           }
         ];
 
