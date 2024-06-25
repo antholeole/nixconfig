@@ -79,17 +79,6 @@
     "key": "ctrl+shift+h"
   },
   {
-    "key": "ctrl+shift+h",
-    "command": "runCommands",
-    "when": "!isInDiffRightEditor",
-    "args": {
-      "commands": [
-        "workbench.action.focusFirstEditorGroup",
-        "workbench.action.closeSidebar"
-      ]
-    }
-  },
-  {
     "key": "ctrl+k ctrl+left",
     "command": "-workbench.action.focusLeftGroup"
   },
