@@ -12,6 +12,7 @@ let
       "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       "picat.executablePath" = "${pkgs.picat}/bin/picat";
       "D2.execPath" = "${pkgs.d2}/bin/d2";
+      "biome.lspBin" = "${pkgs.biome}/bin/biome";
     };
 
     tasks = {
@@ -71,7 +72,7 @@ in {
       marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
       marketplace.tyriar.lorem-ipsum
       open-vsx.mechatroner.rainbow-csv
-      # open-vsx.streetsidesoftware.code-spell-checker Disabling everything but markdown does not seem to work
+      open-vsx.ban.spellright
 
       # languages
       open-vsx.bbenoist.nix

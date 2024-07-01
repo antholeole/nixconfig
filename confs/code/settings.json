@@ -141,11 +141,12 @@
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
     "editor.cursorBlinking": "solid",
-    "cSpell.enableFiletypes": [
-        "md"
-    ],
-    "cSpell.enabledFileTypes": {
-        "md": true,
-        "*": false
-    }
+      "[json]":{
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "vscode.json-language-features"
+  }
+
 }
