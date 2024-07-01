@@ -27,10 +27,6 @@
       mkKanshiConfig = displays:
         with builtins; {
           outputs = map (display: display.kanshi) displays;
-          exec = [
-            # I cannot get this to work
-            "/usr/bin/pkill ags"
-          ];
         };
     in {
       latopOnly = mkKanshiConfig [ laptop ];

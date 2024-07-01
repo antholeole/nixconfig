@@ -85,6 +85,7 @@ in {
         topfew-rs # fast!
         ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
+        aspell aspellDicts.en
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the

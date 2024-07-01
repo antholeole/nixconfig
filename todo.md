@@ -6,3 +6,5 @@
 # Do
 [] clippy for vsc
 [] nice problems view
+[] bazel ext and settings
+[] default json fmt vsc
