@@ -85,6 +85,7 @@ in {
         topfew-rs # fast!
         ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
+        gawk
         aspell aspellDicts.en
 
         # LANGUAGE SPECIFIC
