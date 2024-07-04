@@ -5,6 +5,7 @@ let
   work = {
     email = "oleina@google.com";
     name = "oleina";
+    work = true;
   };
 
   default_conf = {
@@ -16,6 +17,8 @@ let
     alsaSupport = true;
     homeDirPath = "/home/";
     termColor = colors.lavender;
+
+    work = false;
 
     fontSizes = mkFontSizes { };
 

@@ -1,7 +1,7 @@
-{ ... }: {
+{ sysConfig, ... }: {
   programs.atuin = {
-    enable = true;
-    enableFishIntegration = true;
+    enable = !sysConfig.work;
+    enableFishIntegration = !sysConfig.work;
 
     flags = [ "--disable-up-arrow" ];
 

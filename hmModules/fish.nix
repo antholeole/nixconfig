@@ -21,6 +21,8 @@ in {
     in {
       rd = "rm -rf";
       zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
+      awk = "${pkgs.gawk}/bin/gawk";
+
 
       # last command duration
       ldc = "humantime $CMD_DURATION";
@@ -73,16 +75,8 @@ in {
         } decode | ${systemCopy}";
       };
 
-    plugins = [
-      # {
-      #   name = "fzf";
-      #   src = pkgs.fetchFromGitHub {
-      #     owner = "PatrickF1";
-      #     repo = "fzf.fish";
-      #     rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
-      #     sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
-      #   };
-      # }
+    plugins = let
+    stdPlugins = [
       {
         name = "bang-bang";
         src = pkgs.fetchFromGitHub {
@@ -101,6 +95,19 @@ in {
         src = pkgs.fishPlugins.plugin-git.src;
       }
     ];
+
+    workPlugins = [
+      {
+        name = "fzf";
+        src = pkgs.fetchFromGitHub {
+          owner = "PatrickF1";
+          repo = "fzf.fish";
+          rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
+          sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
+        };
+      }
+    ];
+    in stdPlugins ++ (if sysConfig.work then workPlugins else []);
 
     shellInit = ''
       source ~/.nix-profile/etc/profile.d/nix.fish
