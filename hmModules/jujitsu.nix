@@ -1,9 +1,9 @@
 { ... }: {
-    programs.jujutsu = {
-        enable = true;
+  programs.jujutsu = {
+    enable = true;
 
-        settings = {
-            
-        };
+    settings = {
+
     };
+  };
 }

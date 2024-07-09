@@ -23,7 +23,6 @@ in {
       zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
       awk = "${pkgs.gawk}/bin/gawk";
 
-
       # last command duration
       ldc = "humantime $CMD_DURATION";
 
@@ -65,6 +64,19 @@ in {
         gacp = let git = "${config.programs.git.package}/bin/git";
         in "${git} add --all && ${git} commit -m $argv && ${git} push";
 
+        manopt = ''
+            set -l cmd $argv[1]
+            set -l opt $argv[2] 
+            if not echo $opt | grep '^-' >/dev/null
+              if [ (string length $opt) = 1 ] 
+                set opt "-$opt"
+              else
+                set opt "--$opt"
+              end
+            end
+            man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
+        '';
+
         ch = let
           sysCliphist = if sysConfig.headless then
             remoteClipClient.cliphist
@@ -76,28 +88,27 @@ in {
       };
 
     plugins = let
-    stdPlugins = [
-      {
-        name = "bang-bang";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-bang-bang";
-          rev = "7d93e8a57b881102bc8beee64b75922f58de4700";
-          sha256 = "NAXaINBvjuRY2343OD4GkHZAZqcTJvE4RHgdi8xj028=";
-        };
-      }
-      {
-        name = "humantime-fish";
-        src = pkgs.fishPlugins.humantime-fish.src;
-      }
-      {
-        name = "plugin-git";
-        src = pkgs.fishPlugins.plugin-git.src;
-      }
-    ];
+      stdPlugins = [
+        {
+          name = "bang-bang";
+          src = pkgs.fetchFromGitHub {
+            owner = "oh-my-fish";
+            repo = "plugin-bang-bang";
+            rev = "7d93e8a57b881102bc8beee64b75922f58de4700";
+            sha256 = "NAXaINBvjuRY2343OD4GkHZAZqcTJvE4RHgdi8xj028=";
+          };
+        }
+        {
+          name = "humantime-fish";
+          src = pkgs.fishPlugins.humantime-fish.src;
+        }
+        {
+          name = "plugin-git";
+          src = pkgs.fishPlugins.plugin-git.src;
+        }
+      ];
 
-    workPlugins = [
-      {
+      workPlugins = [{
         name = "fzf";
         src = pkgs.fetchFromGitHub {
           owner = "PatrickF1";
@@ -105,9 +116,8 @@ in {
           rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
           sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
         };
-      }
-    ];
-    in stdPlugins ++ (if sysConfig.work then workPlugins else []);
+      }];
+    in stdPlugins ++ (if sysConfig.work then workPlugins else [ ]);
 
     shellInit = ''
       source ~/.nix-profile/etc/profile.d/nix.fish

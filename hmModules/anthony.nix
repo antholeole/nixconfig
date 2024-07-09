@@ -52,7 +52,6 @@ in {
     username = sysConfig.name;
     homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
 
-
     file.".ssh/id_ed25519.pub" = {
       enable = true;
       source = "${inputs.self}/assets/id_ed25519.pub";
@@ -86,7 +85,8 @@ in {
         ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
         gawk
-        aspell aspellDicts.en
+        aspell
+        aspellDicts.en
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
