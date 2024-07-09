@@ -147,6 +147,9 @@
     },
     "editor.suggest.insertMode": "replace",
     "editor.defaultFormatter": "vscode.json-language-features"
-  }
-
+      },
+    "remote.SSH.enableAgentForwarding": true,
+    "remote.SSH.useLocalServer": false,
+    "remote.SSH.useExecServer": false,
+    "remote.SSH.remoteServerListenOnSocket": true
 }

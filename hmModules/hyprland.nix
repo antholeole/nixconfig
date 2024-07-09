@@ -19,9 +19,9 @@
     # there seems to be a regession between 0.34 and 0.40 that
     # instantly segfaults.
     package = (import inputs.nixpkgs-with-code-185 {
-        config.allowUnfree = true;
-        system = pkgs.system;
-      }).hyprland;
+      config.allowUnfree = true;
+      system = pkgs.system;
+    }).hyprland;
     extraConfig = let
     in ''
       # why sleep? I Have no idea, but it seems to work
@@ -133,18 +133,19 @@
       '') sysConfig.wmStartupCommands)}
 
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-   '';
+    '';
   };
 
   home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" =
     {
-    enable = !sysConfig.headless;
+      enable = !sysConfig.headless;
       source =
         "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
     };
 
-  home.file.".config/other/hyprland.desktop" = let 
-   nixGLHyprland = mkNixGLPkg config.wayland.windowManager.hyprland.package "Hyprland";
+  home.file.".config/other/hyprland.desktop" = let
+    nixGLHyprland =
+      mkNixGLPkg config.wayland.windowManager.hyprland.package "Hyprland";
   in {
     enable = !sysConfig.headless;
     text = ''
