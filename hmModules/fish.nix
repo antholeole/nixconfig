@@ -65,16 +65,16 @@ in {
         in "${git} add --all && ${git} commit -m $argv && ${git} push";
 
         manopt = ''
-            set -l cmd $argv[1]
-            set -l opt $argv[2] 
-            if not echo $opt | grep '^-' >/dev/null
-              if [ (string length $opt) = 1 ] 
-                set opt "-$opt"
-              else
-                set opt "--$opt"
-              end
+          set -l cmd $argv[1]
+          set -l opt $argv[2] 
+          if not echo $opt | grep '^-' >/dev/null
+            if [ (string length $opt) = 1 ] 
+              set opt "-$opt"
+            else
+              set opt "--$opt"
             end
-            man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
+          end
+          man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
         '';
 
         ch = let

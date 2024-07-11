@@ -18,6 +18,8 @@ let
     homeDirPath = "/home/";
     termColor = colors.lavender;
 
+    selfAlias = "oleina";
+
     work = false;
 
     fontSizes = mkFontSizes { };
