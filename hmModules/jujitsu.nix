@@ -32,8 +32,9 @@
     }) wantsRevFlag);
 
     noRevFlag = {
-      jjn = {
-        expansion = ''jj new "%"'';
+      jjn = "jj new";
+      jjcb = {
+        expansion = "jj branch create \"%\" -r @-";
         setCursor = true;
       };
       jjgp = "jj git push -c @-";
