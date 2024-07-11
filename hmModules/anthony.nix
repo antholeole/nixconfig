@@ -67,7 +67,6 @@ in {
         fd # a faster find
         httpie # a simpler curl
         unzip
-        trashy # allows us to move stuff to a trash dir
         bottom # top but nicer
         socat # sometimes socat is useful for quick hacks
         nixfmt # most projects are going to have a flake.nix. this is helpful
@@ -77,7 +76,6 @@ in {
         rclone # very useful for remote stuff
         spr # useful for github stacked PRs
         direnv # vsc ext checks path for this
-        nnn # file exploerer
         neofetch # for funzies
         ttyper # funzies
         asciinema # makes for some good demos

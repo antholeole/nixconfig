@@ -23,10 +23,10 @@
       jjd = "jj diff";
       jjlo = "jj log";
     };
-    
+
     withRevFlag = (lib.attrsets.concatMapAttrs (abbr: command: {
       "${abbr}r" = {
-        expansion = "${command} -r \"%\"";
+        expansion = ''${command} -r "%"'';
         setCursor = true;
       };
     }) wantsRevFlag);
@@ -34,10 +34,15 @@
     noRevFlag = {
       jjn = "jj new";
       jjcb = {
-        expansion = "jj branch create \"%\" -r @-";
+        expansion = ''jj branch create "%" -r @-'';
         setCursor = true;
       };
       jjgp = "jj git push -c @-";
+
+      # this assumes we're pushing straight to a branch named main. This should
+      # check the name of the "trunk" branch, but this is likely used in my
+      # repos, where all branches are main.    
+      "jjgp!" = "jj branch set main -r @-";
     };
   in wantsRevFlag // noRevFlag // withRevFlag;
 }

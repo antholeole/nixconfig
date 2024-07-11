@@ -637,19 +637,17 @@
     "when": "editorTextFocus"
   },
   {
+    "command": "rewrap.rewrapComment",
+    "when": "editorTextFocus && dance.mode == 'normal'",
+    "key": "z"
+  },
+  {
     "command": "dance.openMenu",
     "when": "editorTextFocus && dance.mode == 'normal'",
-    "key": "z",
+    "key": "shift+z",
     "args": {
       "title": "misc",
-      "menu": {
-        "items": {
-          "w": {
-            "text": "wrap comment",
-            "command": "rewrap.wrapComment"
-          }
-        }
-      }
+      "menu": {}
     }
   },
   {
