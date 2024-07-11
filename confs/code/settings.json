@@ -155,5 +155,6 @@
     "editor.suggest.insertMode": "replace",
     "editor.defaultFormatter": "vscode.json-language-features"
       },
-    "remote.SSH.useExecServer": false
+    "remote.SSH.useExecServer": true,
+    "explorer.confirmDelete": false
 }
