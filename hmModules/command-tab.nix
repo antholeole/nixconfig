@@ -13,7 +13,7 @@
               args "-c" {{ strings.Quote (ds "in").both }}
             }
 
-            tab name="{{ (ds "in").command }}" {
+            tab name={{ strings.Quote (ds "in").command }} {
           	pane stacked=true {
               {{ range seq 4 1 }}cmd
               {{ end }}
