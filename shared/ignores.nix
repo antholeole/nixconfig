@@ -10,4 +10,5 @@
   ".metals"
   ".scala-build"
   ".bsp"
+  ".jj"
 ]

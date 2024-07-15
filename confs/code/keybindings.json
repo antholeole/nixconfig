@@ -879,12 +879,5 @@
         }
       }
     }
-  },
-  {
-    "key": "ctrl+alt+u",
-    "command": "workbench.action.terminal.sendSequence",
-    "args": {
-      "text": "upsert-tab nnn nnn"
-    }
   }
 ]
