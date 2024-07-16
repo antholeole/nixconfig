@@ -53,7 +53,6 @@ in {
       in {
         cdc = "mkdir -p $argv && cd $argv";
         rmt = "${trashy}/bin/trash put $argv";
-        killp = "kill (lsof -t -i:$argv)";
         zd = "${zoxide}/bin/zoxide query $argv";
         hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
         sshdc = "rm ~/.ssh/ctrl-*";
