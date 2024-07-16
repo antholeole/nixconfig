@@ -85,6 +85,7 @@ in {
         ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
         gawk
+        gron # greppable json
         aspell
         aspellDicts.en
 

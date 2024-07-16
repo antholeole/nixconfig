@@ -6,3 +6,5 @@
 # Do
 [] clippy for vsc
 [] nice problems view
+[] obs cli for recording
+[] leap.kak?
