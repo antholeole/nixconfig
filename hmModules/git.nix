@@ -31,7 +31,6 @@ in {
     extraConfig = {
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      pull.rebase = "preserve";
       merge.conflictStyle = "diff3";
       diff.algorithm = "histogram";
 
