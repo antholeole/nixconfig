@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, systemCopy, sysConfig, lib, ... }: {
+{ inputs, pkgs, config, sysConfig, lib, ... }: {
   systemd.user.services.remoteClip = lib.mkIf (!sysConfig.headless) {
     Unit = { Description = "a remote clipboard server"; };
     Install.WantedBy = [ "graphical-session.target" ];

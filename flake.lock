@@ -611,6 +611,22 @@
         "type": "github"
       }
     },
+    "oleina-nixpkgs": {
+      "locked": {
+        "lastModified": 1721428312,
+        "narHash": "sha256-MPAZY+yy1BczLtHEFPnI55aQsreOH5xQWiahCLIFGuI=",
+        "owner": "antholeole",
+        "repo": "nixpkgs",
+        "rev": "d0c414072e0c4a0bba240a00aff12cfb1e259cdf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "antholeole",
+        "repo": "nixpkgs",
+        "rev": "d0c414072e0c4a0bba240a00aff12cfb1e259cdf",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": [
@@ -652,6 +668,7 @@
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_8",
         "nixpkgs-with-code-185": "nixpkgs-with-code-185",
+        "oleina-nixpkgs": "oleina-nixpkgs",
         "rust-overlay": "rust-overlay_2",
         "wpaperd": "wpaperd",
         "zjstatus": "zjstatus"

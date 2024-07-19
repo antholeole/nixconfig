@@ -9,6 +9,10 @@
     nixpkgs-with-code-185.url =
       "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
+    # my fork; useful to test nixpkgs changes
+    oleina-nixpkgs.url = 
+      "github:antholeole/nixpkgs/d0c414072e0c4a0bba240a00aff12cfb1e259cdf";
+
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";
     home-manager.url = "github:nix-community/home-manager/release-24.05";
@@ -39,7 +43,7 @@
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
     , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay
-    , nixpkgs-with-code-185, wpaperd, ... }@inputs:
+    , nixpkgs-with-code-185, oleina-nixpkgs, wpaperd, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {
@@ -55,15 +59,20 @@
         };
       };
 
+      # TODO: flake parts would make this 100x better
       specialArgs = confName: pkgs: rec {
         inherit inputs;
 
         sysConfig = (import ./conf.nix)."${confName}";
 
-        systemCopy = (import ./mixins/mkSystemCopy.nix) sysConfig inputs pkgs;
+        systemClip = (import ./mixins/systemClip.nix) sysConfig inputs pkgs;
         mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
         mkOldNixPkg = (import ./mixins/mkOldNixPkg.nix);
+
+        oleinaNixpkgs = (import inputs.oleina-nixpkgs { 
+          system = pkgs.system;
+         });
       };
 
       system = "x86_64-linux";
