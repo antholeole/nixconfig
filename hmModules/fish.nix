@@ -1,7 +1,5 @@
-{ inputs, pkgs, config, systemCopy, sysConfig, lib, ... }:
-let wlClipPath = "${pkgs.wl-clipboard.outPath}/bin/";
-in {
-  programs.fish = let
+{ inputs, pkgs, config, systemClip, sysConfig, lib, ... }: {
+  programs.fish = let 
     remoteClipClient =
       (import "${inputs.self}/confs/services/clipboard" pkgs).client;
   in {
@@ -9,16 +7,15 @@ in {
 
     shellAliases = let
       cv = if sysConfig.headless then {
-        c = remoteClipClient.copy;
-        v = remoteClipClient.paste;
         cliphist = remoteClipClient.cliphist;
         done = remoteClipClient.done;
       } else {
-        c = systemCopy;
-        v = "${wlClipPath}wl-paste";
         done = "${pkgs.libnotify}/bin/notify-send done!";
       };
     in {
+      c = systemClip.copy;
+      v = systemClip.paste;
+      
       rd = "rm -rf";
       zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
       awk = "${pkgs.gawk}/bin/gawk";
@@ -83,7 +80,7 @@ in {
             "${lib.getExe cliphist} list";
         in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
           lib.getExe cliphist
-        } decode | ${systemCopy}";
+        } decode | ${systemClip.copy}";
       };
 
     plugins = let
