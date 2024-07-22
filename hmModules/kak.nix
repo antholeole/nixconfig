@@ -1,4 +1,4 @@
-{ pkgs, inputs, oleinaNixpkgs, systemClip, ... }: {
+{ sysConfig, pkgs, inputs, oleinaNixpkgs, systemClip, ... }: {
   home.packages = [
     (oleinaNixpkgs.kakoune.override {
       plugins = with pkgs.kakounePlugins; [ 
@@ -26,7 +26,7 @@ colorscheme catppuccin_macchiato
 
 # add copy to system clipboard
 hook global RegisterModified '"' %{ nop %sh{
-  printf %s "$kak_main_reg_dquote" | ${systemClip.copy} > /dev/null 2>&1 &
+  printf %s "$kak_main_reg_dquote" | ${systemClip.copy}${if sysConfig.headless then "" else " > /dev/null 2>&1 &"}
 }}
 
 # add paste to system clipboard
