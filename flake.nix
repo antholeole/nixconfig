@@ -10,7 +10,7 @@
       "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
     # my fork; useful to test nixpkgs changes
-    oleina-nixpkgs.url = 
+    oleina-nixpkgs.url =
       "github:antholeole/nixpkgs/d0c414072e0c4a0bba240a00aff12cfb1e259cdf";
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
@@ -70,9 +70,8 @@
         mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
         mkOldNixPkg = (import ./mixins/mkOldNixPkg.nix);
 
-        oleinaNixpkgs = (import inputs.oleina-nixpkgs { 
-          system = pkgs.system;
-         });
+        oleinaNixpkgs =
+          (import inputs.oleina-nixpkgs { system = pkgs.system; });
       };
 
       system = "x86_64-linux";

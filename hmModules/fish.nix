@@ -1,5 +1,5 @@
 { inputs, pkgs, config, systemClip, sysConfig, lib, ... }: {
-  programs.fish = let 
+  programs.fish = let
     remoteClipClient =
       (import "${inputs.self}/confs/services/clipboard" pkgs).client;
   in {
@@ -15,7 +15,7 @@
     in {
       c = systemClip.copy;
       v = systemClip.paste;
-      
+
       rd = "rm -rf";
       zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
       awk = "${pkgs.gawk}/bin/gawk";
