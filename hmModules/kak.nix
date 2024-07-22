@@ -1,12 +1,23 @@
-{ sysConfig, pkgs, inputs, oleinaNixpkgs, systemClip, ... }: {
-  home.packages = [
+{ lib, sysConfig, pkgs, inputs, oleinaNixpkgs, systemClip, ... }: let
+  kakWithHop =   
     (oleinaNixpkgs.kakoune.override {
       plugins = with pkgs.kakounePlugins; [
         fzf-kak
         quickscope-kak
         oleinaNixpkgs.kakounePlugins.hop-kak
       ];
-    })
+    });
+in {
+
+  options.programs.my-kakoune.package = with lib; mkOption {
+    type = types.package;
+    default = kakWithHop;
+  };
+  
+  config = {
+    
+  home.packages = [
+    kakWithHop
   ];
 
   home.file = {
@@ -52,5 +63,6 @@
       "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
     ".config/kak-lsp/kak-lsp.toml".source =
       "${inputs.self}/confs/kak/kak-lsp.toml";
+  };
   };
 }

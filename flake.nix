@@ -9,7 +9,8 @@
     nixpkgs-with-code-185.url =
       "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
-    # my fork; useful to test nixpkgs changes
+    # currently has:
+    # - adds hop.kak
     oleina-nixpkgs.url =
       "github:antholeole/nixpkgs/d0c414072e0c4a0bba240a00aff12cfb1e259cdf";
 
