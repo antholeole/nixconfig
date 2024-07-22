@@ -644,6 +644,10 @@
       "title": "misc",
       "menu": {
         "items": {
+          "": {
+            "text": "close sidebar",
+            "command": "workbench.action.closeSidebar"
+          }, 
           "w": {
             "text": "wrap comment",
             "command": "rewrap.wrapComment"
