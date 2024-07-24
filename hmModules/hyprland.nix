@@ -29,7 +29,7 @@
       exec=sleep 5; ${agsExe} &
 
       # a class for opening windows in floating
-      windowrulev2 = float, class:floating
+      windowrulev2 = float, class:notesfloat
 
 
       animation = global,0
@@ -55,7 +55,7 @@
       bind=${mod},N,exec,${
         pkgs.lib.getExe
         (mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram)
-      } --class floating -e ${config.packages.notes.package}/bin/notes
+      } --class  -e ${config.packages.notes.package}/bin/notes
 
       # when holding alt + space, we should show the numbers
       bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
