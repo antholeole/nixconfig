@@ -3,8 +3,9 @@
     package = lib.mkOption {
       type = lib.types.package;
       default = pkgs.writeShellScriptBin "notes" ''
-        	cd ~/Notes/
-
+              	cd ~/Notes/
+               while true
+               do
                 options=$(${pkgs.fd}/bin/fd . -e md)
                 options="$options"$'\n'"NEW"
 
@@ -13,9 +14,13 @@
 
                 case "$selected" in
                  NEW)
-                    file="~/Notes"
+                    # setting the file to nothing will create a scratch buffer,
+                    # which we can name later.
+                    file=""
                  ;;
                  "")
+                  # this probably means we hit escape in fzf, which probably 
+                  # means we want to close the window.
                   exit 0
                  ;;
                  *)
@@ -25,6 +30,7 @@
 
 
                 ${config.programs.my-kakoune.package}/bin/kak "$file"
+               done
       '';
     };
 
