@@ -12,7 +12,7 @@
     # currently has:
     # - adds hop.kak
     oleina-nixpkgs.url =
-      "github:antholeole/nixpkgs/d0c414072e0c4a0bba240a00aff12cfb1e259cdf";
+      "github:antholeole/nixpkgs/4DF9FBC6E978AB2E6C80C75F3A7BE89BD8805816";
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     devenv.url = "github:cachix/devenv";
