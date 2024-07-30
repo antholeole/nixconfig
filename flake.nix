@@ -5,8 +5,7 @@
     # main nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/24.05";
 
-    # nixpkgs with vscode 1.85
-    nixpkgs-with-code-185.url =
+    nixpkgs-with-hyprland.url =
       "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
     # currently has:
@@ -44,7 +43,7 @@
 
   outputs = { self, nixpkgs, flake-utils, home-manager, apple-silicon, nixgl
     , devenv, zjstatus, nix-vscode-extensions, nix-index-database, rust-overlay
-    , nixpkgs-with-code-185, oleina-nixpkgs, wpaperd, ... }@inputs:
+    , oleina-nixpkgs, wpaperd, nixpkgs-with-hyprland, ... }@inputs:
     let
       pkgsOverride = {
         nixpkgs = {

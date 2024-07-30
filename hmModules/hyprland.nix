@@ -18,7 +18,7 @@
     # file below to use a lowercase H or else it will explode.    
     # there seems to be a regession between 0.34 and 0.40 that
     # instantly segfaults.
-    package = (import inputs.nixpkgs-with-code-185 {
+    package = (import inputs.nixpkgs-with-hyprland{
       config.allowUnfree = true;
       system = pkgs.system;
     }).hyprland;
