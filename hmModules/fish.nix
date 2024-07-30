@@ -2,6 +2,14 @@
   programs.fish = let
     remoteClipClient =
       (import "${inputs.self}/confs/services/clipboard" pkgs).client;
+
+      # execute the given command on an abbreviation
+      abbrFuns = {
+        "!!" = "echo $history[1]";
+        "!@" = "commandline -f history-token-search-backward";
+      } // lib.attrsets.mergeAttrsList (builtins.map (idx: {
+        "!${builtins.toString idx}" = "echo $history[${builtins.toString idx}]";
+      }) (lib.lists.range 1 9));
   in {
     enable = true;
 
@@ -43,7 +51,12 @@
 
       # git create change list
       gccl = "git cl";
-    };
+    } // (lib.attrsets.concatMapAttrs (name: _: {
+      "${name}" = {
+        position = "anywhere";
+        function = name;
+      };
+    }) abbrFuns);
 
     functions = with pkgs;
       let fzfExe = lib.getExe config.programs.fzf.package;
@@ -81,19 +94,12 @@
         in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
           lib.getExe cliphist
         } decode | ${systemClip.copy}";
-      };
+      } // (lib.attrsets.concatMapAttrs (name: body: {
+        "${name}" = body;
+      }) abbrFuns);
 
     plugins = let
       stdPlugins = [
-        {
-          name = "bang-bang";
-          src = pkgs.fetchFromGitHub {
-            owner = "oh-my-fish";
-            repo = "plugin-bang-bang";
-            rev = "7d93e8a57b881102bc8beee64b75922f58de4700";
-            sha256 = "NAXaINBvjuRY2343OD4GkHZAZqcTJvE4RHgdi8xj028=";
-          };
-        }
         {
           name = "nix-env.fish";
           src = pkgs.fetchFromGitHub {
