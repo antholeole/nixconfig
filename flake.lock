@@ -438,7 +438,7 @@
         "type": "github"
       }
     },
-    "nixpkgs-with-code-185": {
+    "nixpkgs-with-hyprland": {
       "locked": {
         "lastModified": 1706220439,
         "narHash": "sha256-JMPlh3WoVVOSFSGdetBDKKkKkLNwnTqewFn+g1v2n/A=",
@@ -667,7 +667,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs_8",
-        "nixpkgs-with-code-185": "nixpkgs-with-code-185",
+        "nixpkgs-with-hyprland": "nixpkgs-with-hyprland",
         "oleina-nixpkgs": "oleina-nixpkgs",
         "rust-overlay": "rust-overlay_2",
         "wpaperd": "wpaperd",

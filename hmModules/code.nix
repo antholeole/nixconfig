@@ -25,11 +25,7 @@ in {
       enable = true;
 
       package = let
-        # until https://github.com/microsoft/vscode/issues/204178 is fixed
-        code_185 = (import inputs.nixpkgs-with-code-185 {
-          config.allowUnfree = true;
-          system = pkgs.system;
-        }).vscode;
+        code_185 = pkgs.vscode;
 
         rawCode =
           inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {

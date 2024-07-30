@@ -155,5 +155,9 @@
     "editor.suggest.insertMode": "replace",
     "editor.defaultFormatter": "vscode.json-language-features"
       },
-    "remote.SSH.useExecServer": false
+    "remote.SSH.useExecServer": false,
+    "cmake.saveBeforeBuild": false,
+    "cmake.revealLog": "never",
+    "cmake.configureOnEdit": false,
+    "update.showReleaseNotes": false
 }
