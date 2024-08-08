@@ -10,7 +10,7 @@ let
     CID=$(${jjBin} log --no-graph -r @ -T "change_id" | sha256sum | head -c 40)
 
     SIGNSTR="Signed-off-by: ''${NAME} <''${MAIL}>"
-    CHGSTR="Change-Id: ''${CID}"
+    CHGSTR="Change-Id: I''${CID}"
 
     contents=$(<"$1")
     readarray -t lines <<<"''${contents}"

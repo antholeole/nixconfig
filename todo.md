@@ -7,6 +7,8 @@
 [] clippy for vsc
 [] nice problems view
 [] obs cli for recording
+[] dynamic island thing?
 [] fix leap.kak
-[] we should have a hotkey for opening up a terminal with some nodes tab.
 
+ags:
+[] notifications old I forget them sometimes

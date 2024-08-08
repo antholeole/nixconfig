@@ -6,9 +6,9 @@ export const altDown = Variable(false)
 globalThis.altDown = altDown
 
 export const addToggleableWindow = (windowName, windowBuilder, defaultOn = false) => {
-    const showWindow = Variable(false)
+    showWindow = Variable(false)
     globalThis[`show${windowName}`] = showWindow
-    var window = defaultOn ? windowBuilder(showWindow) : undefined
+    let window = defaultOn ? windowBuilder(showWindow) : undefined
     showWindow.connect('changed', ({ value }) => {
         if (value) {
             if (window === undefined) {

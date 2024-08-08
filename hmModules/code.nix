@@ -13,6 +13,7 @@ let
       "picat.executablePath" = "${pkgs.picat}/bin/picat";
       "D2.execPath" = "${pkgs.d2}/bin/d2";
       "biome.lspBin" = "${pkgs.biome}/bin/biome";
+      "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
     };
 
     tasks = {
