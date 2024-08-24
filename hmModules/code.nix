@@ -75,13 +75,13 @@ in {
 
         # languages
         open-vsx.bbenoist.nix
+        open-vsx.llvm-vs-code-extensions.vscode-clangd
         open-vsx.golang.go
         open-vsx.yzhang.markdown-all-in-one
         open-vsx.scalameta.metals
         open-vsx.mkhl.direnv
         open-vsx.rust-lang.rust-analyzer
-
-        open-vsx.arrterian.nix-env-selector
+        open-vsx.biomejs.biome # this sometimes conflicts with non-biome projects but its a nice default editor
       ];
       keybindings = let
         directionKeymap = dir: commandFn:

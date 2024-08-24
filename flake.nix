@@ -135,7 +135,7 @@
                   } ${agsDir}style.scss:${agsDir}/style.css && (${agsExe} -c $DEVENV_ROOT/confs/ags/config.js -b devags)'
                 '';
               };
-              packages = with pkgs; [ nodejs_21 ];
+              packages = with pkgs; [ nodejs_22 ];
             })
         ];
       };
