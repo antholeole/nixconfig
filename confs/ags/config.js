@@ -13,5 +13,5 @@ monitorWatcher(App, [
 ])
 
 export default {
-    style: App.configDir + "/style.css",
+    style: `${App.configDir}/style.css`,
 }

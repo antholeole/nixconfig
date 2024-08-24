@@ -9,7 +9,7 @@ const commands = [
 ]
 
 export const Powerbar = () => Widget.Window({
-    name: `powerbar`,
+    name: "powerbar",
     class_name: 'window',
     anchor: ['right'],
     margins: [0, 40],

@@ -24,7 +24,6 @@
     }).hyprland;
     extraConfig = let
     in ''
-      # why sleep? I Have no idea, but it seems to work
       exec-once=${pkgs.wpaperd}/bin/wpaperd -d
       exec=sleep 5; ${agsExe} &
 

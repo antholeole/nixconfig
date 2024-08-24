@@ -3,5 +3,7 @@ firmware/
 .sass-cache/
 *.map
 .devenv/
+types
+.vite/
 
 custom/
