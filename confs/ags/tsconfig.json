@@ -1,18 +1,31 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "es2022",
     "lib": [
-      "ES2022"
+      "ES2022",
+      "dom"
     ],
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "strict": true,
     "noImplicitAny": false,
     "baseUrl": ".",
+    "types": [],
     "typeRoots": [
-      "./types"
+      "./types/*",
     ],
-    "skipLibCheck": true
-  }
+    "outDir": "./out",
+    "skipLibCheck": true,
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "files": [
+    "./types/ags.d.ts"
+  ],
+  "include": [
+    "src"
+  ],
 }

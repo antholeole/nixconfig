@@ -97,6 +97,7 @@ in {
         gperftools
         biome
         babelfish
+        alejandra
       ] ++ (if !sysConfig.headless then [
         (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
         fira-code-symbols

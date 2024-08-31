@@ -5,7 +5,7 @@ import { Clock } from "./clock.js"
 import { Workspaces } from "./workspaces.js"
 import { NetworkIndicator } from "./network.js"
 
-export const Bar = (monitor) => Widget.Window({
+export const Bar = (monitor: number) => Widget.Window({
     name: `bar-${monitor}`,
     monitor,
     anchor: ['top', 'left', 'right'],

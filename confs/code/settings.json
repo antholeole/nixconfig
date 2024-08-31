@@ -141,23 +141,29 @@
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
     "editor.cursorBlinking": "solid",
-      "[json]":{
-    "editor.quickSuggestions": {
-      "strings": true
+    "[json]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "editor.suggest.insertMode": "replace",
-    "editor.defaultFormatter": "vscode.json-language-features"
-      },
-      "[jsonc]":{
-    "editor.quickSuggestions": {
-      "strings": true
+    "[jsonc]": {
+        "editor.quickSuggestions": {
+            "strings": true
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "vscode.json-language-features"
     },
-    "editor.suggest.insertMode": "replace",
-    "editor.defaultFormatter": "vscode.json-language-features"
-      },
     "remote.SSH.useExecServer": false,
     "cmake.saveBeforeBuild": false,
     "cmake.revealLog": "never",
     "cmake.configureOnEdit": false,
-    "update.showReleaseNotes": false
+    "update.showReleaseNotes": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    }
 }

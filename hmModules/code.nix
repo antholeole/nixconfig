@@ -10,9 +10,8 @@ let
   machineBased = {
     settings = {
       "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
-      "picat.executablePath" = "${pkgs.picat}/bin/picat";
       "D2.execPath" = "${pkgs.d2}/bin/d2";
-      "biome.lspBin" = "${pkgs.biome}/bin/biome";
+      "biome.lsp.bin" = "${pkgs.biome}/bin/biome";
       "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
     };
 
@@ -75,6 +74,7 @@ in {
 
         # languages
         open-vsx.bbenoist.nix
+        open-vsx.kamadorueda.alejandra
         open-vsx.llvm-vs-code-extensions.vscode-clangd
         open-vsx.golang.go
         open-vsx.yzhang.markdown-all-in-one

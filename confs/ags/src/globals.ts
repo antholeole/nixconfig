@@ -1,11 +1,14 @@
 import Variable from 'resource:///com/github/Aylur/ags/variable.js'
 import App from 'resource:///com/github/Aylur/ags/app.js'
 import {createEmitter} from "./utils.js"
+import type { Variable  as VarT } from 'types/variable.js'
+
+type GtkWindow = Parameters<typeof App.addWindow>[0]
 
 export const altDown = Variable(false)
 globalThis.altDown = altDown
 
-export const addToggleableWindow = (windowName, windowBuilder, defaultOn = false) => {
+export const addToggleableWindow = (windowName: string, windowBuilder: (show: VarT<boolean>) => GtkWindow, defaultOn = false) => {
     const showWindow = Variable(false)
     globalThis[`show${windowName}`] = showWindow
     let window = defaultOn ? windowBuilder(showWindow) : undefined
