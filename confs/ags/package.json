@@ -4,14 +4,17 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite build --watch",
     "build": "tsc && vite build",
+    "test": "vitest",
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@rollup/plugin-html": "^1.0.3",
     "sass-embedded": "^1.78.0",
     "typescript": "^5.5.3",
     "vite": "^5.4.1",
-    "vite-plugin-externalize-dependencies": "^1.0.1"
+    "vite-plugin-externalize-dependencies": "^1.0.1",
+    "vitest": "^2.0.5"
   }
 }

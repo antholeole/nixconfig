@@ -4,8 +4,8 @@ import "./launcher.js"
 import "./powerbar.js"
 import "./control/control.js"
 import { NotificationBar } from './notifications.js'
-
 import { monitorWatcher } from "./utils.js"
+import "./style.scss"
 
 monitorWatcher(App, [
     Bar, 

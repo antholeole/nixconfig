@@ -150,15 +150,17 @@ $search-container-width: 500px;
 }
 
 .input-stack {
-    border-radius: $border-radius / 2;
-    background-color: rgba($base, .4);
 
     .search-icon {
         margin-left: 10px;
         font-family: "FiraCode Nerd Font";
     }
 
-    margin: 62.5px 32.5px;
+    & {
+        border-radius: calc($border-radius / 2);
+        background-color: rgba($base, .4);
+        margin: 62.5px 32.5px;
+    }
 }
 
 .launcher-text {
@@ -179,7 +181,7 @@ $search-container-width: 500px;
 
 .search-container {
     margin: 10px;
-    border-radius: $border-radius / 2;
+    border-radius: calc($border-radius / 2);
     min-width: $search-container-width;
     min-height: $search-container-height;
     background-color: $flamingo;
@@ -256,14 +258,16 @@ $search-container-width: 500px;
                 trough {
 
                     // no idea what the selector is 
-                    >* {
+                    * {
                         background-color: $flamingo;
                     }
 
-                    background-color: $surface1;
-                    border: 0;
-                    min-height: 9px;
-                    border-radius: $border-radius;
+                    & {
+                        background-color: $surface1;
+                        border: 0;
+                        min-height: 9px;
+                        border-radius: $border-radius;
+                    }
                 }
             }
         }
