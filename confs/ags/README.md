@@ -1,6 +1,15 @@
-My ags config
 
-- `npm run dev` for UI development
-- `npm test` for tests (`npm run test-watch` for watch)
+# Starter Config
 
-This is built by nix.
+if suggestions don't work, first make sure
+you have TypeScript LSP working in your editor
+
+if you do not want typechecking only suggestions
+
+```json
+// tsconfig.json
+"checkJs": false
+```
+
+types are symlinked to:
+/home/oleina/.local/share/com.github.Aylur.ags/types

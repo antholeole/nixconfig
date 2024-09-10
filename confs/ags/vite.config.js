@@ -3,47 +3,48 @@
 import { defineConfig } from "vite";
 import externalize from "vite-plugin-externalize-dependencies";
 import html from "@rollup/plugin-html";
-import { exec, execSync } from "node:child_process";
+import { exec, execSync, spawn } from "node:child_process";
 import { resolve } from "node:path";
 
 // holds the child process
 let process = null;
-const external = (moduleName) => moduleName.includes("Aylur/ags")
+const external = (moduleName) => moduleName.includes("Aylur/ags");
 
-export default defineConfig({
+export default defineConfig((mode) => ({
 	plugins: [
 		html(),
 		externalize({
-			externals: [
-				external
-			],
+			externals: [external],
 		}),
 
 		{
-      		name: 'postbuild-commands', // the name of your custom plugin. Could be anything.
-		    closeBundle: async () => {
-				// first, kill the previous ags run if it existsg
-				const configPath = resolve(__dirname, "dist/config.js");
-				const busName = "devags";
+			name: "postbuild-commands", // the name of your custom plugin. Could be anything.
+			closeBundle: async () => {
+				if (mode.mode === "dev") {
+					// first, kill the previous ags run if it exists
+					const configPath = resolve(__dirname, "dist/config.js");
+					const busName = "devags";
 
-				if (process !== null) {
-					execSync(`ags -b ${busName} --quit`)
+					if (process !== null) {
+						execSync(`ags -b ${busName} --quit`);
+					}
+
+					process = spawn("ags", ["-c", configPath, "-b", busName]);
+					process.stderr.on("data", (data) => {
+						console.log(`ags: ${data.toString()}`);
+					});
 				}
-
-				process = exec(`ags -c ${configPath} -b ${busName}`)
-		    }
-    },
+			},
+		},
 	],
 
 	root: "./",
-	test: {
-
-	},
+	test: {},
 	build: {
 		lib: {
-			entry: resolve(__dirname, 'lib/main.js'),
+			entry: resolve(__dirname, "lib/main.js"),
 			name: "oleinags",
-			fileName: "config"
+			fileName: "config",
 		},
 
 		outDir: "dist",
@@ -51,13 +52,13 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				globals: (id) => {
-					const name = id.split("/").at(-1).split(".").at(0)
-					return name
+					const name = id.split("/").at(-1).split(".").at(0);
+					return name;
 				},
 			},
 			external,
 			input: "src/config.ts",
-			plugins: [html()]
+			plugins: [html()],
 		},
 	},
-});
+}));

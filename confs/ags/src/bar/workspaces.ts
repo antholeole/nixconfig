@@ -20,7 +20,7 @@ const buildWorkspacesChildren = (altIsDown: boolean, monitor: number) => {
 		.sort((a, b) => a.id - b.id);
 	const active = (workspace: Id) =>
 		thisMonitor.activeWorkspace.id === workspace.id &&
-		Hyprland.active.monitor === thisMonitor.name;
+		Hyprland.active.monitor.name === thisMonitor.name;
 
 	const buildClassName = (workspace: Id) => {
 		const classPrefix = altIsDown ? "ws-text" : "dot";

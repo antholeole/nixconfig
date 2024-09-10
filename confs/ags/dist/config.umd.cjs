@@ -140,7 +140,7 @@
       (hMonitor) => hMonitor.id === monitor
     );
     const workspaces = Hyprland.workspaces.filter((workspace) => workspace.monitor === thisMonitor.name).sort((a, b) => a.id - b.id);
-    const active = (workspace) => thisMonitor.activeWorkspace.id === workspace.id && Hyprland.active.monitor === thisMonitor.name;
+    const active = (workspace) => thisMonitor.activeWorkspace.id === workspace.id && Hyprland.active.monitor.name === thisMonitor.name;
     const buildClassName = (workspace) => {
       const classPrefix = altIsDown ? "ws-text" : "dot";
       const classSuffix = active(workspace) ? "selected" : "not-selected";

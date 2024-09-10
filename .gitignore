@@ -3,7 +3,6 @@ firmware/
 .sass-cache/
 *.map
 .devenv/
-types
 .vite/
 dist/
 
