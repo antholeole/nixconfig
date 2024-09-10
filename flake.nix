@@ -87,6 +87,10 @@
           extraSpecialArgs = specialArgs conf pkgs;
         };
     in {
+      packages.${system} = {
+        oleinaags = import ./confs/ags (mkPkgs system);
+      };
+
       nixosConfigurations = {
         kayak-asahi = let system = "aarch64-linux";
         in nixpkgs.lib.nixosSystem {
