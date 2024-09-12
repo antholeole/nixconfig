@@ -1,14 +1,19 @@
 # don't set  default for because it is potentially dangerous.
 # if we accidently boot without basic firmware support that is bad news
-{ config, pkgs, lib, inputs, ... }: {
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  imports = [ "${inputs.self}/hardware-configuration.nix" ];
+  imports = ["${inputs.self}/hardware-configuration.nix"];
 
-  nix.settings.trusted-users = [ "anthony" ];
+  nix.settings.trusted-users = ["anthony"];
   users.users.anthony = {
-    hashedPassword =
-      "$6$xuFopCWKzelX4Vss$ZHWmWZBQBZzZcXOFdQ7ADulpI2rhfDhKXNl6oYI9sj3Y8suKF.VG1Q/1lPb.NL/54inHR8pSbeIItzDQsz.bN/";
+    hashedPassword = "$6$xuFopCWKzelX4Vss$ZHWmWZBQBZzZcXOFdQ7ADulpI2rhfDhKXNl6oYI9sj3Y8suKF.VG1Q/1lPb.NL/54inHR8pSbeIItzDQsz.bN/";
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -73,4 +78,3 @@
 
   system.stateVersion = "23.05";
 }
-

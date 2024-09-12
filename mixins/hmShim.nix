@@ -1,5 +1,9 @@
-{ pkgs, inputs, specialArgs, ... }:
-let
+{
+  pkgs,
+  inputs,
+  specialArgs,
+  ...
+}: let
   mkNixosModuleFromHmModule = hmModulePath: {
     home-manager = {
       extraSpecialArgs = specialArgs;

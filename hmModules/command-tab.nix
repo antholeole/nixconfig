@@ -1,15 +1,21 @@
-{ pkgs, inputs, config, sysConfig, ... }: {
+{
+  pkgs,
+  inputs,
+  config,
+  sysConfig,
+  ...
+}: {
   home.packages = let
-    ntc = (pkgs.writeShellApplication {
+    ntc = pkgs.writeShellApplication {
       name = "command-tab";
-      runtimeInputs = with pkgs; [ zellij gomplate ];
+      runtimeInputs = with pkgs; [zellij gomplate];
 
       text = let
         zjStatus = (import "${inputs.self}/shared/zjstatus.nix") pkgs sysConfig;
         commandTab = pkgs.writeText "command-tab.kdl" ''
           layout {
             pane_template name="cmd" {
-              command "/bin/bash" 
+              command "/bin/bash"
               args "-c" {{ strings.Quote (ds "in").both }}
             }
 
@@ -18,13 +24,13 @@
               {{ range seq 4 1 }}cmd
               {{ end }}
           	}
-            
+
             ${zjStatus}
             }
           }
         '';
       in ''
-        command="$1" 
+        command="$1"
         args="''${*:2}"
         kdl=$(mktemp "/tmp/XXXXXXXXXXXX.kdl")
 
@@ -34,7 +40,6 @@
 
         rm "$kdl";
       '';
-    });
-
-  in [ ntc config.upsertTab ];
+    };
+  in [ntc config.upsertTab];
 }

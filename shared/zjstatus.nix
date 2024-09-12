@@ -1,5 +1,4 @@
-pkgs: sysConfig:
-let
+pkgs: sysConfig: let
   colors = import ../theme.nix;
   bgColor = colors.mantle;
   fgColor = sysConfig.termColor;

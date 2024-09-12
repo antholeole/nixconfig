@@ -1,4 +1,9 @@
-{ lib, sysConfig, config, ... }: {
+{
+  lib,
+  sysConfig,
+  config,
+  ...
+}: {
   services.mpd = lib.mkIf (!sysConfig.headless) {
     enable = true;
 

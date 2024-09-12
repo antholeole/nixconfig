@@ -1,5 +1,10 @@
-{ lib, pkgs, inputs, sysConfig, ... }:
-let
+{
+  lib,
+  pkgs,
+  inputs,
+  sysConfig,
+  ...
+}: let
   zjStatus = (import "${inputs.self}/shared/zjstatus.nix") pkgs sysConfig;
   # TODO: this does not allow args
   commandTab = pkgs.writeText "one-command.kdl" ''
@@ -16,12 +21,12 @@ let
 
   upsertTab = pkgs.writeShellApplication {
     name = "upsert-tab";
-    runtimeInputs = with pkgs; [ zellij gomplate ];
+    runtimeInputs = with pkgs; [zellij gomplate];
     text = ''
       name="$1"
       command="$2"
 
-      if zellij action query-tab-names | grep "$name"; then 
+      if zellij action query-tab-names | grep "$name"; then
           zellij action go-to-tab-name "$1"
           exit 0
       fi

@@ -1,4 +1,12 @@
-{ config, lib, pkgs, sysConfig, mkNixGLPkg, inputs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  sysConfig,
+  mkNixGLPkg,
+  inputs,
+  ...
+}: {
   wayland.windowManager.hyprland = let
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
@@ -11,17 +19,18 @@
       (import "${inputs.self}/shared/arrows.nix") {
         inherit dir commandFn lib;
       };
-
   in {
     enable = !sysConfig.headless;
-    # TODO: unpin this version. you MUST change the desktop 
-    # file below to use a lowercase H or else it will explode.    
+    # TODO: unpin this version. you MUST change the desktop
+    # file below to use a lowercase H or else it will explode.
     # there seems to be a regession between 0.34 and 0.40 that
     # instantly segfaults.
-    package = (import inputs.nixpkgs-with-hyprland{
-      config.allowUnfree = true;
-      system = pkgs.system;
-    }).hyprland;
+    package =
+      (import inputs.nixpkgs-with-hyprland {
+        config.allowUnfree = true;
+        system = pkgs.system;
+      })
+      .hyprland;
     extraConfig = let
     in ''
       exec-once=${pkgs.wpaperd}/bin/wpaperd -d
@@ -76,15 +85,15 @@
       bind=ALT_SHIFT,s,exec,${screenshotUtils.screenshot}
       bind=ALT_SHIFT,e,exec,${screenshotUtils.edit}
 
-      # resize 
+      # resize
       ${directionKeymap "left"
-      (key: "binde=ALT_SHIFT,${key},resizeactive,-${resizeUnit} 0")}
+        (key: "binde=ALT_SHIFT,${key},resizeactive,-${resizeUnit} 0")}
       ${directionKeymap "right"
-      (key: "binde=ALT_SHIFT,${key},resizeactive,${resizeUnit} 0")}
+        (key: "binde=ALT_SHIFT,${key},resizeactive,${resizeUnit} 0")}
       ${directionKeymap "up"
-      (key: "binde=ALT_SHIFT,${key},resizeactive,0 -${resizeUnit}")}
+        (key: "binde=ALT_SHIFT,${key},resizeactive,0 -${resizeUnit}")}
       ${directionKeymap "down"
-      (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
+        (key: "binde=ALT_SHIFT,${key},resizeactive,0 ${resizeUnit}")}
 
       # CONTROL
       bindt=${mod},equal,exec,${agsExe} --run-js "showControl.value = true;"
@@ -92,12 +101,12 @@
       submap=control
 
       ${directionKeymap "down"
-      (key: ''bind=,${key},exec,${agsExe} --run-js "down()"'')}
+        (key: ''bind=,${key},exec,${agsExe} --run-js "down()"'')}
       ${directionKeymap "up"
-      (key: ''bind=,${key},exec,${agsExe} --run-js "up()"'')}
+        (key: ''bind=,${key},exec,${agsExe} --run-js "up()"'')}
 
       bind=,escape,exec,${agsExe} --run-js "showControl.value = false;"
-      bind=,escape,submap,reset 
+      bind=,escape,submap,reset
       submap=reset
       # END CONTROL
 
@@ -108,14 +117,14 @@
 
       bind=,q,exec,swaylock
       bind=,q,exec,${agsExe} --run-js "showPowerbar.value = false;"
-      bind=,q,submap,reset 
+      bind=,q,submap,reset
 
       bind=,r,exec,reboot
       bind=,l,exec,logout
       bind=,s,exec,poweroff
 
       bind=,escape,exec,${agsExe} --run-js "showPowerbar.value = false;"
-      bind=,escape,submap,reset 
+      bind=,escape,submap,reset
 
       submap=reset
 
@@ -125,28 +134,27 @@
       bindtn=,escape,exec,${agsExe} --run-js "showForgot.value = false;" ; ${agsExe} --run-js "showLauncher.value = false;"
 
       # binds workspace keys
-      ${builtins.concatStringsSep "\n" (builtins.genList (i:
-        let iStr = builtins.toString i;
-        in ''
-          bind = ${mod}, ${iStr}, workspace, ${iStr}
-          bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
-        '') 10)}
+      ${builtins.concatStringsSep "\n" (builtins.genList (i: let
+        iStr = builtins.toString i;
+      in ''
+        bind = ${mod}, ${iStr}, workspace, ${iStr}
+        bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
+      '') 10)}
 
-        
+
       ${builtins.concatStringsSep "\n" (map (cmd: ''
-        exec-once=${cmd}
-      '') sysConfig.wmStartupCommands)}
+          exec-once=${cmd}
+        '')
+        sysConfig.wmStartupCommands)}
 
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };
 
-  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" =
-    {
-      enable = !sysConfig.headless;
-      source =
-        "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
-    };
+  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
+    enable = !sysConfig.headless;
+    source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
+  };
 
   home.file.".config/other/hyprland.desktop" = let
     nixGLHyprland =
@@ -162,4 +170,3 @@
     '';
   };
 }
-

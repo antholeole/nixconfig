@@ -1,4 +1,10 @@
-{ pkgs, lib, sysConfig, inputs, ... }: {
+{
+  pkgs,
+  lib,
+  sysConfig,
+  inputs,
+  ...
+}: {
   services.kanshi = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
@@ -22,16 +28,16 @@
       };
       monitor = {
         tall = true;
-        kanshi = { criteria = "HDMI-A-1"; };
+        kanshi = {criteria = "HDMI-A-1";};
       };
       mkKanshiConfig = displays:
         with builtins; {
           outputs = map (display: display.kanshi) displays;
         };
     in {
-      latopOnly = mkKanshiConfig [ laptop ];
-      dellUltrawide = mkKanshiConfig [ ultraWide laptop ];
-      second = mkKanshiConfig [ laptop monitor ];
+      latopOnly = mkKanshiConfig [laptop];
+      dellUltrawide = mkKanshiConfig [ultraWide laptop];
+      second = mkKanshiConfig [laptop monitor];
     };
   };
 }

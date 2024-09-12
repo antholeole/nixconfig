@@ -1,5 +1,5 @@
-pkgs: config:
-let lastFileDir = "${config.xdg.stateHome}/last_ss.txt";
+pkgs: config: let
+  lastFileDir = "${config.xdg.stateHome}/last_ss.txt";
 in {
   screenshot = pkgs.writeShellScript "screenshot" ''
     out=~/Pictures/$(${pkgs.openssl}/bin/openssl rand -hex 12).png
@@ -7,6 +7,7 @@ in {
     echo "$out" > ${lastFileDir}
   '';
 
-  edit = pkgs.writeShellScript "edit"
+  edit =
+    pkgs.writeShellScript "edit"
     "${pkgs.libsForQt5.kolourpaint}/bin/kolourpaint $(cat ${lastFileDir})";
 }

@@ -1,5 +1,11 @@
-{ pkgs, inputs, sysConfig, lib, ... }:
-let magic_key = "|";
+{
+  pkgs,
+  inputs,
+  sysConfig,
+  lib,
+  ...
+}: let
+  magic_key = "|";
 in {
   services.espanso = lib.mkIf (!sysConfig.headless) {
     # this don't work on wayland :/
@@ -10,7 +16,7 @@ in {
     configs.default = {
       toggle_key = "ALT";
       search_shortcut = "ALT+O";
-      keyboard_layout = { layout = "us"; };
+      keyboard_layout = {layout = "us";};
       pre_paste_delay = 100;
       evdev_modifier_delay = 5;
     };
@@ -63,9 +69,11 @@ in {
           "sw" = "somewhere";
           "call" = "Can we hop on a call real quick";
         };
-      in with lib;
-      attrsets.mapAttrsToList
-      (replacment: value: (mkMagicReplace replacment value)) replacements;
+      in
+        with lib;
+          attrsets.mapAttrsToList
+          (replacment: value: (mkMagicReplace replacment value))
+          replacements;
     };
   };
 }

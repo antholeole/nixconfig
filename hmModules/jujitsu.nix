@@ -1,5 +1,10 @@
-{ lib, config, sysConfig, pkgs, ... }:
-let
+{
+  lib,
+  config,
+  sysConfig,
+  pkgs,
+  ...
+}: let
   # TODO move this somewhere sensible.
   jjBin = "${config.programs.jujutsu.package}/bin/jj";
   jjSignoff = pkgs.writeShellScriptBin "jj-signoff" ''
@@ -42,7 +47,7 @@ in {
     enable = true;
 
     settings = {
-      user = with sysConfig; { inherit email name; };
+      user = with sysConfig; {inherit email name;};
       ui.editor = "${config.programs.kakoune.package}/bin/kak";
 
       signing = {
@@ -50,14 +55,12 @@ in {
         key = "~/.ssh/id_ed25519.pub";
       };
 
-      git = { push-branch-prefix = "${sysConfig.selfAlias}/"; };
+      git = {push-branch-prefix = "${sysConfig.selfAlias}/";};
 
       aliases = {
-        signoff =
-          [ "--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit" ];
+        signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
       };
     };
-
   };
 
   programs.fish.shellAbbrs = let
@@ -68,12 +71,14 @@ in {
       jjlo = "jj log";
     };
 
-    withRevFlag = (lib.attrsets.concatMapAttrs (abbr: command: {
-      "${abbr}r" = {
-        expansion = ''${command} -r "%"'';
-        setCursor = true;
-      };
-    }) wantsRevFlag);
+    withRevFlag =
+      lib.attrsets.concatMapAttrs (abbr: command: {
+        "${abbr}r" = {
+          expansion = ''${command} -r "%"'';
+          setCursor = true;
+        };
+      })
+      wantsRevFlag;
 
     noRevFlag = {
       jjn = "jj new";
@@ -83,5 +88,6 @@ in {
       };
       jjgp = "jj git push -c @-";
     };
-  in wantsRevFlag // noRevFlag // withRevFlag;
+  in
+    wantsRevFlag // noRevFlag // withRevFlag;
 }

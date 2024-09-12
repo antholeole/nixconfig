@@ -1,66 +1,85 @@
-{ inputs, pkgs, config, systemClip, sysConfig, lib, ... }: {
+{
+  inputs,
+  pkgs,
+  config,
+  systemClip,
+  sysConfig,
+  lib,
+  ...
+}: {
   programs.fish = let
     remoteClipClient =
       (import "${inputs.self}/confs/services/clipboard" pkgs).client;
 
-      # execute the given command on an abbreviation
-      abbrFuns = {
+    # execute the given command on an abbreviation
+    abbrFuns =
+      {
         "!!" = "echo $history[1]";
         "!@" = "commandline -f history-token-search-backward";
-      } // lib.attrsets.mergeAttrsList (builtins.map (idx: {
+      }
+      // lib.attrsets.mergeAttrsList (builtins.map (idx: {
         "!${builtins.toString idx}" = "echo $history[${builtins.toString idx}]";
       }) (lib.lists.range 1 9));
   in {
     enable = true;
 
     shellAliases = let
-      cv = if sysConfig.headless then {
-        cliphist = remoteClipClient.cliphist;
-        done = remoteClipClient.done;
-      } else {
-        done = "${pkgs.libnotify}/bin/notify-send done!";
-      };
-    in {
-      c = systemClip.copy;
-      v = systemClip.paste;
+      cv =
+        if sysConfig.headless
+        then {
+          cliphist = remoteClipClient.cliphist;
+          done = remoteClipClient.done;
+        }
+        else {
+          done = "${pkgs.libnotify}/bin/notify-send done!";
+        };
+    in
+      {
+        c = systemClip.copy;
+        v = systemClip.paste;
 
-      rd = "rm -rf";
-      zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
-      awk = "${pkgs.gawk}/bin/gawk";
+        rd = "rm -rf";
+        zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
+        awk = "${pkgs.gawk}/bin/gawk";
 
-      # last command duration
-      ldc = "humantime $CMD_DURATION";
+        # last command duration
+        ldc = "humantime $CMD_DURATION";
 
-      # list all the conflicts
-      gcn = "git conflicts";
-    } // cv;
+        # list all the conflicts
+        gcn = "git conflicts";
+      }
+      // cv;
 
-    shellAbbrs = {
-      pl = "parallel";
+    shellAbbrs =
+      {
+        pl = "parallel";
 
-      # expand cuz I can never remember
-      ct = "command-tab";
+        # expand cuz I can never remember
+        ct = "command-tab";
 
-      # unfortunatly an alias leads to infinite recursion
-      # TODO: is this not required because of enable fish 
-      # integration?
-      cd = "z";
+        # unfortunatly an alias leads to infinite recursion
+        # TODO: is this not required because of enable fish
+        # integration?
+        cd = "z";
 
-      # git diff for patch
-      gdp = "git diff --no-ext-diff";
+        # git diff for patch
+        gdp = "git diff --no-ext-diff";
 
-      # git create change list
-      gccl = "git cl";
-    } // (lib.attrsets.concatMapAttrs (name: _: {
-      "${name}" = {
-        position = "anywhere";
-        function = name;
-      };
-    }) abbrFuns);
+        # git create change list
+        gccl = "git cl";
+      }
+      // (lib.attrsets.concatMapAttrs (name: _: {
+          "${name}" = {
+            position = "anywhere";
+            function = name;
+          };
+        })
+        abbrFuns);
 
-    functions = with pkgs;
-      let fzfExe = lib.getExe config.programs.fzf.package;
-      in {
+    functions = with pkgs; let
+      fzfExe = lib.getExe config.programs.fzf.package;
+    in
+      {
         cdc = "mkdir -p $argv && cd $argv";
         rmt = "${trashy}/bin/trash put $argv";
         zd = "${zoxide}/bin/zoxide query $argv";
@@ -70,14 +89,15 @@
         skak = "sudo ${kakoune}/bin/kak $argv";
         bazel = "${pkgs.bazelisk}/bin/bazelisk $argv";
 
-        gacp = let git = "${config.programs.git.package}/bin/git";
+        gacp = let
+          git = "${config.programs.git.package}/bin/git";
         in "${git} add --all && ${git} commit -m $argv && ${git} push";
 
         manopt = ''
           set -l cmd $argv[1]
-          set -l opt $argv[2] 
+          set -l opt $argv[2]
           if not echo $opt | grep '^-' >/dev/null
-            if [ (string length $opt) = 1 ] 
+            if [ (string length $opt) = 1 ]
               set opt "-$opt"
             else
               set opt "--$opt"
@@ -87,16 +107,18 @@
         '';
 
         ch = let
-          sysCliphist = if sysConfig.headless then
-            remoteClipClient.cliphist
-          else
-            "${lib.getExe cliphist} list";
+          sysCliphist =
+            if sysConfig.headless
+            then remoteClipClient.cliphist
+            else "${lib.getExe cliphist} list";
         in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
           lib.getExe cliphist
         } decode | ${systemClip.copy}";
-      } // (lib.attrsets.concatMapAttrs (name: body: {
-        "${name}" = body;
-      }) abbrFuns);
+      }
+      // (lib.attrsets.concatMapAttrs (name: body: {
+          "${name}" = body;
+        })
+        abbrFuns);
 
     plugins = let
       stdPlugins = [
@@ -119,16 +141,24 @@
         }
       ];
 
-      workPlugins = [{
-        name = "fzf";
-        src = pkgs.fetchFromGitHub {
-          owner = "PatrickF1";
-          repo = "fzf.fish";
-          rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
-          sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
-        };
-      }];
-    in stdPlugins ++ (if sysConfig.work then workPlugins else [ ]);
+      workPlugins = [
+        {
+          name = "fzf";
+          src = pkgs.fetchFromGitHub {
+            owner = "PatrickF1";
+            repo = "fzf.fish";
+            rev = "6d8e962f3ed84e42583cec1ec4861d4f0e6c4eb3";
+            sha256 = "sha256-0rnd8oJzLw8x/U7OLqoOMQpK81gRc7DTxZRSHxN9YlM";
+          };
+        }
+      ];
+    in
+      stdPlugins
+      ++ (
+        if sysConfig.work
+        then workPlugins
+        else []
+      );
 
     shellInit = ''
       source ~/.nix-profile/etc/profile.d/nix.fish

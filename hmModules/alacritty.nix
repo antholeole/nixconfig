@@ -1,20 +1,29 @@
-{ pkgs, inputs, config, sysConfig, mkNixGLPkg, lib, ... }:
-let colors = import ../theme.nix;
+{
+  pkgs,
+  inputs,
+  config,
+  sysConfig,
+  mkNixGLPkg,
+  lib,
+  ...
+}: let
+  colors = import ../theme.nix;
 in {
   programs.alacritty = lib.mkIf (!sysConfig.headless) {
     enable = true;
 
-    package = ((mkNixGLPkg pkgs.alacritty "alacritty")
-      // (with pkgs.alacritty; { inherit meta version; }));
+    package =
+      (mkNixGLPkg pkgs.alacritty "alacritty")
+      // (with pkgs.alacritty; {inherit meta version;});
 
     settings = {
       font = {
-        normal = { family = "FiraCode Nerd Font"; };
+        normal = {family = "FiraCode Nerd Font";};
 
         size = sysConfig.fontSizes.glFontSize;
       };
 
-      shell = { program = "${pkgs.lib.getExe config.programs.fish.package}"; };
+      shell = {program = "${pkgs.lib.getExe config.programs.fish.package}";};
 
       colors = with colors; {
         primary = {
@@ -98,11 +107,13 @@ in {
         y = 5;
       };
 
-      keyboard.bindings = [{
-        key = "`";
-        mods = "Control";
-        chars = "\\u001b\\u005b\\u0032\\u0033\\u007e";
-      }];
+      keyboard.bindings = [
+        {
+          key = "`";
+          mods = "Control";
+          chars = "\\u001b\\u005b\\u0032\\u0033\\u007e";
+        }
+      ];
     };
   };
 }

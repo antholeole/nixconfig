@@ -1,8 +1,12 @@
-{ pkgs, inputs, ... }: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.bat = {
     enable = true;
 
-    extraPackages = with pkgs.bat-extras; [ batman ];
+    extraPackages = with pkgs.bat-extras; [batman];
 
     themes = {
       catppuccin-macchiato = {
@@ -21,7 +25,6 @@
       theme = "catppuccin-macchiato";
       pager = "less -FR";
     };
-
   };
 
   programs.fish.shellAliases = {

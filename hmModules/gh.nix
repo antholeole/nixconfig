@@ -1,5 +1,9 @@
-{ pkgs, config, ... }: {
-  programs.gh-dash = { enable = true; };
+{
+  pkgs,
+  config,
+  ...
+}: {
+  programs.gh-dash = {enable = true;};
 
   programs.gh = {
     enable = true;

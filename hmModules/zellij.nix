@@ -1,5 +1,10 @@
-{ config, pkgs, sysConfig, inputs, ... }:
-let
+{
+  config,
+  pkgs,
+  sysConfig,
+  inputs,
+  ...
+}: let
   colors = import ../theme.nix;
   layoutDir = ".config/zellij/layouts";
 
@@ -15,7 +20,7 @@ let
       }
   '';
 in {
-  home.packages = [ pkgs.zellij ];
+  home.packages = [pkgs.zellij];
   home.file.".config/zellij/config.kdl".text = with colors; ''
     default_layout "default"
     default_shell "${config.programs.fish.package}/bin/fish"
@@ -71,12 +76,12 @@ in {
              args "."
            }
 
-           
+
        	floating_panes {
        		pane {
              command "${pkgs.zellij}/bin/zellij"
              args "--layout" "default"
-           
+
        			width "90%"
        			height "90%"
        			x "5%"
@@ -87,7 +92,7 @@ in {
       }
        keybinds clear-defaults=true {
        	shared {
-       		bind "F11" { ToggleFloatingPanes; }		
+       		bind "F11" { ToggleFloatingPanes; }
            bind "Ctrl q" { Quit; }
        	}
        }
@@ -95,6 +100,6 @@ in {
        default_shell "fish"
        default_layout "compact"
 
-       	'';
+    '';
   };
 }

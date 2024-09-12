@@ -1,12 +1,13 @@
 sysConfig: pkgs: pkg: exeName:
 with pkgs;
-writeShellApplication {
-  name = (builtins.parseDrvName pkg.name).name;
+  writeShellApplication {
+    name = (builtins.parseDrvName pkg.name).name;
 
-  runtimeInputs = [ ];
+    runtimeInputs = [];
 
-  text = let sysNixGL = lib.getExe nixgl.auto.nixGLDefault;
-  in ''
-    ${sysNixGL} ${lib.getExe' pkg exeName} "$@"
-  '';
-}
+    text = let
+      sysNixGL = lib.getExe nixgl.auto.nixGLDefault;
+    in ''
+      ${sysNixGL} ${lib.getExe' pkg exeName} "$@"
+    '';
+  }

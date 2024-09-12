@@ -1,5 +1,13 @@
-{ pkgs, inputs, config, sysConfig, lib, mkWaylandElectronPkg, mkNixGLPkg, ... }:
-let
+{
+  pkgs,
+  inputs,
+  config,
+  sysConfig,
+  lib,
+  mkWaylandElectronPkg,
+  mkNixGLPkg,
+  ...
+}: let
   theme = {
     package = pkgs.catppuccin-gtk;
     name = "Catppuccin-Frappe-Standard-Blue-Dark";
@@ -26,8 +34,8 @@ in {
       };
     };
 
-    gtk3.extraConfig = { gtk-application-prefer-dark-theme = 1; };
-    gtk4.extraConfig = { gtk-application-prefer-dark-theme = 1; };
+    gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
+    gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
 
   xdg = {
@@ -45,7 +53,7 @@ in {
   };
 
   dconf.settings = {
-    "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+    "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
   };
 
   home = {
@@ -98,25 +106,29 @@ in {
         biome
         babelfish
         alejandra
-      ] ++ (if !sysConfig.headless then [
-        (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-        fira-code-symbols
-        dejavu_fonts
-        libnotify
-        glib # for notifications
-        pwvucontrol
+      ]
+      ++ (
+        if !sysConfig.headless
+        then [
+          (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+          fira-code-symbols
+          dejavu_fonts
+          libnotify
+          glib # for notifications
+          pwvucontrol
 
-        mpc-cli # music
-        brightnessctl
-        pipes-rs # for funzies
-        wl-clipboard # clipboard
-        pamixer
+          mpc-cli # music
+          brightnessctl
+          pipes-rs # for funzies
+          wl-clipboard # clipboard
+          pamixer
 
-        # some useful formatters for one-off scripts
-        nixfmt
-        python311Packages.flake8
-      ] else
-        [ ]);
+          # some useful formatters for one-off scripts
+          nixfmt
+          python311Packages.flake8
+        ]
+        else []
+      );
   };
 
   programs = lib.mkIf (!sysConfig.headless) {

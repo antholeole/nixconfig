@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.micro = {
     enable = true;
 
@@ -11,7 +16,7 @@
   };
 
   programs.fish.shellAliases = {
-    # strictly superior 
+    # strictly superior
     nano = "${lib.getExe pkgs.micro}";
   };
 

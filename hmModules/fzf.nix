@@ -1,4 +1,9 @@
-{ pkgs, lib, sysConfig, ... }: {
+{
+  pkgs,
+  lib,
+  sysConfig,
+  ...
+}: {
   programs.fzf = {
     enable = true;
     enableFishIntegration = false; # enabled in fish
@@ -18,6 +23,6 @@
       "hl+" = "#ed8796";
     };
 
-    defaultOptions = [ "--height 20%" ];
+    defaultOptions = ["--height 20%"];
   };
 }

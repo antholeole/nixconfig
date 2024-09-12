@@ -1,6 +1,6 @@
-{ sysConfig, ... }: {
+{sysConfig, ...}: {
   programs.starship = let
-    disabled = { disabled = true; };
+    disabled = {disabled = true;};
 
     colors = import ../theme.nix;
 
@@ -25,9 +25,9 @@
       # trailing space so it lines up with zellij
       right_format = "$git_branch $git_metrics $directory$hostname ";
 
-      directory = { format = "[  ┃ $path ](${bgFill})"; };
-      cmd_duration = { format = "${seperator}[$duration](${bgFill})"; };
-      shlvl = { disabled = true; };
+      directory = {format = "[  ┃ $path ](${bgFill})";};
+      cmd_duration = {format = "${seperator}[$duration](${bgFill})";};
+      shlvl = {disabled = true;};
       git_branch = vc;
       git_metrics = {
         only_nonzero_diffs = true;
