@@ -1,5 +1,9 @@
-{ inputs, pkgs, sysConfig, ... }:
-let
+{
+  inputs,
+  pkgs,
+  sysConfig,
+  ...
+}: let
   mkGitScript = script: {
     executable = true;
     source = "${inputs.self}/scripts/git/git-${script}";
@@ -29,6 +33,7 @@ in {
     };
 
     extraConfig = {
+      blame.ignoreRevsFile = ".git-blame-ignore-revs";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       merge.conflictStyle = "diff3";
@@ -36,7 +41,7 @@ in {
 
       core.editor = with pkgs; "${lib.getExe kakoune}";
 
-      user = with sysConfig; { inherit email name; };
+      user = with sysConfig; {inherit email name;};
     };
   };
 }
