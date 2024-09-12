@@ -21,8 +21,13 @@ pkgs.buildNpmPackage {
   '';
 
   installPhase = ''
-    mkdir -p $out/lib
+    mkdir -p $out/lib/{images,assets}
     mv dist/config.js $out/lib/config.js
     mv dist/style.css $out/lib/style.css
+
+    # copy in the images and assets
+    mkdir -p $out/lib
+    cp images/* $out/lib/images/
+    cp assets/* $out/lib/assets/
   '';
 }

@@ -5,5 +5,5 @@ firmware/
 .devenv/
 .vite/
 dist/
-
+result
 custom/

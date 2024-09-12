@@ -18,7 +18,7 @@ export default defineConfig((mode) => ({
 		}),
 
 		{
-			name: "postbuild-commands", // the name of your custom plugin. Could be anything.
+			name: "postbuild-commands",
 			closeBundle: async () => {
 				if (mode.mode === "dev") {
 					// first, kill the previous ags run if it exists
