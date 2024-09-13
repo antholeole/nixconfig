@@ -20,6 +20,7 @@
       "D2.execPath" = "${pkgs.d2}/bin/d2";
       "biome.lsp.bin" = "${pkgs.biome}/bin/biome";
       "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
+      "git.path" = "${config.programs.git.package}/bin/git";
     };
 
     tasks = {

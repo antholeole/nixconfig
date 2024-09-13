@@ -2,7 +2,7 @@ import { battery as batteryService } from "resource:///com/github/Aylur/ags/serv
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import type { Connectable } from "types/service";
 
-type IBattery = {
+export type IBattery = {
 	percent: number;
 	charging: boolean;
 } & Omit<Connectable, "disconnect">;
