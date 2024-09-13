@@ -14,7 +14,7 @@
       ultraWide = {
         tall = false;
         kanshi = {
-          criteria = "DP-2";
+          criteria = "DP-3";
           mode = "2560x1440@59.951Hz";
           scale = 1.0;
         };
