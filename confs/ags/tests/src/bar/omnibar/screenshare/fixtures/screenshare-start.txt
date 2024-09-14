@@ -1,0 +1,124 @@
+changed:
+        id: 237
+        permissions: rwxm-
+        type: PipeWire:Interface:Node (version 3)
+        params:
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRA
+                   modifier : (Long) { 0, 72057594037927937, 72057594037927938, 72057594037927942, 72057594037927943, 72057594037927944, 72057594037927935 }
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRA
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) RGBA
+                   modifier : (Long) { 0, 72057594037927937, 72057594037927938, 72057594037927942, 72057594037927943, 72057594037927944, 72057594037927935 }
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) RGBA
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRx
+                   modifier : (Long) { 0, 72057594037927937, 72057594037927938, 72057594037927942, 72057594037927943, 72057594037927944, 72057594037927935 }
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRx
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) RGBx
+                   modifier : (Long) { 0, 72057594037927937, 72057594037927938, 72057594037927942, 72057594037927943, 72057594037927944, 72057594037927935 }
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) RGBx
+                       size : (Rectangle) [ 1x1, 4294967295x4294967295 ]
+                  framerate : (Fraction) [ 0/1, 60/1 ]
+               maxFramerate : (Fraction) [ 0/1, 60/1 ]
+          id:4 (Spa:Enum:ParamId:Format)
+           video/raw
+                     format : (Id) BGRx
+                   modifier : (Long) 72057594037927944
+                       size : (Rectangle) 2560x1440
+                  framerate : (Fraction) 0/1
+               maxFramerate : (Fraction) 59/1
+        input ports: 1/1
+        output ports: 0/0
+*       state: "running"
+        properties:
+                pipewire.client.reuse = "1"
+                media.name = "webrtc-consume-stream"
+                stream.is-live = "true"
+                node.name = "chrome"
+                node.want-driver = "true"
+                node.target = "234"
+                node.autoconnect = "true"
+                media.class = "Stream/Input/Video"
+                client.id = "236"
+                object.id = "237"
+                object.serial = "858"
+changed:
+        id: 234
+        permissions: rwxm-
+        type: PipeWire:Interface:Node (version 3)
+        params:
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRx
+                   modifier : (Long) 72057594037927944
+                       size : (Rectangle) 2560x1440
+                  framerate : (Fraction) 0/1
+               maxFramerate : (Fraction) [ 1/1, 59/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) BGRx
+                   modifier : (Long) { 0, 72057594037927937, 72057594037927938, 72057594037927942, 72057594037927943, 72057594037927944, 72057594037927935 }
+                       size : (Rectangle) 2560x1440
+                  framerate : (Fraction) 0/1
+               maxFramerate : (Fraction) [ 1/1, 59/1 ]
+          id:3 (Spa:Enum:ParamId:EnumFormat)
+           video/raw
+                     format : (Id) RGBx
+                       size : (Rectangle) 2560x1440
+                  framerate : (Fraction) 0/1
+               maxFramerate : (Fraction) [ 1/1, 59/1 ]
+          id:4 (Spa:Enum:ParamId:Format)
+           video/raw
+                     format : (Id) BGRx
+                   modifier : (Long) 72057594037927944
+                       size : (Rectangle) 2560x1440
+                  framerate : (Fraction) 0/1
+               maxFramerate : (Fraction) 59/1
+        input ports: 0/0
+        output ports: 1/1
+*       state: "running"
+        properties:
+                media.class = "Video/Source"
+                media.name = "xdpw-stream-Bmabga"
+                stream.is-live = "true"
+                node.name = "xdg-desktop-portal-wlr"
+                node.want-driver = "true"
+                node.driver = "true"
+                client.id = "79"
+                object.id = "234"
+                object.serial = "855"

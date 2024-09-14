@@ -39,7 +39,13 @@ export default defineConfig((mode) => ({
 	],
 
 	root: "./",
-	test: {},
+
+	test: {
+		alias: {
+      		'@/': `${__dirname}/src/`,
+	    }
+	},
+
 	build: {
 		lib: {
 			entry: resolve(__dirname, "lib/main.js"),

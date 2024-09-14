@@ -2,7 +2,6 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
 import type { Variable as VarT } from "types/variable.js";
 import { addToggleableWindow, downEmitter, upEmitter } from "../globals.js";
-import type LabelT from "types/widgets/label.js";
 
 const { Box, Slider, Label, CenterBox } = Widget;
 
@@ -34,15 +33,8 @@ const CustomSlider = (name: string, selectedElementIndex: VarT<number>) => {
 					label: buildLabelText(),
 					hpack: "start",
 					className: `label ${selected ? "selected" : ""}`,
-
-					connections: [
-						[
-							selectedElementIndex,
-							(self: LabelT<unknown>) => {
-								self.label = buildLabelText();
-							},
-						],
-					],
+				}).hook(selectedElementIndex, (self) => {
+					self.label = buildLabelText()
 				}),
 				endWidget: Label({
 					label: "20%",

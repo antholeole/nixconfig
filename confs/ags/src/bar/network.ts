@@ -1,26 +1,51 @@
-import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import Network from 'resource:///com/github/Aylur/ags/service/network.js'
-import type Box from 'types/widgets/box';
+import Widget from "resource:///com/github/Aylur/ags/widget.js";
+import Network from "resource:///com/github/Aylur/ags/service/network.js";
+import type Box from "types/widgets/box";
+import type { Connectable } from "types/service";
 
+export type INetwork = {
+	connectivity: string;
+} & Connectable;
 
-export const NetworkIndicator = () => Widget.Box({
-    class_name: "bar-section network-indicator",
-    connections: [[Network, (self: Box<unknown, unknown>) => {
+export const NETWORK_CONSTANTS = {
+	NO_NETWORK_WIDGET: "󰤫",
+};
 
-        const mkWidget = (status: string, icon: string) =>
-            Widget.Box({
-                class_name: `chip network-indicator ${status}`,
-                children: [Widget.Label({
-                    label: icon
-                })]
-            })
+export const networkProps = (
+	network: INetwork,
+):
+	| {
+			status: string;
+			icon: string;
+	  }
+	| undefined => {
+	if (network.connectivity === "none") {
+		return {
+			icon: NETWORK_CONSTANTS.NO_NETWORK_WIDGET,
+			status: "error",
+		};
+	}
 
-        if (Network.connectivity === "none") {
-            self.children = [
-                mkWidget("error", "󰤫")
-            ]
-        } else {
-            self.children = []
-        }
-    }]]
-})
+	return undefined;
+};
+
+export const NetworkIndicator = (network: INetwork = Network) =>
+	Widget.Box({
+		class_name: "bar-section network-indicator",
+	}).hook(network, (self) => {
+		const props = networkProps(network);
+
+		self.children =
+			props === undefined
+				? []
+				: [
+						Widget.Box({
+							class_name: `chip network-indicator ${props.status}`,
+							children: [
+								Widget.Label({
+									label: props.icon,
+								}),
+							],
+						}),
+					];
+	});

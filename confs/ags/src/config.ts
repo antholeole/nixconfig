@@ -6,12 +6,14 @@ import "./control/control.js"
 import { NotificationBar } from './notifications.js'
 import { monitorWatcher } from "./utils.js"
 import "./style.scss"
+import { Blah } from "./bar/omnibar/screenshare/screenshare-service.js"
 
 monitorWatcher(App, [
     Bar, 
     NotificationBar,
+    Blah
 ])
 
-export default {
+App.config({
     style: `${App.configDir}/style.css`,
-}
+})
