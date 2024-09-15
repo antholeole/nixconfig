@@ -33,7 +33,8 @@ in {
     };
 
     extraConfig = {
-      blame.ignoreRevsFile = ".git-blame-ignore-revs";
+      # sad but this doesn't work with repos that don't have it
+      # blame.ignoreRevsFile = ".git-blame-ignore-revs";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
       merge.conflictStyle = "diff3";
