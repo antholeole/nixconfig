@@ -6,7 +6,7 @@ import "./control/control.js"
 import { NotificationBar } from './notifications.js'
 import { monitorWatcher } from "./utils.js"
 import "./style.scss"
-import { Blah } from "./bar/omnibar/screenshare/screenshare-service.js"
+import { Blah } from "./bar/omnibar/screenshare/ags-screenshare-service.js"
 
 monitorWatcher(App, [
     Bar, 

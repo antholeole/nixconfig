@@ -173,6 +173,8 @@
       # this is probably dumb
       ${pkgs.toybox}/bin/yes | fish_config theme save "catppuccin-macchiato"
 
+      
+
       set MICRO_TRUECOLOR 1
     '';
   };

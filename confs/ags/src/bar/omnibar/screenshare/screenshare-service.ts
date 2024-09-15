@@ -1,53 +1,73 @@
-import { Box } from "resource:///com/github/Aylur/ags/widget.js";
-import { i } from "vite/dist/node/types.d-aGj9QkWt";
-
 // there are a ton of other properties, but this is all we care about
-interface PwAction {
+
+const validStates = [
+	"negotiating",
+	"running",
+	"idle",
+	"suspended",
+	"active",
+	"paused",
+] as const;
+export interface PwAction {
 	name: string;
-	state: "running" | "idle";
+	state: (typeof validStates)[number] | string;
 	id: string;
 }
 
-
-export const Blah = (monitor: number) =>
-	Widget.Window({
-		monitor,
-		name: `blah-${monitor}`,
-		child: Box({}),
-		// .hook(pwProc, () => {
-		//     console.log("hi from hook1")
-
-		// })
-	});
-
+// some elements won't stop yapping
+const ignoreKeys = ["alsa", "xdg-desktop-portal-wlr"];
 
 // todo enable pw-mon
 export class ScreenshareService {
 	private inStructId: string | null = null;
 	private knownActions: Map<string, PwAction> = new Map();
 
-    getRunning(): PwAction | null {
-        for (const action of this.knownActions.values()) {
-            if (action.state === "running") {
-                return action
-            }
-        }
+	getRunning(): PwAction[] {
+		const ret: PwAction[] = [];
 
-        return null;
-    }
+		other: for (const action of this.knownActions.values()) {
+			// not fully built yet, leave
+			if (
+				action.name === undefined ||
+				action.id === undefined ||
+				action.state === undefined
+			) {
+				continue;
+			}
 
-    debugDump() {
-        if (this.knownActions.size === 0) {
-            console.log("no known actions!")
-        }
+			for (const ignore of ignoreKeys) {
+				if (action.name.includes(ignore)) {
+					continue other;
+				}
+			}
 
-        for (const [name, action] of this.knownActions.entries()) {
-            console.log(`${name}: ${JSON.stringify(action)}`)
-        }
-    }
+			if (action.state === "running" && !ignoreKeys.includes(action.name)) {
+				ret.push(action);
+			}
+		}
+		return ret;
+	}
 
-	parseLine(line: string) {
-		const idPrefix = "        id: ";
+	debugDump() {
+		if (this.knownActions.size === 0) {
+			console.log("no known actions!");
+		}
+
+		for (const [name, action] of this.knownActions.entries()) {
+			console.log(`${name}: ${JSON.stringify(action)}`);
+		}
+	}
+
+	parseLine(rawLine: string) {
+		let line = rawLine;
+		if (rawLine.startsWith("*")) {
+			line = rawLine.substring(1);
+			line.trim();
+		}
+
+		// importantly, the global ID has a couple spaces suffixing it. There
+		// are other fields that start with the same prefix that do not.
+		const idPrefix = "id: ";
 		if (line.startsWith(idPrefix)) {
 			this.inStructId = line.replace(idPrefix, "");
 			return;
@@ -59,36 +79,37 @@ export class ScreenshareService {
 				throw Error(`got instructId === null but got line: ${line}`);
 			}
 
-			const oldOrDefaultAction = this.knownActions.get(idPrefix) ?? {
+			const oldOrDefaultAction = this.knownActions.get(id) ?? {
 				id,
 				name: "<unknown>",
 				state: "idle",
 			};
 
-			this.knownActions[id] = v(oldOrDefaultAction);
+			this.knownActions.set(id, v(oldOrDefaultAction));
 		};
 
-		const statePrefix = "       state: ";
+		const statePrefix = "state: ";
 		if (line.includes(statePrefix)) {
 			const state = line
 				.replace(statePrefix, "")
 				.replace("*", "")
-				.replaceAll('"', "");
+				.replaceAll('"', "")
+				.trim();
 
-			if (state !== "idle" && state !== "running") {
+			if (!(validStates as unknown as string[]).includes(state)) {
 				throw Error(`got unknown state ${state}`);
 			}
 
 			updateField((a) => ({ ...a, state }));
-            return;
+			return;
 		}
 
-		const namePrefix = '                node.name = "';
+		const namePrefix = 'node.name = "';
 		if (line.startsWith(namePrefix)) {
 			const name = line.replace(namePrefix, "").replace('"', "");
 
 			updateField((a) => ({ ...a, name }));
-            return;
+			return;
 		}
 	}
 }
