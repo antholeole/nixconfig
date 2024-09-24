@@ -104,6 +104,10 @@
         (key: ''bind=,${key},exec,${agsExe} --run-js "down()"'')}
       ${directionKeymap "up"
         (key: ''bind=,${key},exec,${agsExe} --run-js "up()"'')}
+      ${directionKeymap "left"
+        (key: ''bind=,${key},exec,${agsExe} --run-js "left()"'')}
+      ${directionKeymap "right"
+        (key: ''bind=,${key},exec,${agsExe} --run-js "right()"'')}
 
       bind=,escape,exec,${agsExe} --run-js "showControl.value = false;"
       bind=,escape,submap,reset

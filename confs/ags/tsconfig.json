@@ -3,7 +3,6 @@
     "target": "ES2022",
     "module": "es2022",
     "moduleResolution": "Node",
-    "allowImportingTsExtensions": true,
     "lib": [
       "ES2022",
       "dom"

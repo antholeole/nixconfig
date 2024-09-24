@@ -3,7 +3,7 @@ import {
 	BATTERY_CONSTANTS,
 	batteryProps,
 	type IBattery,
-} from "../../src/bar/battery.ts";
+} from "../../src/bar/battery.js";
 
 const mockIBattery = (percent: number, charging: boolean): IBattery => ({
 	charging,
