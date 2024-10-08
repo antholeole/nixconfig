@@ -91,7 +91,7 @@
       mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
       mkOldNixPkg = import ./mixins/mkOldNixPkg.nix;
 
-      oleinaNixpkgs =
+      OLEINAnIXPKGS =
         import inputs.oleina-nixpkgs {system = pkgs.system;};
       pkgs-unstable =
         import inputs.nixpkgs-unstable {system = pkgs.system;};

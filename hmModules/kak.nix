@@ -48,20 +48,32 @@ in {
           }
           }}
 
+          # store this command so we can invoke it later
+          define-command -hidden select_regex_matches %{
+            execute-keys 's'
+          }
+
           # add paste to system clipboard
           map global user P '${systemClip.paste} -n<ret>'
           map global user p '<a-!>${systemClip.paste}<ret>'
 
           # configure hop
+
           evaluate-commands %sh{ hop-kak --init }
           declare-option str hop_kak_keyset 'abcdefghijklmnopqrstuvwxyz'
           define-command hop-kak %{
              eval -no-hooks -- %sh{ hop-kak --keyset "$kak_opt_hop_kak_keyset" --sels "$kak_selections_desc" }
           }
-          define-command -override hop-kak-words %{
-             exec 'gtGbxs\w+<ret>:eval -no-hooks -- %sh{ hop-kak --keyset "$kak_opt_hop_kak_keyset" --sels "$kak_selections_desc" }<ret>'
+          define-command -override hop-kak-forward %{
+             exec 'Gbs\w+<ret>:eval -no-hooks -- %sh{ hop-kak --keyset "$kak_opt_hop_kak_keyset" --sels "$kak_selections_desc" }<ret>'
            }
-           map global normal s :hop-kak-words<ret>
+          define-command -override hop-kak-backward %{
+             exec 'Gts\w+<ret>:eval -no-hooks -- %sh{ hop-kak --keyset "$kak_opt_hop_kak_keyset" --sels "$kak_selections_desc" }<ret>'
+           }
+
+           # TODO: this needs to conditionally invoke; if there is something in the buffer, invoke :select_regex_matches.
+           # if there is not something in the buffer, invoke hop-kak-words.
+           # map global normal s :hop-kak-words<ret>
         '';
       };
 
