@@ -84,7 +84,6 @@ in {
         rclone # very useful for remote stuff
         spr # useful for github stacked PRs
         direnv # vsc ext checks path for this
-        nnn # file exploerer
         neofetch # for funzies
         ttyper # funzies
         asciinema # makes for some good demos

@@ -4,6 +4,7 @@
   inputs = {
     # main nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/24.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nixpkgs-with-hyprland.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
 
@@ -31,6 +32,16 @@
 
     zjstatus.url = "github:dj95/zjstatus";
     ags.url = "github:Aylur/ags";
+
+    # theme
+    catppuccin-bat = {
+      url = "github:catppuccin/bat";
+      flake = false;
+    };
+    catppuccin-yazi = {
+      url = "github:catppuccin/yazi";
+      flake = false;
+    };
   };
 
   nixConfig = {
@@ -82,6 +93,8 @@
 
       oleinaNixpkgs =
         import inputs.oleina-nixpkgs {system = pkgs.system;};
+      pkgs-unstable =
+        import inputs.nixpkgs-unstable {system = pkgs.system;};
     };
 
     system = "x86_64-linux";
