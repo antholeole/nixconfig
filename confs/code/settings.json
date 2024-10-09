@@ -166,7 +166,11 @@
     "[typescript]": {
         "editor.defaultFormatter": "biomejs.biome"
     },
-  "files.associations": {
-    "*.yaml.tpl": "yaml"
-  }
+    "files.associations": {
+        "*.yaml.tpl": "yaml",
+        "*.cppm": "cpp"
+    },
+    "clangd.arguments": [
+        "--experimental-modules-support"
+    ]
 }

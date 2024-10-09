@@ -1,7 +1,7 @@
 {
   lib,
   sysConfig,
-  pkgs,
+ pkgs,
   inputs,
   oleinaNixpkgs,
   systemClip,
