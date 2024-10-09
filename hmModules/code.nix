@@ -19,7 +19,7 @@
       "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
       "D2.execPath" = "${pkgs.d2}/bin/d2";
       "biome.lsp.bin" = "${pkgs.biome}/bin/biome";
-      "clangd.path" = "${pkgs.clang-tools}/bin/clangd ";
+      "clangd.path" = "${pkgs.clang-tools}/bin/clangd";
       "git.path" = "${config.programs.git.package}/bin/git";
       
       "alejandra.program" = "${pkgs.alejandra}/bin/alejandra";
