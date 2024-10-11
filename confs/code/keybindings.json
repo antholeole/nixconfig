@@ -186,13 +186,35 @@
   },
   {
     "key": "j",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "list.focusDown",
+        "filesExplorer.openFilePreserveFocus"
+      ]
+    },
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && listFocus && !inputFocus"
+  },
+  {
+    "key": "k",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "list.focusUp",
+        "filesExplorer.openFilePreserveFocus"
+      ]
+    },
+    "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsRoot && !explorerResourceReadonly && listFocus && !inputFocus"
+  },
+  {
+    "key": "j",
     "command": "list.focusDown",
-    "when": "listFocus && !inputFocus"
+    "when": "listFocus && !inputFocus && !filesExplorerFocus"
   },
   {
     "key": "k",
     "command": "list.focusUp",
-    "when": "listFocus && !inputFocus"
+    "when": "listFocus && !inputFocus && !filesExplorerFocus"
   },
   {
     "key": "l",
@@ -647,7 +669,7 @@
           "": {
             "text": "close sidebar",
             "command": "workbench.action.closeSidebar"
-          }, 
+          },
           "w": {
             "text": "wrap comment",
             "command": "rewrap.wrapComment"

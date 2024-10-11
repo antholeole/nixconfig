@@ -1,4 +1,4 @@
-# Prbably never happeining
+# Probably never happeining
 [] brightness
 [] wl-sunset
 [] show mode in bar
@@ -7,8 +7,10 @@
 [] clippy for vsc
 [] nice problems view
 [] obs cli for recording
-[] dynamic island thing?
 [] fix leap.kak
+[] gruvbox!
+[] flake-parts
+[] lambda keybind for searching previous entry
 
-ags:
+# ag:
 [] notifications old I forget them sometimes

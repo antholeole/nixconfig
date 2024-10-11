@@ -172,5 +172,6 @@
     },
     "clangd.arguments": [
         "--experimental-modules-support"
-    ]
+    ],
+    "workbench.sideBar.location": "right"
 }
