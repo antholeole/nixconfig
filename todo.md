@@ -14,3 +14,5 @@
 
 # ag:
 [] notifications old I forget them sometimes
+[] have a cron that fixes up e.g. the the dots in the bar
+[] fix the launcher focus

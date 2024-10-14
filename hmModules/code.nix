@@ -235,35 +235,38 @@ in {
       in
         oneToTen ++ raw ++ directional;
 
-      userSettings = with builtins; ((builtins.fromJSON
-          (readFile "${inputs.self}/confs/code/settings.json"))
-        // machineBased.settings
-        // {
-          "terminal.integrated.profiles.linux" = {
-            "fish" = {
-              path = "${pkgs.lib.getExe config.programs.fish.package}";
-              args = [
-                "-C"
-                ''${pkgs.zellij}/bin/zellij a -c "$(basename (pwd))"''
-              ];
+      userSettings = let
+        ignoresList = import "${inputs.self}/shared/ignores.nix";
+      in
+        with builtins; ((builtins.fromJSON
+            (readFile "${inputs.self}/confs/code/settings.json"))
+          // machineBased.settings
+          // {
+            "terminal.integrated.profiles.linux" = {
+              "fish" = {
+                path = "${pkgs.lib.getExe config.programs.fish.package}";
+                args = [
+                  "-C"
+                  ''${pkgs.zellij}/bin/zellij a -c "$(basename (pwd))"''
+                ];
+              };
             };
-          };
 
-          "search.exclude" = with builtins; let
-            # the format we use in ignores.nix is "path/"; we need "**/path/"
-            mapToExpectedFormat = dir: "**/${dir}";
+            "dynoFileUtils.folderExclude" = ignoresList;
 
-            asList = import "${inputs.self}/shared/ignores.nix";
-            asNvList =
-              map (toIgnore: {
-                name = mapToExpectedFormat toIgnore;
-                value = true;
-              })
-              asList;
-            asTrueMap = listToAttrs asNvList;
-          in
-            asTrueMap;
-        });
+            "search.exclude" = with builtins; let
+              # the format we use in ignores.nix is "path/"; we need "**/path/"
+              mapToExpectedFormat = dir: "**/${dir}";
+              asNvList =
+                map (toIgnore: {
+                  name = mapToExpectedFormat toIgnore;
+                  value = true;
+                })
+                ignoresList;
+              asTrueMap = listToAttrs asNvList;
+            in
+              asTrueMap;
+          });
     };
 
   # this file doesn't hurt if its not a headless VM, we don't make a

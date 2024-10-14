@@ -730,6 +730,10 @@
       "menu": {
         "title": "path",
         "items": {
+          "n": {
+            "text": "new items (dirs or files)",
+            "command": "dynoFileUtils.newItems"
+          },
           "d": {
             "text": "delete current file",
             "command": "dynoFileUtils.deleteFile"
@@ -910,5 +914,10 @@
         }
       }
     }
+  },
+  {
+    "key": "ctrl+shift+e",
+    "command": "-workbench.view.explorer",
+    "when": "viewContainer.workbench.view.explorer.enabled"
   }
 ]

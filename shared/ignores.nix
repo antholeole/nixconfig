@@ -1,14 +1,23 @@
 [
+  # node
   "node_modules"
   ".vscode"
 
+  # nix
   ".direnv"
   ".devenv"
 
-  "__scratch"
-  ".terraform"
-  ".metals"
-  ".scala-build"
-  ".bsp"
+  # lang / tool specific
+  ".terraform" # tf
+  ".metals" # scala
+  ".scala-build" # scala
+  ".bsp" # scala
+  "bazel-*" # bazel
+
+  # vcs
   ".jj"
+  ".git"
+
+  # other
+  "__scratch"
 ]
