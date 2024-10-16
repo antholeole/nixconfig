@@ -3,6 +3,7 @@
   config,
   sysConfig,
   pkgs,
+  pkgs-unstable,
   ...
 }: let
   # TODO move this somewhere sensible.
@@ -45,6 +46,7 @@
 in {
   programs.jujutsu = {
     enable = true;
+    package = pkgs-unstable.jujutsu;
 
     settings = {
       user = with sysConfig; {inherit email name;};
@@ -55,7 +57,7 @@ in {
         key = "~/.ssh/id_ed25519.pub";
       };
 
-      git = {push-branch-prefix = "${sysConfig.selfAlias}/";};
+      git = {push-bookmark-prefix = "${sysConfig.selfAlias}/";};
 
       aliases = {
         signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
