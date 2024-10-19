@@ -50,7 +50,13 @@ in {
 
     settings = {
       user = with sysConfig; {inherit email name;};
-      ui.editor = "${config.programs.kakoune.package}/bin/kak";
+      ui = {
+        editor = "${config.programs.kakoune.package}/bin/kak";
+        color = "always";
+        pager = "${pkgs.delta}/bin/delta";
+        diff.format = "git";
+        paginate = "auto";
+      };
 
       signing = {
         sign-all = true;
@@ -61,6 +67,8 @@ in {
 
       aliases = {
         signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
+        d = ["describe"];
+        dm = ["describe" "-m"];
       };
     };
   };
