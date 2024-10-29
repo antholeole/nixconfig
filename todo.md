@@ -10,9 +10,14 @@
 [] fix leap.kak
 [] gruvbox!
 [] flake-parts
-[] lambda keybind for searching previous entry
+[] base64 encode sysclip
+[] jj g p for git push
 
 # ag:
 [] notifications old I forget them sometimes
 [] have a cron that fixes up e.g. the the dots in the bar
 [] fix the launcher focus
+
+# blocked:
+[] lambda keybind for searching previous entry
+

@@ -53,7 +53,10 @@ in {
       ui = {
         editor = "${config.programs.kakoune.package}/bin/kak";
         color = "always";
-        pager = "${pkgs.delta}/bin/delta";
+        pager = {
+          command = ["${pkgs.delta}/bin/delta"];
+          env = {DELTA_PAGER = "${pkgs.less}/bin/less -RXF";};
+        };
         diff.format = "git";
         paginate = "auto";
       };
@@ -69,6 +72,7 @@ in {
         signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
         d = ["describe"];
         dm = ["describe" "-m"];
+        g = ["git"];
       };
     };
   };
