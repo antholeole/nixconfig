@@ -16,14 +16,15 @@
   keybindingsFilePath = "${userSettingsPath}/keybindings.json";
 
   machineBased = {
-    settings = {
-      "direnv.path.executable" = "${pkgs.direnv}/bin/direnv";
-      "D2.execPath" = "${pkgs.d2}/bin/d2";
-      "biome.lsp.bin" = "${pkgs.biome}/bin/biome";
+    settings = with pkgs; {
+      "direnv.path.executable" = "${direnv}/bin/direnv";
+      "D2.execPath" = "${d2}/bin/d2";
+      "biome.lsp.bin" = "${biome}/bin/biome";
       "clangd.path" = "${pkgs-unstable.llvmPackages_19.clang-tools}/bin/clangd";
       "git.path" = "${config.programs.git.package}/bin/git";
-
-      "alejandra.program" = "${pkgs.alejandra}/bin/alejandra";
+      "alejandra.program" = "${alejandra}/bin/alejandra";
+      "metals.sbtScript" = "${sbt}/bin/sbt";
+      "metals.javaHome" = "${jdk8}/lib/openjdk";
     };
 
     tasks = {

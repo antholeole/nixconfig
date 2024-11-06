@@ -11,7 +11,6 @@
 [] gruvbox!
 [] flake-parts
 [] base64 encode sysclip
-[] jj g p for git push
 
 # ag:
 [] notifications old I forget them sometimes
