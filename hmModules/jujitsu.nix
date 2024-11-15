@@ -80,7 +80,6 @@ in {
   programs.fish.shellAbbrs = let
     wantsRevFlag = {
       jjst = "jj status";
-      jja = "jj amend";
       jjd = "jj diff";
       jjlo = "jj log";
     };
@@ -100,7 +99,9 @@ in {
         expansion = ''jj branch create "%" -r @-'';
         setCursor = true;
       };
+
       jjgp = "jj git push -c @-";
+      jja = "jj abandon @ ; jj new "; # jj abandon for tmp branches
     };
   in
     wantsRevFlag // noRevFlag // withRevFlag;
