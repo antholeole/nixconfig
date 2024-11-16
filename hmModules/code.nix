@@ -30,7 +30,7 @@
     tasks = {
     };
   };
-in {
+in rec {
   programs.vscode = with builtins;
     lib.mkIf (!sysConfig.headless) {
       enable = true;
@@ -85,15 +85,33 @@ in {
         open-vsx.ban.spellright
 
         # languages
-        open-vsx.bbenoist.nix
-        open-vsx.kamadorueda.alejandra
+        # cpp
         open-vsx.llvm-vs-code-extensions.vscode-clangd
+
+        # go
         open-vsx.golang.go
+
+        # md
         open-vsx.yzhang.markdown-all-in-one
+
+        # scala
         open-vsx.scalameta.metals
+
+        # nix
+        open-vsx.kamadorueda.alejandra
+        open-vsx.bbenoist.nix
         open-vsx.mkhl.direnv
+
+        # rust
         open-vsx.rust-lang.rust-analyzer
+
+        # ts / js
         open-vsx.biomejs.biome # this sometimes conflicts with non-biome projects but its a nice default editor
+
+        # python
+        open-vsx.charliermarsh.ruff
+        marketplace.ms-python.vscode-pylance
+        marketplace.ms-python.python
       ];
       keybindings = let
         directionKeymap = dir: commandFn:
@@ -276,5 +294,22 @@ in {
   home.file.".vscode-server/data/Machine/settings.json" = {
     enable = true;
     text = builtins.toJSON machineBased.settings;
+  };
+
+  home.activation.makeVSCodeConfigWritable = let
+    configDirName =
+      {
+        "vscode" = "Code";
+        "vscode-insiders" = "Code - Insiders";
+        "vscodium" = "VSCodium";
+      }
+      .${config.programs.vscode.package.pname};
+    configPath = "${config.xdg.configHome}/${configDirName}/User/settings.json";
+  in {
+    after = ["writeBoundary"];
+    before = [];
+    data = ''
+      install -m 0640 "$(readlink ${configPath})" ${configPath}
+    '';
   };
 }

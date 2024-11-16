@@ -70,7 +70,11 @@ in {
       source = "${inputs.self}/assets/config";
     };
 
-    packages = with pkgs;
+    packages = with pkgs; let
+      deltaWrapped = pkgs.writeShellScriptBin "d" ''
+        DELTA_PAGER="${pkgs.less}/bin/less -RXF" ${delta}/bin/delta $@
+      '';
+    in
       [
         fd # a faster find
         httpie # a simpler curl
@@ -94,6 +98,7 @@ in {
         gron # greppable json
         aspell
         aspellDicts.en
+        deltaWrapped # diffing
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
