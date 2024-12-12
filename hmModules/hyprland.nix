@@ -60,7 +60,7 @@
         gaps_in = 9
       }
 
-      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes
+      bind=${mod},N,exec,${pkgs.taskwarrior-tui}/bin/taskwarrior-tui
 
       # when holding alt + space, we should show the numbers
       bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
@@ -139,11 +139,12 @@
 
       # binds workspace keys
       ${builtins.concatStringsSep "\n" (builtins.genList (i: let
-        iStr = builtins.toString i;
-      in ''
-        bind = ${mod}, ${iStr}, workspace, ${iStr}
-        bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
-      '') 10)}
+          iStr = builtins.toString i;
+        in ''
+          bind = ${mod}, ${iStr}, workspace, ${iStr}
+          bind = ${mod} SHIFT, ${iStr}, movetoworkspace, ${iStr}
+        '')
+        10)}
 
 
       ${builtins.concatStringsSep "\n" (map (cmd: ''

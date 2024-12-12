@@ -1,8 +1,15 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  sysConfig,
+  ...
+}: {
   programs.qutebrowser = {
+    enable = !sysConfig.headless;
+
     quickmarks = {
-      nixpkgs = "https://github.com/NixOS/nixpkgs";
-      home-manager = "https://github.com/nix-community/home-manager";
+      nixpkgs = "https://search.nixos.org";
+      home-manager = "https://nix-community.github.io";
+      qute = "https://raw.githubusercontent.com/qutebrowser/qutebrowser/main/doc/img/cheatsheet-big.png";
     };
 
     searchEngines = {
