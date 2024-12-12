@@ -46,7 +46,6 @@
 in {
   programs.jujutsu = {
     enable = true;
-    package = pkgs-unstable.jujutsu;
 
     settings = {
       user = with sysConfig; {inherit email name;};

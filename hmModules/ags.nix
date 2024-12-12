@@ -21,6 +21,7 @@ in {
       text = with pkgs; let
         broPleaseItsWaylandTrustMe = pgm: "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
 
+        # TODO: this probably shouldn't be in this file its hard to find
         entries = {
           "alacritty" = "${config.programs.alacritty.package}/bin/alacritty -e ${pkgs.zellij}/bin/zellij";
           "pavucontrol" = "${lib.getExe pwvucontrol}";
@@ -30,6 +31,7 @@ in {
           "chrome" =
             broPleaseItsWaylandTrustMe
             "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
+          "qute" = "${config.programs.qutebrowser.package}/bin/qutebrowser";
         };
       in
         builtins.toJSON entries;
