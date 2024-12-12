@@ -81,7 +81,6 @@ in {
         unzip
         bottom # top but nicer
         socat # sometimes socat is useful for quick hacks
-        nixfmt # most projects are going to have a flake.nix. this is helpful
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
         tldr # i HATE manpages
@@ -104,7 +103,6 @@ in {
         # These are here because vscode unfortunately does not have the
         # best integration with the world.
         d2
-        scala-cli
         bazelisk
         gperftools
         biome
@@ -121,15 +119,9 @@ in {
           glib # for notifications
           pwvucontrol
 
-          mpc-cli # music
           brightnessctl
           pipes-rs # for funzies
           wl-clipboard # clipboard
-          pamixer
-
-          # some useful formatters for one-off scripts
-          nixfmt
-          python311Packages.flake8
         ]
         else []
       );
