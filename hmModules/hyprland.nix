@@ -31,6 +31,7 @@
         system = pkgs.system;
       })
       .hyprland;
+
     extraConfig = let
     in ''
       exec-once=${pkgs.wpaperd}/bin/wpaperd -d
@@ -60,7 +61,7 @@
         gaps_in = 9
       }
 
-      bind=${mod},N,exec,${pkgs.taskwarrior-tui}/bin/taskwarrior-tui
+      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes > /tmp/out.txt
 
       # when holding alt + space, we should show the numbers
       bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"

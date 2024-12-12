@@ -5,7 +5,21 @@
   mkNixGLPkg,
   ...
 }: {
-  options.packages.notes = {
+  options.packages.notes = let
+    taskwarrior = with pkgs;
+      symlinkJoin {
+        name = "tw-wrapped";
+        paths = [
+          taskwarrior-tui
+          config.programs.my-kakoune.package
+          config.programs.taskwarrior.package
+        ];
+        buildInputs = [makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/taskwarrior-tui --set EDITOR $out/bin/kak --set PATH $out/bin
+        '';
+      };
+  in {
     hyprfocus = lib.mkOption {
       type = lib.types.package;
       default = let
@@ -24,7 +38,7 @@
           # if it does not exist, we should create it
           if test $doesExist = "false"; then
              echo "notes window does not exist; creating"
-             ${alacrittyBin} --class notesfloat -e ${config.packages.notes.package}/bin/notes &
+             ${alacrittyBin} --class notesfloat -e "${taskwarrior}/bin/taskwarrior-tui" &
              exit 0
           fi
 

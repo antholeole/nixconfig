@@ -2,6 +2,7 @@
   inputs,
   sysConfig,
   lib,
+  pkgs-unstable,
   ...
 }: {
   home.file."backgrounds" = {
@@ -11,6 +12,7 @@
 
   programs.wpaperd = {
     enable = !sysConfig.headless;
+    package = pkgs-unstable.wpaperd;
     settings = let
       monitors = ["default" "any" "eDP-1" "DP-2" "HDMI-A-1"];
 
