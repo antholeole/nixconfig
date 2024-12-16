@@ -13,9 +13,6 @@
     },
     "update.mode": "none",
     "terminal.integrated.defaultProfile.linux": "fish",
-    "catppuccin.accentColor": "flamingo",
-    "catppuccin.italicComments": false,
-    "catppuccin.italicKeywords": false,
     "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,
     "editor.inlineSuggest.enabled": true,
@@ -43,8 +40,8 @@
         "language-julia.interrupt"
     ],
     "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-    "workbench.colorTheme": "Catppuccin Macchiato",
-    "workbench.iconTheme": "catppuccin-macchiato",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
     "workbench.editor.showTabs": false,
     "workbench.list.automaticKeyboardNavigation": false,
     "editor.minimap.enabled": true,
@@ -136,7 +133,6 @@
     "workbench.statusBar.visible": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 5000,
-    "catppuccin.workbenchMode": "flat",
     "workbench.startupEditor": "none",
     "dynoFileUtils.confirmDelete": false,
     "editor.minimap.renderCharacters": false,
@@ -173,5 +169,8 @@
     "clangd.arguments": [
         "--experimental-modules-support"
     ],
-    "workbench.sideBar.location": "right"
+    "workbench.sideBar.location": "right",
+    "workbench.colorCustomizations": {
+        "editor.selectionBackground": "#fbf1c7"
+    }
 }

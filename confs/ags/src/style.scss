@@ -1,10 +1,10 @@
-$text: #cad3f5;
-$base: #24273a;
-$surface1: #494d64;
+$text: #fbf1c7;
+$base: #282828;
+$surface1: #665c59;
 $flamingo: #f0c6c6;
 $sapphire: #7dc4e4;
 $red: #ed8796;
-$border-radius: 18px;
+$border-radius: 0px;
 $teal: #8bd5ca;
 
 .debug {
@@ -79,7 +79,7 @@ $teal: #8bd5ca;
 
 .bar {
     font-family: "FiraCode Nerd Font";
-    background-color: #181926;
+    background-color: $base;
     border-bottom: 4px solid black;
     color: $text;
     font-size: small;
@@ -120,11 +120,11 @@ $teal: #8bd5ca;
 }
 
 .battery-text {
-    color: #b8c0e0;
+    color: $text;
 }
 
 .battery-icon {
-    color: #b8c0e0;
+    color: $text;
     margin-right: 10px;
     margin-left: 3px;
 }

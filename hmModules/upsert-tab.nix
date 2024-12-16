@@ -2,10 +2,9 @@
   lib,
   pkgs,
   inputs,
-  sysConfig,
+  config,
   ...
 }: let
-  zjStatus = (import "${inputs.self}/shared/zjstatus.nix") pkgs sysConfig;
   # TODO: this does not allow args
   commandTab = pkgs.writeText "one-command.kdl" ''
     layout {
@@ -14,7 +13,7 @@
           command "{{ (ds "in").command }}"
         }
 
-        ${zjStatus}
+        ${config.zjstatus}
       }
     }
   '';

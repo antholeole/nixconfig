@@ -1,13 +1,13 @@
-{sysConfig, ...}: {
+{config, ...}: {
   programs.starship = let
     disabled = {disabled = true;};
 
-    colors = import ../theme.nix;
+    h = s: "#${s}";
 
-    color = sysConfig.termColor;
+    color = config.conf.termColor;
 
-    bgFill = "bg:${color} fg:${colors.base}";
-    fgFill = "fg:${color}";
+    bgFill = "bg:${h color} fg:${h config.colorScheme.palette.base03}";
+    fgFill = "fg:${h color}";
 
     seperator = "[┃](${bgFill})";
 

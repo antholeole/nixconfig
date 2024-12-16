@@ -39,35 +39,19 @@
         "type": "github"
       }
     },
-    "catppuccin-bat": {
+    "base16-schemes": {
       "flake": false,
       "locked": {
-        "lastModified": 1722864529,
-        "narHash": "sha256-s0CHTihXlBMCKmbBBb8dUhfgOOQu9PBCQ+uviy7o47w=",
-        "owner": "catppuccin",
-        "repo": "bat",
-        "rev": "d3feec47b16a8e99eabb34cdfbaa115541d374fc",
+        "lastModified": 1696158499,
+        "narHash": "sha256-5yIHgDTPjoX/3oDEfLSQ0eJZdFL1SaCfb9d6M0RmOTM=",
+        "owner": "tinted-theming",
+        "repo": "base16-schemes",
+        "rev": "a9112eaae86d9dd8ee6bb9445b664fba2f94037a",
         "type": "github"
       },
       "original": {
-        "owner": "catppuccin",
-        "repo": "bat",
-        "type": "github"
-      }
-    },
-    "catppuccin-yazi": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1722538198,
-        "narHash": "sha256-oJo52hMSK7mr5f0DtnyaN1FVOSKKUOHWCT80V1qfyrU=",
-        "owner": "catppuccin",
-        "repo": "yazi",
-        "rev": "37dec9bf1f7e52e0d593c225827b9dbc71ce504c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "yazi",
+        "owner": "tinted-theming",
+        "repo": "base16-schemes",
         "type": "github"
       }
     },
@@ -210,6 +194,54 @@
         "type": "github"
       }
     },
+    "gruvbox-alacritty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1733116860,
+        "narHash": "sha256-D37MQtNS20ESny5UhW1u6ELo9czP4l+q0S8neH7Wdbc=",
+        "owner": "alacritty",
+        "repo": "alacritty-theme",
+        "rev": "95a7d695605863ede5b7430eb80d9e80f5f504bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "alacritty",
+        "repo": "alacritty-theme",
+        "type": "github"
+      }
+    },
+    "gruvbox-kak": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1614190804,
+        "narHash": "sha256-sttFxduCkvL6K8yitPCxZGRDgXSqbY7ghhfueHW25tM=",
+        "owner": "andreyorst",
+        "repo": "base16-gruvbox.kak",
+        "rev": "882a612562ddd4a9a4054a1dfee2176fa8846092",
+        "type": "github"
+      },
+      "original": {
+        "owner": "andreyorst",
+        "repo": "base16-gruvbox.kak",
+        "type": "github"
+      }
+    },
+    "gruvbox-yazi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1717467891,
+        "narHash": "sha256-TRRyuTg4JBE+u987C+42C36cXEV6rb8+pw7qTA56jhM=",
+        "owner": "poperigby",
+        "repo": "gruvbox-dark-yazi",
+        "rev": "3337133a913d48765094eed937af728bedc65beb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "poperigby",
+        "repo": "gruvbox-dark-yazi",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -226,6 +258,25 @@
         "owner": "nix-community",
         "ref": "release-24.11",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nix-colors": {
+      "inputs": {
+        "base16-schemes": "base16-schemes",
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1707825078,
+        "narHash": "sha256-hTfge2J2W+42SZ7VHXkf4kjU+qzFqPeC9k66jAUBMHk=",
+        "owner": "misterio77",
+        "repo": "nix-colors",
+        "rev": "b01f024090d2c4fc3152cd0cf12027a7b8453ba1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "misterio77",
+        "repo": "nix-colors",
         "type": "github"
       }
     },
@@ -276,11 +327,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1717982790,
-        "narHash": "sha256-j+9r2HsYrgJuSGA6Rs8TBITxqiQd9CaJMAYUsqyaFqY=",
+        "lastModified": 1734400565,
+        "narHash": "sha256-vfyvUlF1wVVXy/Au3fQpa8NMQbocg/oTgNuPS7MoesA=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "3e65971e6f46e06312a53378c8c413eed9d1a2d1",
+        "rev": "c2efba4b42988d8573f914cad6431b5bd614935d",
         "type": "github"
       },
       "original": {
@@ -321,6 +372,21 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1697935651,
+        "narHash": "sha256-qOfWjQ2JQSQL15KLh6D7xQhx0qgZlYZTYlcEiRuAMMw=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "e1e11fdbb01113d85c7f41cada9d2847660e3902",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
@@ -503,10 +569,12 @@
       "inputs": {
         "ags": "ags",
         "apple-silicon": "apple-silicon",
-        "catppuccin-bat": "catppuccin-bat",
-        "catppuccin-yazi": "catppuccin-yazi",
         "flake-utils": "flake-utils",
+        "gruvbox-alacritty": "gruvbox-alacritty",
+        "gruvbox-kak": "gruvbox-kak",
+        "gruvbox-yazi": "gruvbox-yazi",
         "home-manager": "home-manager",
+        "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nix-riced-vscode": "nix-riced-vscode",
         "nix-vscode-extensions": "nix-vscode-extensions",

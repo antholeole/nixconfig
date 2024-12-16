@@ -1,8 +1,8 @@
 {
   pkgs,
   lib,
-  sysConfig,
+  config,
   ...
 }: {
-  services.cliphist.enable = !sysConfig.headless;
+  services.cliphist.enable = !config.conf.headless;
 }

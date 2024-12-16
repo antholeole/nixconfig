@@ -1,4 +1,4 @@
-sysConfig: pkgs: pkg: exeName:
+pkgs: pkg: exeName:
 with pkgs;
   writeShellApplication {
     name = (builtins.parseDrvName pkg.name).name;

@@ -1,11 +1,11 @@
 {
   pkgs,
   lib,
-  sysConfig,
   inputs,
+  config,
   ...
 }: {
-  services.kanshi = lib.mkIf (!sysConfig.headless) {
+  services.kanshi = lib.mkIf (!config.conf.headless) {
     enable = true;
 
     systemdTarget = "hyprland-session.target";

@@ -1,5 +1,4 @@
 {
-  sysConfig,
   pkgs,
   inputs,
   config,
@@ -10,13 +9,13 @@
 in {
   programs.ags = {
     inherit configDir;
-    enable = !sysConfig.headless;
+    enable = !config.conf.headless;
     extraPackages = with pkgs; [fzf hyprland];
   };
 
   home.file = {
     ".config/data/launcher.json" = {
-      enable = !sysConfig.headless;
+      enable = !config.conf.headless;
 
       text = with pkgs; let
         broPleaseItsWaylandTrustMe = pgm: "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";

@@ -8,15 +8,8 @@
 
     extraPackages = with pkgs.bat-extras; [batman];
 
-    themes = {
-      catppuccin-macchiato = {
-        src = "${inputs.catppuccin-bat}/themes";
-        file = "Catppuccin Macchiato.tmTheme";
-      };
-    };
-
     config = {
-      theme = "catppuccin-macchiato";
+      theme = "gruvbox-dark";
       pager = "less -FR";
     };
   };

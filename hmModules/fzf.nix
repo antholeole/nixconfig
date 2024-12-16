@@ -1,26 +1,29 @@
 {
   pkgs,
   lib,
-  sysConfig,
+  config,
   ...
 }: {
   programs.fzf = {
     enable = true;
     enableFishIntegration = false; # enabled in fish
 
-    colors = {
-      "bg+" = "#363a4f";
-      bg = "#24273a";
-      spinner = "#f4dbd6";
-      hl = "#ed8796";
-      fg = "#cad3f5";
-      header = "#ed8796";
-      info = "#c6a0f6";
-      pointer = "#f4dbd6";
-      marker = "#f4dbd6";
-      "fg+" = "#cad3f5";
-      prompt = "#c6a0f6";
-      "hl+" = "#ed8796";
+    colors = let
+      colors = config.colorScheme.palette;
+      h = s: "#${s}";
+    in {
+      "bg+" = "${h colors.base01}";
+      "bg" = "${h colors.base00}";
+      "spinner" = "${h colors.base0C}";
+      "hl" = "${h colors.base0D}";
+      "fg" = "${h colors.base04}";
+      "header" = "${h colors.base0D}";
+      "info" = "${h colors.base0A}";
+      "pointer" = "${h colors.base0C}";
+      "marker" = "${h colors.base0C}";
+      "fg+" = "${h colors.base06}";
+      "prompt" = "${h colors.base0A}";
+      "hl+" = "${h colors.base0D}";
     };
 
     defaultOptions = ["--height 20%"];

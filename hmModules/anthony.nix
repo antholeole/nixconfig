@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   config,
-  sysConfig,
   lib,
   mkWaylandElectronPkg,
   mkNixGLPkg,
@@ -23,7 +22,7 @@ in {
   ];
 
   gtk = {
-    enable = !sysConfig.headless;
+    enable = !config.conf.headless;
     inherit theme;
 
     iconTheme = {
@@ -46,9 +45,8 @@ in {
     };
   };
 
-  services = lib.mkIf (!sysConfig.headless) {
+  services = lib.mkIf (!config.conf.headless) {
     playerctld.enable = true;
-    blueman-applet.enable = sysConfig.bluetooth;
     gnome-keyring.enable = true;
   };
 
@@ -57,8 +55,8 @@ in {
   };
 
   home = {
-    username = sysConfig.name;
-    homeDirectory = "${sysConfig.homeDirPath}${sysConfig.name}";
+    username = config.conf.name;
+    homeDirectory = "${config.conf.homeDirPath}${config.conf.name}";
 
     file.".ssh/id_ed25519.pub" = {
       enable = true;
@@ -110,7 +108,7 @@ in {
         alejandra
       ]
       ++ (
-        if !sysConfig.headless
+        if !config.conf.headless
         then [
           (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
           fira-code-symbols
@@ -127,7 +125,7 @@ in {
       );
   };
 
-  programs = lib.mkIf (!sysConfig.headless) {
+  programs = lib.mkIf (!config.conf.headless) {
     keychain = {
       enable = true;
       enableXsessionIntegration = true;

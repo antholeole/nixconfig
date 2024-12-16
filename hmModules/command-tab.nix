@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   config,
-  sysConfig,
   ...
 }: {
   home.packages = let
@@ -11,7 +10,6 @@
       runtimeInputs = with pkgs; [zellij gomplate];
 
       text = let
-        zjStatus = (import "${inputs.self}/shared/zjstatus.nix") pkgs sysConfig;
         commandTab = pkgs.writeText "command-tab.kdl" ''
           layout {
             pane_template name="cmd" {
@@ -25,7 +23,7 @@
               {{ end }}
           	}
 
-            ${zjStatus}
+            ${config.zjstatus}
             }
           }
         '';

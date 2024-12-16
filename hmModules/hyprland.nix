@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  sysConfig,
   mkNixGLPkg,
   inputs,
   ...
@@ -20,7 +19,7 @@
         inherit dir commandFn lib;
       };
   in {
-    enable = !sysConfig.headless;
+    enable = !config.conf.headless;
     # TODO: unpin this version. you MUST change the desktop
     # file below to use a lowercase H or else it will explode.
     # there seems to be a regession between 0.34 and 0.40 that
@@ -34,7 +33,7 @@
 
     extraConfig = let
     in ''
-      exec-once=${pkgs.wpaperd}/bin/wpaperd -d
+      exec-once=${pkgs.wpaperd}/bin/wpaperd >> /tmp/wpaperd.txt &
       exec=sleep 5; ${agsExe} &
 
       # a class for opening windows in floating
@@ -44,21 +43,15 @@
       animation = global,0
 
       decoration {
-        rounding = 10
-        inactive_opacity = 0.8
+        rounding = 0
 
-
-        drop_shadow = true
-        shadow_range = 0
-        shadow_offset = 15 15
-        shadow_render_power = 0
-        col.shadow = 0xff000000
+        drop_shadow = false
       }
 
       general {
         border_size = 2
         col.active_border = 0xff000000
-        gaps_in = 9
+        gaps_in = 3
       }
 
       bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes > /tmp/out.txt
@@ -151,14 +144,14 @@
       ${builtins.concatStringsSep "\n" (map (cmd: ''
           exec-once=${cmd}
         '')
-        sysConfig.wmStartupCommands)}
+        config.conf.wmStartupCommands)}
 
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };
 
   home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
-    enable = !sysConfig.headless;
+    enable = !config.conf.headless;
     source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
   };
 
@@ -166,7 +159,7 @@
     nixGLHyprland =
       mkNixGLPkg config.wayland.windowManager.hyprland.package "Hyprland";
   in {
-    enable = !sysConfig.headless;
+    enable = !config.conf.headless;
     text = ''
       [Desktop Entry]
       Name=Hyprland

@@ -2,15 +2,17 @@
   description = "Anthony's NixOS configuration";
 
   inputs = {
+    # BEGIN NIXPKGS VARIANTS
     # main nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    nixpkgs-with-hyprland.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
-
-    # currently has:
-    # - adds hop.kak
+    # my fork for upstreaming
     oleina-nixpkgs.url = "github:antholeole/nixpkgs/4DF9FBC6E978AB2E6C80C75F3A7BE89BD8805816";
+    # need to pin hyprland to an old version
+    nixpkgs-with-hyprland.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
+    # TODO: pin vscode version
+    # END NIXPKGS VARIANTS
 
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -30,12 +32,17 @@
     ags.url = "github:Aylur/ags";
 
     # theme
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
+    gruvbox-yazi = {
+      url = "github:poperigby/gruvbox-dark-yazi";
       flake = false;
     };
-    catppuccin-yazi = {
-      url = "github:catppuccin/yazi";
+    nix-colors.url = "github:misterio77/nix-colors";
+    gruvbox-alacritty = {
+      url = "github:alacritty/alacritty-theme";
+      flake = false;
+    };
+    gruvbox-kak = {
+      url = "github:andreyorst/base16-gruvbox.kak";
       flake = false;
     };
   };
@@ -53,6 +60,8 @@
     rust-overlay,
     oleina-nixpkgs,
     nixpkgs-with-hyprland,
+    nix-colors,
+    gruvbox-alacritty,
     ...
   } @ inputs: let
     pkgsOverride = {
@@ -69,13 +78,10 @@
     };
 
     # TODO: flake parts would make this 100x better
-    specialArgs = confName: pkgs: rec {
-      inherit inputs;
+    specialArgs = pkgs: rec {
+      inherit inputs nix-colors;
 
-      sysConfig = (import ./conf.nix)."${confName}";
-
-      systemClip = (import ./mixins/systemClip.nix) sysConfig inputs pkgs;
-      mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) sysConfig pkgs;
+      mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) pkgs;
       mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
       mkOldNixPkg = import ./mixins/mkOldNixPkg.nix;
 
@@ -88,13 +94,17 @@
     system = "x86_64-linux";
     mkPkgs = system: (import nixpkgs (pkgsOverride.nixpkgs // {inherit system;}));
 
-    mkHmOnlyConfig = conf:
+    mkHmOnlyConfig = config:
       home-manager.lib.homeManagerConfiguration rec {
         # allows us to define pkgsOverride as a module for easy consumption
         # on nixos, but as a override for pkgs here.
         pkgs = import nixpkgs (pkgsOverride.nixpkgs // {inherit system;});
-        modules = import ./hmModules inputs;
-        extraSpecialArgs = specialArgs conf pkgs;
+        modules =
+          (import ./hmModules inputs)
+          ++ [
+            (import "${inputs.self}/hmModules/configs/${config}.nix")
+          ];
+        extraSpecialArgs = specialArgs pkgs;
       };
   in {
     packages.${system} = {

@@ -2,8 +2,6 @@
   inputs,
   pkgs,
   config,
-  systemClip,
-  sysConfig,
   lib,
   ...
 }: {
@@ -25,7 +23,7 @@
 
     shellAliases = let
       cv =
-        if sysConfig.headless
+        if config.conf.headless
         then {
           cliphist = remoteClipClient.cliphist;
           done = remoteClipClient.done;
@@ -35,8 +33,8 @@
         };
     in
       {
-        c = systemClip.copy;
-        v = systemClip.paste;
+        c = config.programs.system-clip.copy;
+        v = config.programs.system-clip.paste;
 
         rd = "rm -rf";
         zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
@@ -108,12 +106,12 @@
 
         ch = let
           sysCliphist =
-            if sysConfig.headless
+            if config.conf.headless
             then remoteClipClient.cliphist
             else "${lib.getExe cliphist} list";
         in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
           lib.getExe cliphist
-        } decode | ${systemClip.copy}";
+        } decode | ${config.programs.system-clip.copy}";
       }
       // (lib.attrsets.concatMapAttrs (name: body: {
           "${name}" = body;
@@ -130,6 +128,10 @@
             rev = "7b65bd228429e852c8fdfa07601159130a818cfa";
             sha256 = "069ybzdj29s320wzdyxqjhmpm9ir5815yx6n522adav0z2nz8vs4";
           };
+        }
+        {
+          name = "gruvbox";
+          src = pkgs.fishPlugins.gruvbox.src;
         }
         {
           name = "humantime-fish";
@@ -155,7 +157,7 @@
     in
       stdPlugins
       ++ (
-        if sysConfig.work
+        if config.conf.work
         then workPlugins
         else []
       );
@@ -175,10 +177,5 @@
 
       set MICRO_TRUECOLOR 1
     '';
-  };
-
-  home.file.".config/fish/themes/catppuccin-macchiato.theme" = {
-    enable = true;
-    source = "${inputs.self}/confs/fish/catppuccin-macchiato.theme";
   };
 }

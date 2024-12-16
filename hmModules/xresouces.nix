@@ -1,8 +1,8 @@
 {
   lib,
-  sysConfig,
+  config,
   ...
 }: {
   xresources =
-    lib.mkIf (!sysConfig.headless) {properties = {"Xft.dpi" = 210;};};
+    lib.mkIf (!config.conf.headless) {properties = {"Xft.dpi" = 210;};};
 }

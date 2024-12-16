@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  sysConfig,
   pkgs,
   pkgs-unstable,
   ...
@@ -48,7 +47,7 @@ in {
     enable = true;
 
     settings = {
-      user = with sysConfig; {inherit email name;};
+      user = with config.conf; {inherit email name;};
       ui = {
         editor = "${config.programs.kakoune.package}/bin/kak";
         color = "always";
@@ -65,7 +64,7 @@ in {
         key = "~/.ssh/id_ed25519.pub";
       };
 
-      git = {push-bookmark-prefix = "${sysConfig.selfAlias}/";};
+      git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};
 
       aliases = {
         signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];

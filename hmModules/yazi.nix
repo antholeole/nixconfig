@@ -62,7 +62,6 @@
   };
 
   xdg.configFile = {
-    "yazi/theme.toml".source = inputs.catppuccin-yazi.outPath + "/themes/macchiato.toml";
-    "yazi/Catppuccin-macchiato.tmTheme".source = inputs.catppuccin-bat.outPath + "/themes/Catppuccin Macchiato.tmTheme";
+    "yazi/theme.toml".source = inputs.gruvbox-yazi.outPath + "/theme.toml";
   };
 }

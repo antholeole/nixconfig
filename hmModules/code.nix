@@ -6,7 +6,6 @@
   mkOldNixPkg,
   inputs,
   lib,
-  sysConfig,
   ...
 }: let
   cfg = config.programs.vscode;
@@ -32,7 +31,7 @@
   };
 in rec {
   programs.vscode = with builtins;
-    lib.mkIf (!sysConfig.headless) {
+    lib.mkIf (!config.conf.headless) {
       enable = true;
 
       package = let
@@ -68,8 +67,8 @@ in rec {
           inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
       in [
         #theme
-        open-vsx.catppuccin.catppuccin-vsc
-        open-vsx.catppuccin.catppuccin-vsc-icons
+        marketplace.jonathanharty.gruvbox-material-icon-theme
+        open-vsx.jdinhlife.gruvbox
 
         # good stuff
         open-vsx.gregoire.dance
@@ -78,6 +77,7 @@ in rec {
         open-vsx.mhutchie.git-graph
         open-vsx.usernamehw.errorlens
         marketplace.dyno-nguyen.vscode-dynofileutils
+
         # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
         marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
         marketplace.tyriar.lorem-ipsum

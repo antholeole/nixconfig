@@ -1,10 +1,9 @@
 {
   lib,
-  sysConfig,
- pkgs,
+  pkgs,
   inputs,
+  config,
   oleinaNixpkgs,
-  systemClip,
   ...
 }: let
   kakWithHop = oleinaNixpkgs.kakoune.override {
@@ -25,7 +24,9 @@ in {
     home.packages = [kakWithHop];
 
     home.file = {
-      ".config/kak/kakrc" = {
+      ".config/kak/kakrc" = let
+        system-clip = config.programs.system-clip;
+      in {
         enable = true;
         text = ''
           hook  global WinCreate ^[^*]+$ %{ git show-diff }
@@ -41,8 +42,8 @@ in {
 
           # add copy to system clipboard
           hook global RegisterModified '"' %{ nop %sh{
-            printf %s "$kak_main_reg_dquote" | ${systemClip.copy}${
-            if sysConfig.headless
+            printf %s "$kak_main_reg_dquote" | ${system-clip.copy}${
+            if config.conf.headless
             then ""
             else " > /dev/null 2>&1 &"
           }
@@ -54,8 +55,8 @@ in {
           }
 
           # add paste to system clipboard
-          map global user P '${systemClip.paste} -n<ret>'
-          map global user p '<a-!>${systemClip.paste}<ret>'
+          map global user P '${system-clip.paste} -n<ret>'
+          map global user p '<a-!>${system-clip.paste}<ret>'
 
           # configure hop
 
@@ -77,7 +78,7 @@ in {
         '';
       };
 
-      ".config/kak/colors/catppuccin_macchiato.kak".source = "${inputs.self}/confs/kak/catppuccin_macchiato.kak";
+      ".config/kak/colors/gruvbox.kak".source = "${inputs.self}/confs/kak/gruvbo.kak";
       ".config/kak-lsp/kak-lsp.toml".source = "${inputs.self}/confs/kak/kak-lsp.toml";
     };
   };

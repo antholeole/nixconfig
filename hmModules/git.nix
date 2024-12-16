@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  sysConfig,
+  config,
   ...
 }: let
   mkGitScript = script: {
@@ -42,7 +42,7 @@ in {
 
       core.editor = with pkgs; "${lib.getExe kakoune}";
 
-      user = with sysConfig; {inherit email name;};
+      user = with config.conf; {inherit email name;};
     };
   };
 }
