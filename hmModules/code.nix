@@ -3,7 +3,6 @@
   pkgs-unstable,
   config,
   mkWaylandElectronPkg,
-  mkOldNixPkg,
   inputs,
   lib,
   ...
