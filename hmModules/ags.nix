@@ -5,7 +5,10 @@
   lib,
   ...
 }: let
-  configDir = "${(import "${inputs.self}/confs/ags") pkgs}/lib";
+  configDir = "${(import "${inputs.self}/confs/ags") {
+    inherit pkgs;
+    palette = config.colorScheme.palette;
+  }}/lib";
 in {
   programs.ags = {
     inherit configDir;

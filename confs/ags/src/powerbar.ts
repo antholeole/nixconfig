@@ -11,10 +11,8 @@ const commands = [
 export const Powerbar = () => Widget.Window({
     name: "powerbar",
     class_name: 'window',
-    anchor: ['right'],
     margins: [0, 40],
     child: Widget.Box({
-        vertical: true,
         class_name: 'container',
         children: commands.map(({ text, hotkey }) => Widget.Box({
             class_name: 'command-button',

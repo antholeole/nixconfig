@@ -1,6 +1,7 @@
 {
   nix-colors,
   lib,
+  config,
   ...
 }: {
   imports = [
@@ -13,5 +14,15 @@
   };
 
   # https://tinted-theming.github.io/base16-gallery/
-  config.colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
+  config = rec {
+    colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
+    home.file.".config/colors/scheme.scss" = {
+      enable = !config.conf.headless;
+      text = let
+        makeScssVar = name: value: "\$${name}: #${value};\n";
+        lines = lib.attrsets.mapAttrsToList makeScssVar colorScheme.palette;
+      in
+        lib.concatStrings lines;
+    };
+  };
 }

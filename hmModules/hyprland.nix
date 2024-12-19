@@ -7,11 +7,30 @@
   ...
 }: {
   wayland.windowManager.hyprland = let
+    hyprland =
+      (import inputs.nixpkgs-with-hyprland {
+        config.allowUnfree = true;
+        system = pkgs.system;
+      })
+      .hyprland;
+
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
     screenshotUtils =
       (import "${inputs.self}/shared/screenshot.nix") pkgs config;
-    agsExe = pkgs.lib.getExe inputs.ags.packages."${pkgs.system}".default;
+    agsWrapped = pkgs.symlinkJoin {
+      name = "ags-cli-wrapped";
+      paths = [
+        hyprland
+        inputs.ags.packages."${pkgs.system}".default
+      ];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/ags --set PATH $out/bin
+      '';
+    };
+
+    agsExe = "${agsWrapped}/bin/ags";
     resizeUnit = "30";
 
     directionKeymap = dir: commandFn:
@@ -24,17 +43,12 @@
     # file below to use a lowercase H or else it will explode.
     # there seems to be a regession between 0.34 and 0.40 that
     # instantly segfaults.
-    package =
-      (import inputs.nixpkgs-with-hyprland {
-        config.allowUnfree = true;
-        system = pkgs.system;
-      })
-      .hyprland;
+    package = hyprland;
 
     extraConfig = let
     in ''
       exec-once=${pkgs.wpaperd}/bin/wpaperd >> /tmp/wpaperd.txt &
-      exec=sleep 5; ${agsExe} &
+      exec=sleep 3; ${agsExe} -b hyprags
 
       # a class for opening windows in floating
       windowrulev2 = float, class:notesfloat
@@ -52,9 +66,10 @@
         border_size = 2
         col.active_border = 0xff000000
         gaps_in = 3
+        gaps_out = 5
       }
 
-      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes > /tmp/out.txt
+      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes
 
       # when holding alt + space, we should show the numbers
       bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"

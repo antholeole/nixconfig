@@ -114,7 +114,7 @@
       };
   in {
     packages.${system} = {
-      oleinaags = import ./confs/ags (mkPkgs system);
+      # oleinaags = import ./confs/ags (mkPkgs system);
     };
 
     nixosConfigurations = {

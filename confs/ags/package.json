@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch --mode dev",
+    "dev": "COLOR_SCHEME_PATH=~/.config/colors/scheme.scss vite build --watch --mode dev",
     "build": "tsc && vite build",
     "test": "vitest",
     "preview": "vite preview"

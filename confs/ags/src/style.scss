@@ -1,11 +1,7 @@
-$text: #fbf1c7;
+$text: $base07;
 $base: #282828;
 $surface1: #665c59;
-$flamingo: #f0c6c6;
-$sapphire: #7dc4e4;
-$red: #ed8796;
 $border-radius: 0px;
-$teal: #8bd5ca;
 
 .debug {
     border: 1px solid red;
@@ -23,25 +19,22 @@ $teal: #8bd5ca;
 
 @mixin urgency {
     &.info {
-        color: $sapphire;
+        color: $base0E;
     }
 
     &.normal {
-        color: $teal;
+        color: $base0C;
     }
 
     &.critical {
-        color: $red;
+        color: $base08;
     }
 }
 
 .container {
-    $shadow-offset: 8px;
     border-radius: $border-radius;
     background-color: $base;
-    border: 2px solid black;
     margin: 20px;
-    box-shadow: black $shadow-offset $shadow-offset;
     padding: 12px;
 
 
@@ -55,7 +48,7 @@ $teal: #8bd5ca;
 
 .command-button {
     background-color: $base;
-    padding: 25px 17px;
+    padding: 25px 60px;
     color: $text;
 
     &.horizontal {
@@ -70,7 +63,7 @@ $teal: #8bd5ca;
 }
 
 .subtext {
-    color: #a5adcb;
+    color: $base04;
 
     &.small {
         font-size: 12px;
@@ -80,7 +73,6 @@ $teal: #8bd5ca;
 .bar {
     font-family: "FiraCode Nerd Font";
     background-color: $base;
-    border-bottom: 4px solid black;
     color: $text;
     font-size: small;
     padding: 7.5px 35px;
@@ -129,67 +121,6 @@ $teal: #8bd5ca;
     margin-left: 3px;
 }
 
-$search-container-height: 150px;
-$search-container-width: 500px;
-
-.container.launcher {
-    padding: 0;
-    min-width: $search-container-width;
-    margin-bottom: 10px;
-    background-color: #1e2030;
-    color: $text;
-
-    .input {
-        color: $text;
-    }
-
-    entry {
-        border: 0px;
-        background-color: transparent;
-    }
-}
-
-.input-stack {
-
-    .search-icon {
-        margin-left: 10px;
-        font-family: "FiraCode Nerd Font";
-    }
-
-    & {
-        border-radius: calc($border-radius / 2);
-        background-color: rgba($base, .4);
-        margin: 62.5px 32.5px;
-    }
-}
-
-.launcher-text {
-    padding: 4px;
-
-    &.first {
-        background-color: #24273a;
-        margin: 5px;
-        border-radius: 5px;
-    }
-}
-
-.cat-image {
-    font-size: 200px;
-    margin-top: 50px;
-    margin-left: 250px;
-}
-
-.search-container {
-    margin: 10px;
-    border-radius: calc($border-radius / 2);
-    min-width: $search-container-width;
-    min-height: $search-container-height;
-    background-color: $flamingo;
-}
-
-.results {
-    min-height: 100px;
-}
 
 .notification {
     min-width: 400px;
@@ -203,7 +134,6 @@ $search-container-width: 500px;
 }
 
 .title {
-    color: $flamingo;
     font-weight: bold;
     font-size: large;
 
@@ -214,7 +144,7 @@ $search-container-width: 500px;
     border-radius: $border-radius;
 
     &.error {
-        background-color: $red;
+        background-color: $base08;
     }
 }
 
@@ -232,6 +162,7 @@ $search-container-width: 500px;
 }
 
 .menu {
+    border: 0;
     $x-padding: 10px;
     $menu-width: 300px;
 
@@ -250,7 +181,6 @@ $search-container-width: 500px;
             }
 
             contents {
-
                 slider {
                     border: 0;
                 }
@@ -259,7 +189,7 @@ $search-container-width: 500px;
 
                     // no idea what the selector is 
                     * {
-                        background-color: $flamingo;
+                        background-color: $base0C;
                     }
 
                     & {
@@ -280,5 +210,46 @@ $search-container-width: 500px;
                 font-weight: bold;
             }
         }
+    }
+}
+
+.launcher {
+    $highlight-color: $base0D;
+    $width: 350px;
+    $input-height: 30px;
+
+    padding: 0;
+    border: none;
+
+    @mixin invert {
+        color: $base00;
+        background-color: $highlight-color;
+    }
+
+
+    .label {
+        @include invert;
+        padding: 0 10px;
+
+        min-height: $input-height;
+    }
+
+    .input {
+        min-height: $input-height;
+        background-color: $base01;
+        border-radius: 0%;
+        border: 0;
+        min-width: $width;
+        color: $text;
+        outline: none;
+    }
+
+
+    .results {
+        min-height: 100px;
+    }
+
+    .launcher-text.first {
+        @include invert;
     }
 }

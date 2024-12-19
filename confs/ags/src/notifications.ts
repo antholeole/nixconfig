@@ -1,15 +1,22 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import Notifications from "resource:///com/github/Aylur/ags/service/notifications.js";
 import Variable from "resource:///com/github/Aylur/ags/variable.js";
-import type { Notification as AgsNotification } from "types/service/notifications";
 import type Label from "types/widgets/label";
 import type BoxT from "types/widgets/box";
 
 const { Box } = Widget;
 
+interface ReducedNotification {
+	urgency: string;
+	close: VoidFunction;
+	summary: string;
+	body: string;
+	time: number;
+}
+
 // since we can't subscribe to notifications more than once,
 // we shim it through this so we can have the notifications pop up on both screens.
-const shimNotifications = Variable<AgsNotification[]>([]);
+const shimNotifications = Variable<ReducedNotification[]>([]);
 Notifications.connect("notified", () => {
 	shimNotifications.setValue(Notifications.popups);
 });
@@ -30,7 +37,7 @@ const timeAgo = (timestamp: number) => {
 	return minutes ? `${minutes}m ${seconds % 60}s ago` : `${seconds}s ago`;
 };
 
-const Notification = (n: AgsNotification) => {
+const Notification = (n: ReducedNotification) => {
 	let icon = "      ";
 	switch (n.urgency) {
 		case "normal":

@@ -8,8 +8,11 @@ type GtkWindow = Parameters<typeof App.addWindow>[0]
 export const altDown = Variable(false)
 globalThis.altDown = altDown
 
-export const addToggleableWindow = (windowName: string, windowBuilder: (show: VarT<boolean>) => GtkWindow, defaultOn = false) => {
-    const showWindow = Variable(false)
+export const addToggleableWindow = (
+    windowName: string, 
+    windowBuilder: (show: VarT<boolean>
+) => GtkWindow, defaultOn = false) => {
+    const showWindow = Variable(defaultOn)
     globalThis[`show${windowName}`] = showWindow
     let window = defaultOn ? windowBuilder(showWindow) : undefined
     showWindow.connect('changed', ({ value }) => {
@@ -28,9 +31,6 @@ export const addToggleableWindow = (windowName: string, windowBuilder: (show: Va
     return showWindow
 }
 
-export const counter = {
-    variable: "hi"
-}
 
 export const leftEmitter = createEmitter("left")
 export const rightEmitter = createEmitter("right")
