@@ -16,6 +16,7 @@
     # TODO: pin vscode version
     # END NIXPKGS VARIANTS
 
+    flake-parts.url = "github:hercules-ci/flake-parts";
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     flake-utils.url = "github:numtide/flake-utils";
@@ -67,83 +68,44 @@
     nixpkgs-with-vsc,
     nix-colors,
     gruvbox-alacritty,
+    flake-parts,
     ...
-  } @ inputs: let
-    pkgsOverride = {
-      nixpkgs = {
-        config.allowUnfree = true;
-        overlays = [
-          nixgl.overlay
-          rust-overlay.overlays.default
-          (final: prev: {
-            zjstatus = zjstatus.packages.${prev.system}.default;
-          })
-        ];
-      };
-    };
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      perSystem = {
+        system,
+        pkgs,
+        ...
+      }: {
+        # TODO these may be able to go into their own module
+        _module.args.mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) pkgs;
+        _module.args.mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
 
-    # TODO: flake parts would make this 100x better
-    specialArgs = pkgs: rec {
-      inherit inputs nix-colors;
-
-      mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) pkgs;
-      mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
-      mkOldNixPkg = import ./mixins/mkOldNixPkg.nix;
-
-      oleinaNixpkgs =
-        import inputs.oleina-nixpkgs {system = pkgs.system;};
-      pkgs-unstable =
-        import inputs.nixpkgs-unstable {system = pkgs.system;};
-    };
-
-    system = "x86_64-linux";
-    mkPkgs = system: (import nixpkgs (pkgsOverride.nixpkgs // {inherit system;}));
-
-    mkHmOnlyConfig = config:
-      home-manager.lib.homeManagerConfiguration rec {
-        # allows us to define pkgsOverride as a module for easy consumption
-        # on nixos, but as a override for pkgs here.
-        pkgs = import nixpkgs (pkgsOverride.nixpkgs // {inherit system;});
-        modules =
-          (import ./hmModules inputs)
-          ++ [
-            (import "${inputs.self}/hmModules/configs/${config}.nix")
-          ];
-        extraSpecialArgs = specialArgs pkgs;
-      };
-  in {
-    packages.${system} = {
-      # oleinaags = import ./confs/ags (mkPkgs system);
-    };
-
-    nixosConfigurations = {
-      kayak-asahi = let
-        system = "aarch64-linux";
-      in
-        nixpkgs.lib.nixosSystem {
+        _module.args.pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
+        _module.args.pkgs-unstable =
+          import inputs.nixpkgs-unstable {inherit system;};
+        _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
-
-          specialArgs = (specialArgs "kayak-asahi") pkgsOverride.nixpkgs;
-
-          modules = [
-            pkgsOverride
-
-            apple-silicon.nixosModules.default
-            home-manager.nixosModules.home-manager
-            ./hosts/kayak/configuration.nix
-            ./mixins/asahi.nix
-            ./mixins/hmShim.nix
+          overlays = [
+            nixgl.overlay
+            rust-overlay.overlays.default
+            (final: prev: {
+              zjstatus = zjstatus.packages.${prev.system}.default;
+            })
           ];
+          config = {};
         };
-    };
+      };
 
-    # HM only configs
-    homeConfigurations = {
-      pc = mkHmOnlyConfig "hm-pc";
-      work = mkHmOnlyConfig "hm-work";
-      headless = mkHmOnlyConfig "hm-headless";
-      headless-work = mkHmOnlyConfig "hm-headless-work";
-      headless-gce = mkHmOnlyConfig "hm-headless-gce";
+      systems = [
+        "x86_64-linux"
+      ];
+
+      imports = [
+        # ./parts/devshell.nix
+        # ./parts/treefmt.nix
+        ./parts/hm.nix
+        # ./parts/nixos.nix
+      ];
     };
-  };
 }

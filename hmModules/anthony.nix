@@ -16,9 +16,7 @@ in {
 
   imports = [
     inputs.ags.homeManagerModules.default
-
     inputs.nix-index-database.hmModules.nix-index
-    "${inputs.self}/mixins/mutable.nix"
   ];
 
   gtk = {
@@ -78,17 +76,12 @@ in {
         httpie # a simpler curl
         unzip
         bottom # top but nicer
-        socat # sometimes socat is useful for quick hacks
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
         tldr # i HATE manpages
         rclone # very useful for remote stuff
-        spr # useful for github stacked PRs
         direnv # vsc ext checks path for this
         neofetch # for funzies
-        ttyper # funzies
-        asciinema # makes for some good demos
-        topfew-rs # fast!
         ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
         gawk

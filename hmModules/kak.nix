@@ -3,14 +3,14 @@
   pkgs,
   inputs,
   config,
-  oleinaNixpkgs,
+  pkgs-oleina,
   ...
 }: let
-  kakWithHop = oleinaNixpkgs.kakoune.override {
+  kakWithHop = pkgs-oleina.kakoune.override {
     plugins = with pkgs.kakounePlugins; [
       fzf-kak
       quickscope-kak
-      oleinaNixpkgs.kakounePlugins.hop-kak
+      pkgs-oleina.kakounePlugins.hop-kak
     ];
   };
 in {

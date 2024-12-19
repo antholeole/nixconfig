@@ -1,11 +1,13 @@
 {
-  nix-colors,
+  inputs,
   lib,
   config,
   ...
-}: {
+}: let
+  colors = inputs.nix-colors;
+in {
   imports = [
-    nix-colors.homeManagerModules.default
+    colors.homeManagerModules.default
   ];
 
   options.font = lib.options.mkOption {
@@ -15,7 +17,7 @@
 
   # https://tinted-theming.github.io/base16-gallery/
   config = rec {
-    colorScheme = nix-colors.colorSchemes.gruvbox-dark-medium;
+    colorScheme = colors.colorSchemes.gruvbox-dark-medium;
     home.file.".config/colors/scheme.scss" = {
       enable = !config.conf.headless;
       text = let
