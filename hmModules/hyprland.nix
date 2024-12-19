@@ -20,13 +20,21 @@
       (import "${inputs.self}/shared/screenshot.nix") pkgs config;
     agsWrapped = pkgs.symlinkJoin {
       name = "ags-cli-wrapped";
+      # TODO: this is hacky and should go into the default.nix of the
+      # actual package
       paths = [
         hyprland
+        config.programs.fzf.package
         inputs.ags.packages."${pkgs.system}".default
+
+        pkgs.busybox
+        pkgs.upower
+        pkgs.bashInteractiveFHS
+        pkgs.pulseaudio
       ];
       buildInputs = [pkgs.makeWrapper];
       postBuild = ''
-        wrapProgram $out/bin/ags --set PATH $out/bin
+        wrapProgram $out/bin/ags --set PATH $out/bin --add-flags "-b hyprags"
       '';
     };
 
@@ -48,7 +56,7 @@
     extraConfig = let
     in ''
       exec-once=${pkgs.wpaperd}/bin/wpaperd >> /tmp/wpaperd.txt &
-      exec=sleep 3; ${agsExe} -b hyprags
+      exec=sleep 3; ${agsExe} -q ; ${agsExe} >> /tmp/hyprags.txt 2>&1
 
       # a class for opening windows in floating
       windowrulev2 = float, class:notesfloat
