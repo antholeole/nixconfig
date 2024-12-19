@@ -35,10 +35,19 @@ in rec {
       enable = true;
 
       package = let
-        code_185 = pkgs.vscode;
+        # TODO: unpin vscode. The current bugs that require me to stay
+        # on an old version are when opening the integrated terminal,
+        # the size does not immediately adjust and we end up using a half
+        # terminal every other integrated terminal open.
+        code =
+          (import inputs.nixpkgs-with-vsc {
+            config.allowUnfree = true;
+            system = pkgs.system;
+          })
+          .vscode;
 
         rawCode = inputs.nix-riced-vscode.packages.${pkgs.system}.ricedVscodium {
-          pkg = code_185;
+          pkg = code;
           js = ["${inputs.self}/confs/code/injected/floating_pallet.js"];
           css = [
             "${inputs.self}/confs/code/injected/floating_pallet.css"

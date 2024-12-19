@@ -9,8 +9,11 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
     oleina-nixpkgs.url = "github:antholeole/nixpkgs/4DF9FBC6E978AB2E6C80C75F3A7BE89BD8805816";
+
+    # nixpkgs for specific packages
     # need to pin hyprland to an old version
     nixpkgs-with-hyprland.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
+    nixpkgs-with-vsc.url = "github:nixos/nixpkgs/24.05";
     # TODO: pin vscode version
     # END NIXPKGS VARIANTS
 
@@ -25,7 +28,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-riced-vscode.url = "github:antholeole/nix-rice-vscode/e1d069b984f502dd3d802bb486378b7f756b1ce6";
+    # the lastest commit works for the newer versions of vsc, but we're
+    # pinned to an old version so pin this to an old one too.
+    nix-riced-vscode.url = "github:antholeole/nix-rice-vscode/f5d6c1c638dd5b6b056678d571827073f3f15f02";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     zjstatus.url = "github:dj95/zjstatus";
@@ -60,6 +65,7 @@
     rust-overlay,
     oleina-nixpkgs,
     nixpkgs-with-hyprland,
+    nixpkgs-with-vsc,
     nix-colors,
     gruvbox-alacritty,
     ...

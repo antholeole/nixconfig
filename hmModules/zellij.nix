@@ -7,8 +7,10 @@
 }: let
   layoutDir = ".config/zellij/layouts";
 
-  bgColor = "#${config.colorScheme.palette.base01}";
-  fgColor = "#${config.conf.termColor}";
+  h = s: "#${s}";
+
+  bgColor = h config.colorScheme.palette.base01;
+  fgColor = h config.conf.termColor;
 
   defaultTab = ''
     default_tab_template {
@@ -20,14 +22,14 @@ in {
   options.zjstatus = lib.options.mkOption {
     type = lib.types.string;
     default = let
-      bgColor = config.colorScheme.palette.base00;
+      bgColor = h config.colorScheme.palette.base00;
     in ''
       pane size=1 borderless=true {
              plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
                format_space "#[bg=${bgColor}]"
 
-               mode_normal  "#[bg=${fgColor},fg=${config.colorScheme.palette.base05}] {name} "
-               mode_locked  "#[bg=${config.colorScheme.palette.base0B},fg=${bgColor}] {name} "
+               mode_normal  "#[bg=${fgColor},fg=${h config.colorScheme.palette.base05}] {name} "
+               mode_locked  "#[bg=${h config.colorScheme.palette.base0B},fg=${bgColor}] {name} "
 
                tab_normal   "#[fg=${fgColor}] {name} "
                tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "

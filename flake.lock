@@ -306,17 +306,17 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1733966152,
-        "narHash": "sha256-S5xgQN8nvOJ9G7cPfCerSOFCW7DHNSRhCKuAP3fwN4c=",
+        "lastModified": 1705641033,
+        "narHash": "sha256-GOZlP6aYJLQVARVsJkptKRvxnCWYaalnRyMfDMOYZHg=",
         "owner": "antholeole",
         "repo": "nix-rice-vscode",
-        "rev": "e1d069b984f502dd3d802bb486378b7f756b1ce6",
+        "rev": "f5d6c1c638dd5b6b056678d571827073f3f15f02",
         "type": "github"
       },
       "original": {
         "owner": "antholeole",
         "repo": "nix-rice-vscode",
-        "rev": "e1d069b984f502dd3d802bb486378b7f756b1ce6",
+        "rev": "f5d6c1c638dd5b6b056678d571827073f3f15f02",
         "type": "github"
       }
     },
@@ -422,6 +422,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-with-vsc": {
+      "locked": {
+        "lastModified": 1717179513,
+        "narHash": "sha256-vboIEwIQojofItm2xGCdZCzW96U85l9nDW3ifMuAIdM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "63dacb46bf939521bdc93981b4cbb7ecb58427a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1694767346,
@@ -456,18 +472,16 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1733808091,
-        "narHash": "sha256-KWwINTQelKOoQgrXftxoqxmKFZb9pLVfnRvK270nkVk=",
-        "owner": "nixos",
+        "lastModified": 1734435836,
+        "narHash": "sha256-kMBQ5PRiFLagltK0sH+08aiNt3zGERC2297iB6vrvlU=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a0f3e10d94359665dba45b71b4227b0aeb851f8e",
+        "rev": "4989a246d7a390a859852baddb1013f825435cee",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
+        "id": "nixpkgs",
+        "type": "indirect"
       }
     },
     "nixpkgs_5": {
@@ -582,6 +596,7 @@
         "nixpkgs": "nixpkgs_7",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-with-hyprland": "nixpkgs-with-hyprland",
+        "nixpkgs-with-vsc": "nixpkgs-with-vsc",
         "oleina-nixpkgs": "oleina-nixpkgs",
         "rust-overlay": "rust-overlay_2",
         "zjstatus": "zjstatus"
