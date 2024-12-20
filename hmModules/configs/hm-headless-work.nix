@@ -1,10 +1,9 @@
 {config, ...}: {
-  config = {
-    wmStartupCommands = ["ssh-agent -a $SSH_AUTH_SOCK"];
+  conf = {
     email = "oleina@google.com";
     name = "oleina";
 
-    termColor = config.colorScheme.palette.base0C;
+    termColor = config.colorScheme.palette.base0D;
 
     headless = true;
     work = true;
