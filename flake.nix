@@ -12,7 +12,6 @@
 
     # nixpkgs for specific packages
     # need to pin hyprland to an old version
-    nixpkgs-with-hyprland.url = "github:nixos/nixpkgs/7a339d87931bba829f68e94621536cad9132971a";
     nixpkgs-with-vsc.url = "github:nixos/nixpkgs/24.05";
     # TODO: pin vscode version
     # END NIXPKGS VARIANTS
@@ -22,6 +21,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixgl.url = "github:guibou/nixGL";
     rust-overlay.url = "github:oxalica/rust-overlay";
+    hyprland.url = "github:hyprwm/Hyprland";
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -64,7 +64,6 @@
     nix-index-database,
     rust-overlay,
     oleina-nixpkgs,
-    nixpkgs-with-hyprland,
     nixpkgs-with-vsc,
     nix-colors,
     gruvbox-alacritty,
