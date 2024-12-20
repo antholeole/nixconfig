@@ -43,8 +43,16 @@ addToggleableWindow("Powerbar", () =>
 addToggleableWindow("Screenshots", () =>
 	PromptBar([
 		{ text: "", hotkey: "s" },
-		// { text: "", hotkey: "f" },
 		{ text: "", hotkey: "e" },
 		// { text: "", hotkey: "r" },
+		// { text: "", hotkey: "f" },
+	]),
+);
+addToggleableWindow("Floaters", () =>
+	PromptBar([
+		{ text: "", hotkey: "w" },
+		{ text: "", hotkey: "n" },
+		{ text: "", hotkey: "b" },
+		{ text: "", hotkey: "t" },
 	]),
 );
