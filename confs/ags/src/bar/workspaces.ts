@@ -3,10 +3,26 @@ import { altDown } from "../globals.js";
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
 import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import type Box from "types/widgets/box.js";
+import type { Workspace } from "types/service/hyprland.js";
 
 // a shim type for workspace or monitors with an id
 type Id = {
 	id: number;
+};
+
+const buildWsColor = (clazz: string | undefined) => {
+	switch (clazz) {
+		case "Alacritty":
+			return "orange";
+		case "org.qutebrowser.qutebrowser":
+			return "yellow";
+		case "google-chrome":
+			return "pink";
+		case "code-url-handler":
+			return "blue";
+	}
+
+	return "plain";
 };
 
 const buildWorkspacesChildren = (altIsDown: boolean, monitor: number) => {
@@ -22,24 +38,32 @@ const buildWorkspacesChildren = (altIsDown: boolean, monitor: number) => {
 		thisMonitor.activeWorkspace.id === workspace.id &&
 		Hyprland.active.monitor.name === thisMonitor.name;
 
-	const buildClassName = (workspace: Id) => {
+	const buildClassName = (workspace: Workspace) => {
 		const classPrefix = altIsDown ? "ws-text" : "dot";
 		const classSuffix = active(workspace) ? "selected" : "not-selected";
-		return `${classPrefix}-${classSuffix}`;
+
+		const client = Hyprland.clients.find(
+			(client) => client.workspace.id === workspace.id,
+		)?.class;
+
+		const clazz = `${classPrefix} ${classSuffix} ws-item ${buildWsColor(client)}`;
+		return clazz;
 	};
 
-	const workspaceDots = workspaces.map((workspace) =>
-		Widget.Box({
-			className: buildClassName(workspace),
-			children: altIsDown
-				? [
-						Widget.Label({
-							label: `${workspace.id}`,
-						}),
-					]
-				: [],
-		}),
-	);
+	const workspaceDots = workspaces
+		.filter((ws) => !ws.name.includes("notestab"))
+		.map((workspace) => {
+			return Widget.Box({
+				className: buildClassName(workspace),
+				children: altIsDown
+					? [
+							Widget.Label({
+								label: `${workspace.id}`,
+							}),
+						]
+					: [],
+			});
+		});
 
 	return [
 		...workspaceDots,

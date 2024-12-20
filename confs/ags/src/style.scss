@@ -17,6 +17,17 @@ $border-radius: 0px;
     margin-left: $horizontal-margin;
 }
 
+$colors: (
+    "red": $base08,
+    "orange": $base09,
+    "yellow": $base0A,
+    "green": $base0B,
+    "aqua": $base0C,
+    "blue": $base0D,
+    "pink": $base0E,
+    "plain": $text,
+);
+
 @mixin urgency {
     &.info {
         color: $base0E;
@@ -78,36 +89,44 @@ $border-radius: 0px;
     padding: 7.5px 35px;
 }
 
-.ws-text {
-    color: $text;
-    margin: 0 5.9px;
+.ws-item {
 
-    &-selected {
-        @extend .ws-text;
-        font-weight: bold;
+    &.ws-text {
+        color: $text;
+        margin: 0 5.9px;
+
+        &-selected {
+            @extend .ws-text;
+            font-weight: bold;
+        }
+
+        &-not-selected {
+            @extend .ws-text;
+        }
     }
 
-    &-not-selected {
-        @extend .ws-text;
-    }
-}
+    &.dot {
+        padding: 3px 8px;
+        border-radius: 100%;
+        margin: 2px;
 
-.dot {
-    padding: 3px 8px;
-    border-radius: 100%;
-    margin: 2px;
+        &.selected {
+            @each $name, $color in $colors {
+                &.#{$name} {
+                    background-color: $color;
+                }
+            }
+        }
 
-    &-selected {
-        @extend .dot;
+        &.not-selected {
+            padding: 3px 5px;
 
-        background-color: $text;
-    }
-
-    &-not-selected {
-        @extend .dot;
-        padding: 3px 5px;
-
-        border: 2px solid $text;
+            @each $name, $color in $colors {
+                &.#{$name} {
+                    border: 2px solid $color;
+                }
+            }
+        }
     }
 }
 
