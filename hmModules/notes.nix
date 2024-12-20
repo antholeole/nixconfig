@@ -37,6 +37,7 @@
 
               config.programs.alacritty.package
               config.wayland.windowManager.hyprland.package
+              config.packages.ags-wrapped
 
               jq
               taskwarrior
@@ -46,7 +47,7 @@
 
             buildInputs = [pkgs.makeWrapper];
             postBuild = ''
-              wrapProgram $out/bin/focus_notes --set PATH $out/bin --add-flags "-b hyprags"
+              wrapProgram $out/bin/focus_notes --set PATH $out/bin
             '';
           };
 
@@ -56,24 +57,55 @@
           doesExist=$(hyprctl clients -j | jq 'any(.[]; .class == "notesfloat")')
           currentworkspace=$(hyprctl activeworkspace -j | jq -r .name)
 
+          proggy=$1
+          bin=$2
+
+          # first, if we  are just running a toggle command, open the query menu if it
+          # isn't already open.
+          if test "$proggy" = "toggle";
+          then
+            if test "$focusedClass" = "notesfloat";
+            then
+               echo "notes window exists and is focused: moving to off-screen window"
+               hyprctl dispatch movetoworkspacesilent "special:notestab,address:$notesAddress"
+               exit 0
+            else
+               # the window may or may not exist at this point; open the menu and let hyprland
+               # requery with the desired program.
+               echo "window is not focused; opening menu!"
+               hyprctl dispatch submap "floaters"
+               ags -b hyprags --run-js "showFloaters.value = true;"
+               exit 0
+            fi
+          fi
+
+          # if it exists but it is the wrong program, close it and continue like it doesn't
+          # exist
+          if test $doesExist = "true"; then
+            tag=$(hyprctl clients -j | jq -r '.[] | select(.class == "notesfloat").tags[0]')
+            if test $tag != "$proggy"; then
+              echo "closing window; wrong proggy! wanted $proggy, had $tag"
+              hyprctl dispatch closewindow "address:$notesAddress"
+            fi
+          fi
+
           # if it does not exist, we should create it
           if test $doesExist = "false"; then
              echo "notes window does not exist; creating"
-             alacritty --class notesfloat -e "taskwarrior-tui" &
-             exit 0
+             alacritty --class notesfloat -e "$bin" &
+             sleep 1
+             newWindowAddress=$(hyprctl clients -j | jq -r '.[] | select(.class == "notesfloat").address')
+
+             # tag it with the right tag
+             echo "tagging address:$newWindowAddress with $proggy"
+             hyprctl dispatch tagwindow "+$proggy" "address:$newWindowAddress"
           fi
 
-          # if we have it focused we should move it to the scratch output.
-          if test "$focusedClass" = "notesfloat"
-          then
-             echo "notes window exists and is focused: moving to off-screen window"
-             hyprctl dispatch movetoworkspacesilent "special:notestab,address:$notesAddress"
-             exit 0
-          fi
 
           # otherwise, it exists and is not sed. we should move it to our current workspace.
            echo "notes window exists and is not focused: focusing"
           hyprctl dispatch movetoworkspace "$currentworkspace,address:$notesAddress"
+          hyprctl dispatch focuswindow "address:$notesAddress"
         '';
       in
         wrapWithPkgs bin;
