@@ -115,7 +115,8 @@ in {
           dejavu_fonts
           libnotify
           glib # for notifications
-          pwvucontrol
+          grimblast
+          obs-cli
 
           brightnessctl
           pipes-rs # for funzies

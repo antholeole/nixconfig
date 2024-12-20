@@ -79,9 +79,8 @@
 
       bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes
 
-      # when holding alt + space, we should show the numbers
-      bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = true"
-      bindr=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = false"
+      # alt space toggles numbers
+      bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = !altDown.value"
 
       bind = ${mod},RETURN,exec,${
         pkgs.lib.getExe
@@ -99,8 +98,21 @@
       bind=SHIFT ${mod},m,movecurrentworkspacetomonitor,+1
 
       # screenshot stuff
-      bind=ALT_SHIFT,s,exec,${screenshotUtils.screenshot}
-      bind=ALT_SHIFT,e,exec,${screenshotUtils.edit}
+      bindt=ALT_SHIFT,S,exec,${agsExe} --run-js "showScreenshots.value = true;"
+      bind=ALT_SHIFT,S,submap,screenshots
+      submap=screenshots
+
+      bindt=,s,exec,${screenshotUtils.screenshot}
+      bindt=,s,exec,${agsExe} --run-js "showScreenshots.value = false;"
+      bind=,s,submap,reset
+
+      bindt=,e,exec,${screenshotUtils.edit}
+      bindt=,e,exec,${agsExe} --run-js "showScreenshots.value = false;"
+      bind=,e,submap,reset
+
+      bindt=,escape,exec,${agsExe} --run-js "showScreenshots.value = false;"
+      bind=,escape,submap,reset
+      submap=reset
 
       # resize
       ${directionKeymap "left"
