@@ -14,23 +14,16 @@ in {
     colors = import "${inputs.self}/theme.nix";
     screenshotUtils =
       (import "${inputs.self}/shared/screenshot.nix") pkgs config;
+
+    # wrap with -b hyprags
     agsWrapped = pkgs.symlinkJoin {
       name = "ags-cli-wrapped";
-      # TODO: this is hacky and should go into the default.nix of the
-      # actual package
       paths = [
-        hyprland
-        config.programs.fzf.package
-        inputs.ags.packages."${pkgs.system}".default
-
-        pkgs.busybox
-        pkgs.upower
-        pkgs.bashInteractiveFHS
-        pkgs.pulseaudio
+        config.packages.ags-wrapped
       ];
       buildInputs = [pkgs.makeWrapper];
       postBuild = ''
-        wrapProgram $out/bin/ags --set PATH $out/bin --add-flags "-b hyprags"
+        wrapProgram $out/bin/ags --add-flags "-b hyprags"
       '';
     };
 
@@ -63,7 +56,6 @@ in {
         gaps_out = 5
       }
 
-      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes
 
       # alt space toggles numbers
       bind=ALT,SPACE,exec,${agsExe} --run-js "altDown.value = !altDown.value"
@@ -129,6 +121,33 @@ in {
       submap=reset
       # END CONTROL
 
+      # BEGIN FLOATERS
+      # if we are in normal mode, we should just let hyprfocus determine
+      # if we shold open the window and enter the mode or not.
+      bind=${mod},N,exec,${config.packages.notes.hyprfocus}/bin/focus_notes toggle
+      submap=floaters
+
+      bind=,w,exec,${agsExe} --run-js "showFloaters.value = false;"
+      bind=,w,exec,${config.packages.notes.hyprfocus}/bin/focus_notes taskwarrior ${pkgs.taskwarrior-tui}/bin/taskwarrior-tui
+      bind=,w,submap,reset
+
+      bind=,n,exec,${agsExe} --run-js "showFloaters.value = false;"
+      bind=,n,exec,${config.packages.notes.hyprfocus}/bin/focus_notes scratch "${config.programs.my-kakoune.package}/bin/kakoune ~/Notes/scratch.md"
+      bind=,n,submap,reset
+
+      bind=,b,exec,${agsExe} --run-js "showFloaters.value = false;"
+      bind=,b,exec,${config.packages.notes.hyprfocus}/bin/focus_notes btm ${pkgs.bottom}/bin/btm
+      bind=,b,submap,reset
+
+      bind=,t,exec,${agsExe} --run-js "showFloaters.value = false;"
+      bind=,t,exec,${config.packages.notes.hyprfocus}/bin/focus_notes terminal "${pkgs.zellij}/bin/zelliji a -c scratch"
+      bind=,t,submap,reset
+
+      bind=,escape,exec,${agsExe} --run-js "showFloaters.value = false;"
+      bind=,escape,submap,reset
+      submap=reset
+      # END FLOATERS
+
       # POWERBAR
       bindt=${mod},Q,exec,${agsExe} --run-js "showPowerbar.value = true;"
       bind=${mod},Q,submap,powerbar
@@ -171,22 +190,38 @@ in {
     '';
   };
 
-  home.file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
-    enable = !config.conf.headless;
-    source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
-  };
-
-  home.file.".config/other/hyprland.desktop" = let
-    nixGLHyprland =
-      mkNixGLPkg hyprland "Hyprland";
+  home = let
+    size = 36;
   in {
-    enable = !config.conf.headless;
-    text = ''
-      [Desktop Entry]
-      Name=Hyprland
-      Comment=Main WM
-      Exec=${nixGLHyprland}/bin/hyprland
-      Type=Application
-    '';
+    pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+    };
+
+    sessionVariables = {
+      HYPRCURSOR_THEME = config.home.pointerCursor.name;
+      HYPRCURSOR_SIZE = size;
+      XCURSOR_SIZE = size;
+    };
+
+    file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
+      enable = !config.conf.headless;
+      source = "${pkgs.xdg-desktop-portal-hyprland}/share/systemd/user/xdg-desktop-portal-hyprland.service";
+    };
+
+    file.".config/other/hyprland.desktop" = let
+      nixGLHyprland =
+        mkNixGLPkg hyprland "Hyprland";
+    in {
+      enable = !config.conf.headless;
+      text = ''
+        [Desktop Entry]
+        Name=Hyprland
+        Comment=Main WM
+        Exec=${nixGLHyprland}/bin/hyprland
+        Type=Application
+      '';
+    };
   };
 }
