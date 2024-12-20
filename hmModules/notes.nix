@@ -28,17 +28,38 @@
         alacrittyBin = "${
           mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram
         }/bin/alacritty";
-      in
-        pkgs.writeShellScriptBin "focus_notes" ''
-          focusedClass=$(${hyprctlBin} clients -j | ${jqBin} -r '.[] | select(.focusHistoryID == 0).class')
-          notesAddress=$(${hyprctlBin} clients -j | ${jqBin} -r '.[] | select(.class == "notesfloat").address')
-          doesExist=$(${hyprctlBin} clients -j | ${jqBin} 'any(.[]; .class == "notesfloat")')
-          currentworkspace=$(${hyprctlBin} activeworkspace -j | ${jqBin} -r .name)
+
+        wrapWithPkgs = pkg:
+          pkgs.symlinkJoin {
+            name = "hyprfocus";
+            paths = with pkgs; [
+              pkg
+
+              config.programs.alacritty.package
+              config.wayland.windowManager.hyprland.package
+
+              jq
+              taskwarrior
+              bottom
+              zellij
+            ];
+
+            buildInputs = [pkgs.makeWrapper];
+            postBuild = ''
+              wrapProgram $out/bin/focus_notes --set PATH $out/bin --add-flags "-b hyprags"
+            '';
+          };
+
+        bin = pkgs.writeShellScriptBin "focus_notes" ''
+          focusedClass=$(hyprctl clients -j | jq -r '.[] | select(.focusHistoryID == 0).class')
+          notesAddress=$(hyprctl clients -j | jq -r '.[] | select(.class == "notesfloat").address')
+          doesExist=$(hyprctl clients -j | jq 'any(.[]; .class == "notesfloat")')
+          currentworkspace=$(hyprctl activeworkspace -j | jq -r .name)
 
           # if it does not exist, we should create it
           if test $doesExist = "false"; then
              echo "notes window does not exist; creating"
-             ${alacrittyBin} --class notesfloat -e "${taskwarrior}/bin/taskwarrior-tui" &
+             alacritty --class notesfloat -e "taskwarrior-tui" &
              exit 0
           fi
 
@@ -46,14 +67,16 @@
           if test "$focusedClass" = "notesfloat"
           then
              echo "notes window exists and is focused: moving to off-screen window"
-             ${hyprctlBin} dispatch movetoworkspacesilent "special:notestab,address:$notesAddress"
+             hyprctl dispatch movetoworkspacesilent "special:notestab,address:$notesAddress"
              exit 0
           fi
 
           # otherwise, it exists and is not sed. we should move it to our current workspace.
            echo "notes window exists and is not focused: focusing"
-          ${hyprctlBin} dispatch movetoworkspace "$currentworkspace,address:$notesAddress"
+          hyprctl dispatch movetoworkspace "$currentworkspace,address:$notesAddress"
         '';
+      in
+        wrapWithPkgs bin;
     };
   };
 }

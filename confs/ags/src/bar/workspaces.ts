@@ -1,9 +1,12 @@
 import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { altDown } from "../globals.js";
 import { exec } from "resource:///com/github/Aylur/ags/utils.js";
-import Hyprland from "resource:///com/github/Aylur/ags/service/hyprland.js";
+import Hyprland, {
+	hyprland,
+} from "resource:///com/github/Aylur/ags/service/hyprland.js";
 import type Box from "types/widgets/box.js";
 import type { Workspace } from "types/service/hyprland.js";
+import type { Connectable } from "types/service.js";
 
 // a shim type for workspace or monitors with an id
 type Id = {
@@ -77,18 +80,11 @@ const buildWorkspacesChildren = (altIsDown: boolean, monitor: number) => {
 export const Workspaces = (monitor: number) =>
 	Widget.Box({
 		className: "workspaces",
-		connections: [
-			[
-				Hyprland.active.workspace,
-				(self: Box<unknown, unknown>) => {
-					self.children = buildWorkspacesChildren(altDown.value, monitor);
-				},
-			],
-			[
-				altDown,
-				(self: Box<unknown, unknown>) => {
-					self.children = buildWorkspacesChildren(altDown.value, monitor);
-				},
-			],
-		],
-	});
+		setup: (self) =>
+			self.hook(altDown, () => {
+				self.children = buildWorkspacesChildren(altDown.value, monitor);
+			}),
+	})
+		.hook(hyprland as unknown as Connectable, (self: Box<unknown, unknown>) => {
+			self.children = buildWorkspacesChildren(altDown.value, monitor);
+		})
