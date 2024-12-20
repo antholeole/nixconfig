@@ -2,18 +2,14 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   mkNixGLPkg,
   inputs,
   ...
-}: {
+}: let
+  hyprland = inputs.hyprland.packages."${pkgs.system}".default;
+in {
   wayland.windowManager.hyprland = let
-    hyprland =
-      (import inputs.nixpkgs-with-hyprland {
-        config.allowUnfree = true;
-        system = pkgs.system;
-      })
-      .hyprland;
-
     mod = "ALT";
     colors = import "${inputs.self}/theme.nix";
     screenshotUtils =
@@ -47,10 +43,6 @@
       };
   in {
     enable = !config.conf.headless;
-    # TODO: unpin this version. you MUST change the desktop
-    # file below to use a lowercase H or else it will explode.
-    # there seems to be a regession between 0.34 and 0.40 that
-    # instantly segfaults.
     package = hyprland;
 
     extraConfig = let
@@ -64,15 +56,9 @@
 
       animation = global,0
 
-      decoration {
-        rounding = 0
-
-        drop_shadow = false
-      }
-
       general {
         border_size = 2
-        col.active_border = 0xff000000
+        col.active_border = 0xff${config.colorScheme.palette.base02}
         gaps_in = 3
         gaps_out = 5
       }
@@ -192,7 +178,7 @@
 
   home.file.".config/other/hyprland.desktop" = let
     nixGLHyprland =
-      mkNixGLPkg config.wayland.windowManager.hyprland.package "Hyprland";
+      mkNixGLPkg hyprland "Hyprland";
   in {
     enable = !config.conf.headless;
     text = ''
