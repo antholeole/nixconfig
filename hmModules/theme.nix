@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   lib,
   config,
   ...
@@ -26,5 +27,21 @@ in {
       in
         lib.concatStrings lines;
     };
+
+    home.packages = [
+      (pkgs.writeTextFile {
+        name = "preview-scheme";
+        executable = true;
+        destination = "/bin/preview-scheme";
+        text = let
+          makePreviewLine = name: value: "echo (set_color \"#${value}\") ${name} (set_color normal)\n";
+          lines = lib.attrsets.mapAttrsToList makePreviewLine colorScheme.palette;
+        in
+          ''
+            #! ${config.programs.fish.package}/bin/fish
+          ''
+          + (lib.concatStrings lines);
+      })
+    ];
   };
 }
