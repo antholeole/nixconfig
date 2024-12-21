@@ -6,12 +6,7 @@
   mkWaylandElectronPkg,
   mkNixGLPkg,
   ...
-}: let
-  theme = {
-    package = pkgs.catppuccin-gtk;
-    name = "Catppuccin-Frappe-Standard-Blue-Dark";
-  };
-in {
+}: {
   fonts.fontconfig.enable = true;
 
   imports = [
@@ -21,16 +16,6 @@ in {
 
   gtk = {
     enable = !config.conf.headless;
-    inherit theme;
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        accent = "mauve";
-        flavor = "mocha";
-      };
-    };
-
     gtk3.extraConfig = {gtk-application-prefer-dark-theme = 1;};
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };

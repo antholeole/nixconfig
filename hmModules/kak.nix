@@ -38,7 +38,7 @@ in {
           	set-option global fzf-file ${pkgs.bat}/bin/bat
           }
 
-          colorscheme catppuccin_macchiato
+          colorscheme base16-gruvbox-dark-medium
 
           # add copy to system clipboard
           hook global RegisterModified '"' %{ nop %sh{
@@ -78,7 +78,7 @@ in {
         '';
       };
 
-      ".config/kak/colors/gruvbox.kak".source = "${inputs.self}/confs/kak/gruvbo.kak";
+      ".config/kak/colors/gruvbox.kak".source = "${inputs.self}/confs/kak/gruvbox.kak";
       ".config/kak-lsp/kak-lsp.toml".source = "${inputs.self}/confs/kak/kak-lsp.toml";
     };
   };
