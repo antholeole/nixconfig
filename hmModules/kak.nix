@@ -43,7 +43,7 @@ in {
           # add copy to system clipboard
           hook global RegisterModified '"' %{ nop %sh{
             printf %s "$kak_main_reg_dquote" | ${system-clip.copy}${
-            if config.conf.headless
+            if !config.conf.headless
             then ""
             else " > /dev/null 2>&1 &"
           }

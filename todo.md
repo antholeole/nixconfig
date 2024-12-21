@@ -8,10 +8,9 @@
 
 \[\] clippy for vsc
 \[\] nice problems view
+\[\] have a keybind to move terminal to a pane
 \[\] obs cli for recording
 \[\] fix leap.kak
-\[\] gruvbox!
-\[\] flake-parts
 \[\] base64 encode sysclip
 
 # ag:

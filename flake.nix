@@ -36,7 +36,7 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     zjstatus.url = "github:dj95/zjstatus";
-    ags.url = "github:Aylur/ags";
+    ags.url = "github:Aylur/ags/v1";
 
     # theme
     gruvbox-yazi = {
@@ -52,6 +52,9 @@
       url = "github:andreyorst/base16-gruvbox.kak";
       flake = false;
     };
+
+    # astral
+    ags2.url = "github:aylur/ags";
   };
 
   outputs = {
@@ -106,7 +109,7 @@
       imports = [
         treefmt-nix.flakeModule
 
-        # ./parts/devshell.nix
+        ./parts/devshell.nix
         ./parts/treefmt.nix
         ./parts/hm.nix
         # ./parts/nixos.nix

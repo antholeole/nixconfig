@@ -170,7 +170,81 @@
       set fish_greeting
       set EDITOR ${pkgs.kakoune}/bin/kak
 
+      theme_gruvbox dark medium
+      fish_config theme choose Gruvbox
+
       fish_add_path ~/.config/git
+    '';
+  };
+
+  xdg.configFile."fish/themes/Gruvbox.theme" = with config.colorScheme.palette; {
+    enable = true;
+    text = let
+      foreground = base07;
+      selection = base04;
+      comment = base03;
+      red = base08;
+      orange = base09;
+      yellow = base0A;
+      green = base0B;
+      purple = base0E;
+      cyan = base0C;
+      blue = base0D;
+    in ''
+      # name: 'Dracula'
+      # license: 'MIT'
+      # preferred_background: 282a36
+      #
+      # Foreground: ${foreground}
+      # Selection: ${selection}
+      # Comment: ${comment}
+      # Red: ${red}
+      # Orange: ${orange}
+      # Yellow: ${yellow}
+      # Green: ${green}
+      # Purple: ${purple}
+      # Cyan: ${cyan}
+      # Blue: ${blue}
+
+      fish_color_normal ${foreground}
+      fish_color_command ${cyan}
+      fish_color_quote ${yellow}
+      fish_color_redirection ${foreground}
+      fish_color_end ${orange}
+      fish_color_error ${red}
+      fish_color_param ${purple}
+      fish_color_comment ${comment}
+      fish_color_match --background=brblue
+      fish_color_selection --background=${selection}
+      fish_color_search_match --background=${selection}
+      fish_color_history_current --bold
+      fish_color_operator ${green}
+      fish_color_escape ${blue}
+      fish_color_cwd ${green}
+      fish_color_cwd_root red
+      fish_color_valid_path --underline
+      fish_color_autosuggestion ${comment}
+      fish_color_user ${cyan}
+      fish_color_host ${purple}
+      fish_color_cancel ${red} --reverse
+      fish_pager_color_completion ${foreground}
+      fish_pager_color_description ${comment}
+      fish_pager_color_prefix ${cyan}
+      fish_pager_color_progress ${comment}
+      fish_pager_color_selected_background --background=${selection}
+      fish_color_option ${orange}
+      fish_color_keyword ${blue}
+      fish_color_host_remote ${purple}
+      fish_color_status ${red}
+
+      fish_pager_color_background
+      fish_pager_color_selected_prefix ${cyan}
+      fish_pager_color_selected_completion ${foreground}
+      fish_pager_color_selected_description ${comment}
+      fish_pager_color_secondary_background
+      fish_pager_color_secondary_prefix ${cyan}
+      fish_pager_color_secondary_completion ${foreground}
+      fish_pager_color_secondary_description ${comment}
     '';
   };
 }
