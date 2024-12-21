@@ -1,4 +1,3 @@
-
 # Starter Config
 
 if suggestions don't work, first make sure

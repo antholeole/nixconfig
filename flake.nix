@@ -16,6 +16,7 @@
     # TODO: pin vscode version
     # END NIXPKGS VARIANTS
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
     flake-parts.url = "github:hercules-ci/flake-parts";
     apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
     home-manager.url = "github:nix-community/home-manager/release-24.11";
@@ -69,6 +70,7 @@
     nix-colors,
     gruvbox-alacritty,
     flake-parts,
+    treefmt-nix,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -102,8 +104,10 @@
       ];
 
       imports = [
+        treefmt-nix.flakeModule
+
         # ./parts/devshell.nix
-        # ./parts/treefmt.nix
+        ./parts/treefmt.nix
         ./parts/hm.nix
         # ./parts/nixos.nix
       ];
