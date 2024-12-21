@@ -5,6 +5,8 @@
       programs = {
         alejandra.enable = true;
         biome.enable = true;
+        mdformat.enable = true;
+        gofmt.enable = true;
       };
     };
   };

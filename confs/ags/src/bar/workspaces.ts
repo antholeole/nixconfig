@@ -84,7 +84,6 @@ export const Workspaces = (monitor: number) =>
 			self.hook(altDown, () => {
 				self.children = buildWorkspacesChildren(altDown.value, monitor);
 			}),
-	})
-		.hook(hyprland as unknown as Connectable, (self: Box<unknown, unknown>) => {
-			self.children = buildWorkspacesChildren(altDown.value, monitor);
-		})
+	}).hook(hyprland as unknown as Connectable, (self: Box<unknown, unknown>) => {
+		self.children = buildWorkspacesChildren(altDown.value, monitor);
+	});

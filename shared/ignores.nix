@@ -17,7 +17,7 @@
 
   ".cache" # cmake
   "CMakeFiles" # cmake
-  "_deps"   
+  "_deps"
 
   # vcs
   ".jj"

@@ -53,7 +53,7 @@ export const batteryProps = (
 
 export const BatteryBar = (battery: IBattery = batteryService) =>
 	Widget.Box().hook(battery as unknown as Connectable, (self) => {
-		battery
+		battery;
 		const { percentLabel, icon } = batteryProps(battery);
 
 		const percentLabelWidget = percentLabel

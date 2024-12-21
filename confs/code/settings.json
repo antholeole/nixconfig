@@ -1,176 +1,172 @@
 {
-    "[python]": {
-        "editor.formatOnType": true
-    },
-    "remote.SSH.connectTimeout": 60,
-    "remote.SSH.useLocalServer": true,
-    "remote.SSH.showLoginTerminal": true,
-    "remote.autoForwardPorts": false,
-    "window.titleBarStyle": "custom",
-    "window.title": "${dirty}${activeEditorShort}",
-    "remote.SSH.remotePlatform": {
-        "oleina.c.googlers.com": "linux"
-    },
-    "update.mode": "none",
-    "terminal.integrated.defaultProfile.linux": "fish",
-    "editor.fontFamily": "FiraCode Nerd Font",
-    "editor.fontLigatures": true,
-    "editor.inlineSuggest.enabled": true,
-    "workbench.editor.navigationScope": "editorGroup",
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "variable.parameter",
-                "settings": {
-                    "fontStyle": ""
-                }
-            },
-            {
-                "scope": "constant",
-                "settings": {
-                    "fontStyle": ""
-                }
-            }
-        ]
-    },
-    "explorer.confirmDragAndDrop": false,
-    "julia.symbolCacheDownload": true,
-    "terminal.integrated.allowChords": false,
-    "terminal.integrated.commandsToSkipShell": [
-        "language-julia.interrupt"
-    ],
-    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
-    "workbench.colorTheme": "Gruvbox Dark Medium",
-    "workbench.iconTheme": "gruvbox-material-icon-theme",
-    "workbench.editor.showTabs": false,
-    "workbench.list.automaticKeyboardNavigation": false,
-    "editor.minimap.enabled": true,
-    "editor.scrollbar.vertical": "hidden",
-    "dance.menus": {
-        "goto": {
-            "items": {
-                "t": {
-                    "text": "to type definition",
-                    "command": "editor.action.goToTypeDefinition"
-                },
-                "p": {
-                    "text": "to previous problem",
-                    "command": "editor.action.marker.previous"
-                },
-                "n": {
-                    "text": "to next problem",
-                    "command": "editor.action.marker.next"
-                },
-                "m": {
-                    "text": "to previous marker",
-                    "command": "errorLens.selectProblem"
-                },
-                "i": {
-                    "text": "to implementation",
-                    "command": "editor.action.goToImplementation"
-                }
-            }
-        },
-        "file-explorer": {
-            "items": {
-                "F": {
-                    "command": "copyRelativeFilePath",
-                    "text": "Copy relative file path"
-                },
-                "N": {
-                    "command": "explorer.newFolder",
-                    "text": "New file"
-                },
-                "O": {
-                    "command": "explorer.openAndPassFocus",
-                    "text": "Open"
-                },
-                "c": {
-                    "command": "renameFile",
-                    "text": "Rename file"
-                },
-                "d": {
-                    "command": "moveFileToTrash",
-                    "text": "Delete file"
-                },
-                "f": {
-                    "command": "copyFilePath",
-                    "text": "Copy file path"
-                },
-                "n": {
-                    "command": "explorer.newFile",
-                    "text": "New folder"
-                },
-                "o": {
-                    "command": "explorer.openWith",
-                    "text": "Open with..."
-                },
-                "p": {
-                    "command": "filesExplorer.paste",
-                    "text": "Paste file"
-                },
-                "r": {
-                    "command": "revealFileInOS",
-                    "text": "Reveal in file explorer"
-                },
-                "v": {
-                    "command": "filesExplorer.openFilePreserveFocus",
-                    "text": "View"
-                },
-                "x": {
-                    "command": "filesExplorer.cut",
-                    "text": "Cut file"
-                },
-                "y": {
-                    "command": "filesExplorer.copy",
-                    "text": "Yank file"
-                }
-            }
-        }
-    },
-    "window.menuBarVisibility": "compact",
-    "workbench.activityBar.location": "hidden",
-    "workbench.statusBar.visible": false,
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 5000,
-    "workbench.startupEditor": "none",
-    "dynoFileUtils.confirmDelete": false,
-    "editor.minimap.renderCharacters": false,
-    "editor.cursorBlinking": "solid",
-    "[json]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace",
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "[jsonc]": {
-        "editor.quickSuggestions": {
-            "strings": true
-        },
-        "editor.suggest.insertMode": "replace",
-        "editor.defaultFormatter": "vscode.json-language-features"
-    },
-    "remote.SSH.useExecServer": false,
-    "cmake.saveBeforeBuild": false,
-    "cmake.revealLog": "never",
-    "cmake.configureOnEdit": false,
-    "update.showReleaseNotes": false,
-    "[javascript]": {
-        "editor.defaultFormatter": "biomejs.biome"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "biomejs.biome"
-    },
-    "files.associations": {
-        "*.yaml.tpl": "yaml",
-        "*.cppm": "cpp"
-    },
-    "clangd.arguments": [
-        "--experimental-modules-support"
-    ],
-    "workbench.sideBar.location": "right",
-    "workbench.colorCustomizations": {
-        "editor.selectionBackground": "#fbf1c7"
-    }
+	"[python]": {
+		"editor.formatOnType": true
+	},
+	"remote.SSH.connectTimeout": 60,
+	"remote.SSH.useLocalServer": true,
+	"remote.SSH.showLoginTerminal": true,
+	"remote.autoForwardPorts": false,
+	"window.titleBarStyle": "custom",
+	"window.title": "${dirty}${activeEditorShort}",
+	"remote.SSH.remotePlatform": {
+		"oleina.c.googlers.com": "linux"
+	},
+	"update.mode": "none",
+	"terminal.integrated.defaultProfile.linux": "fish",
+	"editor.fontFamily": "FiraCode Nerd Font",
+	"editor.fontLigatures": true,
+	"editor.inlineSuggest.enabled": true,
+	"workbench.editor.navigationScope": "editorGroup",
+	"editor.tokenColorCustomizations": {
+		"textMateRules": [
+			{
+				"scope": "variable.parameter",
+				"settings": {
+					"fontStyle": ""
+				}
+			},
+			{
+				"scope": "constant",
+				"settings": {
+					"fontStyle": ""
+				}
+			}
+		]
+	},
+	"explorer.confirmDragAndDrop": false,
+	"julia.symbolCacheDownload": true,
+	"terminal.integrated.allowChords": false,
+	"terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
+	"terminal.integrated.fontFamily": "FiraCode Nerd Font",
+	"workbench.colorTheme": "Gruvbox Dark Medium",
+	"workbench.iconTheme": "gruvbox-material-icon-theme",
+	"workbench.editor.showTabs": false,
+	"workbench.list.automaticKeyboardNavigation": false,
+	"editor.minimap.enabled": true,
+	"editor.scrollbar.vertical": "hidden",
+	"dance.menus": {
+		"goto": {
+			"items": {
+				"t": {
+					"text": "to type definition",
+					"command": "editor.action.goToTypeDefinition"
+				},
+				"p": {
+					"text": "to previous problem",
+					"command": "editor.action.marker.previous"
+				},
+				"n": {
+					"text": "to next problem",
+					"command": "editor.action.marker.next"
+				},
+				"m": {
+					"text": "to previous marker",
+					"command": "errorLens.selectProblem"
+				},
+				"i": {
+					"text": "to implementation",
+					"command": "editor.action.goToImplementation"
+				}
+			}
+		},
+		"file-explorer": {
+			"items": {
+				"F": {
+					"command": "copyRelativeFilePath",
+					"text": "Copy relative file path"
+				},
+				"N": {
+					"command": "explorer.newFolder",
+					"text": "New file"
+				},
+				"O": {
+					"command": "explorer.openAndPassFocus",
+					"text": "Open"
+				},
+				"c": {
+					"command": "renameFile",
+					"text": "Rename file"
+				},
+				"d": {
+					"command": "moveFileToTrash",
+					"text": "Delete file"
+				},
+				"f": {
+					"command": "copyFilePath",
+					"text": "Copy file path"
+				},
+				"n": {
+					"command": "explorer.newFile",
+					"text": "New folder"
+				},
+				"o": {
+					"command": "explorer.openWith",
+					"text": "Open with..."
+				},
+				"p": {
+					"command": "filesExplorer.paste",
+					"text": "Paste file"
+				},
+				"r": {
+					"command": "revealFileInOS",
+					"text": "Reveal in file explorer"
+				},
+				"v": {
+					"command": "filesExplorer.openFilePreserveFocus",
+					"text": "View"
+				},
+				"x": {
+					"command": "filesExplorer.cut",
+					"text": "Cut file"
+				},
+				"y": {
+					"command": "filesExplorer.copy",
+					"text": "Yank file"
+				}
+			}
+		}
+	},
+	"window.menuBarVisibility": "compact",
+	"workbench.activityBar.location": "hidden",
+	"workbench.statusBar.visible": false,
+	"files.autoSave": "afterDelay",
+	"files.autoSaveDelay": 5000,
+	"workbench.startupEditor": "none",
+	"dynoFileUtils.confirmDelete": false,
+	"editor.minimap.renderCharacters": false,
+	"editor.cursorBlinking": "solid",
+	"[json]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"[jsonc]": {
+		"editor.quickSuggestions": {
+			"strings": true
+		},
+		"editor.suggest.insertMode": "replace",
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"remote.SSH.useExecServer": false,
+	"cmake.saveBeforeBuild": false,
+	"cmake.revealLog": "never",
+	"cmake.configureOnEdit": false,
+	"update.showReleaseNotes": false,
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"files.associations": {
+		"*.yaml.tpl": "yaml",
+		"*.cppm": "cpp"
+	},
+	"clangd.arguments": ["--experimental-modules-support"],
+	"workbench.sideBar.location": "right",
+	"workbench.colorCustomizations": {
+		"editor.selectionBackground": "#fbf1c7"
+	}
 }
