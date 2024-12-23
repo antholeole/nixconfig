@@ -6,9 +6,9 @@ interface Command {
 	hotkey: string;
 }
 
-const PromptBar = (commands: Command[]) =>
+const PromptBar = (name: string,commands: Command[]) =>
 	Widget.Window({
-		name: "powerbar",
+		name,
 		class_name: "window",
 		margins: [0, 40],
 		child: Widget.Box({
@@ -33,7 +33,7 @@ const PromptBar = (commands: Command[]) =>
 	});
 
 addToggleableWindow("Powerbar", () =>
-	PromptBar([
+	PromptBar("Powerbar", [
 		{ text: "", hotkey: "q" },
 		{ text: "󰍃", hotkey: "l" },
 		{ text: "", hotkey: "r" },
@@ -41,7 +41,7 @@ addToggleableWindow("Powerbar", () =>
 	]),
 );
 addToggleableWindow("Screenshots", () =>
-	PromptBar([
+	PromptBar("Screenshots", [
 		{ text: "", hotkey: "s" },
 		{ text: "", hotkey: "e" },
 		// { text: "", hotkey: "r" },
@@ -49,7 +49,7 @@ addToggleableWindow("Screenshots", () =>
 	]),
 );
 addToggleableWindow("Floaters", () =>
-	PromptBar([
+	PromptBar("Floaters", [
 		{ text: "", hotkey: "w" },
 		{ text: "", hotkey: "n" },
 		{ text: "", hotkey: "b" },

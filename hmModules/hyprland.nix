@@ -40,6 +40,9 @@ in {
 
     extraConfig = let
     in ''
+      env = HYPRCURSOR_THEME,Vanilla-DMZ
+      env = HYPRCURSOR_SIZE,36
+
       exec-once=${pkgs.wpaperd}/bin/wpaperd >> /tmp/wpaperd.txt &
       exec=sleep 3; ${agsExe} -q ; ${agsExe} >> /tmp/hyprags.txt 2>&1
 
@@ -132,7 +135,7 @@ in {
       bind=,w,submap,reset
 
       bind=,n,exec,${agsExe} --run-js "showFloaters.value = false;"
-      bind=,n,exec,${config.packages.notes.hyprfocus}/bin/focus_notes scratch "${config.programs.my-kakoune.package}/bin/kakoune ~/Notes/scratch.md"
+      bind=,n,exec,${config.packages.notes.hyprfocus}/bin/focus_notes scratch "${config.programs.my-kakoune.package}/bin/kak ~/Notes/scratch.md"
       bind=,n,submap,reset
 
       bind=,b,exec,${agsExe} --run-js "showFloaters.value = false;"
@@ -140,7 +143,7 @@ in {
       bind=,b,submap,reset
 
       bind=,t,exec,${agsExe} --run-js "showFloaters.value = false;"
-      bind=,t,exec,${config.packages.notes.hyprfocus}/bin/focus_notes terminal "${pkgs.zellij}/bin/zelliji a -c scratch"
+      bind=,t,exec,${config.packages.notes.hyprfocus}/bin/focus_notes terminal "${pkgs.zellij}/bin/zellij a -c scratch"
       bind=,t,submap,reset
 
       bind=,escape,exec,${agsExe} --run-js "showFloaters.value = false;"

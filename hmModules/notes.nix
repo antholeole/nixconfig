@@ -40,6 +40,7 @@
               config.packages.ags-wrapped
 
               jq
+              bash
               taskwarrior
               bottom
               zellij
@@ -86,13 +87,14 @@
             if test $tag != "$proggy"; then
               echo "closing window; wrong proggy! wanted $proggy, had $tag"
               hyprctl dispatch closewindow "address:$notesAddress"
+              doesExist="false"
             fi
           fi
 
           # if it does not exist, we should create it
           if test $doesExist = "false"; then
              echo "notes window does not exist; creating"
-             alacritty --class notesfloat -e "$bin" &
+             alacritty --class notesfloat -e bash -c "$bin" &
              sleep 1
              newWindowAddress=$(hyprctl clients -j | jq -r '.[] | select(.class == "notesfloat").address')
 
