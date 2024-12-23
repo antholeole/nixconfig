@@ -10,7 +10,7 @@
     plugins = with pkgs.kakounePlugins; [
       fzf-kak
       quickscope-kak
-      pkgs-oleina.kakounePlugins.hop-kak
+      hop-kak
     ];
   };
 in {
@@ -38,12 +38,12 @@ in {
           	set-option global fzf-file ${pkgs.bat}/bin/bat
           }
 
-          colorscheme base16-gruvbox-dark-medium
+          colorscheme gruvbox-dark
 
           # add copy to system clipboard
           hook global RegisterModified '"' %{ nop %sh{
             printf %s "$kak_main_reg_dquote" | ${system-clip.copy}${
-            if !config.conf.headless
+            if config.conf.headless
             then ""
             else " > /dev/null 2>&1 &"
           }

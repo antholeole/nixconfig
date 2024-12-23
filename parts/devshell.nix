@@ -1,4 +1,3 @@
-{}: {}
 {inputs, ...}: {
   perSystem = {
     system,
