@@ -52,9 +52,6 @@
       url = "github:andreyorst/base16-gruvbox.kak";
       flake = false;
     };
-
-    # astral
-    ags2.url = "github:aylur/ags";
   };
 
   outputs = {
