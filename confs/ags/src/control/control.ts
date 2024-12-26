@@ -14,7 +14,9 @@ import type { Connectable } from "types/service.js";
 const { Box, Slider, Label, CenterBox } = Widget;
 
 const selectedElementIndex = Variable(0);
+
 const currentVolume = Variable<null | number>(null);
+const currentBrightness = Variable<null | number>(null);
 
 upEmitter.register(() => {
 	selectedElementIndex.value = Math.max(0, selectedElementIndex.value - 1);
@@ -28,9 +30,14 @@ downEmitter.register(() => {
 
 const elements = ["volume", "brightness"];
 
-const modifyVolume = (value: number, asPecent: boolean) => {
+const modify = (
+	value: number,
+	asPecent: boolean,
+	variable: VarT<null | number>,
+	command: (s: string | number) => string,
+) => {
 	// if this is null it won't matter since it will update soon anyway
-	let newValue = asPecent ? (currentVolume.value || 0) + value : value;
+	let newValue = asPecent ? (variable.value || 0) + value : value;
 
 	if (newValue < 0) {
 		newValue = 0;
@@ -40,8 +47,8 @@ const modifyVolume = (value: number, asPecent: boolean) => {
 
 	const processedValue = asPecent ? `${newValue}%` : newValue;
 
-	Utils.execAsync(`pactl set-sink-volume @DEFAULT_SINK@ ${processedValue}`);
-	currentVolume.value = newValue;
+	Utils.execAsync(command(processedValue));
+	variable.value = newValue;
 };
 
 const CustomSlider = (
@@ -79,7 +86,7 @@ const CustomSlider = (
 					hpack: "end",
 					className: "label",
 				}).hook(trackerVar as unknown as Connectable, (self) => {
-					self.label = `${trackerVar.value}%` || "loading...";
+					self.label = trackerVar.value ? `${trackerVar.value}%` : "loading...";
 				}),
 			}),
 			Slider({
@@ -95,14 +102,21 @@ const CustomSlider = (
 	});
 };
 
+const percentToDouble = (s: string) =>
+	Number.parseFloat(s.trim().replace("%", ""));
+
 export const SetupControl = () => {
 	selectedElementIndex.value = 0;
 
 	// if this is too slow may need to be async
 	Utils.execAsync("pactl get-sink-volume @DEFAULT_SINK@").then((v) => {
-		currentVolume.value = Number.parseFloat(
-			v.split("/")[1].trim().replace("%", ""),
-		);
+		currentVolume.value = percentToDouble(v.split("/")[1]);
+	});
+
+	Utils.execAsync("brightnessctl info -m").then((v) => {
+		// there might be multiple but just use the first - i only ever look at
+		// one screen anyway
+		currentBrightness.value = percentToDouble(v.split(",")[3]);
 	});
 
 	return Widget.Window({
@@ -116,11 +130,7 @@ export const SetupControl = () => {
 			vertical: true,
 			children: [
 				CustomSlider("volume", selectedElementIndex, currentVolume),
-				CustomSlider(
-					"brightness",
-					selectedElementIndex,
-					Variable<number | null>(null),
-				),
+				CustomSlider("brightness", selectedElementIndex, currentBrightness),
 			],
 		}),
 	});
@@ -128,22 +138,24 @@ export const SetupControl = () => {
 
 const windowShown = addToggleableWindow("Control", SetupControl, false);
 
-leftEmitter.register(() => {
+const volumeCmd = (s: string | number) =>
+	`pactl set-sink-volume @DEFAULT_SINK@ ${s}`;
+const brightnessCmd = (s: string | number) => `brightnessctl set ${s}`;
+
+const onUpdate = (delta: number) => {
 	if (!windowShown.value) {
 		return;
 	}
 
-	if (elements[selectedElementIndex.value] === "volume") {
-		modifyVolume(-5, true);
+	switch (elements[selectedElementIndex.value]) {
+		case "volume":
+			modify(delta, true, currentVolume, volumeCmd);
+			break;
+		case "brightness":
+			modify(delta, true, currentBrightness, brightnessCmd);
+			break;
 	}
-});
+};
 
-rightEmitter.register(() => {
-	if (!windowShown.value) {
-		return;
-	}
-
-	if (elements[selectedElementIndex.value] === "volume") {
-		modifyVolume(5, true);
-	}
-});
+leftEmitter.register(() => onUpdate(-5));
+rightEmitter.register(() => onUpdate(5));

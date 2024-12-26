@@ -49,10 +49,12 @@ in {
         config.programs.fzf.package
         config.programs.ags.package
         config.wayland.windowManager.hyprland.package
+
         pkgs.upower
         pkgs.bashInteractiveFHS
         pkgs.pulseaudio
         pkgs.toybox
+        pkgs.brightnessctl
       ];
 
       buildInputs = [pkgs.makeWrapper];

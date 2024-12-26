@@ -167,6 +167,6 @@
 	"clangd.arguments": ["--experimental-modules-support"],
 	"workbench.sideBar.location": "right",
 	"workbench.colorCustomizations": {
-		"editor.selectionBackground": "#fgjbf1c74b"
+		"editor.selectionBackground": "#fbf1c74b"
 	}
 }
