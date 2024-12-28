@@ -6,7 +6,7 @@ interface Command {
 	hotkey: string;
 }
 
-const PromptBar = (name: string,commands: Command[]) =>
+const PromptBar = (name: string, commands: Command[]) =>
 	Widget.Window({
 		name,
 		class_name: "window",

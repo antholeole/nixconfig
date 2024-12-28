@@ -3,7 +3,7 @@
 \[\] brightness
 \[\] wl-sunset
 \[\] show mode in bar
-[] music with backblaze and agenix
+\[\] music with backblaze and agenix
 
 # Do
 
