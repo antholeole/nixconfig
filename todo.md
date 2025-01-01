@@ -1,6 +1,5 @@
 # Probably never happeining
 
-\[\] brightness
 \[\] wl-sunset
 \[\] show mode in bar
 \[\] music with backblaze and agenix

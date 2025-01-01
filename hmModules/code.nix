@@ -69,6 +69,7 @@ in rec {
       mutableExtensionsDir = true;
 
       extensions = let
+        versioned-marketplace = (inputs.nix-vscode-extensions.extensions.${pkgs.system}.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace;
         marketplace =
           inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
         open-vsx =
@@ -82,7 +83,6 @@ in rec {
         open-vsx.gregoire.dance
         marketplace.tobias-z.vscode-harpoon
         open-vsx.eamodio.gitlens
-        open-vsx.mhutchie.git-graph
         open-vsx.usernamehw.errorlens
         marketplace.dyno-nguyen.vscode-dynofileutils
 
@@ -119,7 +119,7 @@ in rec {
         # python
         open-vsx.charliermarsh.ruff
         marketplace.ms-python.vscode-pylance
-        marketplace.ms-python.python
+        versioned-marketplace.ms-python.python
       ];
       keybindings = let
         directionKeymap = dir: commandFn:

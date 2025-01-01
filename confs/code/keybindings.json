@@ -684,10 +684,6 @@
 						"text": "diff",
 						"command": "gitlens.diffWithRevision"
 					},
-					"g": {
-						"text": "graph",
-						"command": "git-graph.view"
-					},
 					"p": {
 						"text": "previous diff",
 						"command": "gitlens.diffWithPrevious"

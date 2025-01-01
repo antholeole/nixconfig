@@ -8,6 +8,8 @@
   ...
 }: let
   hyprland = inputs.hyprland.packages."${pkgs.system}".default;
+
+  mouseSize = 24;
 in {
   wayland.windowManager.hyprland = let
     mod = "ALT";
@@ -41,7 +43,7 @@ in {
     extraConfig = let
     in ''
       env = HYPRCURSOR_THEME,Vanilla-DMZ
-      env = HYPRCURSOR_SIZE,36
+      env = HYPRCURSOR_SIZE,${builtins.toString mouseSize}
 
       exec-once=${pkgs.wpaperd}/bin/wpaperd >> /tmp/wpaperd.txt &
       exec=sleep 3; ${agsExe} -q ; ${agsExe} >> /tmp/hyprags.txt 2>&1
@@ -193,9 +195,7 @@ in {
     '';
   };
 
-  home = let
-    size = 36;
-  in {
+  home = {
     pointerCursor = {
       gtk.enable = true;
       package = pkgs.vanilla-dmz;
@@ -204,8 +204,8 @@ in {
 
     sessionVariables = {
       HYPRCURSOR_THEME = config.home.pointerCursor.name;
-      HYPRCURSOR_SIZE = size;
-      XCURSOR_SIZE = size;
+      HYPRCURSOR_SIZE = mouseSize;
+      XCURSOR_SIZE = mouseSize;
     };
 
     file.".config/systemd/user/graphical-session.target.wants/xdg-desktop-portal-hyprland.service" = {
