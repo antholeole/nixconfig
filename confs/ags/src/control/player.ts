@@ -12,7 +12,7 @@ const filterPlayer = (players: MprisPlayer[]) => {
 	return player[0];
 };
 
-const buildPlayer = (selected: VarT<boolean>) => {
+const buildPlayer = (selected: VarT<boolean>, player: MprisPlayer) => {
 	const buildLabelClass = selected
 		.bind()
 		.as((selected) => (selected ? "text" : "text faded"));
@@ -24,16 +24,10 @@ const buildPlayer = (selected: VarT<boolean>) => {
 		children: [
 			Widget.Box({ className: "divider" }),
 			Widget.Label({
-				className: "song",
-				label: mpris.bind("players").as((p) => {
-					const player = filterPlayer(p);
-
-					if (player === null) {
-						return "No track";
-					}
-
-					return player.track_title;
-				}),
+				truncate: 'end',
+				maxWidthChars: 24,
+				className: selected.bind().as((s) => (s ? "bold" : "faded")),
+				label: player.bind("track_title"),
 			}),
 			Widget.CenterBox({
 				startWidget: Widget.Label({
@@ -42,7 +36,13 @@ const buildPlayer = (selected: VarT<boolean>) => {
 				}),
 				centerWidget: Widget.Label({
 					className: buildLabelClass,
-					label: "",
+					label: player.bind("play_back_status").as((p) => {
+						if (p === "Paused") {
+							return "󰏤";
+						}
+
+						return "󰐊";
+					}),
 				}),
 				endWidget: Widget.Label({
 					className: buildLabelClass,
@@ -79,7 +79,17 @@ const doIfMpdPlayer = (cb: (p: MprisPlayer) => void) => {
 
 export const player: ControlElement = {
 	name: "player",
-	build: buildPlayer,
+	build: (selected) =>
+		Widget.Box({
+			children: mpris.bind("players").as((players) => {
+				const p = filterPlayer(players);
+				if (p === null) {
+					return [];
+				}
+
+				return [buildPlayer(selected, p)];
+			}),
+		}),
 	onSetup: setupPlayer,
 
 	onSpace: () =>
