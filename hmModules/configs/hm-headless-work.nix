@@ -4,7 +4,7 @@
     name = "oleina";
     homeDirPath = "/usr/local/google/home/";
 
-    termColor = config.colorScheme.palette.base0D;
+    termColor = config.colorScheme.palette.base0B;
 
     headless = true;
     work = true;
