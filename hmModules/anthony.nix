@@ -97,8 +97,8 @@
           obs-cli
 
           brightnessctl
-          pipes-rs # for funzies
           wl-clipboard # clipboard
+          mpc-cli
         ]
         else []
       );

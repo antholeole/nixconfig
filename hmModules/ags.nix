@@ -55,6 +55,7 @@ in {
         pkgs.pulseaudio
         pkgs.toybox
         pkgs.brightnessctl
+        pkgs.mpc-cli
       ];
 
       buildInputs = [pkgs.makeWrapper];

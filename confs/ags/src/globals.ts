@@ -39,3 +39,4 @@ export const leftEmitter = createEmitter("left");
 export const rightEmitter = createEmitter("right");
 export const upEmitter = createEmitter("up");
 export const downEmitter = createEmitter("down");
+export const spaceEmitter = createEmitter("space");

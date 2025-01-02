@@ -13,7 +13,6 @@ const external = (moduleName) => moduleName.includes("Aylur/ags");
 
 export default defineConfig((mode) => {
 	const env = loadEnv(mode, process.cwd(), "");
-	console.log(env.COLOR_SCHEME_PATH);
 	const colors = readFileSync(env.COLOR_SCHEME_PATH).toString();
 
 	return {

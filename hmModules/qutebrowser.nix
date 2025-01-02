@@ -8,7 +8,7 @@
 
     quickmarks = {
       nixpkgs = "https://search.nixos.org";
-      home-manager = "https://nix-community.github.io";
+      home-manager = "https://nix-community.github.io/home-manager/options.xhtml";
       qute = "https://raw.githubusercontent.com/qutebrowser/qutebrowser/main/doc/img/cheatsheet-big.png";
       godbolt = "godbolt.org";
       kubespec = "kubespec.dev";

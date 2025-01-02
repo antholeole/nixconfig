@@ -30,6 +30,7 @@ in {
     };
 
     agsExe = "${agsWrapped}/bin/ags";
+    mpcExe = "${pkgs.mpc-cli}/bin/mpc";
     resizeUnit = "30";
 
     directionKeymap = dir: commandFn:
@@ -120,6 +121,7 @@ in {
         (key: ''bind=,${key},exec,${agsExe} --run-js "left()"'')}
       ${directionKeymap "right"
         (key: ''bind=,${key},exec,${agsExe} --run-js "right()"'')}
+      bind=,SPACE,exec,${agsExe} --run-js "space()"
 
       bind=,escape,exec,${agsExe} --run-js "showControl.value = false;"
       bind=,escape,submap,reset

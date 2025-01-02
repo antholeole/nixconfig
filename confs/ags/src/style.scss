@@ -272,3 +272,20 @@ $colors: (
         @include invert;
     }
 }
+
+.mpd {
+    .divider {
+        background-color: $base03;
+        min-width: 190px;
+        min-height: 1px;
+        margin: 5px;
+    }
+
+    .text {
+        font-size: 30px;
+
+        &.faded {
+            color: rgba($text, .4);
+        }
+    }
+}

@@ -5,7 +5,8 @@
     ...
   }: {
     devShells.default = pkgs.mkShell {
-      packages = [
+      packages = with pkgs; [
+        nodejs_23
       ];
     };
   };
