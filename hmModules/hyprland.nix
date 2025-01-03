@@ -193,6 +193,8 @@ in {
         '')
         config.conf.wmStartupCommands)}
 
+      bindi=CAPS,Caps_Lock,exec,${agsExe} --run-js "capsDown.value = !capsDown.value"
+
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };

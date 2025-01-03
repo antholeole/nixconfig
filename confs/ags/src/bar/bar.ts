@@ -3,7 +3,7 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { BatteryBar } from "./battery.js";
 import { Clock } from "./clock.js";
 import { Workspaces } from "./workspaces.js";
-import { NetworkIndicator } from "./network.js";
+import { CapsIndicator, NetworkIndicator } from "./chips.js";
 
 export const Bar = (monitor: number) =>
 	Widget.Window({
@@ -16,7 +16,7 @@ export const Bar = (monitor: number) =>
 			startWidget: Workspaces(monitor),
 			endWidget: Widget.Box({
 				hpack: "end",
-				children: [NetworkIndicator(), BatteryBar(), Clock()],
+				children: [CapsIndicator(), NetworkIndicator(), BatteryBar(), Clock()],
 			}),
 		}),
 	});

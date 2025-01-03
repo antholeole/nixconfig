@@ -168,24 +168,25 @@ $colors: (
 }
 
 .chip {
-    border-radius: $border-radius;
+    border-radius: 18;
+    $padding: 9px;
+
+    // the icon is larger than one char
+    padding-right: 5px + $padding;
+    padding-left: $padding;
 
     &.error {
         background-color: $base08;
+    }
+
+    &.warning {
+        background-color: $base0A;
     }
 }
 
 .active-workspace-text {
     padding-left: 9px;
     color: $surface1;
-}
-
-.network-indicator {
-    $padding: 9px;
-
-    // the icon is larger than one char
-    padding-right: 5px + $padding;
-    padding-left: $padding;
 }
 
 .menu {

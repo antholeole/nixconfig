@@ -7,9 +7,9 @@ type GtkWindow = Parameters<typeof App.addWindow>[0];
 
 export const altDown = Variable(false);
 globalThis.altDown = altDown;
-altDown.connect("changed", (v) => {
-	console.log(`alt-down: ${v.value}`);
-});
+
+export const capsDown = Variable(false);
+globalThis.capsDown = capsDown;
 
 export const addToggleableWindow = (
 	windowName: string,
