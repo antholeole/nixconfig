@@ -69,57 +69,58 @@ in rec {
       mutableExtensionsDir = true;
 
       extensions = let
-        versioned-marketplace = (inputs.nix-vscode-extensions.extensions.${pkgs.system}.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace;
-        marketplace =
-          inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
-        open-vsx =
-          inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
+        extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
+        vsc-version = config.programs.vscode.package.version;
       in [
         #theme
-        marketplace.jonathanharty.gruvbox-material-icon-theme
-        open-vsx.jdinhlife.gruvbox
+        extensions.vscode-marketplace.jonathanharty.gruvbox-material-icon-theme
+        extensions.open-vsx.jdinhlife.gruvbox
 
         # good stuff
-        open-vsx.gregoire.dance
-        marketplace.tobias-z.vscode-harpoon
-        open-vsx.eamodio.gitlens
-        open-vsx.usernamehw.errorlens
-        marketplace.dyno-nguyen.vscode-dynofileutils
+        extensions.open-vsx.gregoire.dance
+        extensions.vscode-marketplace.tobias-z.vscode-harpoon
+        extensions.open-vsx.eamodio.gitlens
+        extensions.open-vsx.usernamehw.errorlens
+        extensions.vscode-marketplace.dyno-nguyen.vscode-dynofileutils
 
         # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
-        marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
-        marketplace.tyriar.lorem-ipsum
-        open-vsx.mechatroner.rainbow-csv
-        open-vsx.ban.spellright
+        extensions.vscode-marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
+        extensions.vscode-marketplace.tyriar.lorem-ipsum
+        extensions.open-vsx.mechatroner.rainbow-csv
+        extensions.open-vsx.ban.spellright
 
         # languages
         # cpp
-        open-vsx.llvm-vs-code-extensions.vscode-clangd
+        extensions.open-vsx.llvm-vs-code-extensions.vscode-clangd
 
         # go
-        open-vsx.golang.go
+        extensions.open-vsx.golang.go
 
         # md
-        open-vsx.yzhang.markdown-all-in-one
+        extensions.open-vsx.yzhang.markdown-all-in-one
 
         # scala
-        open-vsx.scalameta.metals
+        extensions.open-vsx.scalameta.metals
 
         # nix
-        open-vsx.kamadorueda.alejandra
-        open-vsx.bbenoist.nix
-        open-vsx.mkhl.direnv
+        extensions.open-vsx.kamadorueda.alejandra
+        extensions.open-vsx.bbenoist.nix
+        extensions.open-vsx.mkhl.direnv
 
         # rust
-        open-vsx.rust-lang.rust-analyzer
+        extensions.open-vsx.rust-lang.rust-analyzer
 
         # ts / js
-        open-vsx.biomejs.biome # this sometimes conflicts with non-biome projects but its a nice default editor
+        extensions.open-vsx.biomejs.biome # this sometimes conflicts with non-biome projects but its a nice default editor
 
         # python
-        open-vsx.charliermarsh.ruff
-        marketplace.ms-python.vscode-pylance
-        versioned-marketplace.ms-python.python
+        extensions.open-vsx.charliermarsh.ruff
+        (extensions.forVSCodeVersion vsc-version).vscode-marketplace.ms-python.python
+        (extensions.vscode-marketplace.ms-python.vscode-pylance.overrideAttrs (
+          old: {
+            forVSCodeVersion = vsc-version;
+          }
+        ))
       ];
       keybindings = let
         directionKeymap = dir: commandFn:
