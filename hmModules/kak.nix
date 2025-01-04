@@ -6,11 +6,19 @@
   pkgs-oleina,
   ...
 }: let
-  kakWithHop = pkgs-oleina.kakoune.override {
-    plugins = with pkgs.kakounePlugins; [
-      fzf-kak
-      quickscope-kak
-      hop-kak
+  kakWithHop = pkgs.symlinkJoin {
+    name = "kakoune";
+    paths = with pkgs; [
+      git
+      perl
+      (pkgs-oleina.kakoune.override
+        {
+          plugins = with pkgs.kakounePlugins; [
+            fzf-kak
+            quickscope-kak
+            hop-kak
+          ];
+        })
     ];
   };
 in {
@@ -39,6 +47,9 @@ in {
           }
 
           colorscheme gruvbox-dark
+          hook global WinCreate .* %{
+            add-highlighter buffer/ column 72 default,rgb:${config.colorScheme.palette.base01}
+          }
 
           # add copy to system clipboard
           hook global RegisterModified '"' %{ nop %sh{

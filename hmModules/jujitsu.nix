@@ -72,6 +72,8 @@ in {
         d = ["describe"];
         dm = ["describe" "-m"];
         g = ["git"];
+
+        shas = ["log" "-r=root()..@" "-T" "coalesce(description.first_line(), \"(no desc)\") ++ \": \" ++ commit_id"];
       };
     };
   };

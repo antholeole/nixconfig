@@ -1,14 +1,12 @@
 # Probably never happeining
 
 \[\] wl-sunset
-\[\] show mode in bar
 \[\] music with backblaze and agenix
 
 # Do
 
 \[\] clippy for vsc
 \[\] nice problems view
-\[\] have a keybind to move terminal to a pane
 \[\] obs cli for recording
 \[\] fix leap.kak
 
