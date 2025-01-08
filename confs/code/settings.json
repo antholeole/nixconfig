@@ -36,7 +36,9 @@
 	"explorer.confirmDragAndDrop": false,
 	"julia.symbolCacheDownload": true,
 	"terminal.integrated.allowChords": false,
-	"terminal.integrated.commandsToSkipShell": ["language-julia.interrupt"],
+	"terminal.integrated.commandsToSkipShell": [
+		"language-julia.interrupt"
+	],
 	"terminal.integrated.fontFamily": "FiraCode Nerd Font",
 	"workbench.colorTheme": "Gruvbox Dark Medium",
 	"workbench.iconTheme": "gruvbox-material-icon-theme",
@@ -164,9 +166,14 @@
 		"*.yaml.tpl": "yaml",
 		"*.cppm": "cpp"
 	},
-	"clangd.arguments": ["--experimental-modules-support"],
+	"clangd.arguments": [
+		"--experimental-modules-support"
+	],
 	"workbench.sideBar.location": "right",
 	"workbench.colorCustomizations": {
 		"editor.selectionBackground": "#fbf1c74b"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	}
 }

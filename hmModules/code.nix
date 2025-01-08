@@ -66,7 +66,7 @@ in rec {
         waylandWrapped;
 
       enableUpdateCheck = false;
-      mutableExtensionsDir = true;
+      mutableExtensionsDir = false;
 
       extensions = let
         extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
@@ -79,7 +79,7 @@ in rec {
         # good stuff
         extensions.open-vsx.gregoire.dance
         extensions.vscode-marketplace.tobias-z.vscode-harpoon
-        extensions.open-vsx.eamodio.gitlens
+        vscode-extensions.eamodio.gitlens
         extensions.open-vsx.usernamehw.errorlens
         extensions.vscode-marketplace.dyno-nguyen.vscode-dynofileutils
 
@@ -99,6 +99,9 @@ in rec {
         # md
         extensions.open-vsx.yzhang.markdown-all-in-one
 
+        # toml
+        extensions.open-vsxtamasfe.even-better-toml
+
         # scala
         extensions.open-vsx.scalameta.metals
 
@@ -108,7 +111,7 @@ in rec {
         extensions.open-vsx.mkhl.direnv
 
         # rust
-        extensions.open-vsx.rust-lang.rust-analyzer
+        pkgs.vscode-extensions.rust-lang.rust-analyzer
 
         # ts / js
         extensions.open-vsx.biomejs.biome # this sometimes conflicts with non-biome projects but its a nice default editor

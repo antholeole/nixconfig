@@ -84,6 +84,7 @@
         biome
         babelfish
         alejandra
+        rust-bin.stable.latest.default
       ]
       ++ (
         if !config.conf.headless
