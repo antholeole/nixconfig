@@ -73,7 +73,7 @@ in {
         dm = ["describe" "-m"];
         g = ["git"];
 
-        shas = ["log" "-r=root()..@" "-T" "coalesce(description.first_line(), \"(no desc)\") ++ \": \" ++ commit_id"];
+        shas = ["log" "-r=root()..@" "-T" "author.timestamp().local().format(\'%Y-%m-%d\') ++ \" \" ++ truncate_end(72, pad_end(72, coalesce(description.first_line(), \"(no desc)\")))  ++ commit_id ++ \"\n\"" "--no-graph"];
       };
     };
   };

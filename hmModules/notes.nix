@@ -48,7 +48,7 @@
 
             buildInputs = [pkgs.makeWrapper];
             postBuild = ''
-              wrapProgram $out/bin/focus_notes --set PATH $out/bin
+              wrapProgram $out/bin/focus_notes --set PATH $out/bin --set EDITOR kak
             '';
           };
 
