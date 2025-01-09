@@ -34,6 +34,9 @@
     # pinned to an old version so pin this to an old one too.
     nix-riced-vscode.url = "github:antholeole/nix-rice-vscode/f5d6c1c638dd5b6b056678d571827073f3f15f02";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    # some extensions are version-imcompatible with the old vscode version i'm running.
+    # this freezes the extensions in time.
+    nix-vscode-extensions-old.url = "github:nix-community/nix-vscode-extensions/3e65971e6f46e06312a53378c8c413eed9d1a2d1";
 
     zjstatus.url = "github:dj95/zjstatus";
     ags.url = "github:Aylur/ags/v1";

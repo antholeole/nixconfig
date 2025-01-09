@@ -78,10 +78,11 @@ in rec {
         waylandWrapped;
 
       enableUpdateCheck = false;
-      mutableExtensionsDir = false;
+      mutableExtensionsDir = true;
 
       extensions = let
         extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
+        extensions-old = inputs.nix-vscode-extensions.extensions.${pkgs.system};
         vsc-version = config.programs.vscode.package.version;
       in [
         #theme
@@ -96,7 +97,7 @@ in rec {
         pkgs.vscode-extensions.eamodio.gitlens
 
         # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
-        extensions.vscode-marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
+        extensions-old.vscode-marketplace.ms-vscode-remote.remote-ssh
         extensions.vscode-marketplace.tyriar.lorem-ipsum
         extensions.open-vsx.mechatroner.rainbow-csv
         extensions.open-vsx.ban.spellright
@@ -130,12 +131,8 @@ in rec {
 
         # python
         extensions.open-vsx.charliermarsh.ruff
-        (extensions.forVSCodeVersion vsc-version).vscode-marketplace.ms-python.python
-        (extensions.vscode-marketplace.ms-python.vscode-pylance.overrideAttrs (
-          old: {
-            forVSCodeVersion = vsc-version;
-          }
-        ))
+        extensions.vscode-marketplace.ms-python.python
+        extensions-old.vscode-marketplace.ms-python.vscode-pylance
       ];
       keybindings = let
         directionKeymap = dir: commandFn:
