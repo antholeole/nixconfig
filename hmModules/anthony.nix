@@ -74,6 +74,7 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
+        jq
 
         # LANGUAGE SPECIFIC
         # These are here because vscode unfortunately does not have the
