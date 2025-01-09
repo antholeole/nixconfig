@@ -79,9 +79,9 @@ in rec {
         # good stuff
         extensions.open-vsx.gregoire.dance
         extensions.vscode-marketplace.tobias-z.vscode-harpoon
-        vscode-extensions.eamodio.gitlens
         extensions.open-vsx.usernamehw.errorlens
         extensions.vscode-marketplace.dyno-nguyen.vscode-dynofileutils
+        pkgs.vscode-extensions.eamodio.gitlens
 
         # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
         extensions.vscode-marketplace.ms-vscode-remote.remote-ssh # This is incompatible with codium :(
@@ -100,7 +100,7 @@ in rec {
         extensions.open-vsx.yzhang.markdown-all-in-one
 
         # toml
-        extensions.open-vsxtamasfe.even-better-toml
+        extensions.open-vsx.tamasfe.even-better-toml
 
         # scala
         extensions.open-vsx.scalameta.metals
