@@ -49,6 +49,7 @@ in {
           colorscheme gruvbox-dark
           hook global WinCreate .* %{
             add-highlighter buffer/ column 72 default,rgb:${config.colorScheme.palette.base01}
+            add-highlighter global/ number-lines  -relative
           }
 
           # add copy to system clipboard
