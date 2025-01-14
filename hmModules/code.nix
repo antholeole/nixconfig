@@ -7,12 +7,6 @@
   lib,
   ...
 }: let
-  rust = pkgs.rust-bin.stable.latest.default.override {
-    extensions = [
-      "rust-src"
-      "rust-analyzer"
-    ];
-  };
   cfg = config.programs.vscode;
 
   userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
@@ -29,12 +23,6 @@
       "alejandra.program" = "${alejandra}/bin/alejandra";
       "metals.sbtScript" = "${sbt}/bin/sbt";
       "metals.javaHome" = "${jdk8}/lib/openjdk";
-
-      "rust-analyzer.server.path" = "${rust}/bin/rust-analyzer";
-      "rust-analyzer.cargo.extraEnv" = {
-        "CARGO" = "${rust}/bin/cargo";
-        "RUSTC" = "${rust}/bin/rustc";
-      };
     };
 
     tasks = {
