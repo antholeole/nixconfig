@@ -66,7 +66,7 @@ in rec {
         waylandWrapped;
 
       enableUpdateCheck = false;
-      mutableExtensionsDir = true;
+      mutableExtensionsDir = false;
 
       extensions = let
         extensions = inputs.nix-vscode-extensions.extensions.${pkgs.system};
@@ -82,10 +82,10 @@ in rec {
         extensions.vscode-marketplace.tobias-z.vscode-harpoon
         extensions.open-vsx.usernamehw.errorlens
         extensions.vscode-marketplace.dyno-nguyen.vscode-dynofileutils
+        extensions.vscode-marketplace.stkb.rewrap
         pkgs.vscode-extensions.eamodio.gitlens
 
         # open-vsx.jeanp413.open-remote-ssh TODO: determine if this is safe
-        extensions-old.vscode-marketplace.ms-vscode-remote.remote-ssh
         extensions.vscode-marketplace.tyriar.lorem-ipsum
         extensions.open-vsx.mechatroner.rainbow-csv
         extensions.open-vsx.ban.spellright
@@ -119,8 +119,31 @@ in rec {
 
         # python
         extensions.open-vsx.charliermarsh.ruff
-        extensions.vscode-marketplace.ms-python.python
-        extensions-old.vscode-marketplace.ms-python.vscode-pylance
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            name = "vscode-pylance";
+            publisher = "ms-python";
+            version = "2024.5.102";
+            sha256 = "sha256-sBtyRMkqnL7usOFrcBihwBJgzeJq52Ci189twUEGYzY=";
+          };
+        })
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            name = "python";
+            publisher = "ms-python";
+            version = "2024.12.0";
+            sha256 = "sha256-Vc66rpu2Divgr0W9cBhlJ90+iH9gQYBF2SNNNuEFyks=";
+          };
+        })
+
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            name = "remote-ssh";
+            publisher = "ms-vscode-remote";
+            version = "0.112.0";
+            sha256 = "sha256-/ukMLK54Di+pC8DsOtwxodjUYV5c/gI9FfljCifnAa0=";
+          };
+        })
       ];
       keybindings = let
         directionKeymap = dir: commandFn:

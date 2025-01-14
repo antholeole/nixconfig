@@ -175,5 +175,7 @@
 	},
 	"[typescriptreact]": {
 		"editor.defaultFormatter": "biomejs.biome"
-	}
+	},
+	"extensions.autoCheckUpdates": false,
+  	"extensions.autoUpdate": false
 }
