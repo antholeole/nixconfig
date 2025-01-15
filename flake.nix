@@ -112,7 +112,7 @@
         ./parts/devshell.nix
         ./parts/treefmt.nix
         ./parts/hm.nix
-        # ./parts/nixos.nix
+        ./parts/builds.nix
       ];
     };
 }

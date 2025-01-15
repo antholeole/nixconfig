@@ -8,12 +8,14 @@
     pkgs,
     pkgs-unstable,
     pkgs-oleina,
+    config,
     ...
   }: let
     # some special args that some hm modules need
     hmSpecialArgs = {
       inherit inputs pkgs-unstable pkgs-oleina;
 
+      flake-config = config;
       mkNixGLPkg = (import "${inputs.self}/mixins/mkNixGLPkg.nix") pkgs;
       mkWaylandElectronPkg = (import "${inputs.self}/mixins/mkWaylandElectronPkg.nix") pkgs;
       mkOldNixPkg = import "${inputs.self}/mixins/mkOldNixPkg.nix";

@@ -1,0 +1,26 @@
+{
+	"name": "vsce",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.74.0"
+	},
+	"activationEvents": [],
+	"main": "./extension.js",
+	"extensionKind": ["ui", "workspace"],
+	"contributes": {
+		"commands": [
+			{
+				"command": "wq",
+				"title": "wq"
+			},
+			{
+				"command": "w",
+				"title": "w"
+			}
+		]
+	},
+	"scripts": {},
+	"devDependencies": {
+		"@types/vscode": "^1.73.0"
+	}
+}

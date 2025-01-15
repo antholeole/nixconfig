@@ -5,6 +5,7 @@
   mkWaylandElectronPkg,
   inputs,
   lib,
+  flake-config,
   ...
 }: let
   cfg = config.programs.vscode;
@@ -89,6 +90,9 @@ in rec {
         extensions.vscode-marketplace.tyriar.lorem-ipsum
         extensions.open-vsx.mechatroner.rainbow-csv
         extensions.open-vsx.ban.spellright
+
+        # custom vscode extension
+        flake-config.packages.vsce
 
         # languages
         # cpp
