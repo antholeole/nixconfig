@@ -72,6 +72,23 @@ in {
         d = ["describe"];
         dm = ["describe" "-m"];
         g = ["git"];
+        shas = ["log" "-r=root()..@" "-T" "author.timestamp().local().format(\'%Y-%m-%d\') ++ \" \" ++ truncate_end(72, pad_end(72, coalesce(description.first_line(), \"(no desc)\")))  ++ commit_id ++ \"\n\"" "--no-graph"];
+        retrunk = ["rebase" "-d" "trunk()"];j
+      };
+
+      revset-aliases = {
+        # many of these copied from https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6.
+        "trunk()" = "latest((present(main) | present(master)) & remote_bookmarks())";
+        "stack()" = "ancestors(reachable(@, mutable()), 2)";
+        "stack(x)" = "ancestors(reachable(x, mutable()), 2)";
+        "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+      };
+
+      merge-tools.mergiraf = {
+        program = "${pkgs.mergiraf}/bin/mergiraf";
+        merge-args = ["merge" "$base" "$left" "$right" "-o" "$output" "--fast"];
+        merge-conflict-exit-codes = [1];
+        conflict-marker-style = "git";
       };
     };
   };
