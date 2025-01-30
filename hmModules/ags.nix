@@ -33,7 +33,6 @@ in {
             "chrome" =
               broPleaseItsWaylandTrustMe
               "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
-            "qute" = "${config.programs.qutebrowser.package}/bin/qutebrowser";
           };
         in
           builtins.toJSON entries;

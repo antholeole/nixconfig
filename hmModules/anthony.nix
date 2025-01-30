@@ -82,7 +82,6 @@
         bazelisk
         gperftools
         biome
-        babelfish
         alejandra
       ]
       ++ (
