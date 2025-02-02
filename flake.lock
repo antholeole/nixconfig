@@ -718,17 +718,16 @@
     },
     "oleina-nixpkgs": {
       "locked": {
-        "lastModified": 1722043394,
-        "narHash": "sha256-gP5mTvzoY0YlG2FbcjuT13WXHk1PK8jJa2BEeFp5RM4=",
+        "lastModified": 1721409626,
+        "narHash": "sha256-slDFM7ag2ESBB4V2fqKH2fx64i2A2Ws/+oM/SkWBTJY=",
         "owner": "antholeole",
         "repo": "nixpkgs",
-        "rev": "4df9fbc6e978ab2e6c80c75f3a7be89bd8805816",
+        "rev": "485f645914b8727653bcdfb330ae47c69d361035",
         "type": "github"
       },
       "original": {
         "owner": "antholeole",
         "repo": "nixpkgs",
-        "rev": "4df9fbc6e978ab2e6c80c75f3a7be89bd8805816",
         "type": "github"
       }
     },

@@ -7,7 +7,7 @@
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
-    oleina-nixpkgs.url = "github:antholeole/nixpkgs/4DF9FBC6E978AB2E6C80C75F3A7BE89BD8805816";
+    oleina-nixpkgs.url = "github:antholeole/nixpkgs";
 
     # indirect; just used to pin follows packages
     crane.url = "github:ipetkov/crane";

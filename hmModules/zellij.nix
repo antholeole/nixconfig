@@ -46,6 +46,7 @@ in {
       default_shell "${config.programs.fish.package}/bin/fish"
       keybinds {
       	unbind "Ctrl Q"
+        unbind "Ctl O"
         scroll {
           bind "Ctrl u" { HalfPageScrollUp; }
           bind "Ctrl d" { HalfPageScrollDown; }
@@ -70,4 +71,4 @@ in {
         }
       '';
     };
-}
+};}

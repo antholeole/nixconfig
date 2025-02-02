@@ -21,12 +21,14 @@ in {
       ".config/data/launcher.json" = {
         enable = !config.conf.headless;
 
-        text = with pkgs; let
+        text = let
           broPleaseItsWaylandTrustMe = pgm: "DESKTOP_SESSION=hyprland XDG_SESSION_TYPE=wayland WAYLAND_DISPLAY=wayland-1 XDG_BACKEND=wayland ${pgm}";
 
           # TODO: this probably shouldn't be in this file its hard to find
           entries = {
-            "alacritty" = "${config.programs.alacritty.package}/bin/alacritty -e ${pkgs.zellij}/bin/zellij";
+            # do not auto load into zellij; we can use alt + enter for that.
+            # there's no way to get a raw alacritty terminal if we do.
+            "alacritty" = "${config.programs.alacritty.package}/bin/alacritty";
             "chrome" =
               broPleaseItsWaylandTrustMe
               "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";
