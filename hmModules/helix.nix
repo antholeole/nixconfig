@@ -27,6 +27,7 @@
         line-number = "relative";
         rulers = [80];
         jump-label-alphabet = "hjklabcdefgimnopqrstuvwxyz";
+        soft-wrap.enable = true;
 
         # TODO: add some clipboard providers
 
