@@ -139,7 +139,7 @@ in {
       bind=,w,submap,reset
 
       bind=,n,exec,${agsExe} --run-js "showFloaters.value = false;"
-      bind=,n,exec,${config.packages.notes.hyprfocus}/bin/focus_notes scratch "${config.programs.my-kakoune.package}/bin/kak ~/Notes/scratch.md"
+      bind=,n,exec,${config.packages.notes.hyprfocus}/bin/focus_notes scratch "${config.programs.helix.package}/bin/hx ~/Notes/scratch.md"
       bind=,n,submap,reset
 
       bind=,b,exec,${agsExe} --run-js "showFloaters.value = false;"

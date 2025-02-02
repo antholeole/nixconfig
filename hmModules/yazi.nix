@@ -53,7 +53,7 @@
       opener = {
         edit = [
           {
-            run = "${config.programs.kakoune.package}/bin/kak $@";
+            run = "${config.programs.helix.package}/bin/hx $@";
             block = true;
           }
         ];

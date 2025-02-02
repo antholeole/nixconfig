@@ -40,7 +40,7 @@
     printf "$body" > "$t"
     mv "$t" "$1"
 
-    exec ${config.programs.kakoune.package}/bin/kak "$1"
+    exec ${config.programs.helix.package}/bin/hx "$1"
   '';
 in {
   programs.jujutsu = {
@@ -50,7 +50,7 @@ in {
     settings = {
       user = with config.conf; {inherit email name;};
       ui = {
-        editor = "${config.programs.kakoune.package}/bin/kak";
+        editor = "${config.programs.helix.package}/bin/hx";
         color = "always";
         pager = {
           command = ["${pkgs.delta}/bin/delta"];

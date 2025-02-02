@@ -168,7 +168,7 @@
 
     interactiveShellInit = ''
       set fish_greeting
-      set EDITOR ${pkgs.kakoune}/bin/kak
+      set EDITOR ${config.programs.helix.package}/bin/hx
 
       theme_gruvbox dark medium
       fish_config theme choose Gruvbox

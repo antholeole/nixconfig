@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  mkNixGLPkg,
   ...
 }: {
   options.packages.notes = let
@@ -11,24 +10,18 @@
         name = "tw-wrapped";
         paths = [
           taskwarrior-tui
-          config.programs.my-kakoune.package
+          config.programs.helix.package
           config.programs.taskwarrior.package
         ];
         buildInputs = [makeWrapper];
         postBuild = ''
-          wrapProgram $out/bin/taskwarrior-tui --set EDITOR $out/bin/kak --set PATH $out/bin
+          wrapProgram $out/bin/taskwarrior-tui --set EDITOR $out/bin/hx --set PATH $out/bin
         '';
       };
   in {
     hyprfocus = lib.mkOption {
       type = lib.types.package;
       default = let
-        hyprctlBin = "${config.wayland.windowManager.hyprland.package}/bin/hyprctl";
-        jqBin = "${pkgs.jq}/bin/jq";
-        alacrittyBin = "${
-          mkNixGLPkg pkgs.alacritty pkgs.alacritty.meta.mainProgram
-        }/bin/alacritty";
-
         wrapWithPkgs = pkg:
           pkgs.symlinkJoin {
             name = "hyprfocus";

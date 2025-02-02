@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs,config, ...}: {
     programs.helix = {
         package = pkgs.helix;
         enable = true;
@@ -37,9 +37,16 @@
             inline-diagnostics = {
                   cursor-line = "warning";
             };
+
+            clipboard-provider = if (config.conf.headless) then "wayland" else {
+                custom = with config.programs.system-clip; {
+                  yank = copy;     
+                  paste = paste;     
+                };
+            };                
+            };
         };
         
-         };
         languages = {
             nil.formatting.command = "alejandra";
         };

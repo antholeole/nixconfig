@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   lib,
   ...
 }: let
@@ -9,7 +8,6 @@
 
   h = s: "#${s}";
 
-  bgColor = h config.colorScheme.palette.base01;
   fgColor = h config.conf.termColor;
 
   defaultTab = ''
@@ -55,7 +53,7 @@ in {
       }
       mouse_mode false
       pane_frames false
-      scrollback_editor "${config.programs.kakoune.package}/bin/kak"
+      scrollback_editor "${config.programs.helix.package}/bin/hx"
       theme "gruvbox-dark"
       ui {
       	pane_frames {
@@ -72,42 +70,4 @@ in {
         }
       '';
     };
-
-    home.file."${layoutDir}/zedit.kdl" = {
-      enable = true;
-      text = ''
-         	layout {
-           tab {
-           pane {
-               command "${pkgs.kakoune}/bin/kak"
-               args "."
-             }
-
-
-         	floating_panes {
-         		pane {
-               command "${pkgs.zellij}/bin/zellij"
-               args "--layout" "default"
-
-         			width "90%"
-         			height "90%"
-         			x "5%"
-         			y "5%"
-         		}
-         	}
-            }
-        }
-         keybinds clear-defaults=true {
-         	shared {
-         		bind "F11" { ToggleFloatingPanes; }
-             bind "Ctrl q" { Quit; }
-         	}
-         }
-
-         default_shell "fish"
-         default_layout "compact"
-
-      '';
-    };
-  };
 }
