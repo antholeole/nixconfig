@@ -14,30 +14,29 @@
     flake-utils.url = "github:numtide/flake-utils";
     # end indirect
 
-
     rust-overlay = {
-    url = "github:oxalica/rust-overlay";
-    inputs.flake-utils.follows = "flake-utils";
+      url = "github:oxalica/rust-overlay";
+      inputs.flake-utils.follows = "flake-utils";
     };
 
-    treefmt-nix ={
-    url = "github:numtide/treefmt-nix";
-    inputs.nixpkgs.follows = "nixpkgs-unstable";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     apple-silicon = {
-    url = "github:tpwrules/nixos-apple-silicon";
-    inputs.nixpkgs.follows = "nixpkgs-unstable";
-    inputs.rust-overlay.follows = "rust-overlay";
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.rust-overlay.follows = "rust-overlay";
     };
     home-manager.url = "github:nix-community/home-manager/release-24.11";
-    nixgl= {
+    nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
-    inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-utils.follows = "flake-utils";
     };
     hyprland = {
-    url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -45,17 +44,16 @@
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zjstatus ={
-      
-    url = "github:dj95/zjstatus";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.flake-utils.follows = "flake-utils";
-    inputs.rust-overlay.follows = "rust-overlay";
-    inputs.crane.follows = "crane";
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.rust-overlay.follows = "rust-overlay";
+      inputs.crane.follows = "crane";
     };
 
     ags = {
-    url = "github:Aylur/ags/v1";
+      url = "github:Aylur/ags/v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -82,7 +80,7 @@
     # end theme
   };
 
-    nixConfig = {
+  nixConfig = {
     extra-substituters = ["https://helix.cachix.org"];
     extra-trusted-public-keys = ["helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="];
   };

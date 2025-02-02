@@ -5,9 +5,7 @@
   mkNixGLPkg,
   lib,
   ...
-}: let
-  colors = import ../theme.nix;
-in {
+}: {
   programs.alacritty = lib.mkIf (!config.conf.headless) {
     enable = true;
 

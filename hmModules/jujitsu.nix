@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  pkgs-unstable,
   ...
 }: let
   # TODO move this somewhere sensible.
@@ -45,7 +44,7 @@
 in {
   programs.jujutsu = {
     enable = true;
-    package = pkgs-unstable.jujutsu;
+    package = pkgs.jujutsu;
 
     settings = {
       user = with config.conf; {inherit email name;};
