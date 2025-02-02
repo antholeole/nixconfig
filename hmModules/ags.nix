@@ -27,9 +27,6 @@ in {
           # TODO: this probably shouldn't be in this file its hard to find
           entries = {
             "alacritty" = "${config.programs.alacritty.package}/bin/alacritty -e ${pkgs.zellij}/bin/zellij";
-            "code" =
-              broPleaseItsWaylandTrustMe
-              "${config.programs.vscode.package}/bin/code  --enable-features=UseOzonePlatform --ozone-platform=wayland";
             "chrome" =
               broPleaseItsWaylandTrustMe
               "/bin/google-chrome  --enable-features=UseOzonePlatform --ozone-platform=wayland";

@@ -74,17 +74,7 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
-
-        # LANGUAGE SPECIFIC
-        # These are here because vscode unfortunately does not have the
-        # best integration with the world.
-        d2
-        bazelisk
-        gperftools
-        biome
-        alejandra
-      ]
-      ++ (
+] ++ (
         if !config.conf.headless
         then [
           (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
