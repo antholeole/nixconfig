@@ -2,7 +2,6 @@
   description = "Anthony's NixOS configuration";
 
   inputs = {
-    # BEGIN NIXPKGS VARIANTS
     # main nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # bleeding edge
@@ -10,33 +9,61 @@
     # my fork for upstreaming
     oleina-nixpkgs.url = "github:antholeole/nixpkgs/4DF9FBC6E978AB2E6C80C75F3A7BE89BD8805816";
 
-    # nixpkgs for specific packages
-    # need to pin hyprland to an old version
-    nixpkgs-with-vsc.url = "github:nixos/nixpkgs/24.05";
-    # TODO: pin vscode version
-    # END NIXPKGS VARIANTS
-
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    # indirect; just used to pin follows packages
+    crane.url = "github:ipetkov/crane";
     flake-utils.url = "github:numtide/flake-utils";
-    nixgl.url = "github:guibou/nixGL";
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    hyprland.url = "github:hyprwm/Hyprland";
+    # end indirect
+
+
+    rust-overlay = {
+    url = "github:oxalica/rust-overlay";
+    inputs.flake-utils.follows = "flake-utils";
+    };
+
+    treefmt-nix ={
+    url = "github:numtide/treefmt-nix";
+    inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    apple-silicon = {
+    url = "github:tpwrules/nixos-apple-silicon";
+    inputs.nixpkgs.follows = "nixpkgs-unstable";
+    inputs.rust-overlay.follows = "rust-overlay";
+    };
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    nixgl= {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-utils.follows = "flake-utils";
+    };
+    hyprland = {
+    url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zjstatus ={
+      
+    url = "github:dj95/zjstatus";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-utils.follows = "flake-utils";
+    inputs.rust-overlay.follows = "rust-overlay";
+    inputs.crane.follows = "crane";
+    };
 
-    # the lastest commit works for the newer versions of vsc, but we're
-    # pinned to an old version so pin this to an old one too.
-    nix-riced-vscode.url = "github:antholeole/nix-rice-vscode/f5d6c1c638dd5b6b056678d571827073f3f15f02";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    ags = {
+    url = "github:Aylur/ags/v1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    zjstatus.url = "github:dj95/zjstatus";
-    ags.url = "github:Aylur/ags/v1";
+    helix = {
+      url = "github:helix-editor/helix/25.01.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
+    };
 
     # theme
     gruvbox-yazi = {
@@ -52,21 +79,20 @@
       url = "github:andreyorst/base16-gruvbox.kak";
       flake = false;
     };
+    # end theme
   };
 
   outputs = {
     self,
     nixpkgs,
-    flake-utils,
     home-manager,
     apple-silicon,
     nixgl,
     zjstatus,
-    nix-vscode-extensions,
+    helix,
     nix-index-database,
     rust-overlay,
     oleina-nixpkgs,
-    nixpkgs-with-vsc,
     nix-colors,
     gruvbox-alacritty,
     flake-parts,
@@ -92,6 +118,7 @@
             nixgl.overlay
             rust-overlay.overlays.default
             (final: prev: {
+              helix = helix.packages.${prev.system}.default;
               zjstatus = zjstatus.packages.${prev.system}.default;
             })
           ];
