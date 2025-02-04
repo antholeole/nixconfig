@@ -7,7 +7,7 @@
     enable = true;
 
     settings = {
-      editor = pkgs.lib.getExe config.programs.kakoune.package;
+      editor = pkgs.lib.getExe config.programs.helix.package;
       git_protocol = "ssh";
     };
   };

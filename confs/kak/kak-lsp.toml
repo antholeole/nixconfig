@@ -1,9 +1,0 @@
-[language.scala]
-filetypes = ["scala"]
-roots = ["build.sbt"]
-command = "metals-kakoune"
-
-[language.nix]
-filetypes = ["nix"]
-roots = ["flake.nix", "shell.nix"]
-command = "rnix-lsp"

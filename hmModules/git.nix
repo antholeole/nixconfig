@@ -1,14 +1,8 @@
 {
   inputs,
-  pkgs,
   config,
   ...
-}: let
-  mkGitScript = script: {
-    executable = true;
-    source = "${inputs.self}/scripts/git/git-${script}";
-  };
-in {
+}: {
   programs.git = {
     enable = true;
 
@@ -20,15 +14,10 @@ in {
       };
     };
 
-    # TODO: do I need to add a / to the end?
     ignores = import "${inputs.self}/shared/ignores.nix";
 
     aliases = {
-      # just gerrit things
       cl = "!f() { git push origin HEAD:refs/for/\${1:-master}; }; f";
-
-      # list all the conflicts
-      conflicts = "diff --name-only --diff-filter=U";
     };
 
     extraConfig = {
@@ -39,7 +28,7 @@ in {
       merge.conflictStyle = "diff3";
       diff.algorithm = "histogram";
 
-      core.editor = with pkgs; "${lib.getExe kakoune}";
+      core.editor = "${config.programs.helix.package}/bin/hx";
 
       user = with config.conf; {inherit email name;};
     };
