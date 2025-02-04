@@ -14,6 +14,7 @@ in {
   client = let
     mkCommand = cmd: "${remoteClip}/bin/rcclient ${cmd}";
   in {
+    package = "${remoteClip}/bin/rcclient";
     copy = mkCommand "copy";
     paste = mkCommand "paste";
     done = mkCommand "done";

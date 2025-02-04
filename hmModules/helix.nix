@@ -28,6 +28,7 @@
         rulers = [80];
         jump-label-alphabet = "hjklabcdefgimnopqrstuvwxyz";
         soft-wrap.enable = true;
+        true-color = true;
 
         # TODO: add some clipboard providers
 
@@ -47,8 +48,9 @@
           then "wayland"
           else {
             custom = with config.programs.system-clip; {
-              yank = copy;
-              paste = paste;
+              # TODO: not working but compiles
+              yank = {command=package; args=["paste"];};
+              paste= {command=package; args=["paste"];};
             };
           };
       };

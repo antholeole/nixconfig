@@ -20,6 +20,10 @@ in {
           type = lib.types.str;
           description = "the command that should be used to paste.";
         };
+        package = lib.options.mkOption {
+          type = lib.types.str;
+          description = "the raw systemclip command. only enabled on headless.";
+        };
       };
     };
   };
@@ -33,6 +37,7 @@ in {
       if config.conf.headless
       then remoteClipClient.copy
       else "${pkgs.wl-clipboard.outPath}/bin/wl-copy";
+    package = lib.mkIf (config.conf.headless) remoteClipClient.package;
   };
 
   config.systemd.user.services.remoteClip = lib.mkIf (!config.conf.headless) {
