@@ -270,6 +270,12 @@ copy_command "wl-copy"
       text = ''
         layout {
           ${defaultTab}
+
+          swap_floating_layout {
+            floating_panes {
+                pane x="10%" y="10%" width="80%" height="80%"
+            }
+          }
         }
       '';
     };
