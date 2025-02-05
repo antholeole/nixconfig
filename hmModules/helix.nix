@@ -8,6 +8,7 @@
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
+      llvmPackages_19.clang-tools
       alejandra
       nil
       metals
