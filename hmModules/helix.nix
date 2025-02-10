@@ -12,6 +12,10 @@
       nil
       metals
       gopls
+      ruff
+      biome
+      typescript-language-server
+      vscode-langservers-extracted
     ];
 
     settings = {
@@ -49,20 +53,50 @@
           else {
             custom = with config.programs.system-clip; {
               # TODO: not working but compiles
-              yank = {command=package; args=["paste"];};
-              paste= {command=package; args=["paste"];};
+              yank = {
+                command = package;
+                args = ["paste"];
+              };
+              paste = {
+                command = package;
+                args = ["paste"];
+              };
             };
           };
       };
     };
 
     languages = {
-      language = [];
+      language = let
+        mkBiomeFmt = ogLsp: name: {
+          inherit name;
+          language-servers = [
+            {
+              name = ogLsp;
+              except-features = ["format"];
+            }
+            "biome"
+          ];
+        };
+      in [
+        (mkBiomeFmt "typescript-language-server" "javascript")
+        (mkBiomeFmt "typescript-language-server" "typescript")
+        (mkBiomeFmt "typescript-language-server" "jsx")
+        (mkBiomeFmt "typescript-language-server" "tsx")
+
+        (mkBiomeFmt "json-language-server" "json")
+        (mkBiomeFmt "json-language-server" "json5")
+      ];
 
       language-server = {
         nil = {
           command = "nil";
           config.nil.formatting.command = ["alejandra" "-q"];
+        };
+
+        biome = {
+          command = "${pkgs.biome}/bin/biome";
+          args = ["lsp-proxy"];
         };
       };
     };

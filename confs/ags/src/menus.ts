@@ -2,6 +2,8 @@ import Widget from "resource:///com/github/Aylur/ags/widget.js";
 import { addToggleableWindow } from "./globals.js";
 
 interface Command {
+
+	
 	text: string;
 	hotkey: string;
 }
