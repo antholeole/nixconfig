@@ -1,5 +1,0 @@
-{...}: {
-  programs.taskwarrior = {
-    enable = true;
-  };
-}

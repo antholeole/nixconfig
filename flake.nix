@@ -56,11 +56,14 @@
       url = "github:Aylur/ags/v1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     helix = {
       url = "github:helix-editor/helix/25.01.1";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-overlay.follows = "rust-overlay";
+    };
+    dooit = {
+      url = "github:antholeole/dooit/oleina/dogfood";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # theme
@@ -91,8 +94,6 @@
     home-manager,
     apple-silicon,
     nixgl,
-    zjstatus,
-    helix,
     nix-index-database,
     rust-overlay,
     oleina-nixpkgs,
@@ -106,6 +107,7 @@
       perSystem = {
         system,
         pkgs,
+        inputs',
         ...
       }: {
         # TODO these may be able to go into their own module
@@ -120,9 +122,10 @@
           overlays = [
             nixgl.overlay
             rust-overlay.overlays.default
-            (final: prev: {
-              helix = helix.packages.${prev.system}.default;
-              zjstatus = zjstatus.packages.${prev.system}.default;
+            (final: prev: with inputs'; {
+              helix = helix.packages.default;
+              zjstatus = zjstatus.packages.default;
+              dooit = dooit.packages.default;
             })
           ];
           config = {};

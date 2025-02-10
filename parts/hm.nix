@@ -1,13 +1,10 @@
-{
-  specialArgs,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   debug = true;
   perSystem = {
     pkgs,
     pkgs-unstable,
     pkgs-oleina,
+    inputs',
     ...
   }: let
     # some special args that some hm modules need
@@ -19,14 +16,19 @@
       mkOldNixPkg = import "${inputs.self}/mixins/mkOldNixPkg.nix";
     };
     mkHmOnlyConfig = config:
-      inputs.home-manager.lib.homeManagerConfiguration rec {
+      inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
-        modules =
-          (import ../hmModules inputs)
-          ++ [
+        modules = let
+          externalModules = [inputs.dooit.homeManagerModules.default];
+          hmModules = import ../hmModules inputs;
+          configModule = [
             (import "${inputs.self}/hmModules/configs/${config}.nix")
           ];
+        in
+          externalModules
+          ++ hmModules
+          ++ configModule;
 
         extraSpecialArgs = hmSpecialArgs;
       };

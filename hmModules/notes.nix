@@ -7,15 +7,15 @@
   options.packages.notes = let
     taskwarrior = with pkgs;
       symlinkJoin {
-        name = "tw-wrapped";
+        name = "dooit-wrapped";
         paths = [
-          taskwarrior-tui
           config.programs.helix.package
+          pkgs.dooit.package
           config.programs.taskwarrior.package
         ];
         buildInputs = [makeWrapper];
         postBuild = ''
-          wrapProgram $out/bin/taskwarrior-tui --set EDITOR $out/bin/hx --set PATH $out/bin
+          wrapProgram $out/bin/dooit --set EDITOR $out/bin/hx --set PATH $out/bin
         '';
       };
   in {
