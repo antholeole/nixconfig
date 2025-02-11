@@ -34,8 +34,6 @@
         soft-wrap.enable = true;
         true-color = true;
 
-        # TODO: add some clipboard providers
-
         lsp = {
           display-inlay-hints = true;
         };
@@ -73,7 +71,7 @@
           language-servers = [
             {
               name = ogLsp;
-              except-features = ["format"];
+              except-features = ["format" "inlay-hints"];
             }
             "biome"
           ];
