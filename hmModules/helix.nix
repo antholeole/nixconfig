@@ -16,6 +16,7 @@
       biome
       typescript-language-server
       vscode-langservers-extracted
+      rust-bin.stable.latest.default
     ];
 
     settings = {
