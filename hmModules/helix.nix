@@ -35,6 +35,10 @@
         soft-wrap.enable = true;
         true-color = true;
 
+        file-picker = {
+          hidden = false;
+        };
+
         lsp = {
           display-inlay-hints = true;
         };
