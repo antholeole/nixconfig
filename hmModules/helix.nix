@@ -25,6 +25,10 @@
       keys = {
         normal = {
           ret = "goto_word";
+          space = {
+            F = "file_picker";
+            f = "file_picker_in_current_buffer_directory";
+          };
         };
       };
 
