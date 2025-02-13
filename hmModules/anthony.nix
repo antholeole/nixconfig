@@ -60,6 +60,7 @@
         fd # a faster find
         httpie # a simpler curl
         unzip
+        jq
         bottom # top but nicer
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
