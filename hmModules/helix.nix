@@ -60,14 +60,13 @@
           then "wayland"
           else {
             custom = with config.programs.system-clip; {
-              # TODO: not working but compiles
               yank = {
                 command = package;
                 args = ["paste"];
               };
               paste = {
                 command = package;
-                args = ["paste"];
+                args = ["copy"];
               };
             };
           };
