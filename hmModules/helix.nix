@@ -7,18 +7,26 @@
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
-    extraPackages = with pkgs; [
-      llvmPackages_19.clang-tools
-      alejandra
-      nil
-      metals
-      gopls
-      ruff
-      biome
-      typescript-language-server
-      vscode-langservers-extracted
-      rust-bin.stable.latest.default
-    ];
+    extraPackages = with pkgs;
+      [
+        llvmPackages_19.clang-tools
+        alejandra
+        nil
+        metals
+        gopls
+        ruff
+        biome
+        typescript-language-server
+        vscode-langservers-extracted
+        rust-bin.stable.latest.default
+      ]
+      ++ (
+        if (!config.conf.headless)
+        then [
+          wl-clipboard
+        ]
+        else []
+      );
 
     settings = {
       theme = "gruvbox";
