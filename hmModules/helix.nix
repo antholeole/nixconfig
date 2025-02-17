@@ -18,7 +18,10 @@
         biome
         typescript-language-server
         vscode-langservers-extracted
-        rust-bin.stable.latest.default
+
+        (rust-bin.stable.latest.default.override {
+          extensions = ["rustfmt" "rust-analyzer" "rust-src"];
+        })
       ]
       ++ (
         if (!config.conf.headless)
