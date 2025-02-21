@@ -125,7 +125,10 @@
               zjstatus = zjstatus.packages.${prev.system}.default;
             })
           ];
-          config = {};
+          config = {
+            # terraform :(
+            allowUnfree = true;
+          };
         };
       };
 

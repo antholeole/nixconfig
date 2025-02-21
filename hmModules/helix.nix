@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   programs.helix = {
@@ -18,6 +19,7 @@
         biome
         typescript-language-server
         vscode-langservers-extracted
+        terraform-ls
 
         (rust-bin.stable.latest.default.override {
           extensions = ["rustfmt" "rust-analyzer" "rust-src"];
@@ -52,7 +54,12 @@
         true-color = true;
 
         file-picker = {
+          # always show hidden files, these are often useful
           hidden = false;
+          # do not respect the gitignore; its helpful to see generated files.
+          git-ignore = false;
+          # do respect our manual ignore files.
+          ignore = true;
         };
 
         lsp = {
@@ -104,6 +111,14 @@
 
         (mkBiomeFmt "json-language-server" "json")
         (mkBiomeFmt "json-language-server" "json5")
+        {
+          name = "hcl";
+          language-servers = ["terraform-ls"];
+          formatter = {
+            command = "${pkgs.terraform}/bin/terraform";
+            args = ["fmt" "-"];
+          };
+        }
       ];
 
       language-server = {
@@ -113,10 +128,17 @@
         };
 
         biome = {
-          command = "${pkgs.biome}/bin/biome";
+          command = "biome";
           args = ["lsp-proxy"];
+        };
+        terraform-ls = {
+          command = "terraform-ls";
+          # https://github.com/helix-editor/helix/discussions/9630
+          args = ["serve" "-log-file" "/dev/null"];
         };
       };
     };
+
+    ignores = import "${inputs.self}/shared/ignores.nix";
   };
 }

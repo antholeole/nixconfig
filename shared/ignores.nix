@@ -1,7 +1,6 @@
 [
   # node
   "node_modules"
-  ".vscode"
 
   # nix
   ".direnv"
