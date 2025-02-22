@@ -8,6 +8,7 @@
 
   # lang / tool specific
   ".terraform" # tf
+  "*.tfstate*"
   ".metals" # scala
   ".scala-build" # scala
   ".bsp" # scala
