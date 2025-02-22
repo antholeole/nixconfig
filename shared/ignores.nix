@@ -13,6 +13,7 @@
   ".bsp" # scala
   "bazel-*" # bazel
   ".sass-cache" # sass
+  "**/target/" # rust
 
   ".cache" # cmake
   "CMakeFiles" # cmake
