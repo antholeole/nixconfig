@@ -16,9 +16,8 @@
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs.flake-utils.follows = "flake-utils";
     };
-
+    
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -27,7 +26,7 @@
     apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.rust-overlay.follows = "rust-overlay";
     };
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     nixgl = {
@@ -48,7 +47,7 @@
       url = "github:dj95/zjstatus";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.rust-overlay.follows = "rust-overlay";
       inputs.crane.follows = "crane";
     };
 
@@ -60,7 +59,7 @@
     helix = {
       url = "github:helix-editor/helix/25.01.1";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
+      # inputs.rust-overlay.follows = "rust-overlay";
     };
 
     # theme

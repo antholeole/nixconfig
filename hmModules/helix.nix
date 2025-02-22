@@ -20,10 +20,20 @@
         typescript-language-server
         vscode-langservers-extracted
         terraform-ls
+        stylelint-lsp
 
-        (rust-bin.stable.latest.default.override {
-          extensions = ["rustfmt" "rust-analyzer" "rust-src"];
-        })
+        (rust-bin.selectLatestNightlyWith (toolchain:
+          toolchain.default.override {
+            extensions = [
+              "rustfmt"
+              "rust-analyzer"
+              "rust-src"
+              "rustc"
+              "rust-analysis"
+              "cargo"
+            ];
+            targets = ["x86_64-unknown-linux-gnu"];
+          }))
       ]
       ++ (
         if (!config.conf.headless)
@@ -119,9 +129,20 @@
             args = ["fmt" "-"];
           };
         }
+
+        {
+          name = "css";
+          file-types = ["css" "scss" "less"];
+          language-servers = ["stylelint-ls"];
+        }
       ];
 
       language-server = {
+        stylelint-ls = {
+          command = "stylelint-lsp";
+          args = ["--stdio"];
+        };
+      
         nil = {
           command = "nil";
           config.nil.formatting.command = ["alejandra" "-q"];
