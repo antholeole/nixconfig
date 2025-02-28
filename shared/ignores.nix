@@ -9,12 +9,14 @@
   # lang / tool specific
   ".terraform" # tf
   "*.tfstate*"
-  ".metals" # scala
+  ".metals/" # scala
   ".scala-build" # scala
-  ".bsp" # scala
+  ".bloop/" # scala
+  "?/" # honestly idk but it appears in scala dirs
   "bazel-*" # bazel
   ".sass-cache" # sass
-  "**/target/" # rust
+  "*.class" # java / scala
+  "target/" # java / scala
 
   ".cache" # cmake
   "CMakeFiles" # cmake

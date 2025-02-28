@@ -22,18 +22,11 @@
         terraform-ls
         stylelint-lsp
 
-        (rust-bin.selectLatestNightlyWith (toolchain:
-          toolchain.default.override {
-            extensions = [
-              "rustfmt"
-              "rust-analyzer"
-              "rust-src"
-              "rustc"
-              "rust-analysis"
-              "cargo"
-            ];
-            targets = ["x86_64-unknown-linux-gnu"];
-          }))
+        config.programs.git.package
+
+         (rust-bin.stable.latest.default.override {
+           extensions = ["rustfmt" "rust-analyzer" "rust-src"];
+         })
       ]
       ++ (
         if (!config.conf.headless)
@@ -52,6 +45,10 @@
           space = {
             F = "file_picker";
             f = "file_picker_in_current_buffer_directory";
+
+            space = {
+                b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
+            };
           };
         };
       };

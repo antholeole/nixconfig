@@ -57,7 +57,7 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/25.01.1";
+      url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
       # inputs.rust-overlay.follows = "rust-overlay";
     };
