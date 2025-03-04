@@ -61,6 +61,7 @@
         httpie # a simpler curl
         unzip
         jq
+        yq
         bottom # top but nicer
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
