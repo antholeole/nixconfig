@@ -35,7 +35,8 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # this seems to work on the glaptop. newer versions try to bump mesa (?)
+      url = "github:hyprwm/Hyprland/3cba4ba44e7ba3cc8bb67ac71bc61245b5aca347";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
