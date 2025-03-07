@@ -1,1 +1,0 @@
-sudo cp ~/.config/other/hyprland.desktop /usr/share/wayland-sessions/hyprland.desktop

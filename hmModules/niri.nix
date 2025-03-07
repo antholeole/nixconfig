@@ -9,15 +9,14 @@
     source = "${inputs.self}/confs/niri/config.kdl";
   };
 
-  home.file.".config/other/niri.desktop" = let
+  home.packages = let
     startupsh = pkgs.writeShellScriptBin "startup.sh" ''
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
       ${builtins.concatStringsSep "\n" config.conf.wmStartupCommands}
     '';
-  in {
-    enable = !config.conf.headless;
-    text = ''
+
+    dotDesktop = pkgs.writeText "niri.desktop" ''
       [Desktop Entry]
       Name=Niri
       Comment=Main WM
@@ -37,5 +36,13 @@
       }}/bin/niri-wm
       Type=Application
     '';
-  };
+
+    initNiri =
+      pkgs.writeShellScriptBin "init-niri" ''
+        sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
+        sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
+      '';
+  in [
+    initNiri
+  ];
 }
