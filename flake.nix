@@ -52,11 +52,6 @@
       inputs.crane.follows = "crane";
     };
 
-    ags = {
-      url = "github:Aylur/ags/v1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     helix = {
       url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
