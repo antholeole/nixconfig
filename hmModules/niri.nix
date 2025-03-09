@@ -11,8 +11,7 @@
 
   home.packages = let
     startupsh = pkgs.writeShellScriptBin "startup.sh" ''
-      systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=niri
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
       ${builtins.concatStringsSep "\n" config.conf.wmStartupCommands}
     '';
@@ -30,19 +29,19 @@
           config.programs.wpaperd.package
           fuzzel
           startupsh
+          config.programs.waybar.package
         ];
         text = ''
-          nixGL niri | systemd-cat -t niri-session
+          nixGL niri | systemd-cat -t niri
         '';
       }}/bin/niri-wm
       Type=Application
     '';
 
-
     initNiri =
       pkgs.writeShellScriptBin "init-niri" ''
         sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
-        sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/share/xdg-desktop-portal/niri-portals.conf
+        sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
       '';
   in [
     initNiri

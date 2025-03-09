@@ -1,42 +1,10 @@
-{...}: {
+{inputs, config, ...}: {
   programs.waybar = {
-    enable = true;
-    systemd.enable = true;
-    settings = {
-      topBar = {
-        output = [
-          "DP-3"
-          "eDP-1"
-          "HDMI-A-1"
-        ];
-        layer = "top";
-        position = "top";
-        height = 30;
+    enable = !config.conf.headless;
+    settings = builtins.fromJSON (builtins.readFile "${inputs.self}/confs/waybar/config.json");
+    style = builtins.readFile "${inputs.self}/confs/waybar/style.css";
 
-        modules-left = [
-          # "niri/workspaces"
-        ];
-
-        modules-right = [
-          "battery"
-          "clock"
-        ];
-
-        battery = {
-          interval = 60;
-          states = {
-            "warning" = 30;
-            "critical" = 10;
-          };
-          "format" = "{capacity}% {icon}";
-          "format-icons" = ["" "" "" "" ""];
-          "max-length" = 2;
-        };
-
-        clock = {
-          "format" = "{:%T}";
-        };
-      };
-    };
+    # just enable it directly from niri
+    systemd.enable = false;
   };
 }

@@ -60,6 +60,7 @@ layout {
 spawn-at-startup "alacritty" "-e" "fish"
 spawn-at-startup "wpaperd" "-d"
 spawn-at-startup "startup.sh"
+spawn-at-startup "waybar"
 
 prefer-no-csd
 

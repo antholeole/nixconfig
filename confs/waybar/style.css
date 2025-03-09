@@ -1,0 +1,56 @@
+/*
+this uses gruvbox dark medium color pallet, i was just too lazy to make it dynamic
+based off of nix colors.
+ */
+.topbar {
+  background-color: #282828;
+  color: #ebdbb2;
+  font-family: "FiraCode Mono";
+}
+
+#battery {
+  padding-right: 10px;
+}
+
+#clock {
+  padding-right: 20px;
+}
+
+#workspaces.workspaces {
+  padding-left: 10px;
+}
+
+#workspaces.workspaces button {
+  padding: 1.7px;
+  color: #ebdbb2;
+}
+
+#workspaces.number button {
+  padding-left: 5px;
+  color: #bdae93;
+}
+
+#workspaces.workspaces button#niri-workspace-1 {
+  color: #fe8019;
+  /* base08 */
+}
+
+#workspaces.workspaces button#niri-workspace-2 {
+  color: #fabd2f;
+  /* base09 */
+}
+
+#workspaces.workspaces button#niri-workspace-3 {
+  color: #8ec07c;
+  /* base0A */
+}
+
+#workspaces.workspaces button#niri-workspace-4 {
+  color: #b8bb26;
+  /* base0B */
+}
+
+#workspaces.workspaces button#niri-workspace-5 {
+  color: #8ec07c;
+  /* base0C */
+}

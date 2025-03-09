@@ -1,0 +1,43 @@
+[
+	{
+		"name": "topbar",
+
+		"modules-left": ["niri/workspaces#workspaces", "niri/workspaces#number"],
+		"modules-right": ["battery", "clock"],
+
+		"niri/workspaces#workspaces": {
+			"format": "{icon}",
+			"format-icons": {
+				"active": "",
+				"default": ""
+			}
+		},
+
+		"niri/workspaces#number": {
+			"format": "{value}",
+			"current-only": true
+		},
+
+		"battery": {
+			"states": {
+				"good": 95,
+				"warning": 30,
+				"critical": 20
+			},
+			"format": "{icon} {capacity}%",
+			"format-charging": " {capacity}%",
+			"format-plugged": " {capacity}%",
+			"format-alt": "{time} {icon}",
+			"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+		},
+
+		"clock": {
+			"interval": 1,
+			"format": "{:%I:%M:%S}"
+		},
+		"height": 25,
+		"layer": "top",
+		"output": ["DP-3", "eDP-1", "HDMI-A-1"],
+		"position": "top"
+	}
+]
