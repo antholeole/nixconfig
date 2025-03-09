@@ -61,6 +61,7 @@
         unzip
         jq
         yq
+        repgrep # find replace
         bottom # top but nicer
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
