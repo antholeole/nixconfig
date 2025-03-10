@@ -17,7 +17,7 @@
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
     };
-    
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -33,11 +33,6 @@
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
-    };
-    hyprland = {
-      # this seems to work on the glaptop. newer versions try to bump mesa (?)
-      url = "github:hyprwm/Hyprland/3cba4ba44e7ba3cc8bb67ac71bc61245b5aca347";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-index-database = {
@@ -58,6 +53,14 @@
       # inputs.rust-overlay.follows = "rust-overlay";
     };
 
+    jujutsu = {
+      url = "github:jj-vcs/jj";
+
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.rust-overlay.follows = "rust-overlay";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
     # theme
     gruvbox-yazi = {
       url = "github:poperigby/gruvbox-dark-yazi";
@@ -66,10 +69,6 @@
     nix-colors.url = "github:misterio77/nix-colors";
     gruvbox-alacritty = {
       url = "github:alacritty/alacritty-theme";
-      flake = false;
-    };
-    gruvbox-kak = {
-      url = "github:andreyorst/base16-gruvbox.kak";
       flake = false;
     };
     # end theme
@@ -95,6 +94,7 @@
     gruvbox-alacritty,
     flake-parts,
     treefmt-nix,
+    jujutsu,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -118,6 +118,7 @@
             (final: prev: {
               helix = helix.packages.${prev.system}.default;
               zjstatus = zjstatus.packages.${prev.system}.default;
+              jujutsu = jujutsu.packages.${prev.system}.default;
             })
           ];
           config = {

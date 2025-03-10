@@ -44,7 +44,6 @@
 in {
   programs.jujutsu = {
     enable = true;
-    package = pkgs.jujutsu;
 
     settings = {
       user = with config.conf; {inherit email name;};
@@ -60,8 +59,8 @@ in {
       };
 
       signing = {
-        sign-all = true;
-        key = "~/.ssh/id_ed25519.pub";
+
+behavior = "own";        key = "~/.ssh/id_ed25519.pub";
       };
 
       git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};

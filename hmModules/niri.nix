@@ -45,7 +45,7 @@
         sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
         sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
       '';
-  in [
+  in if (config.conf.headless) then [] else [
     initNiri
   ];
 }
