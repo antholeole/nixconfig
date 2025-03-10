@@ -23,12 +23,14 @@
       Exec=${pkgs.writeShellApplication {
         name = "niri-wm";
         runtimeInputs = with pkgs; [
-          config.programs.alacritty.package
           niri
           nixgl.auto.nixGLDefault
-          config.programs.wpaperd.package
-          fuzzel
+
           startupsh
+
+          config.programs.alacritty.package
+          config.programs.wpaperd.package
+          config.programs.fuzzel.package
           config.programs.waybar.package
         ];
         text = ''
