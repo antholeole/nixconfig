@@ -59,8 +59,8 @@ in {
       };
 
       signing = {
-
-behavior = "own";        key = "~/.ssh/id_ed25519.pub";
+        behavior = "own";
+        key = "~/.ssh/id_ed25519.pub";
       };
 
       git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};

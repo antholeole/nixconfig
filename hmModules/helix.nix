@@ -20,6 +20,7 @@
         typescript-language-server
         vscode-langservers-extracted
         terraform-ls
+        starpls-bin
         stylelint-lsp
 
         config.programs.git.package
