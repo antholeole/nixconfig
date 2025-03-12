@@ -7,6 +7,7 @@
   ".devenv"
 
   # lang / tool specific
+  "output/" # tf (custom)
   ".terraform" # tf
   "*.tfstate*"
   ".metals/" # scala
