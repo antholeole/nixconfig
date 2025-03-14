@@ -33,7 +33,7 @@
 
 		"clock": {
 			"interval": 1,
-			"format": "{:%I:%M:%S}"
+			"format": "{:%I:%M:%S   %b %d}"
 		},
 		"height": 25,
 		"layer": "top",
