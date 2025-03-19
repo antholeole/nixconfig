@@ -60,6 +60,7 @@
         jump-label-alphabet = "hjklabcdefgimnopqrstuvwxyz";
         soft-wrap.enable = true;
         true-color = true;
+        cursorline = true;
 
         file-picker = {
           # always show hidden files, these are often useful
