@@ -1,37 +1,53 @@
 {
   config,
+  pkgs,
+  pkgs-unstable,
   ...
 }: let
   gruvbox-dark-medium = "gruvbox-dark-medium";
 in {
   programs.k9s = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      name = "k9s";
+      paths = [pkgs-unstable.k9s];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/k9s \
+          --set KUBECACHEDIR ${config.conf.homeDirPath}${config.conf.name}/.kube/cache \
+          --set K9S_FEATURE_GATE_NODE_SHELL true
+      '';
+    };
 
     settings.k9s = {
-      skin = "gruvbox-dark-medium";
-
       ui = {
         headless = true;
         logoless = true;
+      };
+
+      featureGates = {
+        nodeShell = true;
       };
 
       skipLatestRevCheck = true;
     };
 
     skins."${gruvbox-dark-medium}".k9s = with config.colorScheme.palette; let
-      foreground = base07;
       background = "default";
 
+      mkColor = color: "#${color}";
+
+      foreground = mkColor base07;
       # everything else is gruvbox-dark default from k9s itself.
-      current_line = base06;
-      selection = base05;
-      comment = base04;
-      cyan = base0C;
-      green = base0B;
-      orange = base09;
-      magenta = base0E;
-      blue = base0D;
-      red = base08;
+      current_line = mkColor base06;
+      selection = mkColor base05;
+      comment = mkColor base04;
+      cyan = mkColor base0C;
+      green = mkColor base0B;
+      orange = mkColor base09;
+      magenta = mkColor base0E;
+      blue = mkColor base0D;
+      red = mkColor base08;
     in {
       body = {
         fgColor = foreground;
