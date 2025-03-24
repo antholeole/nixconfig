@@ -84,6 +84,7 @@
           dejavu_fonts
           libnotify
           glib # for notifications
+          pwvucontrol
           grimblast
           obs-cli
           taskwarrior-tui # doesn't really require headless but only use it on my desktop

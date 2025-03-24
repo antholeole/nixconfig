@@ -33,7 +33,8 @@
 
 		"clock": {
 			"interval": 1,
-			"format": "{:%I:%M:%S   %b %d}"
+			"format": "{:%I:%M:%S   %b %d}",
+			"timezone": "US/Pacific"
 		},
 		"height": 25,
 		"layer": "top",

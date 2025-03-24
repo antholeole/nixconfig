@@ -1,6 +1,7 @@
-{inputs, config, ...}: {
+{inputs, config, pkgs-unstable,...}: {
   programs.waybar = {
     enable = !config.conf.headless;
+    package = pkgs-unstable.waybar;
     settings = builtins.fromJSON (builtins.readFile "${inputs.self}/confs/waybar/config.json");
     style = builtins.readFile "${inputs.self}/confs/waybar/style.css";
 
