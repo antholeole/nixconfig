@@ -1,5 +1,5 @@
 {pkgs, ...}: {
- programs.fish.shellAbbrs = {
+  programs.fish.shellAbbrs = {
     k = "kubectl";
   };
 

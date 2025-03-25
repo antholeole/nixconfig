@@ -1,4 +1,9 @@
-{inputs, config, pkgs-unstable,...}: {
+{
+  inputs,
+  config,
+  pkgs-unstable,
+  ...
+}: {
   programs.waybar = {
     enable = !config.conf.headless;
     package = pkgs-unstable.waybar;

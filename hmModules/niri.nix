@@ -40,12 +40,14 @@
       Type=Application
     '';
 
-    initNiri =
-      pkgs.writeShellScriptBin "init-niri" ''
-        sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
-        sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
-      '';
-  in if (config.conf.headless) then [] else [
-    initNiri
-  ];
+    initNiri = pkgs.writeShellScriptBin "init-niri" ''
+      sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
+      sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
+    '';
+  in
+    if (config.conf.headless)
+    then []
+    else [
+      initNiri
+    ];
 }

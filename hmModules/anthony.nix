@@ -76,7 +76,8 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
-] ++ (
+      ]
+      ++ (
         if !config.conf.headless
         then [
           (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})

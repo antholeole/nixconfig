@@ -25,9 +25,9 @@
 
         config.programs.git.package
 
-         (rust-bin.stable.latest.default.override {
-           extensions = ["rustfmt" "rust-analyzer" "rust-src"];
-         })
+        (rust-bin.stable.latest.default.override {
+          extensions = ["rustfmt" "rust-analyzer" "rust-src"];
+        })
       ]
       ++ (
         if (!config.conf.headless)
@@ -48,7 +48,7 @@
             f = "file_picker_in_current_buffer_directory";
 
             space = {
-                b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
+              b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
             };
           };
         };
@@ -141,7 +141,7 @@
           command = "stylelint-lsp";
           args = ["--stdio"];
         };
-      
+
         nil = {
           command = "nil";
           config.nil.formatting.command = ["alejandra" "-q"];

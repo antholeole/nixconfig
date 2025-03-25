@@ -272,17 +272,16 @@ in {
       enable = true;
       text = let
         singleFloatingPane = nth: ''
-        pane name="${builtins.toString nth}" x="5%" y="${builtins.toString (nth + 4)}%" width="90%" height="90%"
+          pane name="${builtins.toString nth}" x="5%" y="${builtins.toString (nth + 4)}%" width="90%" height="90%"
         '';
 
         buildFloatingSwapLayout = panes: ''
-            floating_panes exact_panes=${builtins.toString panes} {
-                 ${lib.strings.concatMapStrings singleFloatingPane (lib.range 1 panes)}
-            }
+          floating_panes exact_panes=${builtins.toString panes} {
+               ${lib.strings.concatMapStrings singleFloatingPane (lib.range 1 panes)}
+          }
         '';
 
         buildNPaneLayout = panes: lib.strings.concatMapStrings buildFloatingSwapLayout (lib.range 1 4);
-        
       in ''
         layout {
           ${defaultTab}
