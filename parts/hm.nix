@@ -19,7 +19,7 @@
       mkOldNixPkg = import "${inputs.self}/mixins/mkOldNixPkg.nix";
     };
     mkHmOnlyConfig = config:
-      inputs.home-manager.lib.homeManagerConfiguration rec {
+      inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules =

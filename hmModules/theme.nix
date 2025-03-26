@@ -12,7 +12,7 @@ in {
   ];
 
   options.font = lib.options.mkOption {
-    type = lib.types.string;
+    type = lib.types.str;
     default = "FiraCode Nerd Font";
   };
 

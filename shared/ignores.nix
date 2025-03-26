@@ -23,6 +23,8 @@
   "CMakeFiles" # cmake
   "_deps"
 
+  ".pulumi/" # pulumi
+
   # vcs
   ".jj"
   ".git"

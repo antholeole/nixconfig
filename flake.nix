@@ -18,6 +18,10 @@
       url = "github:oxalica/rust-overlay";
     };
 
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+    };
+
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -95,6 +99,7 @@
     flake-parts,
     treefmt-nix,
     jujutsu,
+    niri-flake,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -115,6 +120,8 @@
           overlays = [
             nixgl.overlay
             rust-overlay.overlays.default
+            niri-flake.overlays.niri
+
             (final: prev: {
               helix = helix.packages.${prev.system}.default;
               zjstatus = zjstatus.packages.${prev.system}.default;

@@ -1,30 +1,31 @@
 {
   pkgs,
+  pkgs-unstable,
   config,
   inputs,
   ...
 }: {
-  home.file.".config/niri/config.kdl" = {
-    enable = !config.conf.headless;
-    source = "${inputs.self}/confs/niri/config.kdl";
-  };
+  imports = [
+    inputs.niri-flake.homeModules.niri
+  ];
 
-  home.packages = let
+  config.programs.niri = let
     startupsh = pkgs.writeShellScriptBin "startup.sh" ''
       dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
       ${builtins.concatStringsSep "\n" config.conf.wmStartupCommands}
     '';
+  in {
+    enable = !config.conf.headless;
 
-    dotDesktop = pkgs.writeText "niri.desktop" ''
-      [Desktop Entry]
-      Name=Niri
-      Comment=Main WM
-      Exec=${pkgs.writeShellApplication {
-        name = "niri-wm";
-        runtimeInputs = with pkgs; [
-          niri
-          nixgl.auto.nixGLDefault
+    # TODO convert this to nix one day.
+    config = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
+
+    package = pkgs.niri-stable.overrideAttrs (cfg: {
+      buildInputs =
+        cfg.buildInputs
+        ++ [
+          pkgs.niri-stable
 
           startupsh
 
@@ -33,8 +34,21 @@
           config.programs.fuzzel.package
           config.programs.waybar.package
         ];
+    });
+  };
+
+  config.home.packages = let
+    dotDesktop = pkgs.writeText "niri.desktop" ''
+      [Desktop Entry]
+      Name=Niri
+      Comment=Main WM
+      Exec=${pkgs.writeShellApplication {
+        name = "niri-wm";
+        runtimeInputs = with pkgs; [
+          nixgl.auto.nixGLDefault
+        ];
         text = ''
-          nixGL niri | systemd-cat -t niri
+          nixGL ${config.programs.niri.package}/bin/niri | systemd-cat -t niri
         '';
       }}/bin/niri-wm
       Type=Application
@@ -45,9 +59,9 @@
       sudo cp ${pkgs.niri}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
     '';
   in
-    if (config.conf.headless)
-    then []
-    else [
+    if (!config.conf.headless && !config.conf.nixos)
+    then [
       initNiri
-    ];
+    ]
+    else [];
 }

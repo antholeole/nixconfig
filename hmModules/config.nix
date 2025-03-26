@@ -56,6 +56,12 @@ in {
           default = [];
           description = "commands ran at boot for the window manager. has no effect if headless.";
         };
+
+        nixos = mkOption {
+          type = bool;
+          default = false;
+          description = "if this hmModule will be used on nixos.";
+        };
       };
     };
   };
