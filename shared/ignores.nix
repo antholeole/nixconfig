@@ -25,6 +25,8 @@
 
   ".pulumi/" # pulumi
 
+  "*.out" # built 
+
   # vcs
   ".jj"
   ".git"
