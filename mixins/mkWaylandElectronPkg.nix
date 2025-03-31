@@ -1,7 +1,4 @@
-pkgs: {
-  pkg,
-  exeName ? null,
-}:
+pkgs: pkg: exeName:
 with pkgs; let
   pname =
     if pkg ? pname

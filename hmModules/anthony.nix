@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  mkWaylandElectronPkg,
   lib,
   ...
 }: {
@@ -84,6 +85,7 @@
           libnotify
           glib # for notifications
           pwvucontrol
+          (mkWaylandElectronPkg anytype "anytype")
           grimblast
           obs-cli
           taskwarrior-tui # doesn't really require headless but only use it on my desktop
