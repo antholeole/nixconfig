@@ -2,15 +2,16 @@
   pkgs,
   inputs,
   config,
-  mkNixGLPkg,
   lib,
   ...
-}: {
+} @ params: {
   programs.alacritty = lib.mkIf (!config.conf.headless) {
     enable = true;
 
-    package =
-      (mkNixGLPkg pkgs.alacritty "alacritty")
+    package = lib.mkIf (!config.conf.nixos)
+    # if we're on nixos, use the default pkgs.alacritty. otherwise, use
+    # nixgl alacritty.
+      (params.mkNixGLPkg pkgs.alacritty "alacritty")
       // (with pkgs.alacritty; {inherit meta version;});
 
     settings = {

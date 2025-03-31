@@ -15,8 +15,6 @@
       inherit inputs pkgs-unstable pkgs-oleina;
 
       mkNixGLPkg = (import "${inputs.self}/mixins/mkNixGLPkg.nix") pkgs;
-      mkWaylandElectronPkg = (import "${inputs.self}/mixins/mkWaylandElectronPkg.nix") pkgs;
-      mkOldNixPkg = import "${inputs.self}/mixins/mkOldNixPkg.nix";
     };
     mkHmOnlyConfig = config:
       inputs.home-manager.lib.homeManagerConfiguration {
@@ -36,7 +34,6 @@
       work = mkHmOnlyConfig "hm-work";
       headless = mkHmOnlyConfig "hm-headless";
       headless-work = mkHmOnlyConfig "hm-headless-work";
-      headless-gce = mkHmOnlyConfig "hm-headless-gce";
     };
   };
 }

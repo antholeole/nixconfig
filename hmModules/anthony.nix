@@ -3,8 +3,6 @@
   inputs,
   config,
   lib,
-  mkWaylandElectronPkg,
-  mkNixGLPkg,
   ...
 }: {
   fonts.fontconfig.enable = true;
