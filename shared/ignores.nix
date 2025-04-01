@@ -35,4 +35,8 @@
 
   # other
   "__scratch"
+
+  # python
+  ".venv/"
+  "venv/"
 ]
