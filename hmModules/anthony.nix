@@ -53,7 +53,31 @@
       deltaWrapped = pkgs.writeShellScriptBin "d" ''
         DELTA_PAGER="${pkgs.less}/bin/less -RXF" ${delta}/bin/delta $@
       '';
-    in
+
+      notHeadlessPkgs = 
+        if !config.conf.headless
+        then [
+          (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+          fira-code-symbols
+          dejavu_fonts
+          libnotify
+          glib # for notifications
+          pwvucontrol
+          grimblast
+          obs-cli
+          taskwarrior-tui # doesn't really require headless but only use it on my desktop
+          brightnessctl
+          wl-clipboard # clipboard
+          mpc-cli
+        ]
+        else [];
+
+      x86Pkgs = if (pkgs.system == "x86_64-linux" && !config.conf.headless) then [
+        
+          (mkWaylandElectronPkg anytype "anytype")
+      ] else [
+      ];
+      in 
       [
         fd # a faster find
         httpie # a simpler curl
@@ -75,26 +99,7 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
-      ]
-      ++ (
-        if !config.conf.headless
-        then [
-          (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-          fira-code-symbols
-          dejavu_fonts
-          libnotify
-          glib # for notifications
-          pwvucontrol
-          (mkWaylandElectronPkg anytype "anytype")
-          grimblast
-          obs-cli
-          taskwarrior-tui # doesn't really require headless but only use it on my desktop
-          brightnessctl
-          wl-clipboard # clipboard
-          mpc-cli
-        ]
-        else []
-      );
+      ] ++ notHeadlessPkgs ++ x86Pkgs;
   };
 
   programs = lib.mkIf (!config.conf.headless) {

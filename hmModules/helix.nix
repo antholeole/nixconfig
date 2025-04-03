@@ -8,7 +8,18 @@
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
-    extraPackages = with pkgs;
+    extraPackages = with pkgs; let
+      extensionsIf = cond: extensios: if (cond) then extensions else [];
+    
+      headlessPkgsOnly = extensionsIf (config.conf.headless) [
+        wl-clipboard
+      ];
+
+      x64PkgsOnly = extensionsIf (pkgs.system == "x86_64-linux") [
+        starpls-bin
+      ];
+      
+      in 
       [
         llvmPackages_19.clang-tools
         alejandra
@@ -19,20 +30,13 @@
         biome
         typescript-language-server
         vscode-langservers-extracted
-        terraform-ls
-        starpls-bin
+        # terraform-ls
         stylelint-lsp
         python3Packages.python-lsp-server
 
         config.programs.git.package
       ]
-      ++ (
-        if (!config.conf.headless)
-        then [
-          wl-clipboard
-        ]
-        else []
-      );
+      ++ headlessPkgsOnly ++ x64PkgsOnly;
 
     settings = {
       theme = "gruvbox";
@@ -117,14 +121,14 @@
 
         (mkBiomeFmt "json-language-server" "json")
         (mkBiomeFmt "json-language-server" "json5")
-        {
-          name = "hcl";
-          language-servers = ["terraform-ls"];
-          formatter = {
-            command = "${pkgs.terraform}/bin/terraform";
-            args = ["fmt" "-"];
-          };
-        }
+        # {
+        #   name = "hcl";
+        #   language-servers = ["terraform-ls"];
+        #   formatter = {
+        #     command = "${pkgs.terraform}/bin/terraform";
+        #     args = ["fmt" "-"];
+        #   };
+        # }
 
         {
           name = "css";

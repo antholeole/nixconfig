@@ -120,6 +120,8 @@
           overlays = [
             nixgl.overlay
             rust-overlay.overlays.default
+
+            # don't accidentally build a niri
             niri-flake.overlays.niri
 
             (final: prev: {
@@ -137,6 +139,7 @@
 
       systems = [
         "x86_64-linux"
+        "aarch64-linux"
       ];
 
       imports = [
@@ -146,7 +149,6 @@
         ./parts/treefmt.nix
         ./parts/hm.nix
         ./parts/packages.nix
-        # ./parts/nixos.nix
       ];
     };
 }

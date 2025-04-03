@@ -18,31 +18,36 @@
     enable = !config.conf.headless;
 
     # TODO convert this to nix one day.
-    config = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
+    config = let
+      aarchConfig = if (pkgs.system == "aarch64-linux") then ''
+        debug {
+            render-drm-device "/dev/dri/renderD128"
+        }        
+      '' else "";
+    
+      defaultConfig = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
+    in ''
+      ${aarchConfig}
 
-    package = pkgs.niri-stable.overrideAttrs (cfg: {
-      buildInputs =
-        cfg.buildInputs
-        ++ [
-          pkgs.niri-stable
+      ${defaultConfig}
+    '';
 
-          pkgs.makeWrapper
-        ];
-
-      postInstall = ''
-        ${cfg.postInstall}
-
-        wrapProgram $out/bin/niri-session \
-          --prefix PATH : ${pkgs.lib.makeBinPath [
+    
+    package = (pkgs.symlinkJoin {
+      name = "niri-wrapped";
+      paths = [
           startupsh
-
           config.programs.alacritty.package
           config.programs.wpaperd.package
           config.programs.fuzzel.package
           config.programs.waybar.package
-        ]}
-      '';
-    });
+
+          pkgs.niri-stable
+      ];
+    }) // {
+      # niri flakae reads these directly, just pass them through.
+      inherit (pkgs.niri-stable) cargoBuildNoDefaultFeatures cargoBuildFeatures;
+    };
   };
 
   config.home.packages = let
@@ -59,7 +64,7 @@
           nixgl.auto.nixGLDefault
         ];
         text = ''
-          nixGL ${config.programs.niri.package}/bin/niri-session | systemd-cat -t niri
+          nixGL ${config.programs.niri.package}/bin/niri | systemd-cat -t niri
         '';
       }}/bin/niri-wm
       Type=Application
