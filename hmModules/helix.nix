@@ -137,6 +137,13 @@
       ];
 
       language-server = {
+        clangd = {
+          args = [
+            "--enable-config"
+            "--clang-tidy"
+          ];
+        };
+        
         stylelint-ls = {
           command = "stylelint-lsp";
           args = ["--stdio"];
@@ -161,4 +168,9 @@
 
     ignores = import "${inputs.self}/shared/ignores.nix";
   };
+
+  xdg.configFile."clangd/config.yaml".text = ''
+CompileFlags:
+  Add: [-Wall, -std=c++2b]
+  '';
 }
