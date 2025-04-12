@@ -171,6 +171,6 @@
 
   xdg.configFile."clangd/config.yaml".text = ''
 CompileFlags:
-  Add: [-Wall, -std=c++2b]
+  Add: [-Wall, -std=c++2b, -Wsuggest-override]
   '';
 }
