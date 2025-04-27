@@ -1,7 +1,7 @@
-{pkgs, ...}: {
+{pkgs, lib,...}: {
   xdg = {
     portal = {
-      enable = true;
+      enable = lib.mkForce false;
 
       extraPortals = with pkgs; [
        xdg-desktop-portal-gtk

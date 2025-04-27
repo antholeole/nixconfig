@@ -24,10 +24,6 @@
         stylelint-lsp
 
         config.programs.git.package
-
-        (rust-bin.stable.latest.default.override {
-          extensions = ["rustfmt" "rust-analyzer" "rust-src"];
-        })
       ]
       ++ (
         if (!config.conf.headless)
@@ -137,6 +133,7 @@
       ];
 
       language-server = {
+        rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
         clangd = {
           args = [
             "--enable-config"

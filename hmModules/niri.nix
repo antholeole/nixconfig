@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   config,
   inputs,
   ...
@@ -69,6 +68,7 @@
     initNiri = pkgs.writeShellScriptBin "init-niri" ''
       sudo cp ${dotDesktop} /usr/share/wayland-sessions/niri.desktop
       sudo cp ${config.programs.niri.package}/share/xdg-desktop-portal/niri-portals.conf /usr/local/share/xdg-desktop-portal/niri-portals.conf
+      sudo cp ${config.programs.niri.package}/share/systemd/user/* /etc/systemd/user/
     '';
   in
     if (!config.conf.headless && !config.conf.nixos)
