@@ -22,6 +22,7 @@
         terraform-ls
         starpls-bin
         stylelint-lsp
+        python3Packages.python-lsp-server
 
         config.programs.git.package
       ]
@@ -130,6 +131,12 @@
           file-types = ["css" "scss" "less"];
           language-servers = ["stylelint-ls"];
         }
+          {
+            name = "python";
+            language-servers = [
+              "pylsp"
+            ];
+          }
       ];
 
       language-server = {
