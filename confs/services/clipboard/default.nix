@@ -1,6 +1,4 @@
 pkgs: let
-  fs = pkgs.lib.fileset;
-
   remoteClip = pkgs.buildGoModule {
     vendorHash = "sha256-KMsYgkLRoQvxDJQvqC58zOyUlU2Kc1sx0s0EbDDGIVQ=";
     src = ./.;

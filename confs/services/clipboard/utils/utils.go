@@ -8,7 +8,7 @@ import (
 var Port = "9791"
 
 func Copy(toCopy, wlcopy string) error {
-	cmd := exec.Command("/bin/bash", "-c", fmt.Sprintf("echo \"%s\" | %s > /dev/null 2>&1 &", toCopy, wlcopy))
+	cmd := exec.Command("/bin/bash", "-c", fmt.Sprintf("echo \"%s\" | %s", toCopy, wlcopy))
 	_, err := cmd.Output()
 	return err
 }

@@ -145,6 +145,7 @@
         ./parts/devshell.nix
         ./parts/treefmt.nix
         ./parts/hm.nix
+        ./parts/packages.nix
         # ./parts/nixos.nix
       ];
     };
