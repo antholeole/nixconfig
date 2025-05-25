@@ -33,7 +33,7 @@
       work = mkHmOnlyConfig "hm-work";
       headless = mkHmOnlyConfig "hm-headless";
       headless-work = mkHmOnlyConfig "hm-headless-work";
-      personal =  mkHmOnlyConfig "hm-personal";
+      asahi-personal =  mkHmOnlyConfig "asahi-personal";
     };
   };
 }

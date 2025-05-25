@@ -2,8 +2,11 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
-}: {
+}: let
+  enableNiri = config.conf.wm && !config.conf.headless;
+in {
   imports = [
     inputs.niri-flake.homeModules.niri
   ];
@@ -15,27 +18,33 @@
       ${builtins.concatStringsSep "\n" config.conf.wmStartupCommands}
     '';
   in {
-    enable = !config.conf.headless;
+    enable = enableNiri;
 
     # TODO convert this to nix one day.
     config = let
-      aarchConfig = if (pkgs.system == "aarch64-linux") then ''
-        debug {
-            render-drm-device "/dev/dri/renderD128"
-        }        
-      '' else "";
-    
+      aarchConfig =
+        if (pkgs.system == "aarch64-linux")
+        then ''
+          debug {
+              render-drm-device "/dev/dri/renderD128"
+          }
+        ''
+        else "";
+
       defaultConfig = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
-    in ''
-      ${aarchConfig}
+    in
+      # seems to build niri without lib.mkIf here. This is likely because it
+      # uses niri to check the file is valid in check phase.
+      lib.mkIf enableNiri ''
+        ${aarchConfig}
 
-      ${defaultConfig}
-    '';
+        ${defaultConfig}
+      '';
 
-    
-    package = (pkgs.symlinkJoin {
-      name = "niri-wrapped";
-      paths = [
+    package =
+      (pkgs.symlinkJoin {
+        name = "niri-wrapped";
+        paths = [
           startupsh
           config.programs.alacritty.package
           config.programs.wpaperd.package
@@ -43,11 +52,12 @@
           config.programs.waybar.package
 
           pkgs.niri-stable
-      ];
-    }) // {
-      # niri flakae reads these directly, just pass them through.
-      inherit (pkgs.niri-stable) cargoBuildNoDefaultFeatures cargoBuildFeatures;
-    };
+        ];
+      })
+      // {
+        # niri flakae reads these directly, just pass them through.
+        inherit (pkgs.niri-stable) cargoBuildNoDefaultFeatures cargoBuildFeatures;
+      };
   };
 
   config.home.packages = let
@@ -76,7 +86,11 @@
       sudo cp ${config.programs.niri.package}/share/systemd/user/* /etc/systemd/user/
     '';
   in
-    if (!config.conf.headless && !config.conf.nixos)
+    if
+      (enableNiri
+        &&
+        # already in the right place on nixos
+        !config.conf.nixos)
     then [
       initNiri
     ]

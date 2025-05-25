@@ -2,9 +2,11 @@
   conf = {
     email = "antholeinik@gmail.com";
     name = "anthony";
-    work = false;
-    headless = false;
     selfAlias = "oleina";
-    nixos = true;
+
+    nixos = false;
+    headless = false;
+    work = false;
+    wm = false; # uses KDE plasma
   };
 }

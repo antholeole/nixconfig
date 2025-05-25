@@ -57,6 +57,12 @@ in {
           description = "commands ran at boot for the window manager. has no effect if headless.";
         };
 
+        wm = mkOption {
+          type = bool;
+          default = true;
+          description = "if we should include a window manager or not. Some systems are running a DE so do not require the WM.";
+        };
+
         nixos = mkOption {
           type = bool;
           default = false;
