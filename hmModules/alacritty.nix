@@ -1,5 +1,5 @@
 {
-  pkgs,
+  pkgs-unstable,
   inputs,
   config,
   lib,
@@ -8,7 +8,7 @@
   programs.alacritty = lib.mkIf (!config.conf.headless) {
     enable = true;
 
-    package = config.lib.nixGL.wrap pkgs.alacritty;
+    package = config.lib.nixGL.wrap pkgs-unstable.alacritty;
 
     settings = {
       font = {
@@ -20,7 +20,7 @@
         "${inputs.gruvbox-alacritty}/themes/gruvbox_material_medium_dark.toml"
       ];
 
-      terminal.shell = "${pkgs.lib.getExe config.programs.fish.package}";
+      terminal.shell = "${lib.getExe config.programs.fish.package}";
 
       window.padding = {
         x = 5;
