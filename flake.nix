@@ -108,8 +108,7 @@
         pkgs,
         ...
       }: {
-        # TODO these may be able to go into their own module
-        _module.args.mkNixGLPkg = (import ./mixins/mkNixGLPkg.nix) pkgs;
+        # TODO there is likely a better way to do this now that I am smarter
         _module.args.mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
 
         _module.args.pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
@@ -148,6 +147,7 @@
         ./parts/devshell.nix
         ./parts/treefmt.nix
         ./parts/hm.nix
+        ./parts/packages.nix
         ./parts/packages.nix
       ];
     };

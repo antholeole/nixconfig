@@ -14,8 +14,6 @@
     # some special args that some hm modules need
     hmSpecialArgs = {
       inherit inputs pkgs-unstable pkgs-oleina mkWaylandElectronPkg;
-
-      mkNixGLPkg = (import "${inputs.self}/mixins/mkNixGLPkg.nix") pkgs;
     };
     mkHmOnlyConfig = config:
       inputs.home-manager.lib.homeManagerConfiguration {
