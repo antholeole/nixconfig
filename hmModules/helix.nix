@@ -2,24 +2,29 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
-  programs.helix = {
+  programs.helix = let
+    isArm = pkgs.system == "aarch64-linux";  in {
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; let
-      extensionsIf = cond: extensios: if (cond) then extensions else [];
-    
+      extensionsIf = cond: extensions:
+        if cond
+        then extensions
+        else [];
+
       headlessPkgsOnly = extensionsIf (config.conf.headless) [
         wl-clipboard
       ];
 
-      x64PkgsOnly = extensionsIf (pkgs.system == "x86_64-linux") [
+      x64PkgsOnly = extensionsIf (!isArm) [
+        terraform-ls
         starpls-bin
       ];
-      
-      in 
+    in
       [
         llvmPackages_19.clang-tools
         alejandra
@@ -30,13 +35,13 @@
         biome
         typescript-language-server
         vscode-langservers-extracted
-        # terraform-ls
         stylelint-lsp
         python3Packages.python-lsp-server
 
         config.programs.git.package
       ]
-      ++ headlessPkgsOnly ++ x64PkgsOnly;
+      ++ headlessPkgsOnly
+      ++ x64PkgsOnly;
 
     settings = {
       theme = "gruvbox";
@@ -113,35 +118,42 @@
             "biome"
           ];
         };
-      in [
-        (mkBiomeFmt "typescript-language-server" "javascript")
-        (mkBiomeFmt "typescript-language-server" "typescript")
-        (mkBiomeFmt "typescript-language-server" "jsx")
-        (mkBiomeFmt "typescript-language-server" "tsx")
+      in
+        [
+          (mkBiomeFmt "typescript-language-server" "javascript")
+          (mkBiomeFmt "typescript-language-server" "typescript")
+          (mkBiomeFmt "typescript-language-server" "jsx")
+          (mkBiomeFmt "typescript-language-server" "tsx")
 
-        (mkBiomeFmt "json-language-server" "json")
-        (mkBiomeFmt "json-language-server" "json5")
-        # {
-        #   name = "hcl";
-        #   language-servers = ["terraform-ls"];
-        #   formatter = {
-        #     command = "${pkgs.terraform}/bin/terraform";
-        #     args = ["fmt" "-"];
-        #   };
-        # }
+          (mkBiomeFmt "json-language-server" "json")
+          (mkBiomeFmt "json-language-server" "json5")
 
-        {
-          name = "css";
-          file-types = ["css" "scss" "less"];
-          language-servers = ["stylelint-ls"];
-        }
+          {
+            name = "css";
+            file-types = ["css" "scss" "less"];
+            language-servers = ["stylelint-ls"];
+          }
           {
             name = "python";
             language-servers = [
               "pylsp"
             ];
           }
-      ];
+        ]
+        ++ (
+          if (isArm)
+          then []
+          else [
+            {
+              name = "hcl";
+              language-servers = ["terraform-ls"];
+              formatter = {
+                command = "${pkgs.terraform}/bin/terraform";
+                args = ["fmt" "-"];
+              };
+            }
+          ]
+        );
 
       language-server = {
         rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
@@ -151,7 +163,7 @@
             "--clang-tidy"
           ];
         };
-        
+
         stylelint-ls = {
           command = "stylelint-lsp";
           args = ["--stdio"];
@@ -166,7 +178,7 @@
           command = "biome";
           args = ["lsp-proxy"];
         };
-        terraform-ls = {
+        terraform-ls = lib.mkIf (!isArm) {
           command = "terraform-ls";
           # https://github.com/helix-editor/helix/discussions/9630
           args = ["serve" "-log-file" "/dev/null"];
@@ -178,7 +190,7 @@
   };
 
   xdg.configFile."clangd/config.yaml".text = ''
-CompileFlags:
-  Add: [-Wall, -std=c++2b, -Wsuggest-override]
+    CompileFlags:
+      Add: [-Wall, -std=c++2b, -Wsuggest-override]
   '';
 }
