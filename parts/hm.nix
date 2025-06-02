@@ -1,5 +1,4 @@
 {
-  specialArgs,
   inputs,
   ...
 }: {

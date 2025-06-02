@@ -12,8 +12,9 @@ based off of nix colors.
   padding-right: 10px;
 }
 
-#clock {
+#clock.utc {
   padding-right: 20px;
+  color: #bdae93;
 }
 
 #workspaces.workspaces {
