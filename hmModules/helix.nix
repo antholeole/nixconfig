@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   config,
   inputs,
   lib,
@@ -26,7 +27,7 @@
       ];
     in
       [
-        llvmPackages_19.clang-tools
+        pkgs-unstable.llvmPackages_20.clang-tools
         alejandra
         nil
         metals
