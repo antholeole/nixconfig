@@ -27,18 +27,31 @@
       ];
     in
       [
+        #cpp
         pkgs-unstable.llvmPackages_20.clang-tools
+        pkgs-unstable.lldb_20
+
+        # nix
         alejandra
         nil
+
+        # scala
         metals
+
+        # go
         gopls
+
+        # python
+        python3Packages.python-lsp-server
         ruff
+
+        # js
         biome
         typescript-language-server
         vscode-langservers-extracted
         stylelint-lsp
-        python3Packages.python-lsp-server
 
+        # other
         config.programs.git.package
       ]
       ++ headlessPkgsOnly
