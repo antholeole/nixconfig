@@ -63,24 +63,6 @@ func run() error {
 		if err != nil {
 			return err
 		}
-	case "cliphist":
-		resp, err := http.Get(mkUrl(cmd))
-		if err != nil {
-			return err
-		}
-
-		defer resp.Body.Close()
-		bodyB64, err := io.ReadAll(resp.Body)
-		if err != nil {
-			return err
-		}
-
-		body, err := b64.StdEncoding.DecodeString(string(bodyB64))
-		if err != nil {
-			return err
-		}
-
-		fmt.Print(strings.TrimSuffix(string(body), "\n"))
 	case "done":
 		resp, err := http.Get(mkUrl(cmd))
 		if err != nil {

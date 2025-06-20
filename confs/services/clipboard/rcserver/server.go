@@ -15,7 +15,6 @@ import (
 )
 
 type argT struct {
-	Cliphist   string `cli:"*cliphist" usage:"path to cliphist package to use"`
 	Wlcopy     string `cli:"*wlcopy" usage:"path to wlcopy package to use"`
 	Wlpaste    string `cli:"*wlpaste" usage:"path to wlpaste package to use"`
 	NotifySend string `cli:"*notify-send" usage:"path to notify-send package to use"`
@@ -36,20 +35,6 @@ func run(args *argT) error {
 		c.String(http.StatusOK, "pong")
 	})
 
-	r.GET("/cliphist", func(c *gin.Context) {
-		cmd := exec.Command(args.Cliphist, "list")
-		out, err := cmd.Output()
-
-		if err != nil {
-			c.AbortWithError(http.StatusInternalServerError, err)
-			return
-		}
-
-		str := b64.StdEncoding.EncodeToString(out)
-
-		c.Data(http.StatusOK, "text/plain", []byte(str))
-	})
-
 	r.POST("/copy", func(c *gin.Context) {
 		toCopyB64, err := io.ReadAll(c.Request.Body)
 		if err != nil {
@@ -68,6 +53,9 @@ func run(args *argT) error {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			return
 		}
+
+		fmt.Println("copied!")	
+		c.Data(http.StatusOK, "text/plain", []byte("ok"))
 	})
 
 	r.GET("/paste", func(c *gin.Context) {

@@ -16,6 +16,5 @@ in {
     copy = mkCommand "copy";
     paste = mkCommand "paste";
     done = mkCommand "done";
-    cliphist = mkCommand "cliphist";
   };
 }

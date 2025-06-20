@@ -25,7 +25,6 @@
       cv =
         if config.conf.headless
         then {
-          cliphist = remoteClipClient.cliphist;
           done = remoteClipClient.done;
         }
         else {
@@ -74,9 +73,7 @@
         })
         abbrFuns);
 
-    functions = with pkgs; let
-      fzfExe = lib.getExe config.programs.fzf.package;
-    in
+    functions = with pkgs;
       {
         cdc = "mkdir -p $argv && cd $argv";
         rmt = "${trashy}/bin/trash put $argv";
@@ -98,15 +95,6 @@
           end
           man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
         '';
-
-        ch = let
-          sysCliphist =
-            if config.conf.headless
-            then remoteClipClient.cliphist
-            else "${lib.getExe cliphist} list";
-        in "${sysCliphist} | ${fzfExe} -d '\\t' --with-nth 2 --height 8 | ${
-          lib.getExe cliphist
-        } decode | ${config.programs.system-clip.copy}";
       }
       // (lib.attrsets.concatMapAttrs (name: body: {
           "${name}" = body;
