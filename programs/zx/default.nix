@@ -17,14 +17,18 @@ pkgs: let
   };
 
   script = name:
-    pkgs.writeTextFile {
+    pkgs.writeShellApplication {
       inherit name;
-      executable = true;
-      # todo disable warning
+
+      runtimeInputs = [
+        scripts
+        pkgs.niri
+        pkgs.nodejs_24
+      ];
+
       text = ''
-        #!${pkgs.nodejs_24}/bin/node ${scripts}/lib/${name}.mts
+        NODE_OPTIONS=--disable-warning=ExperimentalWarning ${pkgs.nodejs_24}/bin/node ${scripts}/lib/${name}.mts "$@"
       '';
-      meta.mainProgram = name;
     };
 in {
   inherit scripts;

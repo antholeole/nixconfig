@@ -92,6 +92,7 @@ binds {
 
     Mod+T { spawn "alacritty"; }
     Mod+D { spawn "fuzzel"; }
+    Mod+S { spawn "fuzzel-omnibar" "--command=search"; }
     Super+Alt+L { spawn "/bin/swaylock"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.

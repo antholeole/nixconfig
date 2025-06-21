@@ -50,7 +50,6 @@ in {
       ui = {
         editor = "${config.programs.helix.package}/bin/hx";
         color = "always";
-        pager = "delta";
         diff-formatter = ":git";
         paginate = "auto";
       };

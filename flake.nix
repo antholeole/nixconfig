@@ -126,11 +126,15 @@
             # don't accidentally build a niri
             niri-flake.overlays.niri
 
-            (final: prev: {
-              helix = helix.packages.${prev.system}.default;
-              zjstatus = zjstatus.packages.${prev.system}.default;
-              jujutsu = jujutsu.packages.${prev.system}.default;
-            })
+            (final: prev: let
+              zx-packages = import (./programs/zx) prev;
+            in
+              zx-packages
+              // {
+                helix = helix.packages.${prev.system}.default;
+                zjstatus = zjstatus.packages.${prev.system}.default;
+                jujutsu = jujutsu.packages.${prev.system}.default;
+              })
           ];
           config = {
             # terraform :(

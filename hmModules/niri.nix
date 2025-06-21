@@ -47,11 +47,9 @@ in {
         paths = [
           startupsh
           config.programs.alacritty.package
-          config.programs.wpaperd.package
-          config.programs.fuzzel.package
           config.programs.waybar.package
 
-
+          pkgs.fuzzel-omnibar
           pkgs.niri
         ];
       })
@@ -75,7 +73,7 @@ in {
           nixgl.auto.nixGLDefault
         ];
         text = ''
-          GBM_BACKENDS_PATH="${pkgs.mesa}/lib/gbm" nixGL ${config.programs.niri.package}/bin/niri-session 
+          GBM_BACKENDS_PATH="${pkgs.mesa}/lib/gbm" nixGL ${config.programs.niri.package}/bin/niri-session | systemd-cat -t niri
         '';
       }}/bin/niri-wm
       Type=Application

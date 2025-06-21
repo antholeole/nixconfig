@@ -1,0 +1,11 @@
+{
+  "type": "module",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "lib": [
+      "ES2015"
+    ]
+  }
+}
