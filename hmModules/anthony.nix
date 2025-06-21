@@ -54,12 +54,10 @@
         DELTA_PAGER="${pkgs.less}/bin/less -RXF" ${delta}/bin/delta $@
       '';
 
-      notHeadlessPkgs = 
+      notHeadlessPkgs =
         if !config.conf.headless
         then [
-          (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
-          fira-code-symbols
-          dejavu_fonts
+          nerd-fonts.fira-code
           libnotify
           glib # for notifications
           pwvucontrol
@@ -72,12 +70,13 @@
         ]
         else [];
 
-      x86Pkgs = if (pkgs.system == "x86_64-linux" && !config.conf.headless) then [
-        
-          (mkWaylandElectronPkg anytype "anytype")
-      ] else [
-      ];
-      in 
+      x86Pkgs =
+        if (pkgs.system == "x86_64-linux" && !config.conf.headless)
+        then [
+        ]
+        else [
+        ];
+    in
       [
         fd # a faster find
         httpie # a simpler curl
@@ -99,7 +98,9 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
-      ] ++ notHeadlessPkgs ++ x86Pkgs;
+      ]
+      ++ notHeadlessPkgs
+      ++ x86Pkgs;
   };
 
   programs = lib.mkIf (!config.conf.headless) {

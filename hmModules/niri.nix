@@ -51,12 +51,13 @@ in {
           config.programs.fuzzel.package
           config.programs.waybar.package
 
-          pkgs.niri-stable
+
+          pkgs.niri
         ];
       })
       // {
         # niri flakae reads these directly, just pass them through.
-        inherit (pkgs.niri-stable) cargoBuildNoDefaultFeatures cargoBuildFeatures;
+        inherit (pkgs.niri) cargoBuildNoDefaultFeatures cargoBuildFeatures;
       };
   };
 
@@ -74,7 +75,7 @@ in {
           nixgl.auto.nixGLDefault
         ];
         text = ''
-          nixGL ${config.programs.niri.package}/bin/niri | systemd-cat -t niri
+          GBM_BACKENDS_PATH="${pkgs.mesa}/lib/gbm" nixGL ${config.programs.niri.package}/bin/niri-session 
         '';
       }}/bin/niri-wm
       Type=Application

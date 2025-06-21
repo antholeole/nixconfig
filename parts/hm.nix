@@ -7,12 +7,13 @@
     pkgs,
     pkgs-unstable,
     pkgs-oleina,
+    pkgs-niri,
     mkWaylandElectronPkg,
     ...
   }: let
     # some special args that some hm modules need
     hmSpecialArgs = {
-      inherit inputs pkgs-unstable pkgs-oleina mkWaylandElectronPkg;
+      inherit inputs pkgs-unstable pkgs-oleina pkgs-niri mkWaylandElectronPkg;
     };
     mkHmOnlyConfig = config:
       inputs.home-manager.lib.homeManagerConfiguration {

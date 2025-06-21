@@ -3,7 +3,9 @@
 
   inputs = {
     # main nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    # nixpkgs with niri that can use the mesa on all my laptops
+    nixpkgs-niri.url = "github:nixos/nixpkgs/nixos-24.11";
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
@@ -32,8 +34,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       # inputs.rust-overlay.follows = "rust-overlay";
     };
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    nixGL  = {
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    nixGL = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
@@ -112,6 +114,7 @@
         _module.args.mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
 
         _module.args.pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
+        _module.args.pkgs-niri = import inputs.nixpkgs-niri {inherit system;};
         _module.args.pkgs-unstable =
           import inputs.nixpkgs-unstable {inherit system;};
         _module.args.pkgs = import inputs.nixpkgs {

@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  programs.wpaperd = {
+  services.wpaperd = {
     enable = !config.conf.headless;
     settings = let
       config = {

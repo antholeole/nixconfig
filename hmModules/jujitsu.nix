@@ -54,7 +54,7 @@ in {
           command = ["${pkgs.delta}/bin/delta"];
           env = {DELTA_PAGER = "${pkgs.less}/bin/less -RXF";};
         };
-        diff.format = "git";
+        diff.format = ":git";
         paginate = "auto";
       };
 

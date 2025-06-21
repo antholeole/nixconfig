@@ -18,7 +18,7 @@
   '';
 in {
   options.zjstatus = lib.options.mkOption {
-    type = lib.types.string;
+    type = lib.types.lines;
     default = let
       bgColor = h config.colorScheme.palette.base00;
     in ''
