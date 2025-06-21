@@ -33,7 +33,7 @@
       # inputs.rust-overlay.follows = "rust-overlay";
     };
     home-manager.url = "github:nix-community/home-manager/release-24.11";
-    nixGL  = {
+    nixGL = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
@@ -123,7 +123,9 @@
             # don't accidentally build a niri
             niri-flake.overlays.niri
 
-            (final: prev: {
+            (final: prev: let
+              zx-packages = import (./programs/zx) prev;
+            in zx-packages // {
               helix = helix.packages.${prev.system}.default;
               zjstatus = zjstatus.packages.${prev.system}.default;
               jujutsu = jujutsu.packages.${prev.system}.default;
