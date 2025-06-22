@@ -50,11 +50,8 @@ in {
       ui = {
         editor = "${config.programs.helix.package}/bin/hx";
         color = "always";
-        pager = {
-          command = ["${pkgs.delta}/bin/delta"];
-          env = {DELTA_PAGER = "${pkgs.less}/bin/less -RXF";};
-        };
-        diff.format = ":git";
+        pager = "delta";
+        diff-formatter = ":git";
         paginate = "auto";
       };
 
@@ -75,12 +72,21 @@ in {
         temp = ["new" "-m" "[TEMP]"];
       };
 
+      revset.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 4)";
+      revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 4)";
+
       revset-aliases = {
         # many of these copied from https://gist.github.com/thoughtpolice/8f2fd36ae17cd11b8e7bd93a70e31ad6.
         "trunk()" = "latest((present(main) | present(master)) & remote_bookmarks())";
         "stack()" = "ancestors(reachable(@, mutable()), 2)";
         "stack(x)" = "ancestors(reachable(x, mutable()), 2)";
         "stack(x, n)" = "ancestors(reachable(x, mutable()), n)";
+      };
+
+      merge-tools.delta = {
+        program = "${pkgs.delta}/bin/delta";
+        diff-expected-exit-codes = [0 1];
+        diff-args = ["--file-transformation" "s,^[12]/tmp/jj-diff-[^/]*/,," "$left" "$right"];
       };
 
       merge-tools.mergiraf = {
@@ -107,16 +113,14 @@ in {
         };
       })
       wantsRevFlag;
-
+      
     noRevFlag = {
+      jjr = "jj resolve --tool mergiraf && jj resolve";
       jjn = "jj new";
       jjcb = {
         expansion = ''jj branch create "%" -r @-'';
         setCursor = true;
       };
-
-      jjgp = "jj git push -c @-";
-      jja = "jj abandon @ ; jj new "; # jj abandon for tmp branches
     };
   in
     wantsRevFlag // noRevFlag // withRevFlag;
