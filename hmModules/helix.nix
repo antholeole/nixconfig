@@ -7,7 +7,13 @@
   ...
 }: {
   programs.helix = let
-    isArm = pkgs.system == "aarch64-linux";  in {
+    rust-toolchain = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
+      toolchain.default.override {
+        extensions = ["rustfmt" "rust-analyzer" "rust-src" "cargo" "rustc"];
+        targets = ["x86_64-unknown-linux-gnu"];
+      });
+    isArm = pkgs.system == "aarch64-linux";
+  in {
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
@@ -51,6 +57,9 @@
         vscode-langservers-extracted
         stylelint-lsp
 
+        # rust
+        rust-toolchain
+               
         # other
         config.programs.git.package
       ]
@@ -155,7 +164,7 @@
           }
         ]
         ++ (
-          if (isArm)
+          if isArm
           then []
           else [
             {
@@ -170,7 +179,7 @@
         );
 
       language-server = {
-        rust-analyzer.command = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+        rust-analyzer.command = "rust-analyzer";
         clangd = {
           args = [
             "--enable-config"
