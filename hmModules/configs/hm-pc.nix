@@ -8,5 +8,9 @@
     headless = false;
     work = false;
     wm = true;
+
+    features = [
+      "video-editing"
+    ];
   };
 }

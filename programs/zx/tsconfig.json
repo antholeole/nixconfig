@@ -5,7 +5,7 @@
     "moduleResolution": "NodeNext",
     "target": "ESNext",
     "lib": [
-      "ES2015"
+      "ESNext"
     ]
   }
 }

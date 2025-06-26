@@ -57,6 +57,7 @@ in {
           description = "commands ran at boot for the window manager. has no effect if headless.";
         };
 
+        # TODO: move this into features
         wm = mkOption {
           type = bool;
           default = true;
@@ -67,6 +68,12 @@ in {
           type = bool;
           default = false;
           description = "if this hmModule will be used on nixos.";
+        };
+
+        features = mkOption {
+          type = listOf str;
+          default = [];
+          description = "";
         };
       };
     };

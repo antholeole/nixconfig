@@ -72,10 +72,15 @@
 
       x86Pkgs =
         if (pkgs.system == "x86_64-linux" && !config.conf.headless)
-        then [
-        ]
-        else [
-        ];
+        then []
+        else [];
+
+      featureLocked = with pkgs; let
+        featurePackages = {
+          "video-editing" = [(config.lib.nixGL.wrap blender)];
+        };
+      in
+        lib.flatten (builtins.map (feature: featurePackages."${feature}" or []) config.conf.features);
     in
       [
         fd # a faster find
@@ -100,7 +105,8 @@
         deltaWrapped # diffing
       ]
       ++ notHeadlessPkgs
-      ++ x86Pkgs;
+      ++ x86Pkgs
+      ++ featureLocked;
   };
 
   programs = lib.mkIf (!config.conf.headless) {
