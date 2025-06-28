@@ -78,6 +78,9 @@
       featureLocked = with pkgs; let
         featurePackages = {
           "video-editing" = [(config.lib.nixGL.wrap blender)];
+          "gaming" = [
+            (config.lib.nixGL.wrap xwayland-satellite)
+          ];
         };
       in
         lib.flatten (builtins.map (feature: featurePackages."${feature}" or []) config.conf.features);

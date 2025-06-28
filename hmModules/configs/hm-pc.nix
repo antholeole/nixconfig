@@ -11,6 +11,7 @@
 
     features = [
       "video-editing"
+      "gaming"
     ];
   };
 }

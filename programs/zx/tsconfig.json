@@ -6,6 +6,7 @@
     "target": "ESNext",
     "lib": [
       "ESNext"
-    ]
+    ],
+    "resolveJsonModule": true
   }
 }

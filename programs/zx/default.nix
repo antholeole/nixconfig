@@ -11,8 +11,8 @@ pkgs: let
       mkdir -p $out/lib
 
       mv  node_modules/ $out/lib
+      mv *.json $out/lib
       mv *.mts $out/lib
-      mv package.json $out/lib
     '';
   };
 
