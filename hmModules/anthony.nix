@@ -64,6 +64,7 @@
           swappy # image editing
           nautilus # files
           totem # vidoes
+          nix-output-monitor
         ]
         else [];
 

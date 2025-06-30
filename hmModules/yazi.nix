@@ -28,7 +28,7 @@
           on = ["<Backspace>"];
         }
       ];
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           run = "escape";
           on = ["<Esc>"];

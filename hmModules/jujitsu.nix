@@ -5,13 +5,12 @@
   ...
 }: let
   # TODO move this somewhere sensible.
-  jjBin = "${config.programs.jujutsu.package}/bin/jj";
   jjSignoff = pkgs.writeShellScriptBin "jj-signoff" ''
     set -euo pipefail
 
-    NAME=$(${jjBin} config get user.name)
-    MAIL=$(${jjBin} config get user.email)
-    CID=$(${jjBin} log --no-graph -r @ -T "change_id" | sha256sum | head -c 40)
+    NAME=$(jj config get user.name)
+    MAIL=$(jj config get user.email)
+    CID=$(jj log --no-graph -r @ -T "change_id" | sha256sum | head -c 40)
 
     SIGNSTR="Signed-off-by: ''${NAME} <''${MAIL}>"
     CHGSTR="Change-Id: I''${CID}"
@@ -44,10 +43,20 @@
 in {
   programs.jujutsu = {
     enable = true;
+    package = pkgs.symlinkJoin {
+      name = "jujutsu";
+      paths = with pkgs; [
+        delta
+        mergiraf
+        jjSignoff
+      ];
+    };
 
     settings = {
       user = with config.conf; {inherit email name;};
       ui = {
+        # not perfect but hx depends on jj and jj depends on hx.
+        # we have to break the circle somewhere
         editor = "${config.programs.helix.package}/bin/hx";
         color = "always";
         diff-formatter = ":git";
@@ -62,10 +71,9 @@ in {
       git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};
 
       aliases = {
-        signoff = ["--config-toml=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
+        signoff = ["--config-toml=ui.editor='jj-signoff'" "commit"];
         d = ["describe"];
         dm = ["describe" "-m"];
-        g = ["git"];
         shas = ["log" "-r=root()..@" "-T" "author.timestamp().local().format(\'%Y-%m-%d\') ++ \" \" ++ truncate_end(72, pad_end(72, coalesce(description.first_line(), \"(no desc)\")))  ++ commit_id ++ \"\n\"" "--no-graph"];
         retrunk = ["rebase" "-d" "trunk()"];
         temp = ["new" "-m" "[TEMP]"];
@@ -83,7 +91,7 @@ in {
       };
 
       merge-tools.delta = {
-        program = "${pkgs.delta}/bin/delta";
+        program = "delta";
         diff-expected-exit-codes = [0 1];
         diff-args = ["--file-transformation" "s,^[12]/tmp/jj-diff-[^/]*/,," "$left" "$right"];
       };
