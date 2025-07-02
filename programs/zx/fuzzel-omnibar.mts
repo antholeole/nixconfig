@@ -1,5 +1,8 @@
 import { $, argv, echo } from "zx";
-import { nixChannel } from "./config.json";
+
+const { nixChannel } = {
+	nixChannel: "25.05",
+};
 
 type PromiseFunction = () => Promise<void>;
 
@@ -27,7 +30,9 @@ const findBrowser = async () => {
 
 const onSearch = async () => {
 	const fuzzelInput: string =
-		await $`fuzzel --lines 0 --prompt "search: " --dmenu`.then((v) => v.stdout.trimEnd());
+		await $`fuzzel --lines 0 --prompt "search: " --dmenu`.then((v) =>
+			v.stdout.trimEnd(),
+		);
 
 	let url: string;
 	if (fuzzelInput.startsWith("!nix ")) {
