@@ -6,21 +6,18 @@
   perSystem = {
     pkgs,
     pkgs-unstable,
-    pkgs-oleina,
-    pkgs-niri,
-    mkWaylandElectronPkg,
     ...
   }: let
     # some special args that some hm modules need
     hmSpecialArgs = {
-      inherit inputs pkgs-unstable pkgs-oleina pkgs-niri mkWaylandElectronPkg;
+      inherit inputs pkgs-unstable;
     };
     mkHmOnlyConfig = config:
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules =
-          (import ../hmModules inputs)
+          (import ../hmModules)
           ++ [
             (import "${inputs.self}/hmModules/configs/${config}.nix")
           ];
@@ -33,7 +30,7 @@
       work = mkHmOnlyConfig "hm-work";
       headless = mkHmOnlyConfig "hm-headless";
       headless-work = mkHmOnlyConfig "hm-headless-work";
-      asahi-personal =  mkHmOnlyConfig "asahi-personal";
+      asahi-personal = mkHmOnlyConfig "asahi-personal";
     };
   };
 }

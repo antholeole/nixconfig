@@ -1,16 +1,11 @@
 {
   pkgs,
-  inputs,
+  self,
   config,
-  mkWaylandElectronPkg,
   lib,
   ...
 }: {
   fonts.fontconfig.enable = true;
-
-  imports = [
-    inputs.nix-index-database.hmModules.nix-index
-  ];
 
   gtk = {
     enable = !config.conf.headless;
@@ -41,12 +36,12 @@
 
     file.".ssh/id_ed25519.pub" = {
       enable = true;
-      source = "${inputs.self}/assets/id_ed25519.pub";
+      source = "${self}/assets/id_ed25519.pub";
     };
 
     file.".ssh/config" = {
       enable = true;
-      source = "${inputs.self}/assets/config";
+      source = "${self}/assets/config";
     };
 
     packages = with pkgs; let
@@ -67,6 +62,8 @@
           wl-clipboard # clipboard
           mpc-cli
           swappy # image editing
+          nautilus # files
+          totem # vidoes
         ]
         else [];
 
@@ -95,11 +92,10 @@
         bottom # top but nicer
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
-        tldr # i HATE manpages
+        tldr 
         rclone # very useful for remote stuff
         direnv # vsc ext checks path for this
         neofetch # for funzies
-        ncdu # see where our big folders are
         nixgl.auto.nixGLDefault # unboxing nix sad
         gawk
         gron # greppable json
@@ -117,9 +113,6 @@
       enable = true;
       enableXsessionIntegration = true;
     };
-
-    home-manager.enable = true;
-    ncmpcpp.enable = true;
   };
 
   home.stateVersion = "23.05";

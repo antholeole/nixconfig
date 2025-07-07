@@ -1,34 +1,47 @@
-{inputs, ...}: {
-  perSystem = {
-    pkgs,
-    pkgs-unstable,
-    pkgs-oleina,
-    
-    system,
-    lib,
+{
+  inputs,
+  withSystem,
+  self,
+  ...
+}: {
+  flake.nixosConfigurations.pc = withSystem "x86_64-linux" ({
     config,
+    pkgs-unstable,
+    pkgs,
     ...
-  }: {
-    nixosConfigurations = {
-      kayak-asahi = inputs.nixpkgs.lib.nixosSystem {
-        inherit system;
-
-        extraSpecialArgs = {
-          inherit inputs pkgs-unstable pkgs-oleina;
+  }:
+    inputs.nixpkgs.lib.nixosSystem {
+      modules = let
+        topLevelModule = {...}: {
+          nixpkgs.pkgs = pkgs;
+          networking.hostName = "solitude";
         };
 
-        modules = with inputs; [
-          apple-silicon.nixosModules.default
-          home-manager.nixosModules.home-manager
+        hmConfig = {
+          home-manager = {
+            extraSpecialArgs = {
+              inherit inputs pkgs-unstable pkgs self;
+            };
 
-          "${self}/hosts/kayak/configuration.nix"
-          "${self}/mixins/asahi.nix"
-          "${self}/mixins/hmShim.nix"
+            backupFileExtension = "bak";
 
-          
-          (import "${inputs.self}/hmModules/configs/asahi-personal.nix")
-        ] ++ (import "${inputs.self}/hmModules" inputs);
-      };
-    };
-  };
+            users.anthony = {pkgs, ...}: {
+              imports =
+                (import ../hmModules)
+                ++ [../hmModules/configs/hm-pc.nix];
+            };
+          };
+        };
+      in [
+        inputs.home-manager.nixosModules.home-manager
+        inputs.nixpkgs.nixosModules.readOnlyPkgs
+        topLevelModule
+
+        hmConfig
+
+        ../nixosModules/basic.nix
+        ../nixosModules/niri.nix
+        ../hardware/pc.nix
+      ];
+    });
 }

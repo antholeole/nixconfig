@@ -9,9 +9,10 @@
       paths = with pkgs; [
         kubectl
         kubecolor
-
         kubectl-explore
       ];
+
+      meta.mainProgram = "kubecolor";
     };
 
     enable = true;

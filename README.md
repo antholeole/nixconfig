@@ -1,7 +1,7 @@
 # Quick start (nixos)
 
 - `nix flake show` to see all outputs
-- `sudo nixos-rebuild switch --flake .#` (for example, kayak-asaki, for kayak on asahi linux)
+- `sudo nixos-rebuild switch --flake .#pc --impure` 
 
 # HomeManager only:
 
@@ -10,16 +10,11 @@
 
 # Post install
 
-- get the ssh private key from elsewhere
+for hm, run `init-niri` to initalize the wm.
 
-If you're using home-manager, you'll need to:
 
-- copy `assets/authorized_keys` into `~/.ssh/authorized_keys`
+## Notes
 
-I also include some stuff in /custom/, for configuration that I do not want to leak.
-These are gitignored but they don't need to exist.
-
-Chrome extensions I use but chrome doesn't lend itself to extensions well:
-
-- vimium
-- [quick tabs](https://chromewebstore.google.com/detail/quick-tabs/jnjfeinjfmenlddahdjdmgpbokiacbbb)
+this needs a refactor. I wouldn't copy the structure. If i have to update, say, niri in nixos and hm,
+I have to do it across multiple files. Flake parts has https://flake.parts/options/flake-parts-flakemodules
+for that.

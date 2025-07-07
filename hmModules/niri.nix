@@ -22,22 +22,11 @@ in {
 
     # TODO convert this to nix one day.
     config = let
-      aarchConfig =
-        if (pkgs.system == "aarch64-linux")
-        then ''
-          debug {
-              render-drm-device "/dev/dri/renderD128"
-          }
-        ''
-        else "";
-
       defaultConfig = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
     in
       # seems to build niri without lib.mkIf here. This is likely because it
       # uses niri to check the file is valid in check phase.
       lib.mkIf enableNiri ''
-        ${aarchConfig}
-
         ${defaultConfig}
       '';
 
@@ -54,7 +43,7 @@ in {
         ];
       })
       // {
-        # niri flakae reads these directly, just pass them through.
+        # niri flake reads these directly, just pass them through.
         inherit (pkgs.niri) cargoBuildNoDefaultFeatures cargoBuildFeatures;
       };
   };

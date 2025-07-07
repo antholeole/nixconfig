@@ -110,11 +110,6 @@
         pkgs,
         ...
       }: {
-        # TODO there is likely a better way to do this now that I am smarter
-        _module.args.mkWaylandElectronPkg = (import ./mixins/mkWaylandElectronPkg.nix) pkgs;
-
-        _module.args.pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
-        _module.args.pkgs-niri = import inputs.nixpkgs-niri {inherit system;};
         _module.args.pkgs-unstable =
           import inputs.nixpkgs-unstable {inherit system;};
         _module.args.pkgs = import inputs.nixpkgs {
@@ -123,7 +118,6 @@
             nixGL.overlay
             rust-overlay.overlays.default
 
-            # don't accidentally build a niri
             niri-flake.overlays.niri
 
             (final: prev: let
@@ -136,10 +130,7 @@
                 jujutsu = jujutsu.packages.${prev.system}.default;
               })
           ];
-          config = {
-            # terraform :(
-            allowUnfree = true;
-          };
+          config.allowUnfree = true;
         };
       };
 
@@ -150,11 +141,12 @@
 
       imports = [
         treefmt-nix.flakeModule
+        home-manager.flakeModules.home-manager
 
         ./parts/devshell.nix
         ./parts/treefmt.nix
+        ./parts/nixos.nix
         ./parts/hm.nix
-        ./parts/packages.nix
         ./parts/packages.nix
       ];
     };

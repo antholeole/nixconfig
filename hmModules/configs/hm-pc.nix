@@ -4,10 +4,11 @@
     name = "anthony";
     selfAlias = "oleina";
 
-    nixos = false;
+    nixos = true;
+    wm = true;
+
     headless = false;
     work = false;
-    wm = true;
 
     features = [
       "video-editing"
