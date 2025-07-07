@@ -36,7 +36,7 @@ const onSearch = async () => {
 
 	let url: string;
 	if (fuzzelInput.startsWith("!nix ")) {
-		url = `https://search.nixos.org/packages?channel=${nixChannel}&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
+		url = `https://search.nixos.org/packages?channel=25.05&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
 	} else if (fuzzelInput === "!d") {
 		url = "https://draw.oleina.xyz";
 	} else {

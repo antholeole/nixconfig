@@ -40,6 +40,7 @@ in {
 
           pkgs.fuzzel-omnibar
           pkgs.niri
+          pkgs.wl-clipboard
         ];
       })
       // {

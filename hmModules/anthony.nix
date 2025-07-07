@@ -62,9 +62,12 @@
           wl-clipboard # clipboard
           mpc-cli
           swappy # image editing
+          nix-output-monitor
+
+          # gui stuff
           nautilus # files
           totem # vidoes
-          nix-output-monitor
+          networkmanagerapplet # network
         ]
         else [];
 

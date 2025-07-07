@@ -41,7 +41,12 @@ in {
   };
 
   config.systemd.user.services.remoteClip = lib.mkIf (!config.conf.headless) {
-    Unit = {Description = "a remote clipboard server";};
+    Unit = {
+      Description = "a remote clipboard server";
+      After = lib.mkForce ["graphical-session.target"];
+      Requisite = ["graphical-session.target"];
+    };
+
     Install.WantedBy = ["graphical-session.target"];
 
     Service = let

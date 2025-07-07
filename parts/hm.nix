@@ -1,5 +1,6 @@
 {
   inputs,
+  self,
   ...
 }: {
   debug = true;
@@ -10,7 +11,7 @@
   }: let
     # some special args that some hm modules need
     hmSpecialArgs = {
-      inherit inputs pkgs-unstable;
+      inherit inputs pkgs-unstable self;
     };
     mkHmOnlyConfig = config:
       inputs.home-manager.lib.homeManagerConfiguration {

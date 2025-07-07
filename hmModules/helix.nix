@@ -46,7 +46,8 @@
 
         # go
         gopls
-
+        go
+        
         # python
         python3Packages.python-lsp-server
         ruff

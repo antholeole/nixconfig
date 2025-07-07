@@ -6,8 +6,8 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"log"
 	"os/exec"
-	"strings"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mkideal/cli"
@@ -39,18 +39,14 @@ func run(args *argT) error {
 		toCopyB64, err := io.ReadAll(c.Request.Body)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
+			log.Printf("Error reading request body: %v", err)
 			return
 		}
 
-		data, err := b64.StdEncoding.DecodeString(string(toCopyB64))
+		err = utils.Copy(toCopyB64, args.Wlcopy)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
-			return
-		}
-
-		err = utils.Copy(strings.TrimSuffix(string(data), "\n"), args.Wlcopy)
-		if err != nil {
-			c.AbortWithError(http.StatusInternalServerError, err)
+			log.Printf("Error copying data: %v", err)
 			return
 		}
 

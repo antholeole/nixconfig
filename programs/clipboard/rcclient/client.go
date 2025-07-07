@@ -1,4 +1,4 @@
-package main
+package client
 
 import (
 	b64 "encoding/base64"
@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strings"
 
 	"oleinaconf.com/utils"
 )

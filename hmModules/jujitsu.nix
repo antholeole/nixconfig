@@ -71,7 +71,7 @@ in {
       git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};
 
       aliases = {
-        signoff = ["--config-toml=ui.editor='jj-signoff'" "commit"];
+        signoff = ["--config=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
         d = ["describe"];
         dm = ["describe" "-m"];
         shas = ["log" "-r=root()..@" "-T" "author.timestamp().local().format(\'%Y-%m-%d\') ++ \" \" ++ truncate_end(72, pad_end(72, coalesce(description.first_line(), \"(no desc)\")))  ++ commit_id ++ \"\n\"" "--no-graph"];
