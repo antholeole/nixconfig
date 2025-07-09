@@ -5,10 +5,25 @@
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  environment.systemPackages = with pkgs; [
+    busybox
+  ];
+
   boot = {
     extraModulePackages = with config.boot.kernelPackages; [
-      rtl8852bu
+      v4l2loopback
+      (rtl88x2bu.overrideAttrs {
+        src = pkgs.fetchFromGitHub {
+          owner = "RinCat";
+          repo = "RTL88x2BU-Linux-Driver";
+          rev = "77a82dbac7192bb49fa87458561b0f2455cdc88f";
+          hash = "sha256-kBBm7LYox3V3uyChbY9USPqhQUA40mpqVwgglAxpMOM=";
+        };
+      })
     ];
+
+    # TODO these should be behinf feature flags
+    kernelModules = ["v4l2loopback" "88x2bu"];
 
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
@@ -43,7 +58,13 @@
     pulse.enable = true;
   };
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+
+    # openWRT hates random mac addresses
+    wifi.scanRandMacAddress = false;
+    wifi.macAddress = "stable";
+  };
 
   users.users.anthony = {
     isNormalUser = true;
