@@ -12,6 +12,7 @@
 
     features = [
       "video-editing"
+      "usb-wifi"
       "gaming"
     ];
   };
