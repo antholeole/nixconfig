@@ -42,6 +42,7 @@
         ../nixosModules/basic.nix
         ../nixosModules/niri.nix
         ../nixosModules/nvidia.nix
+        ../nixosModules/steam.nix
 
         ../hardware/pc.nix
       ];

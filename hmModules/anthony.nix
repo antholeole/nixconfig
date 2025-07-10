@@ -78,9 +78,9 @@
 
       featureLocked = with pkgs; let
         featurePackages = {
-          "video-editing" = [(config.lib.nixGL.wrap blender)];
+          "video-editing" = [blender ffmpeg_6 v4l-utils gphoto2];
           "gaming" = [
-            (config.lib.nixGL.wrap xwayland-satellite)
+            xwayland-satellite
           ];
         };
       in
@@ -96,7 +96,7 @@
         bottom # top but nicer
         watchexec # code agnostic file watcher. very helpful for dev setups
         parallel # xargs but I like it better
-        tldr 
+        tldr
         rclone # very useful for remote stuff
         direnv # vsc ext checks path for this
         neofetch # for funzies

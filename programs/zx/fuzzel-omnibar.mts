@@ -9,8 +9,8 @@ type PromiseFunction = () => Promise<void>;
 const findBrowser = async () => {
 	const browserPriority = ["org.mozilla.firefox", "google-chrome"];
 
-	const windows = await $`niri msg --json windows`.then((v) =>
-		JSON.parse(v.stdout),
+	const windows = await $`niri msg --json windows`.then(
+		(v: { stdout: string }) => JSON.parse(v.stdout),
 	);
 
 	const browsers = new Map(
@@ -30,15 +30,17 @@ const findBrowser = async () => {
 
 const onSearch = async () => {
 	const fuzzelInput: string =
-		await $`fuzzel --lines 0 --prompt "search: " --dmenu`.then((v) =>
-			v.stdout.trimEnd(),
+		await $`fuzzel --lines 0 --prompt "search: " --dmenu`.then(
+			(v: { stdout: string }) => v.stdout.trimEnd(),
 		);
 
 	let url: string;
-	if (fuzzelInput.startsWith("!nix ")) {
-		url = `https://search.nixos.org/packages?channel=25.05&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
+	if (fuzzelInput.startsWith("!nix")) {
+ 		url = `https://search.nixos.org/packages?channel=${nixChannel}&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
 	} else if (fuzzelInput === "!d") {
 		url = "https://draw.oleina.xyz";
+	} else if (fuzzelInput.startsWith("!home")) {
+		url = `https://home-manager-options.extranix.com/?query=${fuzzelInput.replace("!home ", "")}&release=release-25.05`;
 	} else {
 		url = `https://www.google.com/search?q=${fuzzelInput}`;
 	}
@@ -48,7 +50,7 @@ const onSearch = async () => {
 	await Promise.all([
 		$`niri msg action focus-window --id=${browserId}`,
 		$({
-			quote: (v) => v,
+			quote: (v: string) => v,
 		})`xdg-open "${url}"`,
 	]);
 };
