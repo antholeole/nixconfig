@@ -2,6 +2,8 @@
   programs.starship = let
     disabled = {disabled = true;};
 
+    
+
     h = s: "#${s}";
 
     color = config.conf.termColor;
@@ -23,18 +25,11 @@
       format = "$character";
 
       # trailing space so it lines up with zellij
-      right_format = "$git_branch $git_metrics $directory$hostname ";
+      right_format = "\${custom.jj} $git_metrics $directory$hostname ";
 
       directory = {format = "[  ┃ $path ](${bgFill})";};
       cmd_duration = {format = "${seperator}[$duration](${bgFill})";};
       shlvl = {disabled = true;};
-      git_branch = vc;
-      git_metrics = {
-        only_nonzero_diffs = true;
-        disabled = false;
-        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})";
-      };
-      hg_branch = vc;
       battery.disabled = true;
 
       hostname = {
@@ -48,6 +43,36 @@
         error_symbol = "[󰘧](red)";
         format = "$symbol($style) ";
       };
+
+      git_state = disabled;
+      git_commit = disabled;
+
+      # you can re-enable git_branch when not in a JJ repo but I find it rarely
+      # helpful, so leave it disabled.
+      git_branch = disabled;
+
+      custom.jj = {
+        ignore_timeout = true;
+        description = "jj status";
+        detect_folders = [".jj"];
+        command = ''
+${config.programs.jujutsu.package}/bin/jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+separate(" ",
+  if(bookmarks, bookmarks, if(empty, "(empty)", change_id.shortest(4))),
+)
+'
+        '';
+        format = "[ 󰜜 $output ](${fgFill})";
+      };
+
+      # always show git metrics, they're helpful even in JJ world.
+      git_metrics = {
+        only_nonzero_diffs = true;
+        disabled = false;
+        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})";
+      };
+
+      
 
       time = disabled;
       gcloud = disabled;

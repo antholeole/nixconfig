@@ -51,7 +51,7 @@ in {
 
     Service = let
       remoteClipServer =
-        (import "${inputs.self}/confs/services/clipboard" pkgs).server;
+        (import "${inputs.self}/programs/clipboard" pkgs).server;
     in {
       Environment = "GIN_MODE=release";
       ExecStart = with pkgs; "${remoteClipServer}/bin/rcserver --wlcopy ${wl-clipboard.outPath}/bin/wl-copy --wlpaste ${wl-clipboard.outPath}/bin/wl-paste --notify-send ${libnotify}/bin/notify-send";

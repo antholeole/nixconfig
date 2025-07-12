@@ -43,14 +43,6 @@
 in {
   programs.jujutsu = {
     enable = true;
-    package = pkgs.symlinkJoin {
-      name = "jujutsu";
-      paths = with pkgs; [
-        delta
-        mergiraf
-        jjSignoff
-      ];
-    };
 
     settings = {
       user = with config.conf; {inherit email name;};
@@ -91,7 +83,7 @@ in {
       };
 
       merge-tools.delta = {
-        program = "delta";
+        program = "${pkgs.delta}/bin/delta";
         diff-expected-exit-codes = [0 1];
         diff-args = ["--file-transformation" "s,^[12]/tmp/jj-diff-[^/]*/,," "$left" "$right"];
       };

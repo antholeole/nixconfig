@@ -1,15 +1,15 @@
 package utils
 
 import (
+	"bytes"
 	"fmt"
 	"os/exec"
-	"bytes"
 )
 
 var Port = "9791"
 
 func Copy(toCopy, wlcopy string) error {
-	cmdLine := fmt.Sprintf("echo \"$(base64 -d %s)\" | %s -n 2> /dev/null", toCopy, wlcopy)
+	cmdLine := fmt.Sprintf("echo $(echo %s | base64 -d) | %s -n 2> /dev/null", toCopy, wlcopy)
 	cmd := exec.Command("/bin/bash", "-c", cmdLine)
 
 	var stderr bytes.Buffer

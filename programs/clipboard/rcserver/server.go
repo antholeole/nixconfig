@@ -43,7 +43,7 @@ func run(args *argT) error {
 			return
 		}
 
-		err = utils.Copy(toCopyB64, args.Wlcopy)
+		err = utils.Copy(string(toCopyB64), args.Wlcopy)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			log.Printf("Error copying data: %v", err)
