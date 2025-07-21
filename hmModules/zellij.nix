@@ -76,7 +76,6 @@ in {
               bind "r" { NewPane "right"; SwitchToMode "locked"; }
               bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
               bind "x" { CloseFocus; SwitchToMode "locked"; }
-              bind "z" { TogglePaneFrames; SwitchToMode "locked"; }
               bind "tab" { SwitchFocus; }
           }
           tab {
