@@ -4,18 +4,27 @@ input {
     }
 }
 
-output "DP-3" {
-    mode "2560x1440"
-    transform "normal"
-}
+// TODO: figure out what this monitor was and return it
+// output "DP-3" {
+//     mode "2560x1440"
+//     transform "normal"
+// }
 
+
+// default laptop screen
 output "eDP-1" {
     scale 2.3
 }
 
-output "HDMI-A-1" {
-    scale 1.35
+// work external monitor
+output "Hewlett Packard HP Z27n CNK62212PK"  {
+    scale 1.15
 }
+
+// TODO: bind to a monitor name, not a port
+// output "HDMI-A-1" {
+//     scale 1.35
+// }
 
 layout {
     gaps 13

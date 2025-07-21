@@ -76,6 +76,8 @@
           space = {
             F = "file_picker";
             f = "file_picker_in_current_buffer_directory";
+            E = "file_explorer";
+            e = "file_explorer_in_current_buffer_directory";
 
             space = {
               b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
