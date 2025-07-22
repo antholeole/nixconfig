@@ -4,9 +4,9 @@ import (
 	b64 "encoding/base64"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"os"
-	"log"
 	"os/exec"
 
 	"github.com/gin-gonic/gin"
@@ -50,7 +50,6 @@ func run(args *argT) error {
 			return
 		}
 
-		fmt.Println("copied!")	
 		c.Data(http.StatusOK, "text/plain", []byte("ok"))
 	})
 
