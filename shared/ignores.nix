@@ -19,8 +19,6 @@
   "*.class" # java / scala
   "target/" # java / scala
 
-  "external/" # cpp, bazel
-
   ".cache" # cmake
   "CMakeFiles" # cmake
   "_deps"

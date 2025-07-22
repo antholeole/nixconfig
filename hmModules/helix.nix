@@ -47,7 +47,7 @@
         # go
         gopls
         go
-        
+
         # python
         python3Packages.python-lsp-server
         ruff
@@ -60,7 +60,7 @@
 
         # rust
         rust-toolchain
-               
+
         # other
         config.programs.git.package
       ]

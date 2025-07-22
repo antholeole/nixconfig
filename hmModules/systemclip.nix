@@ -6,7 +6,7 @@
   ...
 }: let
   remoteClipClient =
-    (import "${inputs.self}/confs/services/clipboard" pkgs).client;
+    (import "${inputs.self}/programs/clipboard" pkgs).client;
 in {
   options.programs.system-clip = lib.options.mkOption {
     type = lib.types.submodule {
