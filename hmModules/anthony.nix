@@ -66,7 +66,7 @@
 
           # gui stuff
           nautilus # files
-          totem # vidoes
+          mpv # vidoes
           networkmanagerapplet # network
         ]
         else [];
