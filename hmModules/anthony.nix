@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgs-unstable,
   self,
   config,
   lib,
@@ -78,9 +79,10 @@
 
       featureLocked = with pkgs; let
         featurePackages = {
-          "video-editing" = [blender ffmpeg_6 v4l-utils gphoto2];
+          "video-editing" = [blender ffmpeg_6-full v4l-utils pkgs-unstable.gphoto2];
           "gaming" = [
             xwayland-satellite
+            gamescope
           ];
         };
       in
@@ -110,13 +112,6 @@
       ++ notHeadlessPkgs
       ++ x86Pkgs
       ++ featureLocked;
-  };
-
-  programs = lib.mkIf (!config.conf.headless) {
-    keychain = {
-      enable = true;
-      enableXsessionIntegration = true;
-    };
   };
 
   home.stateVersion = "23.05";

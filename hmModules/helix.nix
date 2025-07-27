@@ -156,8 +156,12 @@
 
           {
             name = "css";
-            file-types = ["css" "scss" "less"];
+            file-types = ["css" "less"];
             language-servers = ["stylelint-ls"];
+          }
+          {
+            name = "scss";
+            language-servers = ["vscode-css-language-server" "tailwindcss-ls"];
           }
           {
             name = "python";
@@ -180,6 +184,16 @@
             }
           ]
         );
+
+      vscode-css-language-server = {
+        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
+        args = ["--stdio"];
+        config = {
+          provideFormatter = true;
+          css.validate.enable = true;
+          scss.validate.enable = true;
+        };
+      };
 
       language-server = {
         rust-analyzer.command = "rust-analyzer";

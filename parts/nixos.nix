@@ -11,6 +11,10 @@
     ...
   }:
     inputs.nixpkgs.lib.nixosSystem {
+      specialArgs = {
+        inherit pkgs-unstable pkgs;
+      };
+      
       modules = let
         topLevelModule = {...}: {
           nixpkgs.pkgs = pkgs;
@@ -33,6 +37,7 @@
           };
         };
       in [
+        inputs.nixpkgs.nixosModules.readOnlyPkgs
         inputs.home-manager.nixosModules.home-manager
         inputs.nixpkgs.nixosModules.readOnlyPkgs
         topLevelModule

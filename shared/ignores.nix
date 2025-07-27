@@ -19,6 +19,8 @@
   "*.class" # java / scala
   "target/" # java / scala
 
+  "@girs/" # ags
+
   ".cache" # cmake
   "CMakeFiles" # cmake
   "_deps"

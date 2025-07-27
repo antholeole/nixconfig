@@ -145,10 +145,6 @@
         else []
       );
 
-    shellInit = ''
-      source ~/.nix-profile/etc/profile.d/nix.fish
-    '';
-
     interactiveShellInit = ''
       set fish_greeting
       set EDITOR ${config.programs.helix.package}/bin/hx
