@@ -49,7 +49,7 @@
         go
 
         # python
-        python3Packages.python-lsp-server
+        basedpyright
         ruff
 
         # js
@@ -162,7 +162,8 @@
           {
             name = "python";
             language-servers = [
-              "pylsp"
+              "basedpyright"
+              "ruff"
             ];
           }
         ]
@@ -182,6 +183,19 @@
         );
 
       language-server = {
+        basedpyright = {
+          command = "basedpyright-langserver";
+          args = ["--stdio"];
+          except-features = ["format"];
+
+          config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
+        };
+
+        ruff = {
+          command = "ruff";
+          args = ["server"];
+        };
+
         rust-analyzer.command = "rust-analyzer";
         clangd = {
           args = [
