@@ -66,8 +66,11 @@
     enable = true;
 
     # openWRT hates random mac addresses
-    wifi.scanRandMacAddress = false;
-    wifi.macAddress = "stable";
+    wifi = {
+      scanRandMacAddress = false;
+      macAddress = "permanent";
+      powersave = false;
+    };
   };
 
   users.users.anthony = {

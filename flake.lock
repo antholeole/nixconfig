@@ -460,6 +460,26 @@
         "type": "github"
       }
     },
+    "nixzx": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1754199206,
+        "narHash": "sha256-DTj5N8XH3XhYImXjtIJ3nbK2hkJC9o1BIUHwSqBbZ6s=",
+        "owner": "antholeole",
+        "repo": "nixzx",
+        "rev": "231430ee7b6f9596a14894b2228b6c04c13bcbc7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "antholeole",
+        "repo": "nixzx",
+        "type": "github"
+      }
+    },
     "oleina-nixpkgs": {
       "locked": {
         "lastModified": 1721409626,
@@ -493,6 +513,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-niri": "nixpkgs-niri",
         "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixzx": "nixzx",
         "oleina-nixpkgs": "oleina-nixpkgs",
         "rust-overlay": "rust-overlay_3",
         "treefmt-nix": "treefmt-nix",

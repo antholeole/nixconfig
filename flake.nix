@@ -67,6 +67,11 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
+    nixzx = {
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      url = "github:antholeole/nixzx";
+    };
+
     # theme
     gruvbox-yazi = {
       url = "github:poperigby/gruvbox-dark-yazi";
@@ -102,6 +107,7 @@
     treefmt-nix,
     jujutsu,
     niri-flake,
+    nixzx,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -119,6 +125,7 @@
             rust-overlay.overlays.default
 
             niri-flake.overlays.niri
+            nixzx.overlays.default
 
             (final: prev: let
               zx-packages = import (./programs/zx) prev;

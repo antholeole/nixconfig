@@ -23,7 +23,7 @@ output "Hewlett Packard HP Z27n CNK62212PK"  {
 
 // personal monitor
 output "Dell Inc. DELL P3223QE 5Y1J2P3" {
-    scale 2.1
+    scale 1.70
 }
 
 // don't flicker pipewire share
