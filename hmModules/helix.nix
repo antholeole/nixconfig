@@ -61,6 +61,9 @@
         # rust
         rust-toolchain
 
+        # protobuf
+        buf
+
         # other
         config.programs.git.package
       ]

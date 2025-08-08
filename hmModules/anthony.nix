@@ -108,6 +108,10 @@
         aspell
         aspellDicts.en
         deltaWrapped # diffing
+
+        (writeShellScriptBin "bazel" ''
+          ${bazelisk}/bin/bazelisk "$@"
+        '')
       ]
       ++ notHeadlessPkgs
       ++ x86Pkgs
