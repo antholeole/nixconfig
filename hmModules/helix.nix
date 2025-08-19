@@ -52,6 +52,9 @@
         basedpyright
         ruff
 
+        # qml... pretty big. we should remove it
+        kdePackages.qtdeclarative
+
         # js
         biome
         typescript-language-server
@@ -207,6 +210,12 @@
 
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
+
+          qmlls = {
+            name = "qmlls";
+            command = "qmlls";
+            args = ["-E"];
+          };
 
         ruff = {
           command = "ruff";

@@ -48,6 +48,7 @@ in {
             pane_frames false
             scrollback_editor "${config.programs.helix.package}/bin/hx"
             theme "gruvbox-dark"
+            show_startup_tips false
             ui {
             	pane_frames {
             		hide_session_name true
@@ -271,7 +272,7 @@ in {
       enable = true;
       text = let
         singleFloatingPane = nth: ''
-          pane name="${builtins.toString nth}" x="5%" y="${builtins.toString (nth + 4)}%" width="90%" height="90%"
+          pane name="${builtins.toString nth}" x="5%" y=${builtins.toString (nth - 1)} width="90%" height="90%"
         '';
 
         buildFloatingSwapLayout = panes: ''
@@ -280,13 +281,13 @@ in {
           }
         '';
 
-        buildNPaneLayout = panes: lib.strings.concatMapStrings buildFloatingSwapLayout (lib.range 1 4);
+        buildNPaneLayout = panes: lib.strings.concatMapStrings buildFloatingSwapLayout (lib.range 1 6);
       in ''
         layout {
           ${defaultTab}
 
           swap_floating_layout {
-            ${buildNPaneLayout 5}
+            ${buildNPaneLayout 9}
           }
         }
       '';
