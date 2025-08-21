@@ -68,6 +68,10 @@
         # protobuf
         buf
 
+        # haskell
+        haskell-language-server
+        fourmolu
+
         # other
         config.programs.git.package
         config.programs.yazi.package
@@ -257,6 +261,12 @@
         nil = {
           command = "nil";
           config.nil.formatting.command = ["alejandra" "-q"];
+        };
+
+        haskell-language-server.config.haskell = {
+          formattingProvider = "fourmolu";
+          plugin.fourmolu.config.external = true;
+          plugin.rename.config.crossModule = true;
         };
 
         biome = {
