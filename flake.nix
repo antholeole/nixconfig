@@ -135,6 +135,8 @@
                 helix = helix.packages.${prev.system}.default;
                 zjstatus = zjstatus.packages.${prev.system}.default;
                 jujutsu = jujutsu.packages.${prev.system}.default;
+
+                ghbrowse = (import ./programs/ghbrowse) prev;
               })
           ];
           config.allowUnfree = true;

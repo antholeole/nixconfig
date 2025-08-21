@@ -6,4 +6,4 @@ firmware/
 .vite/
 dist/
 result
-custom/
+custom/node_modules/

@@ -102,12 +102,14 @@
         rclone # very useful for remote stuff
         direnv # vsc ext checks path for this
         neofetch # for funzies
+        arp-scan
         nixgl.auto.nixGLDefault # unboxing nix sad
         gawk
         gron # greppable json
         aspell
         aspellDicts.en
         deltaWrapped # diffing
+        ghbrowse
 
         (writeShellScriptBin "bazel" ''
           ${bazelisk}/bin/bazelisk "$@"
