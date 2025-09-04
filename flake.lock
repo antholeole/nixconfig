@@ -53,6 +53,28 @@
         "type": "github"
       }
     },
+    "firefox-addons": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "pkgs/firefox-addons",
+        "lastModified": 1756958609,
+        "narHash": "sha256-1nRGsnPZjOubRTsXEsnJqWlLsgo/Xq7tN7PWK57dFDQ=",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "rev": "b2a4e1bc62946403f82594ab9550ac13a1afa4df",
+        "type": "gitlab"
+      },
+      "original": {
+        "dir": "pkgs/firefox-addons",
+        "owner": "rycee",
+        "repo": "nur-expressions",
+        "type": "gitlab"
+      }
+    },
     "flake-compat": {
       "locked": {
         "lastModified": 1688025799,
@@ -499,6 +521,7 @@
       "inputs": {
         "apple-silicon": "apple-silicon",
         "crane": "crane",
+        "firefox-addons": "firefox-addons",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
         "gruvbox-alacritty": "gruvbox-alacritty",

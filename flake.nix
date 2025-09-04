@@ -72,6 +72,11 @@
       url = "github:antholeole/nixzx";
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # theme
     gruvbox-yazi = {
       url = "github:poperigby/gruvbox-dark-yazi";
