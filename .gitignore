@@ -7,3 +7,4 @@ firmware/
 dist/
 result
 custom/node_modules/
+.crush/

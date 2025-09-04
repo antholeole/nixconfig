@@ -4,12 +4,15 @@
   inputs = {
     # main nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    # nixpkgs with niri that can use the mesa on all my laptops
-    nixpkgs-niri.url = "github:nixos/nixpkgs/nixos-24.11";
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
     oleina-nixpkgs.url = "github:antholeole/nixpkgs";
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # indirect; just used to pin follows packages
     crane.url = "github:ipetkov/crane";
@@ -113,6 +116,7 @@
     jujutsu,
     niri-flake,
     nixzx,
+    nur,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -128,6 +132,8 @@
           overlays = [
             nixGL.overlay
             rust-overlay.overlays.default
+
+            nur.overlays.default
 
             niri-flake.overlays.niri
             nixzx.overlays.default

@@ -1,6 +1,6 @@
 system: inputs: {
   pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
-  pkgs-niri = import inputs.nixpkgs-niri {inherit system;};
+  nur = import inputs.nur {inherit system;};
 
   # default pkgs
   pkgs-unstable =
