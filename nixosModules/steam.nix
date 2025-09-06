@@ -1,4 +1,4 @@
-{pkgs,...}: {
+{pkgs, ...}: {
   hardware.graphics.extraPackages = with pkgs; [
     vulkan-loader
     vulkan-validation-layers

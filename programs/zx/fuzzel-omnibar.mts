@@ -36,12 +36,24 @@ const onSearch = async () => {
 
 	let url: string;
 	if (fuzzelInput.startsWith("!nix")) {
- 		url = `https://search.nixos.org/packages?channel=${nixChannel}&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
+		url = `https://search.nixos.org/packages?channel=${nixChannel}&from=0&size=50&sort=relevance&type=packages&query=${fuzzelInput.replace("!nix ", "")}`;
 	} else if (fuzzelInput === "!d") {
 		url = "https://draw.oleina.xyz";
 	} else if (fuzzelInput.startsWith("!home")) {
 		url = `https://home-manager-options.extranix.com/?query=${fuzzelInput.replace("!home ", "")}&release=release-25.05`;
-	} else {
+	} else if (fuzzelInput.startsWith("!gh")) {
+		let remainingFuzzelInput = fuzzelInput.replace("!gh ", "");
+		let extensionSuffix = "";
+
+		if (fuzzelInput.includes("e:")) {
+			const extensionQuery = remainingFuzzelInput.split(" ").find(word => word.startsWith("e:"));
+
+			remainingFuzzelInput = remainingFuzzelInput.replace(extensionQuery, "");
+			extensionSuffix = `+path%3A*.${extensionQuery.substring(2)}`;
+		}
+		
+		url = `https://github.com/search?q=%22${remainingFuzzelInput}%22${extensionSuffix}&type=code`;
+	}	else {
 		url = `https://www.google.com/search?q=${fuzzelInput}`;
 	}
 

@@ -35,7 +35,10 @@ in {
 
         termColor = mkOption {
           type = str;
-          default = if config.conf.headless then config.colorScheme.palette.base0D else config.colorScheme.pallet.base0E;
+          default =
+            if config.conf.headless
+            then config.colorScheme.palette.base0D
+            else config.colorScheme.pallet.base0E;
           description = "the accent color on the terminal. I use this to visually be able to tell if I'm ssh'd or not.";
         };
 

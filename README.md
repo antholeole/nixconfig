@@ -1,7 +1,7 @@
 # Quick start (nixos)
 
 - `nix flake show` to see all outputs
-- `sudo nixos-rebuild switch --flake .#pc --impure` 
+- `sudo nixos-rebuild switch --flake .#pc --impure`
 
 # HomeManager only:
 
@@ -11,7 +11,6 @@
 # Post install
 
 for hm, run `init-niri` to initalize the wm.
-
 
 ## Notes
 

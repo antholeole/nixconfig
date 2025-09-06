@@ -27,7 +27,7 @@
 
   ".pulumi/" # pulumi
 
-  "*.out" # built 
+  "*.out" # built
 
   # vcs
   ".jj"

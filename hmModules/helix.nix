@@ -211,11 +211,11 @@
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
 
-          qmlls = {
-            name = "qmlls";
-            command = "qmlls";
-            args = ["-E"];
-          };
+        qmlls = {
+          name = "qmlls";
+          command = "qmlls";
+          args = ["-E"];
+        };
 
         ruff = {
           command = "ruff";

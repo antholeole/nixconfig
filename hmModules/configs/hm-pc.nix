@@ -1,4 +1,4 @@
-{config,...}: {
+{config, ...}: {
   conf = {
     email = "antholeinik@gmail.com";
     name = "anthony";

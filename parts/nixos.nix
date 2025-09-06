@@ -14,7 +14,7 @@
       specialArgs = {
         inherit pkgs-unstable pkgs;
       };
-      
+
       modules = let
         topLevelModule = {...}: {
           nixpkgs.pkgs = pkgs;

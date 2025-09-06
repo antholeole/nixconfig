@@ -1,12 +1,10 @@
 {
-  "type": "module",
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext",
-    "lib": [
-      "ESNext"
-    ],
-    "resolveJsonModule": true
-  }
+	"type": "module",
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "NodeNext",
+		"target": "ESNext",
+		"lib": ["ESNext"],
+		"resolveJsonModule": true
+	}
 }

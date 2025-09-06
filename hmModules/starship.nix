@@ -2,8 +2,6 @@
   programs.starship = let
     disabled = {disabled = true;};
 
-    
-
     h = s: "#${s}";
 
     color = config.conf.termColor;
@@ -56,11 +54,11 @@
         description = "jj status";
         detect_folders = [".jj"];
         command = ''
-${config.programs.jujutsu.package}/bin/jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
-separate(" ",
-  if(bookmarks, bookmarks, if(empty, "(empty)", change_id.shortest(4))),
-)
-'
+          ${config.programs.jujutsu.package}/bin/jj log --revisions @ --no-graph --ignore-working-copy --color never --limit 1 --template '
+          separate(" ",
+            if(bookmarks, bookmarks, if(empty, "(empty)", change_id.shortest(4))),
+          )
+          '
         '';
         format = "[ 󰜜 $output ](${fgFill})";
       };
@@ -71,8 +69,6 @@ separate(" ",
         disabled = false;
         format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})";
       };
-
-      
 
       time = disabled;
       gcloud = disabled;

@@ -112,7 +112,7 @@ in {
         };
       })
       wantsRevFlag;
-      
+
     noRevFlag = {
       jjr = "jj resolve --tool mergiraf && jj resolve";
       jjn = "jj new";
