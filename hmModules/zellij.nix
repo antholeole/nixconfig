@@ -69,6 +69,7 @@ in {
               bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "locked"; }
               bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
               bind "h" { MoveFocus "left"; }
+              bind "i" { TogglePanePinned; SwitchToMode "locked"; }
               bind "j" { MoveFocus "down"; }
               bind "k" { MoveFocus "up"; }
               bind "l" { MoveFocus "right"; }
