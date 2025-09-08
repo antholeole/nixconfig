@@ -39,4 +39,5 @@
   # python
   ".venv/"
   "venv/"
+  ".ruff_cache"
 ]
