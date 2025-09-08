@@ -176,6 +176,16 @@
               "ruff"
             ];
           }
+          {
+            name = "starlark";
+            language-servers = [
+              "starpls"
+            ];
+            formatter = {
+              command = "${pkgs.bazel-buildtools}/bin/buildifier";
+              args = ["--mode=fix"];
+            };
+          }
         ]
         ++ (
           if isArm
