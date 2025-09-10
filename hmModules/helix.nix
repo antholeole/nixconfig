@@ -181,10 +181,7 @@
             language-servers = [
               "starpls"
             ];
-            formatter = {
-              command = "${pkgs.bazel-buildtools}/bin/buildifier";
-              args = ["--mode=fix"];
-            };
+            formatter.command = "${pkgs.bazel-buildtools}/bin/buildifier";
           }
         ]
         ++ (
