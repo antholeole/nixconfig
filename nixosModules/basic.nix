@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   config,
   ...
 }: {
@@ -11,20 +10,13 @@
   ];
 
   boot = {
-    extraModulePackages = with config.boot.kernelPackages; [
-      pkgs-unstable.linuxPackages_latest.v4l2loopback.out
-      (rtl88x2bu.overrideAttrs {
-        src = pkgs.fetchFromGitHub {
-          owner = "RinCat";
-          repo = "RTL88x2BU-Linux-Driver";
-          rev = "77a82dbac7192bb49fa87458561b0f2455cdc88f";
-          hash = "sha256-kBBm7LYox3V3uyChbY9USPqhQUA40mpqVwgglAxpMOM=";
-        };
-      }).out
+    extraModulePackages = [
+      config.boot.kernelPackages.v4l2loopback.out
     ];
 
     extraModprobeConfig = ''
       options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+      options snd_usb_audio vid=0x1235 pid=0x8211 device_setup=1
     '';
 
     kernelModules = ["v4l2loopback" "88x2bu"];
