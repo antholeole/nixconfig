@@ -46,14 +46,16 @@ const onSearch = async () => {
 		let extensionSuffix = "";
 
 		if (fuzzelInput.includes("e:")) {
-			const extensionQuery = remainingFuzzelInput.split(" ").find(word => word.startsWith("e:"));
+			const extensionQuery = remainingFuzzelInput
+				.split(" ")
+				.find((word) => word.startsWith("e:"));
 
 			remainingFuzzelInput = remainingFuzzelInput.replace(extensionQuery, "");
 			extensionSuffix = `+path%3A*.${extensionQuery.substring(2)}`;
 		}
-		
+
 		url = `https://github.com/search?q=%22${remainingFuzzelInput}%22${extensionSuffix}&type=code`;
-	}	else {
+	} else {
 		url = `https://www.google.com/search?q=${fuzzelInput}`;
 	}
 

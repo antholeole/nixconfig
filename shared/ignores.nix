@@ -35,6 +35,7 @@
 
   # other
   "__scratch"
+  ".crush"
 
   # python
   ".venv/"
