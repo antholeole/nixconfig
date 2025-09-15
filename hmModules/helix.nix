@@ -43,7 +43,7 @@
 
         # scala
         metals
-        coursier 
+        coursier
 
         # go
         gopls
@@ -70,6 +70,7 @@
 
         # other
         config.programs.git.package
+        config.programs.yazi.package
       ]
       ++ headlessPkgsOnly
       ++ x64PkgsOnly;
@@ -83,7 +84,14 @@
           space = {
             F = "file_picker";
             f = "file_picker_in_current_buffer_directory";
-            E = "file_explorer";
+            E = [
+              ":sh rm -f /tmp/unique-file"
+              ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
+              ":insert-output echo \"\\x1b[?1049h\\x1b[?2004h\" > /dev/tty"
+              ":open %sh{cat /tmp/unique-file}"
+              ":redraw"
+            ];
+
             e = "file_explorer_in_current_buffer_directory";
 
             space = {
@@ -222,7 +230,6 @@
         metals = {
           command = "metals";
           environment.JAVA_HOME = pkgs.zulu17;
-
         };
 
         qmlls = {
