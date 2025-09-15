@@ -15,6 +15,7 @@
   ".bloop/" # scala
   "?/" # honestly idk but it appears in scala dirs
   "bazel-*" # bazel
+  ".bazelbsp"
   ".sass-cache" # sass
   "*.class" # java / scala
   "target/" # java / scala

@@ -43,6 +43,7 @@
 
         # scala
         metals
+        coursier 
 
         # go
         gopls
@@ -216,6 +217,12 @@
           except-features = ["format"];
 
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
+        };
+
+        metals = {
+          command = "metals";
+          environment.JAVA_HOME = pkgs.zulu17;
+
         };
 
         qmlls = {
