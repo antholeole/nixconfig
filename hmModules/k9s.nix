@@ -63,8 +63,8 @@ in {
                     spec = {
                       containers = [
                         {
-                          name = "alpine";
-                          image = "radial/busyboxplus:curl";
+                          name = "curl";
+                          image = "docker.io/radial/busyboxplus:curl";
                           imagePullPolicy = "Always";
                           securityContext = {
                             runAsUser = 0;

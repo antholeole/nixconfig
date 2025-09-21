@@ -1,7 +1,7 @@
 {
   # default laptop screen
   "eDP-1" = {
-    scale = 2.3;
+    scale = 2.8;
   };
 
   # work external monitor

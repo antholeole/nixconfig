@@ -90,6 +90,14 @@
       url = "github:alacritty/alacritty-theme";
       flake = false;
     };
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # end theme
   };
 
@@ -117,6 +125,7 @@
     niri-flake,
     nixzx,
     nur,
+    quickshell,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -140,12 +149,14 @@
 
             (final: prev: let
               zx-packages = import (./programs/zx) prev;
+              dft = imprt: imprt.packages.${prev.system}.default;
             in
               zx-packages
               // {
-                helix = helix.packages.${prev.system}.default;
-                zjstatus = zjstatus.packages.${prev.system}.default;
-                jujutsu = jujutsu.packages.${prev.system}.default;
+                helix = dft helix;
+                zjstatus = dft zjstatus;
+                jujutsu = dft jujutsu;
+                quickshell = dft quickshell;
 
                 ghbrowse = (import ./programs/ghbrowse) prev;
               })
