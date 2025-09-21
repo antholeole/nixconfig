@@ -22,7 +22,7 @@
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
     };
-
+    flake-root.url = "github:srid/flake-root";
     niri-flake = {
       url = "github:sodiboo/niri-flake";
     };
@@ -37,7 +37,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       # inputs.rust-overlay.follows = "rust-overlay";
     };
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.url = "github:nix-community/home-manager/master";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -90,6 +90,14 @@
       url = "github:alacritty/alacritty-theme";
       flake = false;
     };
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # end theme
   };
 
@@ -117,6 +125,7 @@
     niri-flake,
     nixzx,
     nur,
+    quickshell,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -140,12 +149,14 @@
 
             (final: prev: let
               zx-packages = import (./programs/zx) prev;
+              dft = imprt: imprt.packages.${prev.system}.default;
             in
               zx-packages
               // {
-                helix = helix.packages.${prev.system}.default;
-                zjstatus = zjstatus.packages.${prev.system}.default;
-                jujutsu = jujutsu.packages.${prev.system}.default;
+                helix = dft helix;
+                zjstatus = dft zjstatus;
+                jujutsu = dft jujutsu;
+                quickshell = dft quickshell;
 
                 ghbrowse = (import ./programs/ghbrowse) prev;
               })
@@ -161,6 +172,7 @@
 
       imports = [
         treefmt-nix.flakeModule
+        inputs.flake-root.flakeModule
         home-manager.flakeModules.home-manager
         inputs.flake-parts.flakeModules.flakeModules
 

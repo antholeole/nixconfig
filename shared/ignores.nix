@@ -14,8 +14,12 @@
   ".scala-build" # scala
   ".bloop/" # scala
   "?/" # honestly idk but it appears in scala dirs
-  "bazel-*" # bazel
+
+  #bazel
+  "bazel-*"
   ".bazelbsp"
+  ".bsp"
+
   ".sass-cache" # sass
   "*.class" # java / scala
   "target/" # java / scala
