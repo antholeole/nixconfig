@@ -33,7 +33,7 @@
 		"clock#local": {
 			"interval": 1,
 			"format": "{:%I:%M:%S  %b %d} ",
-			"timezone": "US/Pacific"
+			"timezone": "US/CST"
 		},
 		"clock#utc": {
 			"interval": 1,
