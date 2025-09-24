@@ -10,12 +10,7 @@
         path = "${inputs.self}/confs/bgs/bg.png";
       };
     in {
-      "eDP-1" = config;
-      "DP-3" = config;
-      "HDMI-A-1" = config;
-
-      # niri virtual
-      "winit" = config;
+      "default" = config;
     };
   };
 }

@@ -11,6 +11,6 @@
     style = builtins.readFile "${inputs.self}/confs/waybar/style.css";
 
     # just enable it directly from niri
-    systemd.enable = false;
+    systemd.enable = true;
   };
 }

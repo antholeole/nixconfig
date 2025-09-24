@@ -4,34 +4,6 @@ input {
     }
 }
 
-// TODO: figure out what this monitor was and return it
-// output "DP-3" {
-//     mode "2560x1440"
-//     transform "normal"
-// }
-
-
-// default laptop screen
-output "eDP-1" {
-    scale 2.3
-}
-
-// work external monitor
-output "Hewlett Packard HP Z27n CNK62212PK"  {
-    scale 1.15
-}
-
-// personal monitor
-output "Dell Inc. DELL P3223QE 5Y1J2P3" {
-    scale 1.60
-}
-
-// chicago monitor
-output "PNP(AMZ) G24M2020G H513001860" {
-    scale 1.1
-}
-
-
 layout {
     gaps 13
     center-focused-column "never"
@@ -72,10 +44,7 @@ layout {
 // Note that running niri as a session supports xdg-desktop-autostart,
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
-spawn-at-startup "alacritty" "-e" "fish"
-spawn-at-startup "wpaperd" "-d"
 spawn-at-startup "startup.sh"
-spawn-at-startup "waybar"
 
 prefer-no-csd
 

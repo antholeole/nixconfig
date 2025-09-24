@@ -42,7 +42,7 @@
 		},
 		"height": 25,
 		"layer": "top",
-		"output": ["DP-3", "eDP-1", "HDMI-A-1"],
+		"output": ["*"],
 		"position": "top"
 	}
 ]
