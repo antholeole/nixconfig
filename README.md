@@ -7,6 +7,12 @@
 
 1. Install nix
 1. enable flakes: `mkdir -p ~/.config/nix && echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf`
+1. git clone this repo
+1. activate home-manager via a temporary install. `nix shell home-manager`
+1. run `home-manager switch --flake .#<hm-config> --impure -b backup`. for
+   example, "headless-work" for `<hm-config>`
+1. make sure you use the fish in `~/.nix-profile/bin`, it has a custom init
+   built in.
 
 # Post install
 
