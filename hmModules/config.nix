@@ -21,6 +21,12 @@ in {
           description = "email; used for git signoffs.";
         };
 
+        darwin = mkOption {
+          type = bool;
+          default = true;
+          description = "if we're on darwin. this is a weird hybrid of headless, since we aren't headless but don't want a log of the utilities";
+        };
+
         headless = mkOption {
           type = bool;
           default = false;

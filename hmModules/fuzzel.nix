@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.fuzzel = {
-    enable = !config.conf.headless;
+    enable = !config.conf.headless && !config.conf.darwin;
     settings = {
       border.radius = 0;
       colors = {

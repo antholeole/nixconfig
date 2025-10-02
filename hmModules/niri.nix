@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  enableNiri = config.conf.wm && !config.conf.headless;
+  enableNiri = config.conf.wm && !config.conf.headless && !config.conf.darwin;
 in {
   imports = [
     inputs.niri-flake.homeModules.niri

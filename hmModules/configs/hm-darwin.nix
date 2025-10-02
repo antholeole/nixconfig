@@ -5,15 +5,13 @@
     selfAlias = "oleina";
 
     termColor = config.colorScheme.palette.base0E;
-    nixos = true;
-    wm = true;
 
+    nixos = false;
+    wm = false;
     headless = false;
     work = false;
+    darwin = true;
 
-    features = [
-      "video-editing"
-      "gaming"
-    ];
+    features = [];
   };
 }
