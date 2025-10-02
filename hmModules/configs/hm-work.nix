@@ -5,5 +5,10 @@
     termColor = config.colorScheme.palette.base0E;
     name = "oleina";
     work = true;
+
+    
+    features = [
+      "kubectl"
+    ];
   };
 }

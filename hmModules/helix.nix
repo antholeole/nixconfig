@@ -227,10 +227,7 @@
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
 
-        metals = {
-          command = "metals";
-          environment.JAVA_HOME = pkgs.zulu17;
-        };
+        metals.command = "metals";
 
         qmlls = {
           name = "qmlls";
