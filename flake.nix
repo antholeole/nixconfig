@@ -162,6 +162,7 @@
       imports = [
         treefmt-nix.flakeModule
         home-manager.flakeModules.home-manager
+        inputs.flake-parts.flakeModules.flakeModules
 
         ./parts/devshell.nix
         ./parts/treefmt.nix
