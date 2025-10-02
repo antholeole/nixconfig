@@ -7,7 +7,7 @@
   gruvbox-dark-medium = "gruvbox-dark-medium";
 in {
   programs.k9s = {
-    enable = true;
+    enable = builtins.elem "kubectl" config.conf.features;
     package = pkgs.symlinkJoin {
       name = "k9s";
       paths = [pkgs-unstable.k9s];

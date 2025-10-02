@@ -76,7 +76,6 @@
     functions = with pkgs;
       {
         cdc = "mkdir -p $argv && cd $argv";
-        rmt = "${trashy}/bin/trash put $argv";
         zd = "${zoxide}/bin/zoxide query $argv";
         hmWhich = "echo $(dirname $(dirname $(readlink -f $(which $argv))))";
         sshdc = "rm ~/.ssh/ctrl-*";

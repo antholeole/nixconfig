@@ -3,9 +3,9 @@
   ...
 }: {
   xdg = {
-    enable = true;
+    enable = !config.conf.darwin;
     userDirs = {
-      enable = true;
+      enable = !config.conf.darwin;
       createDirectories = true;
     };
   };

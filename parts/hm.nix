@@ -13,12 +13,13 @@
     hmSpecialArgs = {
       inherit inputs pkgs-unstable self;
     };
-    mkHmOnlyConfig = config:
+    mkHmOnlyConfig = config: moreModules:
       inputs.home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         modules =
           (import ../hmModules)
+          ++ moreModules
           ++ [
             (import "${inputs.self}/hmModules/configs/${config}.nix")
           ];
@@ -27,11 +28,12 @@
       };
   in {
     legacyPackages.homeConfigurations = {
-      pc = mkHmOnlyConfig "hm-pc";
-      work = mkHmOnlyConfig "hm-work";
-      headless = mkHmOnlyConfig "hm-headless";
-      headless-work = mkHmOnlyConfig "hm-headless-work";
-      asahi-personal = mkHmOnlyConfig "asahi-personal";
+      pc = mkHmOnlyConfig "hm-pc" [];
+      work = mkHmOnlyConfig "hm-work" [];
+      headless = mkHmOnlyConfig "hm-headless" [];
+      headless-work = mkHmOnlyConfig "hm-headless-work" [];
+      asahi-personal = mkHmOnlyConfig "asahi-personal" [];
+      darwin = mkHmOnlyConfig "hm-darwin" [];
     };
   };
 }

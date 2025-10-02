@@ -129,9 +129,9 @@
           cursor-line = "warning";
         };
 
-        clipboard-provider =
+        clipboard-provider = 
           if (!config.conf.headless)
-          then "wayland"
+          then (if (!config.conf.darwin) then "wayland" else "pasteboard")
           else {
             custom = with config.programs.system-clip; {
               yank = {

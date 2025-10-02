@@ -8,7 +8,7 @@
   programs.alacritty = lib.mkIf (!config.conf.headless) {
     enable = true;
 
-    package = config.lib.nixGL.wrap pkgs-unstable.alacritty;
+    package = if (config.conf.darwin) then pkgs-unstable.alacritty else config.lib.nixGL.wrap pkgs-unstable.alacritty;
 
     settings = {
       font = {
