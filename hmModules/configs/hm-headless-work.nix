@@ -8,5 +8,9 @@
 
     headless = true;
     work = true;
+
+    features = [
+      "kubectl"
+    ];
   };
 }
