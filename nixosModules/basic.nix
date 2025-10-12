@@ -9,6 +9,14 @@
     busybox
   ];
 
+  services.dnsmasq = {
+    enable = true;
+    settings = {
+    address=["/oleina.xyz/192.168.12.123"];
+      
+    };
+  };
+
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out

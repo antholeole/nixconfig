@@ -20,10 +20,6 @@
           nixpkgs.pkgs = pkgs;
           networking.hostName = "solitude";
 
-          # tmp until i get ddns setup
-          networking.extraHosts = ''
-            192.168.12.123 oleina.xyz
-          '';
         };
 
         hmConfig = {
