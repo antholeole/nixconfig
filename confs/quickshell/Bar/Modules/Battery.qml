@@ -3,5 +3,5 @@ import qs.Services
 import qs.Common
 
 DefaultText {
-    text: `${BatteryService.getBatteryIcon()} ${BatteryService.batteryLevel.toString()}%`
+    text: BatteryService.batteryAvailable ? `${BatteryService.getBatteryIcon()} ${BatteryService.batteryLevel.toString()}%` : ``
 }
