@@ -23,7 +23,7 @@ in {
 
         darwin = mkOption {
           type = bool;
-          default = true;
+          default = false;
           description = "if we're on darwin. this is a weird hybrid of headless, since we aren't headless but don't want a log of the utilities";
         };
 
