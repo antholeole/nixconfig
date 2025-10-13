@@ -64,7 +64,7 @@ in {
                       containers = [
                         {
                           name = "curl";
-                          image = "docker.io/radial/busyboxplus:curl";
+                          image = "nicolaka/netshoot";
                           imagePullPolicy = "Always";
                           securityContext = {
                             runAsUser = 0;
