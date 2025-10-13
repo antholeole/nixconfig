@@ -1,12 +1,16 @@
 {
   # default laptop screen
   "eDP-1" = {
-    scale = 2.8;
+    scale = 2.5;
   };
 
   # work external monitor
   "Hewlett Packard HP Z27n CNK62212PK" = {
     scale = 1.15;
+  };
+
+  "Dell Inc. DELL P3223QE FX9XWN3" = {
+    scale = 1.6;
   };
 
   # personal monitor

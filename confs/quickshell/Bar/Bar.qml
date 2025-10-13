@@ -4,9 +4,14 @@ import QtQuick
 import qs.Theme
 import qs.Bar.Modules
 
-Scope {
+Variants {
+    model: Quickshell.screens
+
     PanelWindow {
         color: Theme.bg
+
+        required property var modelData
+        screen: modelData
 
         anchors {
             top: true

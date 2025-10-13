@@ -25,6 +25,7 @@
     flake-root.url = "github:srid/flake-root";
     niri-flake = {
       url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     treefmt-nix = {

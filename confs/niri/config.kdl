@@ -46,6 +46,23 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
+// GVC
+window-rule {
+    match title=r#"^Meet -.*$"#
+    open-floating true
+    default-floating-position x=50 y=50 relative-to="top-right"
+    open-focused false
+    block-out-from "screencast"
+}
+
+// lame gvc popup
+window-rule {
+    match title=r#"^meet.google.com is sharing your screen.$"#
+    open-floating true
+    open-focused false
+    default-floating-position x=50 y=50 relative-to="bottom-right"
+}
+
 
 animations {
     workspace-switch {

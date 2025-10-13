@@ -227,6 +227,7 @@
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
 
+        # we aren't specifying JAVA_HOME; each project probably has its own. 
         metals.command = "metals";
 
         qmlls = {
