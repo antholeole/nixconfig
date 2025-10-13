@@ -60,7 +60,9 @@ in {
         key = "~/.ssh/id_ed25519.pub";
       };
 
-      git = {push-bookmark-prefix = "${config.conf.selfAlias}/";};
+      templates = {
+        git_push_bookmark = "\"${config.conf.selfAlias}/\" ++ change_id.short()'";
+      };
 
       aliases = {
         signoff = ["--config=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
