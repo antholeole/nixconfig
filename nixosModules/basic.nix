@@ -5,6 +5,9 @@
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  programs.nix-ld.enable = true;
+  services.envfs.enable = true; 
+
   environment.systemPackages = with pkgs; [
     busybox
   ];

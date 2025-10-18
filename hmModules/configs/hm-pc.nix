@@ -14,6 +14,7 @@
     features = [
       "video-editing"
       "gaming"
+      "kubectl"
     ];
   };
 }
