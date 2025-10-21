@@ -181,11 +181,11 @@
     "gruvbox-yazi": {
       "flake": false,
       "locked": {
-        "lastModified": 1717467891,
-        "narHash": "sha256-TRRyuTg4JBE+u987C+42C36cXEV6rb8+pw7qTA56jhM=",
+        "lastModified": 1755314538,
+        "narHash": "sha256-4XRm23i9XpgAO+08iPM0xGppnIfuP+xzxzO6UMfvy28=",
         "owner": "poperigby",
         "repo": "gruvbox-dark-yazi",
-        "rev": "3337133a913d48765094eed937af728bedc65beb",
+        "rev": "a251bd2d88feb61dfe6d4c4583c3b0a969c41bdb",
         "type": "github"
       },
       "original": {

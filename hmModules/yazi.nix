@@ -45,7 +45,7 @@
     };
 
     settings = {
-      manager = {
+      mgr = {
         ratio = [1 2 5];
         sort_dir_first = true;
         linemode = "mtime";

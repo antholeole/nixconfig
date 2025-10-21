@@ -61,7 +61,7 @@ in {
       };
 
       templates = {
-        git_push_bookmark = "\"${config.conf.selfAlias}/\" ++ change_id.short()'";
+        git_push_bookmark = "\"${config.conf.selfAlias}/\" ++ change_id.short()";
       };
 
       aliases = {

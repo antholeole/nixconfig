@@ -10,7 +10,7 @@
         quickshell
       ];
     };
-    enable = config.conf.headless && !config.conf.darwin;
+    enable = !config.conf.headless && !config.conf.darwin;
     activeConfig = defaultConfig;
     systemd.enable = true;
     configs = {
