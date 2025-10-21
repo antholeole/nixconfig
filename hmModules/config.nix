@@ -79,6 +79,12 @@ in {
           description = "if this hmModule will be used on nixos.";
         };
 
+        recording = mkOption {
+          type = bool;
+          default = false;
+          description = "If we're currently actively recording; useful for specializations";
+        };
+
         features = mkOption {
           type = listOf str;
           default = [];

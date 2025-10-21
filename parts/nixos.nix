@@ -19,7 +19,6 @@
         topLevelModule = {...}: {
           nixpkgs.pkgs = pkgs;
           networking.hostName = "solitude";
-
         };
 
         hmConfig = {
@@ -34,6 +33,7 @@
               imports =
                 (import ../hmModules)
                 ++ [../hmModules/configs/hm-pc.nix];
+                config.conf.recording = false;
             };
           };
         };

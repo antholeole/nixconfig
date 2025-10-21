@@ -1,4 +1,4 @@
-{
+config: {
   # default laptop screen
   "eDP-1" = {
     scale = 2.5;
@@ -15,7 +15,7 @@
 
   # personal monitor
   "Dell Inc. DELL P3223QE 5Y1J2P3" = {
-    scale = 1.60;
+    scale = if config.conf.recording then 3 else 1.6;
   };
 
   # chicago monitor

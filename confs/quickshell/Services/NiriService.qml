@@ -51,12 +51,6 @@ Singleton {
         onTriggered: root.matugenSuppression = false
     }
 
-    Timer {
-        id: configGenerationDebounce
-        interval: 100
-        onTriggered: root.doGenerateNiriLayoutConfig()
-    }
-
     Process {
         id: outputsProcess
         command: ["niri", "msg", "-j", "outputs"]

@@ -4,7 +4,7 @@
     httpie # a simpler curl
     unzip
     jq
-    yq
+    yq-go
     repgrep # find replace
     bottom # top but nicer
     watchexec # code agnostic file watcher. very helpful for dev setups
