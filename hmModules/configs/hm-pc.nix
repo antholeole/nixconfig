@@ -15,6 +15,7 @@
       "video-editing"
       "gaming"
       "kubectl"
+      "minecraft"
     ];
   };
 }
