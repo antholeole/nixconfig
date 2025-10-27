@@ -2,7 +2,7 @@
   conf = {
     email = "luca.fondo@trai.ch";
     name = "folu";
-    homeDirPath = "/usr/local/google/home/";
+    homeDirPath = "/Users/";
 
     termColor = config.colorScheme.palette.base0D;
 

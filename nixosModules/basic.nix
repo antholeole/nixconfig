@@ -12,14 +12,6 @@
     busybox
   ];
 
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-    address=["/folu.local/192.168.12.123"];
-      
-    };
-  };
-
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out
@@ -80,6 +72,7 @@
     isNormalUser = true;
     description = "folu";
     extraGroups = ["networkmanager" "wheel"];
+    initialPassword = "Init.123";
   };
 
   system.stateVersion = "25.05"; # Did you read the comment?
