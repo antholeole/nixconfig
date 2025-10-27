@@ -21,7 +21,6 @@
     aspell
     aspellDicts.en
     delta # diffing
-    ghbrowse
 
     (writeShellScriptBin "bazel" ''
       ${bazelisk}/bin/bazelisk "$@"

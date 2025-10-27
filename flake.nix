@@ -71,11 +71,6 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    nixzx = {
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-      url = "github:antholeole/nixzx";
-    };
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -124,7 +119,6 @@
     treefmt-nix,
     jujutsu,
     niri-flake,
-    nixzx,
     nur,
     quickshell,
     ...
@@ -146,21 +140,6 @@
             nur.overlays.default
 
             niri-flake.overlays.niri
-            nixzx.overlays.default
-
-            (final: prev: let
-              zx-packages = import (./programs/zx) prev;
-              dft = imprt: imprt.packages.${prev.system}.default;
-            in
-              zx-packages
-              // {
-                helix = dft helix;
-                zjstatus = dft zjstatus;
-                jujutsu = dft jujutsu;
-                quickshell = dft quickshell;
-
-                ghbrowse = (import ./programs/ghbrowse) prev;
-              })
           ];
           config.allowUnfree = true;
         };
