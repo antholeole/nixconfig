@@ -22,7 +22,7 @@ in {
 
     # TODO convert this to nix one day.
     config = let
-      monitors = import "${inputs.self}/shared/monitors.nix";
+      monitors = ../shared/monitors.nix;
       monitorsStr = builtins.concatStringsSep "\n\n" (lib.mapAttrsToList (monitorName: config: ''
           output "${monitorName}" {
             scale ${builtins.toString config.scale}
@@ -30,7 +30,7 @@ in {
         '')
         monitors);
 
-      defaultConfig = builtins.readFile "${inputs.self}/confs/niri/config.kdl";
+      defaultConfig = builtins.readFile ../confs/niri/config.kdl;
     in
       # seems to build niri without lib.mkIf here. This is likely because it
       # uses niri to check the file is valid in check phase.

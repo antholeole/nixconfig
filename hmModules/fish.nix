@@ -7,7 +7,7 @@
 }: {
   programs.fish = let
     remoteClipClient =
-      (import "${inputs.self}/programs/clipboard" pkgs).client;
+      (import ../programs/clipboard pkgs).client;
 
     # execute the given command on an abbreviation
     abbrFuns =

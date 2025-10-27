@@ -21,7 +21,7 @@
           (import ../hmModules)
           ++ moreModules
           ++ [
-            (import "${inputs.self}/hmModules/configs/${config}.nix")
+            ../hmModules/configs/${config}.nix
           ];
 
         extraSpecialArgs = hmSpecialArgs;

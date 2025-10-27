@@ -6,7 +6,7 @@
   ...
 }: let
   remoteClipClient =
-    (import "${inputs.self}/programs/clipboard" pkgs).client;
+    (import ../programs/clipboard pkgs).client;
 in {
   options.programs.system-clip = lib.options.mkOption {
     type = lib.types.submodule {
@@ -51,7 +51,7 @@ in {
 
     Service = let
       remoteClipServer =
-        (import "${inputs.self}/programs/clipboard" pkgs).server;
+        (import ../programs/clipboard pkgs).server;
     in {
       Environment = "GIN_MODE=release";
       ExecStart = with pkgs; "${remoteClipServer}/bin/rcserver --wlcopy ${wl-clipboard.outPath}/bin/wl-copy --wlpaste ${wl-clipboard.outPath}/bin/wl-paste --notify-send ${libnotify}/bin/notify-send";

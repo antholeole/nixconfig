@@ -413,7 +413,7 @@
       };
     };
 
-    ignores = import "${inputs.self}/shared/ignores.nix";
+    ignores = ../shared/ignores.nix;
   };
 
   xdg.configFile."clangd/config.yaml".text = ''

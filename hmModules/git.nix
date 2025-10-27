@@ -14,7 +14,7 @@
       };
     };
 
-    ignores = import "${inputs.self}/shared/ignores.nix";
+    ignores = import ../shared/ignores.nix;
 
     aliases = {
       cl = "!f() { git push origin HEAD:refs/for/\${1:-master}; }; f";
