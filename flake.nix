@@ -39,11 +39,6 @@
       # inputs.rust-overlay.follows = "rust-overlay";
     };
     home-manager.url = "github:nix-community/home-manager/master";
-    nixGL = {
-      url = "github:guibou/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
@@ -107,7 +102,6 @@
     nixpkgs,
     home-manager,
     apple-silicon,
-    nixGL,
     zjstatus,
     helix,
     nix-index-database,
@@ -134,7 +128,6 @@
         _module.args.pkgs = import inputs.nixpkgs {
           inherit system;
           overlays = [
-            nixGL.overlay
             rust-overlay.overlays.default
 
             nur.overlays.default

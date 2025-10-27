@@ -68,11 +68,9 @@ in {
       Comment=Main WM
       Exec=${pkgs.writeShellApplication {
         name = "niri-wm";
-        runtimeInputs = with pkgs; [
-          nixgl.auto.nixGLDefault
-        ];
+        runtimeInputs = with pkgs; [];
         text = ''
-          GBM_BACKENDS_PATH="${pkgs.mesa}/lib/gbm" nixGL ${config.programs.niri.package}/bin/niri-session | systemd-cat -t niri
+          GBM_BACKENDS_PATH="${pkgs.mesa}/lib/gbm" ${config.programs.niri.package}/bin/niri-session | systemd-cat -t niri
         '';
       }}/bin/niri-wm
       Type=Application

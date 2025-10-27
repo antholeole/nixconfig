@@ -15,7 +15,6 @@
     direnv # vsc ext checks path for this
     neofetch # for funzies
     arp-scan
-    nixgl.auto.nixGLDefault # unboxing nix sad
     gawk
     gron # greppable json
     aspell
