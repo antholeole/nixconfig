@@ -1,5 +1,5 @@
 system: inputs: {
-  pkgs-oleina = import inputs.oleina-nixpkgs {inherit system;};
+  pkgs-folu = import inputs.oleina-nixpkgs {inherit system;};
   nur = import inputs.nur {inherit system;};
 
   # default pkgs

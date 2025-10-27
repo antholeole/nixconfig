@@ -30,7 +30,7 @@
 
             backupFileExtension = "bak";
 
-            users.anthony = {pkgs, ...}: {
+            users.folu = {pkgs, ...}: {
               imports =
                 (import ../hmModules)
                 ++ [../hmModules/configs/hm-pc.nix];

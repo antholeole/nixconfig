@@ -1,8 +1,8 @@
 {...}: {
   conf = {
-    email = "antholeinik@gmail.com";
-    name = "anthony";
-    selfAlias = "oleina";
+    email = "luca.fondo@trai.ch";
+    name = "folu";
+    selfAlias = "folu";
 
     nixos = false;
     headless = false;

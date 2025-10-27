@@ -1,8 +1,8 @@
 {config, ...}: {
   conf = {
-    email = "oleina@google.com";
-    name = "oleina";
-    homeDirPath = "/usr/local/google/home/";
+    email = "luca.fondo@trai.ch";
+    name = "folu";
+    homeDirPath = "/Users/";
 
     termColor = config.colorScheme.palette.base0D;
 

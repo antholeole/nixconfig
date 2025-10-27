@@ -1,6 +1,6 @@
 pkgs: let
   scripts = pkgs.buildNpmPackage {
-    pname = "oleina-zx-scripts";
+    pname = "folu-zx-scripts";
     version = "1.0.0";
     src = ./.;
 

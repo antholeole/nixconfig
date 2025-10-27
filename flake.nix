@@ -1,5 +1,5 @@
 {
-  description = "Anthony's NixOS configuration";
+  description = "Luca Fondo's NixOS configuration";
 
   inputs = {
     # main nixpkgs
@@ -7,7 +7,7 @@
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
-    oleina-nixpkgs.url = "github:antholeole/nixpkgs";
+    oleina-nixpkgs.url = "github:drlucaa/nixpkgs";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -73,7 +73,7 @@
 
     nixzx = {
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      url = "github:antholeole/nixzx";
+      url = "github:drlucaa/nixzx";
     };
 
     firefox-addons = {

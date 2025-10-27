@@ -31,7 +31,7 @@ in {
           "-c"
           ''
             echo '${(let
-              app = "oleina-throwaway";
+              app = "folu-throwaway";
             in
               builtins.toJSON {
                 apiVersion = "apps/v1";
