@@ -21,6 +21,7 @@
     aspellDicts.en
     delta # diffing
     pkgs-unstable.gemini-cli
+    pkgs-unstable.github-copilot-cli
 
     (writeShellScriptBin "bazel" ''
       ${bazelisk}/bin/bazelisk "$@"
