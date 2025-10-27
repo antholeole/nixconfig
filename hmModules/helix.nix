@@ -129,6 +129,24 @@
           ignore = true;
         };
 
+        statusline = {
+          left = ["mode" "spinner"];
+          center = ["file-name" "file-modification-indicator"];
+          right = [
+            "diagnostics"
+            "version-control"
+            "position"
+            "file-encoding"
+            "file-line-ending"
+            "file-type"
+          ];
+          mode = {
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
+          };
+        };
+
         lsp = {
           display-inlay-hints = true;
         };
