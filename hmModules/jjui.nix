@@ -1,0 +1,3 @@
+{...}: {
+  programs.jjui.enable = true;
+}
