@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, pkgs-unstable, ...}: {
   home.packages = with pkgs; [
     fd # a faster find
     httpie # a simpler curl
@@ -20,6 +20,7 @@
     aspell
     aspellDicts.en
     delta # diffing
+    pkgs-unstable.gemini-cli
 
     (writeShellScriptBin "bazel" ''
       ${bazelisk}/bin/bazelisk "$@"

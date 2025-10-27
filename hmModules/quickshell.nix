@@ -1,13 +1,13 @@
-{self, pkgs, config, ...}: {
+{self, pkgs, config, inputs, ...}: {
   programs.quickshell = let
     defaultConfig = "default";
   in {
     package = pkgs.symlinkJoin {
       name = "quickshell";
-      paths = with pkgs; [
+      paths = [
         config.programs.niri.package
 
-        quickshell
+        inputs.quickshell.packages.${pkgs.system}.default
       ];
     };
     enable = !config.conf.headless && !config.conf.darwin;

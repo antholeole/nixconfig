@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: let
   layoutDir = ".config/zellij/layouts";
@@ -23,7 +24,7 @@ in {
       bgColor = h config.colorScheme.palette.base00;
     in ''
       pane size=1 borderless=true {
-             plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+             plugin location="file:${inputs.zjstatus.packages.${pkgs.system}.default}/bin/zjstatus.wasm" {
                format_space "#[bg=${bgColor}]"
 
                mode_normal  "#[bg=${fgColor},fg=${h config.colorScheme.palette.base05}] {name} "

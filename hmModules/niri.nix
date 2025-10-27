@@ -47,7 +47,6 @@ in {
           config.programs.alacritty.package
           config.programs.waybar.package
 
-          pkgs.fuzzel-omnibar
           pkgs.niri
           pkgs.wl-clipboard
         ];
