@@ -74,6 +74,7 @@
         normal = {
           ret = "goto_word";
           C-s = ":write";
+          C-x = ":reset-diff-change";
           space = {
             q = {
               q = ":quit-all";
