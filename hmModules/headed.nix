@@ -22,6 +22,7 @@ in {
   home.packages = with pkgs;
     mkIfHeaded [
       nerd-fonts.fira-code
+      nerd-fonts.monaspace
       libnotify
       glib # for notifications
       pwvucontrol
