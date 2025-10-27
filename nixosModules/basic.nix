@@ -10,6 +10,8 @@
 
   environment.systemPackages = with pkgs; [
     busybox
+    bluez
+    bluetui
   ];
 
   boot = {
@@ -46,6 +48,15 @@
   services.xserver.xkb = {
     layout = "us";
     variant = "";
+  };
+
+  hardware.bluetooth = {
+    enable = true;
+    settings = {
+      General = {
+        AutoEnable = true;
+      };
+    };
   };
 
   services.pulseaudio.enable = false;
