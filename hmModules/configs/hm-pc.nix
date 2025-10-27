@@ -12,8 +12,8 @@
     work = false;
 
     features = [
-      "video-editing"
-      "gaming"
+      # "video-editing"
+      # "gaming"
       "kubectl"
     ];
   };
