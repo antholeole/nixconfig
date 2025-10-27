@@ -2,44 +2,27 @@
   programs.starship = let
     disabled = {disabled = true;};
 
-    h = s: "#${s}";
+    seperator = "[┃]($style)";
 
-    color = config.conf.termColor;
-
-    bgFill = "bg:${h color} fg:${h config.colorScheme.palette.base03}";
-    fgFill = "fg:${h color}";
-
-    seperator = "[┃](${bgFill})";
-
-    vc = {
-      format = "[$symbol](${fgFill})[$branch](${fgFill})";
-      disabled = false;
-    };
   in {
     enable = true;
     enableFishIntegration = true;
 
     settings = {
-      format = "$character";
+      format = "$directory$hostname$line_break$character";
 
       # trailing space so it lines up with zellij
-      right_format = "\${custom.jj} $git_metrics $directory$hostname ";
+      right_format = "$cmd_duration\${custom.jj}$git_metrics";
 
-      directory = {format = "[  ┃ $path ](${bgFill})";};
-      cmd_duration = {format = "${seperator}[$duration](${bgFill})";};
+      # directory = {format = "[  ┃ $path ]($style)";};
+      # cmd_duration = {format = "${seperator}[$duration]($style)";};
       shlvl = {disabled = true;};
       battery.disabled = true;
 
       hostname = {
         ssh_symbol = "󱘖 ";
         disabled = false;
-        format = "[$ssh_symbol ](${bgFill})";
-      };
-
-      character = {
-        success_symbol = "[󰘧](${fgFill})";
-        error_symbol = "[󰘧](red)";
-        format = "$symbol($style) ";
+        format = "[$ssh_symbol ]($style)";
       };
 
       git_state = disabled;
@@ -60,14 +43,14 @@
           )
           '
         '';
-        format = "[ 󰜜 $output ](${fgFill})";
+        format = "[ 󰜜 $output ]($style)";
       };
 
       # always show git metrics, they're helpful even in JJ world.
       git_metrics = {
         only_nonzero_diffs = true;
         disabled = false;
-        format = "[ +$added ](${bgFill})${seperator}[ -$deleted ](${bgFill})";
+        format = "[ +$added ]($style)[ -$deleted ]($style)";
       };
 
       time = disabled;
