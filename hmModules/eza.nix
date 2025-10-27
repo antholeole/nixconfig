@@ -4,7 +4,13 @@
 
     enableFishIntegration = true;
     icons = "auto";
+    git = true;
 
-    extraOptions = ["--group-directories-first" "--header"];
+    extraOptions = [
+      "--group-directories-first"
+      "--no-quotes"
+      "--header"
+      "--hyperlink"
+    ];
   };
 }
