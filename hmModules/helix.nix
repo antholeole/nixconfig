@@ -33,17 +33,9 @@
       ];
     in
       [
-        #cpp
-        pkgs-unstable.llvmPackages_20.clang-tools
-        pkgs-unstable.lldb_20
-
         # nix
         alejandra
         nil
-
-        # scala
-        metals
-        coursier
 
         # go
         gopls
@@ -76,14 +68,20 @@
       ++ x64PkgsOnly;
 
     settings = {
-      theme = "gruvbox";
+      theme = "github_dark";
+      themeFile = ../programs/helix/themes/github_dark.toml;
 
       keys = {
         normal = {
           ret = "goto_word";
+          C-s = ":write";            
           space = {
-            F = "file_picker";
-            f = "file_picker_in_current_buffer_directory";
+            q = {
+              q = ":quit-all";
+              s = ":write-quit-all";
+              f = ":quit-all!";
+            };
+            
             E = [
               ":sh rm -f /tmp/unique-file"
               ":insert-output yazi %{buffer_name} --chooser-file=/tmp/unique-file"
@@ -99,6 +97,11 @@
             };
           };
         };
+        insert = {
+          j = {
+            j = "normal_mode";
+          };
+        };
       };
 
       editor = {
@@ -108,6 +111,15 @@
         soft-wrap.enable = true;
         true-color = true;
         cursorline = true;
+        mouse = false;
+        default-yank-register = "+";
+        bufferline = "multiple";
+
+        cursor-shape = {
+          insert = "bar";
+          normal = "block";
+          select = "underline";
+        };
 
         file-picker = {
           # always show hidden files, these are often useful
