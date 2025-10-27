@@ -12,16 +12,10 @@
   }:
     inputs.nixpkgs.lib.nixosSystem {
       specialArgs = {
-        inherit pkgs-unstable pkgs;
+        inherit pkgs-unstable;
       };
 
       modules = let
-        topLevelModule = {...}: {
-          nixpkgs.pkgs = pkgs;
-          networking.hostName = "solitude";
-
-        };
-
         hmConfig = {
           home-manager = {
             extraSpecialArgs = {
@@ -40,8 +34,11 @@
       in [
         inputs.nixpkgs.nixosModules.readOnlyPkgs
         inputs.home-manager.nixosModules.home-manager
-        inputs.nixpkgs.nixosModules.readOnlyPkgs
-        topLevelModule
+
+        ({
+          nixpkgs.pkgs = pkgs;
+          networking.hostName = "solitude";
+        })
 
         hmConfig
 

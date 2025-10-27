@@ -9,6 +9,7 @@
 
         inputs.quickshell.packages.${pkgs.system}.default
       ];
+      meta.mainProgram = "quickshell";
     };
     enable = !config.conf.headless && !config.conf.darwin;
     activeConfig = defaultConfig;

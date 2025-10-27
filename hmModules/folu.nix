@@ -1,7 +1,4 @@
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   xdg = {
     enable = !config.conf.darwin;
     userDirs = {
@@ -13,10 +10,7 @@
   home = {
     username = config.conf.name;
     homeDirectory = "${config.conf.homeDirPath}${config.conf.name}";
-
-    # TODO: remove this. did it for quickshell
     enableNixpkgsReleaseCheck = false;
+    stateVersion = "25.05";
   };
-
-  home.stateVersion = "23.05";
 }
