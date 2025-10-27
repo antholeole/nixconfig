@@ -15,7 +15,7 @@
   services.dnsmasq = {
     enable = true;
     settings = {
-    address=["/oleina.xyz/192.168.12.123"];
+    address=["/folu.local/192.168.12.123"];
       
     };
   };
@@ -76,9 +76,9 @@
     };
   };
 
-  users.users.anthony = {
+  users.users.folu = {
     isNormalUser = true;
-    description = "anthony";
+    description = "folu";
     extraGroups = ["networkmanager" "wheel"];
   };
 

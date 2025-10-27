@@ -11,13 +11,13 @@ in {
       options = with lib.types; {
         name = mkOption {
           type = str;
-          default = "anthony";
+          default = "folu";
           description = "your home directory name";
         };
 
         email = mkOption {
           type = str;
-          default = "antholeinik@gmail.com";
+          default = "luca.fondo@trai.ch";
           description = "email; used for git signoffs.";
         };
 
@@ -50,7 +50,7 @@ in {
 
         selfAlias = mkOption {
           type = str;
-          default = "oleina";
+          default = "folu";
           description = "your screen name; used for prefixing git branches in an easy way";
         };
 

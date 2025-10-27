@@ -1,8 +1,8 @@
 {config, ...}: {
   conf = {
-    email = "antholeinik@gmail.com";
-    name = "anthony";
-    selfAlias = "oleina";
+    email = "luca.fondo@trai.ch";
+    name = "folu";
+    selfAlias = "folu";
     homeDirPath = "/Users/";
 
     termColor = config.colorScheme.palette.base0E;

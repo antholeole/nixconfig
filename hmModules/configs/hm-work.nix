@@ -1,9 +1,9 @@
 {config, ...}: {
   conf = {
     wmStartupCommands = ["ssh-agent -a $SSH_AUTH_SOCK"];
-    email = "oleina@google.com";
+    email = "luca.fondo@trai.ch";
     termColor = config.colorScheme.palette.base0E;
-    name = "oleina";
+    name = "folu";
     work = true;
   };
 }
