@@ -200,6 +200,8 @@ binds {
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
     Mod+C { center-column; }
+    Mod+W { toggle-window-floating; }
+    Mod+V { toggle-column-tabbed-display; }
 
     // Finer width adjustments.
     // This command can also:
