@@ -22,7 +22,7 @@ in {
 
     # TODO convert this to nix one day.
     config = let
-      monitors = ../shared/monitors.nix;
+      monitors = import ../shared/monitors.nix;
       monitorsStr = builtins.concatStringsSep "\n\n" (lib.mapAttrsToList (monitorName: config: ''
           output "${monitorName}" {
             scale ${builtins.toString config.scale}
