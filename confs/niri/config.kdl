@@ -1,18 +1,28 @@
-input {
-    mouse {
-        natural-scroll
+gestures {
+    hot-corners {
+        off
     }
 }
 
-layout {
-    gaps 13
-    center-focused-column "never"
-    preset-column-widths {
-        proportion 0.33333
-        proportion 0.5
-        proportion 0.66667
+input {
+    mouse {
+    }
+    touchpad {
+        tap
+        natural-scroll
     }
 
+    warp-mouse-to-focus
+}
+
+hotkey-overlay {
+    skip-at-startup
+}
+
+layout {
+    gaps 10
+    center-focused-column "never"
+    always-center-single-column
     default-column-width {}
 
     // By default focus ring and border are rendered as a solid background rectangle
@@ -27,56 +37,31 @@ layout {
     // `draw-border-with-background`.
 
     // You can change how the focus ring looks.
-    focus-ring {
-        width 4
+
+    border {
+        width 2
         active-color "#83a598"
         inactive-color "#665c54"
     }
 
-    border {
-       off
+    focus-ring {
+        off
     }
 
    struts {}
 }
 
-spawn-at-startup "startup.sh"
- 
 prefer-no-csd
 
+spawn-at-startup "startup.sh"
+ 
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
-// GVC
+// Global window styling
 window-rule {
-    match title=r#"^Meet -.*$"#
-    open-floating true
-    default-floating-position x=50 y=50 relative-to="top-right"
-    open-focused false
-    block-out-from "screencast"
-}
-
-// lame gvc popup
-window-rule {
-    match title=r#"^meet.google.com is sharing your screen.$"#
-    open-floating true
-    open-focused false
-    default-floating-position x=50 y=50 relative-to="bottom-right"
-}
-
-
-animations {
-    workspace-switch {
-        off
-    }
-
-    window-open {
-        off
-    }
-
-    window-close {
-        off
-    }
-    
+    geometry-corner-radius 10
+    clip-to-geometry true
+    draw-border-with-background false
 }
 
 cursor {
@@ -88,7 +73,7 @@ binds {
    Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+T { spawn "alacritty"; }
-    Mod+D { spawn "fuzzel"; }
+    Mod+Space { spawn "fuzzel"; }
     Mod+S { spawn "fuzzel-omnibar" "--command=search"; }
     Super+Alt+L { spawn "/bin/swaylock"; }
 
@@ -244,7 +229,7 @@ binds {
     Alt+Print { screenshot-window; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
+    Mod+Shift+Q { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
