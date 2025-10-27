@@ -7,7 +7,7 @@
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
-    oleina-nixpkgs.url = "github:drlucaa/nixpkgs";
+    oleina-nixpkgs.url = "github:antholeole/nixpkgs";
 
     nur = {
       url = "github:nix-community/NUR";
@@ -73,7 +73,7 @@
 
     nixzx = {
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      url = "github:drlucaa/nixzx";
+      url = "github:antholeole/nixzx";
     };
 
     firefox-addons = {
