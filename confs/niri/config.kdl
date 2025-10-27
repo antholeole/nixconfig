@@ -72,7 +72,7 @@ cursor {
 binds {
    Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T { spawn "alacritty"; }
+    Mod+T { spawn "ghostty"; }
     Mod+Space { spawn "fuzzel"; }
     Super+Alt+L { spawn "/bin/swaylock"; }
 
