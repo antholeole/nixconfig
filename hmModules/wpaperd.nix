@@ -8,10 +8,15 @@
     enable = !config.conf.headless && !config.conf.darwin;
     settings = let
       config = {
-        path = ../confs/bgs/bg.png;
+        path = "/home/folu/Pictures/Wallwapers";
       };
     in {
       "default" = config;
     };
+  };
+
+  home.file."Pictures/Wallwapers" = {
+    source = ../confs/bgs;
+    recursive = true;
   };
 }
