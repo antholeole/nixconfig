@@ -34,6 +34,7 @@
       in [
         inputs.nixpkgs.nixosModules.readOnlyPkgs
         inputs.home-manager.nixosModules.home-manager
+        inputs.disko.nixosModules.disko
 
         ({
           nixpkgs.pkgs = pkgs;
@@ -48,6 +49,7 @@
         ../nixosModules/steam.nix
 
         ../hardware/pc.nix
+        ../hardware/disko.nix
       ];
     });
 }
