@@ -42,7 +42,7 @@
         nil
 
         # scala
-        metals
+        pkgs-unstable.metals
         coursier
 
         # go
@@ -95,7 +95,9 @@
             e = "file_explorer_in_current_buffer_directory";
 
             space = {
-              b = ":sh git blame -L %{cursor_line},%{cursor_line} %{buffer_name}";
+              b = ''
+                :sh jj file annotate %{buffer_name} -T 'commit.author().name() ++ ", " ++ commit.author().timestamp().ago() ++ " @ " ++ commit.commit_id() ++ " (" ++ commit.change_id().shortest() ++ ") " ++"\n"' --color=never | sed -n '%{cursor_line}p'
+              '';
             };
           };
         };
