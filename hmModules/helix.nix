@@ -68,14 +68,6 @@
         # protobuf
         buf
 
-        # haskell
-        (haskell-language-server.override {
-          supportedGhcVersions = [
-            "981"
-          ];
-        })
-        fourmolu
-
         # other
         config.programs.git.package
         config.programs.yazi.package
@@ -137,14 +129,9 @@
           cursor-line = "warning";
         };
 
-        clipboard-provider =
+        clipboard-provider = 
           if (!config.conf.headless)
-          then
-            (
-              if (!config.conf.darwin)
-              then "wayland"
-              else "pasteboard"
-            )
+          then (if (!config.conf.darwin) then "wayland" else "pasteboard")
           else {
             custom = with config.programs.system-clip; {
               yank = {
@@ -240,7 +227,7 @@
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
 
-        # we aren't specifying JAVA_HOME; each project probably has its own.
+        # we aren't specifying JAVA_HOME; each project probably has its own. 
         metals.command = "metals";
 
         qmlls = {
@@ -270,12 +257,6 @@
         nil = {
           command = "nil";
           config.nil.formatting.command = ["alejandra" "-q"];
-        };
-
-        haskell-language-server.config.haskell = {
-          formattingProvider = "fourmolu";
-          plugin.fourmolu.config.external = true;
-          plugin.rename.config.crossModule = true;
         };
 
         biome = {
