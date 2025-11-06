@@ -13,6 +13,11 @@ config: {
     scale = 1.6;
   };
 
+  "Dell Inc. DELL P3225QE G54J484" = {
+    scale = 1.6;
+  };
+   
+
   # personal monitor
   "Dell Inc. DELL P3223QE 5Y1J2P3" = {
     scale = if config.conf.recording then 3 else 1.6;
