@@ -215,8 +215,6 @@ Singleton {
         }
 
         updateCurrentOutputWorkspaces()
-
-        console.log(JSON.stringify(root.workspaces))
     }
 
     function handleWorkspaceActivated(data) {

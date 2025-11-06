@@ -15,7 +15,7 @@ Row {
                 Repeater {
                     id: wsRoot
 
-                    model: NiriService.allWorkspaces.filter(ws => ws.output == NiriService.currentOutput)
+                    model: NiriService.allWorkspaces.filter(ws => ws.output == bar.screen.name)
 
                     property int workspaceCircumference: 15
                     property list<string> colors: ["#fe8019", "#fabd2f", "#8ec07c", "#b8bb26", "#b8bb26"]
@@ -36,7 +36,10 @@ Row {
         },
         DefaultText {
             color: Theme.textMuted
-            text: NirService.allWorkspaces[NiriService.focusedWorkspaceIndex]
+            text: {
+            const focused = NiriService.allWorkspaces[NiriService.focusedWorkspaceIndex];
+            return focused.output == bar.screen.name ? focused.idx : ""
+        }
         }
     ]
 }

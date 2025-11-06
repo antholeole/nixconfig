@@ -9,6 +9,7 @@ Variants {
 
     PanelWindow {
         color: Theme.bg
+        id: bar
 
         required property var modelData
         screen: modelData
