@@ -8,7 +8,7 @@ Row {
     
     property var date: new Date()
 
-    property string time: Qt.formatDateTime(root.date, "hh:mm:ss  MMM dd")
+    property string time: Qt.formatDateTime(root.date, "hh:mm:ss AP  MMM dd")
     property string timeUtc: `(${root.date.getUTCHours()} UTC)`
 
     spacing: 5
