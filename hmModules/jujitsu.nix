@@ -53,6 +53,7 @@ in {
         color = "always";
         diff-formatter = ":git";
         paginate = "auto";
+        pager ="less -RFX";
       };
 
       signing = {
