@@ -44,6 +44,11 @@ in {
     home.file.".config/zellij/config.kdl".text = ''
             default_layout "default"
             default_shell "${config.programs.fish.package}/bin/fish"
+
+            env {
+                COLORTERM "truecolor"
+            }
+            
             mouse_mode false
             pane_frames false
             scrollback_editor "${config.programs.helix.package}/bin/hx"
