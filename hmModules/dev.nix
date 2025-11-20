@@ -27,6 +27,7 @@
     delta # diffing
     ghbrowse
     pkgs-unstable.gemini-cli
+    terraform
 
     (writeShellScriptBin "bazel" ''
       ${bazelisk}/bin/bazelisk "$@"

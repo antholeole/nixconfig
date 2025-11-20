@@ -3,44 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  # TODO move this somewhere sensible.
-  jjSignoff = pkgs.writeShellScriptBin "jj-signoff" ''
-    set -euo pipefail
-
-    NAME=$(jj config get user.name)
-    MAIL=$(jj config get user.email)
-    CID=$(jj log --no-graph -r @ -T "change_id" | sha256sum | head -c 40)
-
-    SIGNSTR="Signed-off-by: ''${NAME} <''${MAIL}>"
-    CHGSTR="Change-Id: I''${CID}"
-
-    contents=$(<"$1")
-    readarray -t lines <<<"''${contents}"
-
-    body=""
-    last=""
-    for x in "''${lines[@]}"; do
-      [[ "$x" =~ ^"JJ:" ]] && continue
-      [[ "$x" =~ ^"Change-Id:" ]] && continue
-      [[ "$x" =~ ^"$SIGNSTR" ]] && continue
-
-      [[ "$x" == "" ]] && [[ "$last" == "" ]] && continue
-
-      last="$x"
-      body+="$x\n"
-    done
-
-    body+="$SIGNSTR\n"
-    body+="$CHGSTR\n"
-
-    t=$(mktemp)
-    printf "$body" > "$t"
-    mv "$t" "$1"
-
-    exec ${config.programs.helix.package}/bin/hx "$1"
-  '';
-in {
+}: {
   programs.jujutsu = {
     enable = true;
 
@@ -65,14 +28,14 @@ in {
         git_push_bookmark = "\"${config.conf.selfAlias}/\" ++ change_id.short()";
       };
 
+      gerrit.default-remote-branch = "master";
+
       aliases = {
-        signoff = ["--config=ui.editor='${jjSignoff}/bin/jj-signoff'" "commit"];
         d = ["describe"];
         dm = ["describe" "-m"];
         shas = ["log" "-r=root()..@" "-T" "author.timestamp().local().format(\'%Y-%m-%d\') ++ \" \" ++ truncate_end(72, pad_end(72, coalesce(description.first_line(), \"(no desc)\")))  ++ commit_id ++ \"\n\"" "--no-graph"];
         retrunk = ["rebase" "-d" "trunk()"];
         temp = ["new" "-m" "[TEMP]"];
-        cl = ["git" "push" "--change" "@-" "--to" "refs/for/master"];
       };
 
       revset.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 4)";

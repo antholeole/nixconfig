@@ -108,6 +108,15 @@ in {
       };
 
       skipLatestRevCheck = true;
+
+      logger = {
+        tail = 100;
+        buffer = 5000;
+        sinceSeconds = -1;
+        fullScreenLogs = false;
+        textWrap = false;
+        showTime = false;
+      };
     };
 
     skins."${gruvbox-dark-medium}".k9s = with config.colorScheme.palette; let
