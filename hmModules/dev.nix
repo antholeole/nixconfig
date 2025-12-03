@@ -8,6 +8,7 @@
     httpie # a simpler curl
     unzip
     jq
+    jnv
     yq-go
     repgrep # find replace
     bottom # top but nicer

@@ -1,79 +1,17 @@
 {
   pkgs,
-  pkgs-unstable,
   config,
   inputs,
   lib,
   ...
 }: {
   programs.helix = let
-    rust-toolchain = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
-      toolchain.default.override {
-        extensions = ["rustfmt" "rust-analyzer" "rust-src" "cargo" "rustc"];
-        targets = ["x86_64-unknown-linux-gnu"];
-      });
     isArm = pkgs.system == "aarch64-linux";
   in {
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
-    extraPackages = with pkgs; let
-      extensionsIf = cond: extensions:
-        if cond
-        then extensions
-        else [];
-
-      headlessPkgsOnly = extensionsIf (config.conf.headless) [
-        wl-clipboard
-      ];
-
-      x64PkgsOnly = extensionsIf (!isArm) [
-        terraform-ls
-        starpls-bin
-      ];
-    in
-      [
-        #cpp
-        pkgs-unstable.llvmPackages_20.clang-tools
-        pkgs-unstable.lldb_20
-
-        # nix
-        alejandra
-        nil
-
-        # scala
-        pkgs-unstable.metals
-        coursier
-
-        # go
-        gopls
-        go
-
-        # python
-        basedpyright
-        ruff
-
-        # qml... pretty big. we should remove it
-        kdePackages.qtdeclarative
-
-        # js
-        biome
-        typescript-language-server
-        vscode-langservers-extracted
-        stylelint-lsp
-
-        # rust
-        rust-toolchain
-
-        # protobuf
-        buf
-
-        # other
-        config.programs.git.package
-        config.programs.yazi.package
-      ]
-      ++ headlessPkgsOnly
-      ++ x64PkgsOnly;
+    extraPackages = import "${inputs.self}/shared/lsps.nix" pkgs;
 
     settings = {
       theme = "gruvbox";
@@ -131,9 +69,14 @@
           cursor-line = "warning";
         };
 
-        clipboard-provider = 
+        clipboard-provider =
           if (!config.conf.headless)
-          then (if (!config.conf.darwin) then "wayland" else "pasteboard")
+          then
+            (
+              if (!config.conf.darwin)
+              then "wayland"
+              else "pasteboard"
+            )
           else {
             custom = with config.programs.system-clip; {
               yank = {
@@ -229,7 +172,7 @@
           config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
         };
 
-        # we aren't specifying JAVA_HOME; each project probably has its own. 
+        # we aren't specifying JAVA_HOME; each project probably has its own.
         metals.command = "metals";
 
         qmlls = {
