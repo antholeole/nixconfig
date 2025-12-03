@@ -1,6 +1,5 @@
 {
   pkgs,
-  pkgs-unstable,
   ...
 }: {
   home.packages = with pkgs; [
@@ -27,7 +26,6 @@
     aspellDicts.en
     delta # diffing
     ghbrowse
-    pkgs-unstable.gemini-cli
     terraform
 
     (writeShellScriptBin "bazel" ''

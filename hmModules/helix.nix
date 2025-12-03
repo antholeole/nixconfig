@@ -11,7 +11,7 @@
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
-    extraPackages = import "${inputs.self}/shared/lsps.nix" pkgs;
+    extraPackages = import "${inputs.self}/shared/lsps.nix" pkgs config;
 
     settings = {
       theme = "gruvbox";
