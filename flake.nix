@@ -81,6 +81,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    serena = {
+      url = "github:oraios/serena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # theme
     gruvbox-yazi = {
       url = "github:poperigby/gruvbox-dark-yazi";
@@ -127,6 +132,7 @@
     nixzx,
     nur,
     quickshell,
+    serena,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -158,6 +164,7 @@
                 zjstatus = dft zjstatus;
                 jujutsu = dft jujutsu;
                 quickshell = dft quickshell;
+                serena = dft serena;
 
                 ghbrowse = (import ./programs/ghbrowse) prev;
               })

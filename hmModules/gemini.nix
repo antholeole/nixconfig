@@ -32,6 +32,21 @@
         preferredEditor = "${config.programs.helix.package}/bin/hx";
         disableUpdateNag = true;
       };
+
+      mcpServers = {
+        serena = {
+          command = "${pkgs.symlinkJoin {
+            name = "serena-wrapped";
+            paths =
+              (import "${inputs.self}/shared/lsps.nix" pkgs config)
+              ++ [pkgs.serena];
+          }}/bin/serena";
+
+          args = [
+            "start-mcp-server"
+          ];
+        };
+      };
     };
   };
 }
