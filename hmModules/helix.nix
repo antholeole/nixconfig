@@ -77,18 +77,7 @@
               then "wayland"
               else "pasteboard"
             )
-          else {
-            custom = with config.programs.system-clip; {
-              yank = {
-                command = package;
-                args = ["paste"];
-              };
-              paste = {
-                command = package;
-                args = ["copy"];
-              };
-            };
-          };
+          else "termcode";
       };
     };
 
