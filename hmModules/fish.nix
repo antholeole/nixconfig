@@ -45,6 +45,7 @@
         # last command duration
         ldc = "humantime $CMD_DURATION | awk '{$1=\"\"; print $0}'";
         ssh-killold = "pgrep -u $USER sshd | grep -v $(pgrep -u $USER -n sshd) | xargs -r kill";
+        ghpr = "jj git push -c @ && gh pr create -H (jj bookmark list -r @ -T \"self\")";
       }
       // cv;
 
