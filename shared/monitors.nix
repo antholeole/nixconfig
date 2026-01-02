@@ -4,16 +4,17 @@ config: {
     scale = 2.5;
   };
 
-  # work external monitor
+  # work external monitors
   "Hewlett Packard HP Z27n CNK62212PK" = {
     scale = 1.15;
   };
-
   "Dell Inc. DELL P3223QE FX9XWN3" = {
     scale = 1.6;
   };
-
   "Dell Inc. DELL P3225QE G54J484" = {
+    scale = 1.6;
+  };
+  "Dell Inc. DELL P3223QE CJF0XN3" = {
     scale = 1.6;
   };
    
