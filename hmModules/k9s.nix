@@ -64,7 +64,7 @@ in {
                       containers = [
                         {
                           name = "curl";
-                          image = "nicolaka/netshoot";
+                          image = "ghcr.io/antholeole/nixconfig:latest";
                           imagePullPolicy = "Always";
                           securityContext = {
                             runAsUser = 0;

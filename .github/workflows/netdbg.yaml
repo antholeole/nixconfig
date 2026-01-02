@@ -1,0 +1,62 @@
+name: netdbg
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Nix Image
+        run: nix build .#netdbg
+
+      - name: Load, Tag, and Push
+        run: |
+          LOAD_OUTPUT=$(docker load < result)
+          echo "$LOAD_OUTPUT"          
+          INTERNAL_TAG=$(echo "$LOAD_OUTPUT" | awk '{print $3}')
+          
+          TARGET_TAG=$(echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | tr '[:upper:]' '[:lower:]')
+          
+          echo "Retagging $INTERNAL_TAG to $TARGET_TAG"
+          docker tag "$INTERNAL_TAG" "$TARGET_TAG"
+          docker push "$TARGET_TAG"
+
+      - name: Lowercase Image Name
+        id: string_lower
+        run: echo "lowercase=$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+  cleanup-old-images:
+      needs: build-and-push
+      runs-on: ubuntu-latest
+      permissions:
+        packages: write
+      steps:
+        - name: Delete older package versions
+          uses: actions/delete-package-versions@v5
+          with:
+            package-name: ${{ needs.build-and-push.outputs.image_name_lower }}
+            package-type: 'container'          
+            min-versions-to-keep: 1
+            delete-only-untagged-versions: 'false'
+  

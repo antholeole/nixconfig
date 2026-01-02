@@ -178,6 +178,7 @@
         home-manager.flakeModules.home-manager
         inputs.flake-parts.flakeModules.flakeModules
 
+        ./parts/ghcr.nix
         ./parts/devshell.nix
         ./parts/treefmt.nix
         ./parts/nixos.nix
