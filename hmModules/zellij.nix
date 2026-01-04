@@ -48,7 +48,7 @@ in {
             env {
                 COLORTERM "truecolor"
             }
-            
+
             mouse_mode false
             pane_frames false
             scrollback_editor "${config.programs.helix.package}/bin/hx"
@@ -73,17 +73,26 @@ in {
               bind "d" { NewPane "down"; SwitchToMode "locked"; }
               bind "e" { TogglePaneEmbedOrFloating; SwitchToMode "locked"; }
               bind "f" { ToggleFocusFullscreen; SwitchToMode "locked"; }
-              bind "h" { MoveFocus "left"; }
-              bind "i" { TogglePanePinned; SwitchToMode "locked"; }
-              bind "j" { MoveFocus "down"; }
-              bind "k" { MoveFocus "up"; }
-              bind "l" { MoveFocus "right"; }
               bind "n" { NewPane; SwitchToMode "locked"; }
               bind "p" { SwitchToMode "normal"; }
               bind "r" { NewPane "right"; SwitchToMode "locked"; }
               bind "w" { ToggleFloatingPanes; SwitchToMode "locked"; }
               bind "x" { CloseFocus; SwitchToMode "locked"; }
               bind "tab" { SwitchFocus; }
+
+              bind "i" { TogglePanePinned; SwitchToMode "locked"; }
+
+              bind "h" { MoveFocus "left"; }
+              bind "H" { MovePane "left"; }
+
+              bind "j" { MoveFocus "down"; }
+              bind "J" { MovePane "down"; }
+
+              bind "k" { MoveFocus "up"; }
+              bind "K" { MovePane "up"; }
+
+              bind "l" { MoveFocus "right"; }
+              bind "L" { MovePane "right"; }
           }
           tab {
               bind "left" { GoToPreviousTab; }
