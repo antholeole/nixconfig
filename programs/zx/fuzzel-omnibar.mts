@@ -1,7 +1,7 @@
 import { $, argv, echo } from "zx";
 
 const { nixChannel } = {
-	nixChannel: "25.05",
+	nixChannel: "25.11",
 };
 
 type PromiseFunction = () => Promise<void>;
