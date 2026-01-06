@@ -29,7 +29,7 @@
     settings = {
       general = {
         enablePreviewFeatures = true;
-        preferredEditor = "${config.programs.helix.package}/bin/hx";
+        # preferredEditor = "${config.programs.helix.package}/bin/hx";
         disableUpdateNag = true;
       };
     };

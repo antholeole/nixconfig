@@ -1,6 +1,7 @@
 [
   # node
   "node_modules"
+  "bundle/" # frontend output
 
   # nix
   ".direnv"

@@ -26,7 +26,10 @@
     aspellDicts.en
     delta # diffing
     ghbrowse
+
+    #
     terraform
+    nodejs_24
 
     (writeShellScriptBin "bazel" ''
       ${bazelisk}/bin/bazelisk "$@"

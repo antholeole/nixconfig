@@ -36,6 +36,10 @@
               b = ''
                 :sh jj file annotate %{buffer_name} -T 'commit.author().name() ++ ", " ++ commit.author().timestamp().ago() ++ " @ " ++ commit.commit_id() ++ " (" ++ commit.change_id().shortest() ++ ") " ++"\n"' --color=never | sed -n '%{cursor_line}p'
               '';
+
+            p = ''
+              :sh echo %{buffer_name} | ${config.programs.system-clip.package} copy
+              '';
             };
           };
         };
