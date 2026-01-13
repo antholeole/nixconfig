@@ -2,16 +2,12 @@
   pkgs,
   config,
   inputs,
-  lib,
   ...
 }: {
-  programs.helix = let
-    isArm = pkgs.system == "aarch64-linux";
-  in {
+  programs.helix = {
     package = pkgs.helix;
     enable = true;
     defaultEditor = true;
-    extraPackages = import "${inputs.self}/shared/lsps.nix" pkgs config;
 
     settings = {
       theme = "gruvbox";
@@ -96,135 +92,6 @@
       };
     };
 
-    languages = {
-      language = let
-        mkBiomeFmt = ogLsp: name: {
-          inherit name;
-          language-servers = [
-            {
-              name = ogLsp;
-              except-features = ["format" "inlay-hints"];
-            }
-            "biome"
-          ];
-        };
-      in
-        [
-          (mkBiomeFmt "typescript-language-server" "javascript")
-          (mkBiomeFmt "typescript-language-server" "typescript")
-          (mkBiomeFmt "typescript-language-server" "jsx")
-          (mkBiomeFmt "typescript-language-server" "tsx")
-
-          (mkBiomeFmt "json-language-server" "json")
-          (mkBiomeFmt "json-language-server" "json5")
-
-          {
-            name = "css";
-            file-types = ["css" "less"];
-            language-servers = ["stylelint-ls"];
-          }
-          {
-            name = "scss";
-            language-servers = ["vscode-css-language-server" "tailwindcss-ls"];
-          }
-          {
-            name = "python";
-            language-servers = [
-              "basedpyright"
-              "ruff"
-            ];
-          }
-          {
-            name = "starlark";
-            language-servers = [
-              "starpls"
-            ];
-            formatter.command = "${pkgs.bazel-buildtools}/bin/buildifier";
-          }
-        ]
-        ++ (
-          if isArm
-          then []
-          else [
-            {
-              name = "hcl";
-              language-servers = ["terraform-ls"];
-              formatter = {
-                command = "${pkgs.terraform}/bin/terraform";
-                args = ["fmt" "-"];
-              };
-            }
-          ]
-        );
-
-      vscode-css-language-server = {
-        command = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-css-language-server";
-        args = ["--stdio"];
-        config = {
-          provideFormatter = true;
-          css.validate.enable = true;
-          scss.validate.enable = true;
-        };
-      };
-
-      language-server = {
-        basedpyright = {
-          command = "basedpyright-langserver";
-          args = ["--stdio"];
-          except-features = ["format"];
-
-          config."basedpyright.analysis.diagnosticMode" = "openFilesOnly";
-        };
-
-        # we aren't specifying JAVA_HOME; each project probably has its own.
-        metals.command = "metals";
-
-        qmlls = {
-          name = "qmlls";
-          command = "qmlls";
-          args = ["-E"];
-        };
-
-        ruff = {
-          command = "ruff";
-          args = ["server"];
-        };
-
-        rust-analyzer.command = "rust-analyzer";
-        clangd = {
-          args = [
-            "--enable-config"
-            "--clang-tidy"
-          ];
-        };
-
-        stylelint-ls = {
-          command = "stylelint-lsp";
-          args = ["--stdio"];
-        };
-
-        nil = {
-          command = "nil";
-          config.nil.formatting.command = ["alejandra" "-q"];
-        };
-
-        biome = {
-          command = "biome";
-          args = ["lsp-proxy"];
-        };
-        terraform-ls = lib.mkIf (!isArm) {
-          command = "terraform-ls";
-          # https://github.com/helix-editor/helix/discussions/9630
-          args = ["serve" "-log-file" "/dev/null"];
-        };
-      };
-    };
-
     ignores = import "${inputs.self}/shared/ignores.nix";
   };
-
-  xdg.configFile."clangd/config.yaml".text = ''
-    CompileFlags:
-      Add: [-Wall, -std=c++2b, -Wsuggest-override]
-  '';
 }
