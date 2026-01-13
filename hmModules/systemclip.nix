@@ -37,7 +37,7 @@ in {
       if config.conf.headless
       then remoteClipClient.copy
       else "${pkgs.wl-clipboard.outPath}/bin/wl-copy";
-    package = lib.mkIf (config.conf.headless) remoteClipClient.package;
+    package = if (config.conf.headless) then remoteClipClient.package else pkgs.wl-clipboard;
   };
 
   config.systemd.user.services.remoteClip = lib.mkIf (!config.conf.headless) {

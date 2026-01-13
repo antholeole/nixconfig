@@ -34,7 +34,7 @@
               '';
 
             p = ''
-              :sh echo %{buffer_name} | ${config.programs.system-clip.package} copy
+              :sh echo %{buffer_name} | ${config.programs.system-clip.copy}
               '';
             };
           };
