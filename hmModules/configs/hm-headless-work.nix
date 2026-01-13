@@ -11,6 +11,7 @@
 
     features = [
       "kubectl"
+      "gbin"
     ];
   };
 }
