@@ -39,7 +39,6 @@
         v = config.programs.system-clip.paste;
 
         rd = "rm -rf";
-        zedit = "${pkgs.zellij}/bin/zellij --layout zedit";
         awk = "${pkgs.gawk}/bin/gawk";
 
         # last command duration
