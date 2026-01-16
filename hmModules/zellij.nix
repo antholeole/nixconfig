@@ -96,6 +96,9 @@ in {
           }
           tab {
               bind "left" { GoToPreviousTab; }
+              bind "Shift left" "Shift h" { MoveTab "left"; }
+              bind "Shift right" "Shift l" { MoveTab "right"; }
+              
               bind "down" { GoToNextTab; }
               bind "up" { GoToPreviousTab; }
               bind "right" { GoToNextTab; }
