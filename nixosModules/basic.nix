@@ -6,19 +6,30 @@
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   programs.nix-ld.enable = true;
-  services.envfs.enable = true; 
+  services.envfs.enable = true;
 
   environment.systemPackages = with pkgs; [
     busybox
   ];
 
-  services.dnsmasq = {
-    enable = true;
-    settings = {
-    address=["/longhorn.oleina.xyz/192.168.12.123"];
-      
+  services = {
+    dnsmasq = {
+      enable = true;
+      settings = {
+        address = ["/longhorn.oleina.xyz/192.168.12.123"];
+        # use cf
+        server = ["1.1.1.1" "1.0.0.1"];
+        neg-ttl = 60;
+      };
+    };
+
+    tailscale = {
+      enable = true;
+      extraUpFlags = ["--accept-dns=true"];
     };
   };
+
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   boot = {
     extraModulePackages = [

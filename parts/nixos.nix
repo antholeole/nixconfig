@@ -32,8 +32,12 @@
             users.anthony = {pkgs, ...}: {
               imports =
                 (import ../hmModules)
-                ++ [../hmModules/configs/hm-pc.nix];
-                config.conf.recording = false;
+                ++ [
+                  ../hmModules/configs/hm-pc.nix
+
+                  inputs.oleina-shell.homeModules.default
+                ];
+              config.conf.recording = false;
             };
           };
         };

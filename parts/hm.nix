@@ -21,6 +21,8 @@
           (import ../hmModules)
           ++ moreModules
           ++ [
+            inputs.oleina-shell.homeModules.default
+
             (import "${inputs.self}/hmModules/configs/${config}.nix")
           ];
 

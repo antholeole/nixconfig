@@ -99,7 +99,12 @@
       # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # end theme
+
+    oleina-shell = {
+      url = "github:antholeole/oleina-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell";
+    };
   };
 
   nixConfig = {
@@ -127,6 +132,7 @@
     nixzx,
     nur,
     quickshell,
+    oleina-shell,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
