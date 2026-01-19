@@ -26,5 +26,7 @@
     aspellDicts.en
     delta # diffing
     ghbrowse
+    rustdesk
+    dig
   ];
 }
