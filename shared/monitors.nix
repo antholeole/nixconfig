@@ -2,6 +2,8 @@ config: let
   cloeMonitors = [
     "Dell Inc. DELL P3223QE GR414P3"
     "Dell Inc. DELL P3223QE FX9XWN3"
+    "Dell Inc. DELL P3223QE 3FS7WN3"
+
     "Dell Inc. DELL P3225QE G54J484"
   ];
 in
