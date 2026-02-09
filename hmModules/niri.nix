@@ -44,7 +44,7 @@ in {
         name = "niri-wrapped";
         paths = [
           startupsh
-          config.programs.alacritty.package
+          config.programs.ghostty.package
           config.programs.waybar.package
 
           pkgs.fuzzel-omnibar
