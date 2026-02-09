@@ -41,10 +41,6 @@ jobs:
           echo "Retagging $INTERNAL_TAG to $TARGET_TAG"
           docker tag "$INTERNAL_TAG" "$TARGET_TAG"
           docker push "$TARGET_TAG"
-
-      - name: Lowercase Image Name
-        id: string_lower
-        run: echo "lowercase=$(echo ${{ env.IMAGE_NAME }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
   cleanup-old-images:
       needs: build-and-push
       runs-on: ubuntu-latest
@@ -52,11 +48,11 @@ jobs:
         packages: write
       steps:
         - name: Delete older package versions
-          uses: actions/delete-package-versions@v5
+          uses: actions/delete-package-versions@v4
           with:
-            package-name: ${{ needs.build-and-push.outputs.image_name_lower }}
+            owner: antholeole
+            package-name: 'netdbg'
             package-type: 'container'          
             min-versions-to-keep: 1
             delete-only-untagged-versions: 'false'
-            ignore-versions: '^(latest|main)$'
   
