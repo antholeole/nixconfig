@@ -5,7 +5,6 @@ on:
   workflow_dispatch:
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: netdbg
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -37,7 +36,7 @@ jobs:
           echo "$LOAD_OUTPUT"          
           INTERNAL_TAG=$(echo "$LOAD_OUTPUT" | awk '{print $3}')
           
-          TARGET_TAG=$(echo "${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest" | tr '[:upper:]' '[:lower:]')
+          TARGET_TAG=$(echo "${{ env.REGISTRY }}/antholeole/netdbg:latest" | tr '[:upper:]' '[:lower:]')
           
           echo "Retagging $INTERNAL_TAG to $TARGET_TAG"
           docker tag "$INTERNAL_TAG" "$TARGET_TAG"
