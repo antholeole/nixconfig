@@ -19,6 +19,8 @@
 
       confirm-close-surface = false;
 
+      shell-integration-features = "cursor,sudo,ssh-env,ssh-terminfo";
+
       keybind = [
         "ctrl+shift+equal=increase_font_size:1"
         "ctrl+equal=increase_font_size:1"
