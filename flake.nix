@@ -86,17 +86,17 @@
       url = "github:poperigby/gruvbox-dark-yazi";
       flake = false;
     };
-    nix-colors.url = "github:misterio77/nix-colors";
-    gruvbox-alacritty = {
-      url = "github:alacritty/alacritty-theme";
-      flake = false;
-    };
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 
       # THIS IS IMPORTANT
       # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -123,8 +123,6 @@
     nix-index-database,
     rust-overlay,
     oleina-nixpkgs,
-    nix-colors,
-    gruvbox-alacritty,
     flake-parts,
     treefmt-nix,
     jujutsu,

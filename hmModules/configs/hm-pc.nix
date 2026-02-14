@@ -4,7 +4,7 @@
     name = "anthony";
     selfAlias = "oleina";
 
-    termColor = config.colorScheme.palette.base0E;
+    termColor = config.lib.stylix.colors.base0E;
     nixos = true;
     wm = true;
 

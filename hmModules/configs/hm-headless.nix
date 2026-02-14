@@ -1,6 +1,6 @@
 {config, ...}: {
   config = {
     headless = true;
-    termColor = config.colorScheme.palette.base0f;
+    termColor = config.lib.stylix.colors.base0F;
   };
 }

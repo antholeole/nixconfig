@@ -14,14 +14,8 @@ in {
     gtk4.extraConfig = {gtk-application-prefer-dark-theme = 1;};
   };
 
-  dconf.settings = mkIfHeaded {
-    "org/gnome/desktop/interface" = {color-scheme = "prefer-dark";};
-  };
-
-
   home.packages = with pkgs;
     mkIfHeaded [
-      nerd-fonts.fira-code
       libnotify
       glib # for notifications
       pwvucontrol

@@ -6,7 +6,7 @@
 
     color = config.conf.termColor;
 
-    bgFill = "bg:${h color} fg:${h config.colorScheme.palette.base03}";
+    bgFill = "bg:${h color} fg:${h config.lib.stylix.colors.base03}";
     fgFill = "fg:${h color}";
 
     seperator = "[┃](${bgFill})";

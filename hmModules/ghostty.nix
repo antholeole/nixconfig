@@ -11,7 +11,6 @@
 
     settings = {
       command = "${config.programs.fish.package}/bin/fish";
-      theme = "Gruvbox Dark";
       font-family = "FiraCode Nerd Font Mono";
       font-size = 10;
       window-padding-x = 5;

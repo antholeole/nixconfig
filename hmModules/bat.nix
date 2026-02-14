@@ -5,7 +5,6 @@
     extraPackages = with pkgs.bat-extras; [batman];
 
     config = {
-      theme = "gruvbox-dark";
       pager = "less -FR";
     };
   };

@@ -10,8 +10,6 @@
     defaultEditor = true;
 
     settings = {
-      theme = "gruvbox";
-
       keys = {
         normal = {
           ret = "goto_word";

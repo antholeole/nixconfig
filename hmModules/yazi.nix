@@ -1,5 +1,4 @@
 {
-  inputs,
   config,
   pkgs-unstable,
   ...
@@ -59,9 +58,5 @@
         ];
       };
     };
-  };
-
-  xdg.configFile = {
-    "yazi/theme.toml".source = inputs.gruvbox-yazi.outPath + "/theme.toml";
   };
 }

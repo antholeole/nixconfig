@@ -20,6 +20,7 @@
       }) (lib.lists.range 1 9));
   in {
     enable = true;
+
     package = pkgs.fish.override {
       fishEnvPreInit = source: source "${pkgs.nix}/etc/profile.d/nix-daemon.sh";
     };
@@ -138,7 +139,7 @@
     '';
   };
 
-  xdg.configFile."fish/themes/Gruvbox.theme" = with config.colorScheme.palette; {
+  xdg.configFile."fish/themes/Gruvbox.theme" = with config.lib.stylix.colors; {
     enable = true;
     text = let
       foreground = base07;

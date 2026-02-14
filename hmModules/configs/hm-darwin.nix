@@ -5,7 +5,7 @@
     selfAlias = "oleina";
     homeDirPath = "/Users/";
 
-    termColor = config.colorScheme.palette.base0E;
+    termColor = config.lib.stylix.colors.base0E;
 
     nixos = false;
     wm = false;

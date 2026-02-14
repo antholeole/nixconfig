@@ -17,27 +17,28 @@
       }
   '';
 in {
-  options.zjstatus = lib.options.mkOption {
-    type = lib.types.lines;
-    default = let
-      bgColor = h config.colorScheme.palette.base00;
-    in ''
-      pane size=1 borderless=true {
-             plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
-               format_space "#[bg=${bgColor}]"
+  options.zjstatus = with config.lib.stylix.colors;
+    lib.options.mkOption {
+      type = lib.types.lines;
+      default = let
+        bgColor = h base00;
+      in ''
+        pane size=1 borderless=true {
+               plugin location="file:${pkgs.zjstatus}/bin/zjstatus.wasm" {
+                 format_space "#[bg=${bgColor}]"
 
-               mode_normal  "#[bg=${fgColor},fg=${h config.colorScheme.palette.base05}] {name} "
-               mode_locked  "#[bg=${h config.colorScheme.palette.base0B},fg=${bgColor}] {name} "
+                 mode_normal  "#[bg=${fgColor},fg=${h base05}] {name} "
+                 mode_locked  "#[bg=${h base0B},fg=${bgColor}] {name} "
 
-               tab_normal   "#[fg=${fgColor}] {name} "
-               tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
+                 tab_normal   "#[fg=${fgColor}] {name} "
+                 tab_active   "#[fg=${bgColor},bg=${fgColor}] {name} "
 
-               format_left  "{tabs}"
-               format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
+                 format_left  "{tabs}"
+                 format_right "#[fg=${fgColor},bg=${bgColor}] {session} {mode} "
+               }
              }
-           }
-    '';
-  };
+      '';
+    };
 
   config = {
     home.packages = [pkgs.zellij];
@@ -98,7 +99,7 @@ in {
               bind "left" { GoToPreviousTab; }
               bind "Shift left" "Shift h" { MoveTab "left"; }
               bind "Shift right" "Shift l" { MoveTab "right"; }
-              
+
               bind "down" { GoToNextTab; }
               bind "up" { GoToPreviousTab; }
               bind "right" { GoToNextTab; }

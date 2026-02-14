@@ -4,7 +4,7 @@
     name = "oleina";
     homeDirPath = "/usr/local/google/home/";
 
-    termColor = config.colorScheme.palette.base0D;
+    termColor = config.lib.stylix.colors.base0D;
 
     headless = true;
     work = true;
