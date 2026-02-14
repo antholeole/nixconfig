@@ -24,7 +24,6 @@
     gron # greppable json
     aspell
     aspellDicts.en
-    delta # diffing
     ghbrowse
     rustdesk
     dig

@@ -13,7 +13,6 @@
   };
 
   programs.nix-ld.enable = true;
-  hardware.opengl.enable = true;
   services.envfs.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -53,7 +52,9 @@
 
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
-    kernelPackages = pkgs.linuxPackages_latest;
+
+    # can't use latest due to https://github.com/nixos/nixpkgs/issues/489947
+    kernelPackages = pkgs.linuxPackages_6_18;
   };
 
   time.timeZone = "America/Los_Angeles";

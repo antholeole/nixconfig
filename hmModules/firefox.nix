@@ -4,6 +4,7 @@
   config,
   ...
 }: {
+  stylix.targets.firefox.profileNames = ["default"];
   programs.firefox = {
     enable = !config.conf.work && !config.conf.headless;
 

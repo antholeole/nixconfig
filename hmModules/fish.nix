@@ -21,9 +21,14 @@
   in {
     enable = true;
 
-    package = pkgs.fish.override {
-      fishEnvPreInit = source: source "${pkgs.nix}/etc/profile.d/nix-daemon.sh";
-    };
+    package =
+      (pkgs.fish.override {
+        fishEnvPreInit = source: source "${pkgs.nix}/etc/profile.d/nix-daemon.sh";
+      }).overrideAttrs (oldAttrs: {
+        # https://github.com/fish-shell/fish-shell/issues/12253 and some other
+        # tests flake
+        doCheck = false;
+      });
 
     shellAliases = {
       c = config.programs.system-clip.copy;

@@ -23,7 +23,6 @@ in {
       obs-cli
       brightnessctl
       wl-clipboard # clipboard
-      mpc-cli
       swappy # image editing
       nix-output-monitor
 

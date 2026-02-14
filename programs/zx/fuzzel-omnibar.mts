@@ -40,7 +40,7 @@ const onSearch = async () => {
 	} else if (fuzzelInput === "!d") {
 		url = "https://draw.oleina.xyz";
 	} else if (fuzzelInput.startsWith("!home")) {
-		url = `https://home-manager-options.extranix.com/?query=${fuzzelInput.replace("!home ", "")}&release=release-25.05`;
+		url = `https://home-manager-options.extranix.com/?query=${fuzzelInput.replace("!home ", "")}&release=release-25.11`;
 	} else if (fuzzelInput.startsWith("!gh")) {
 		let remainingFuzzelInput = fuzzelInput.replace("!gh ", "");
 		let extensionSuffix = "";

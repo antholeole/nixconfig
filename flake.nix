@@ -2,8 +2,13 @@
   description = "Anthony's NixOS configuration";
 
   inputs = {
-    # main nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+    home-manager.url = "github:nix-community/home-manager/release-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # bleeding edge
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     # my fork for upstreaming
@@ -38,7 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
       # inputs.rust-overlay.follows = "rust-overlay";
     };
-    home-manager.url = "github:nix-community/home-manager/master";
     nixGL = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,7 +64,6 @@
     helix = {
       url = "github:helix-editor/helix/master";
       inputs.nixpkgs.follows = "nixpkgs";
-      # inputs.rust-overlay.follows = "rust-overlay";
     };
 
     jujutsu = {
@@ -94,11 +97,6 @@
 
       # THIS IS IMPORTANT
       # Mismatched system dependencies will lead to crashes and other issues.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    stylix = {
-      url = "github:nix-community/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -18,5 +18,8 @@
         name = "FiraCode Nerd Font Mono";
       };
     };
+
+    # breaks some builds
+    targets.gnome.enable = false;
   };
 }

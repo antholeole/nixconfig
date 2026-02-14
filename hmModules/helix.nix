@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
   programs.helix = {
@@ -10,6 +11,7 @@
     defaultEditor = true;
 
     settings = {
+      theme = lib.mkForce "gruvbox";
       keys = {
         normal = {
           ret = "goto_word";

@@ -7,7 +7,7 @@ in
     (pkgs.writeShellScriptBin "bazel" ''
       ${pkgs.bazelisk}/bin/bazelisk "$@"
     '')
-  ] ++ lib.optional (!isArm) pkgs.starpls-bin;
+  ] ++ lib.optional (!isArm) pkgs.starpls;
 
   programs.helix.languages = {
     language = [
