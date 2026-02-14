@@ -19,6 +19,11 @@
         "browser.newtabpage.enabled" = false;
         "browser.aboutwelcome.enabled" = false;
         "browser.start.page" = 3;
+
+        # disable built in password manager
+        "signon.rememberSignons" = false;
+        "signon.autofillForms" = false;
+        "signon.formlessCapture.enabled" = false;
       };
 
       extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
