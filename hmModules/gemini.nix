@@ -31,6 +31,33 @@
         enablePreviewFeatures = true;
         # preferredEditor = "${config.programs.helix.package}/bin/hx";
         disableUpdateNag = true;
+
+        tools.enableHooks = true;
+        hooks = let
+          tool = [
+            {
+              matcher = "*";
+              hooks = [{
+                name = "notify";
+                type = "command";
+                command = let
+                  remoteClipClient =
+                    (import "${inputs.self}/programs/clipboard" pkgs).client;
+
+                  notify = pkgs.writeShellScriptBin "gem-notify" ''
+                    echo "gemini needs input for $GEMINI_CWD!" | ${remoteClipClient.notify}
+                  '';
+                in "${notify}/bin/gem-notify";
+                description = "notify gemini execution end";
+              }];
+            }
+          ];
+        in {
+          enabled = true;
+
+          AfterAgent = tool;
+          Notification = tool;
+        };
       };
     };
   };

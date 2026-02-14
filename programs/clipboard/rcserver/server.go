@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/base64"
 	b64 "encoding/base64"
 	"fmt"
 	"io"
@@ -28,6 +29,15 @@ func main() {
 	}))
 }
 
+func readBodyB64(c *gin.Context) (string, error) {
+	toCopyB64, err := io.ReadAll(c.Request.Body)
+	if err != nil {
+		return "", err
+	}
+
+	return string(toCopyB64), nil
+}
+
 func run(args *argT) error {
 	r := gin.Default()
 
@@ -36,14 +46,14 @@ func run(args *argT) error {
 	})
 
 	r.POST("/copy", func(c *gin.Context) {
-		toCopyB64, err := io.ReadAll(c.Request.Body)
+		body, err := readBodyB64(c)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			log.Printf("Error reading request body: %v", err)
 			return
 		}
 
-		err = utils.Copy(string(toCopyB64), args.Wlcopy)
+		err = utils.Copy(body, args.Wlcopy)
 		if err != nil {
 			c.AbortWithError(http.StatusInternalServerError, err)
 			log.Printf("Error copying data: %v", err)
@@ -69,8 +79,20 @@ func run(args *argT) error {
 		c.Data(http.StatusOK, "text/plain", out64Bytes)
 	})
 
-	r.GET("/done", func(c *gin.Context) {
-		cmd := exec.Command(args.NotifySend, "done!")
+	r.POST("/notify", func(c *gin.Context) {
+		bodyB64, err := readBodyB64(c)
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		body, err := base64.StdEncoding.DecodeString(bodyB64)
+		if err != nil {
+			c.AbortWithError(http.StatusInternalServerError, err)
+			return
+		}
+
+		cmd := exec.Command(args.NotifySend, "notification from remote", string(body))
 		out, err := cmd.Output()
 
 		if err != nil {

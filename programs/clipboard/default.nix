@@ -15,6 +15,6 @@ in {
     package = "${remoteClip}/bin/rcclient";
     copy = mkCommand "copy";
     paste = mkCommand "paste";
-    done = mkCommand "done";
+    notify = mkCommand "notify";
   };
 }

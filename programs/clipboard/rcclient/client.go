@@ -28,6 +28,18 @@ func mkUrl(path string) string {
 	return fmt.Sprintf("http://localhost:%s/%s", utils.Port, path)
 }
 
+func readStdin() (error, *strings.Reader) {
+	stdin, err := io.ReadAll(os.Stdin)
+	if err != nil {
+		return err, nil
+	}
+
+	suffixless := strings.TrimSuffix(string(stdin), "\n")
+	reader := strings.NewReader(b64.StdEncoding.EncodeToString([]byte(suffixless)))
+	return nil, reader
+
+}
+
 func run() error {
 	switch cmd := os.Args[1]; cmd {
 	case "paste":
@@ -50,6 +62,17 @@ func run() error {
 
 		fmt.Println(strings.TrimSuffix(string(data), "\n"))
 	case "copy":
+		err, stdin := readStdin()
+		if err != nil {
+			return err
+		}
+
+		_, err = http.Post(mkUrl(cmd), "text/plain", stdin)
+
+		if err != nil {
+			return err
+		}
+	case "notify":
 		stdin, err := io.ReadAll(os.Stdin)
 		if err != nil {
 			return err
@@ -58,13 +81,7 @@ func run() error {
 		suffixless := strings.TrimSuffix(string(stdin), "\n")
 		reader := strings.NewReader(b64.StdEncoding.EncodeToString([]byte(suffixless)))
 
-		_, err = http.Post(mkUrl(cmd), "text/plain", reader)
-
-		if err != nil {
-			return err
-		}
-	case "done":
-		resp, err := http.Get(mkUrl(cmd))
+		resp, err := http.Post(mkUrl(cmd), "text/plain", reader)
 		if err != nil {
 			return err
 		}

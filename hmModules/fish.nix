@@ -24,29 +24,20 @@
       fishEnvPreInit = source: source "${pkgs.nix}/etc/profile.d/nix-daemon.sh";
     };
 
-    shellAliases = let
-      cv =
-        if config.conf.headless
-        then {
-          done = remoteClipClient.done;
-        }
-        else {
-          done = "${pkgs.libnotify}/bin/notify-send done!";
-        };
-    in
-      {
-        c = config.programs.system-clip.copy;
-        v = config.programs.system-clip.paste;
+    shellAliases = {
+      c = config.programs.system-clip.copy;
+      v = config.programs.system-clip.paste;
 
-        rd = "rm -rf";
-        awk = "${pkgs.gawk}/bin/gawk";
+      rd = "rm -rf";
+      awk = "${pkgs.gawk}/bin/gawk";
 
-        # last command duration
-        ldc = "humantime $CMD_DURATION | awk '{$1=\"\"; print $0}'";
-        ssh-killold = "pgrep -u $USER sshd | grep -v $(pgrep -u $USER -n sshd) | xargs -r kill";
-        ghpr = "jj git push -c @ && gh pr create -H (jj bookmark list -r @ -T \"self\")";
-      }
-      // cv;
+      # last command duration
+      ldc = "humantime $CMD_DURATION | awk '{$1=\"\"; print $0}'";
+      ssh-killold = "pgrep -u $USER sshd | grep -v $(pgrep -u $USER -n sshd) | xargs -r kill";
+      ghpr = "jj git push -c @ && gh pr create -H (jj bookmark list -r @ -T \"self\")";
+
+      done = "echo 'done!' | ${remoteClipClient.notify}";
+    };
 
     shellAbbrs =
       {
