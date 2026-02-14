@@ -81,6 +81,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gc-env.url = "github:Julow/nix-gc-env";
+
     # theme
     gruvbox-yazi = {
       url = "github:poperigby/gruvbox-dark-yazi";

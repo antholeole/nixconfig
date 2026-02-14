@@ -45,6 +45,7 @@
         inputs.nixpkgs.nixosModules.readOnlyPkgs
         inputs.home-manager.nixosModules.home-manager
         inputs.nixpkgs.nixosModules.readOnlyPkgs
+        inputs.nix-gc-env.nixosModules.default
         topLevelModule
 
         hmConfig

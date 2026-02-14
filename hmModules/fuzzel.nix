@@ -1,8 +1,12 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   programs.fuzzel = {
     enable = !config.conf.headless && !config.conf.darwin;
-    settings = {
-      border.radius = 0;
+    settings.main = {
+      font = lib.mkForce "${config.stylix.fonts.monospace.name}";
     };
   };
 }

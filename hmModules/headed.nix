@@ -16,6 +16,7 @@ in {
 
   home.packages = with pkgs;
     mkIfHeaded [
+      nerd-fonts.fira-code
       libnotify
       glib # for notifications
       pwvucontrol

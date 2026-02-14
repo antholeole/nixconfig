@@ -3,7 +3,14 @@
   config,
   ...
 }: {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix = {
+    settings.experimental-features = ["nix-command" "flakes"];
+    gc = {
+      automatic = true;
+      dates = "daily";
+      delete_generations = "+5";
+    };
+  };
 
   programs.nix-ld.enable = true;
   hardware.opengl.enable = true;
@@ -30,7 +37,7 @@
     };
   };
 
-  networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  networking.firewall.trustedInterfaces = ["tailscale0"];
 
   boot = {
     extraModulePackages = [
