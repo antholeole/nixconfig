@@ -10,7 +10,7 @@
 
     profiles.default = {
       id = 0;
-      name = "dft";
+      name = "default";
 
       settings = {
         "extensions.autoDisableScopes" = 0;
