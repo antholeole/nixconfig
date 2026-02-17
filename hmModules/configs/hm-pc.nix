@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   conf = {
     email = "antholeinik@gmail.com";
     name = "anthony";
@@ -18,4 +22,8 @@
       "minecraft"
     ];
   };
+
+  home.packages = with pkgs; [
+    rustdesk
+  ];
 }

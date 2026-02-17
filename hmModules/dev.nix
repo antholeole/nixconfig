@@ -25,7 +25,6 @@
     aspell
     aspellDicts.en
     ghbrowse
-    rustdesk
     dig
   ];
 }

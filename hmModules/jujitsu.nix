@@ -16,6 +16,9 @@
         color = "always";
         diff-formatter = ":git";
         paginate = "auto";
+
+        # delta was way too slow
+        pager = lib.mkForce "less -RFX";
       };
 
       signing = {
