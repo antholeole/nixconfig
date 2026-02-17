@@ -22,7 +22,6 @@
           ++ moreModules
           ++ [
             inputs.oleina-shell.homeModules.default
-            inputs.stylix.nixosModules.stylix
 
             (import "${inputs.self}/hmModules/configs/${config}.nix")
           ];
