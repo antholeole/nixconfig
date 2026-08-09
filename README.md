@@ -1,3 +1,5 @@
+
+
 # Quick start (nixos)
 
 - `nix flake show` to see all outputs
@@ -16,7 +18,7 @@
 
 # Post install
 
-for hm, run `init-niri` to initalize the wm.
+for hm, run `init-niri` to initialize the wm.
 
 ## Notes
 
